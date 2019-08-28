@@ -1,0 +1,32 @@
+{
+  "name": "maas-schemas-ts",
+  "version": "0.0.1",
+  "description": "TypeScript types and io-ts validators for maas-schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maasglobal/maas-schemas-ts.git"
+  },
+  "keywords": [
+    "schemas",
+    "maas",
+    "io-ts",
+    "TypeScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maasglobal/maas-schemas-ts/issues"
+  },
+  "homepage": "https://github.com/maasglobal/maas-schemas-ts#readme",
+  "peerDependencies": {
+    "io-ts": "^2.0.1"
+  },
+  "devDependencies": {
+    "fp-ts": "^2.0.5",
+    "io-ts": "^2.0.1"
+  }
+}
