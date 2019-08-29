@@ -9,7 +9,8 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build": "yarn clean && tsc",
-    "ci": "yarn build"
+    "ci": "yarn build",
+    "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {
     "type": "git",
