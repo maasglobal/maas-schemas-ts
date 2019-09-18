@@ -1,6 +1,10 @@
 import * as t from 'io-ts';
 
-import { PersonalMode, PrivateTransitMode, PublicTransitMode } from './components/travel-mode';
+import {
+  PersonalMode,
+  PrivateTransitMode,
+  PublicTransitMode,
+} from './components/travel-mode';
 import { Place } from './components/units-geo';
 import { Time } from './components/units';
 

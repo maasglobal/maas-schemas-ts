@@ -14,7 +14,15 @@ export const PersonalMode = t.union([
   t.literal('WALK'),
 ]);
 
-export type PublicTransitMode = 'AEROPLANE' | 'BUS' | 'FERRY' | 'RAIL' | 'SUBWAY' | 'TRAIN' | 'TRAM' | 'TRANSIT';
+export type PublicTransitMode =
+  | 'AEROPLANE'
+  | 'BUS'
+  | 'FERRY'
+  | 'RAIL'
+  | 'SUBWAY'
+  | 'TRAIN'
+  | 'TRAM'
+  | 'TRANSIT';
 export const PublicTransitMode = t.union([
   t.literal('AEROPLANE'),
   t.literal('BUS'),
