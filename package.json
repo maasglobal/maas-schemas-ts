@@ -12,6 +12,8 @@
     "clean": "rm -rf lib",
     "build": "yarn clean && tsc",
     "ci": "yarn lint && yarn build",
+    "convert": "./converter.ts",
+    "convert-all": "(cd node_modules/maas-schemas/schemas/; find . -iname '*.json' -exec ../../../converter.ts {} ../../../src \\;) && yarn eslint --fix",
     "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {
@@ -34,6 +36,8 @@
     "io-ts": "^2.0.1"
   },
   "devDependencies": {
+    "@types/json-schema": "^7.0.3",
+    "@types/node": "^12.7.5",
     "@typescript-eslint/eslint-plugin": "^2.1.0",
     "@typescript-eslint/parser": "^2.1.0",
     "eslint": "^6.3.0",
@@ -44,6 +48,8 @@
     "eslint-plugin-prettier": "^3.1.0",
     "fp-ts": "^2.0.5",
     "io-ts": "^2.0.1",
+    "io-ts-codegen": "^0.4.1",
+    "maas-schemas": "maasglobal/maas-schemas",
     "prettier": "^1.18.2",
     "typescript": "^3.5.3"
   }
