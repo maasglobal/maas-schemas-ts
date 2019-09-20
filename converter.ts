@@ -167,6 +167,7 @@ function isSupported(feature: string) {
     'maximum',
     'minLength',
     'maxLength',
+    'pattern',
     'properties',
     'required',
     'enum',
