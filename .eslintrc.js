@@ -27,7 +27,7 @@ module.exports = {
     'fp/no-mutating-methods': [2, { allowedObjects: ['Array_', 'NonEmptyArray_', 'Tuple_'] }],
     'import/no-duplicates': 0,
     'import/no-unresolved': 0,
-    'import/order': 2,
+    'import/order': 0,
     'prettier/prettier': [
       1,
       {
