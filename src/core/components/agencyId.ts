@@ -10,8 +10,7 @@ undefined
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/components/agencyId.json';
-// Default
-// The purpose of this remains a mystery
+
 export type Default = t.Branded<string, DefaultBrand>;
 export const Default = t.brand(
   t.string,

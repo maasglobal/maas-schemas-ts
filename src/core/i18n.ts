@@ -10,14 +10,13 @@ MaaS internationalization schemas
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/i18n.json';
-// Locale
-// The purpose of this remains a mystery
+
 export type Locale = t.Branded<string, LocaleBrand>;
 export const Locale = t.brand(
   t.string,
   (x): x is t.Branded<string, LocaleBrand> =>
     typeof x !== 'string' ||
-    x.match('^[a-z]{2,3}(?:-[a-zA-Z]{4})?(?:-[A-Z]{2,3})?$') !== null,
+    x.match(/^[a-z]{2,3}(?:-[a-zA-Z]{4})?(?:-[A-Z]{2,3})?$/) !== null,
   'Locale',
 );
 export interface LocaleBrand {

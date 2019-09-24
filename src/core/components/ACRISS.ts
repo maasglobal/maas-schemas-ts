@@ -10,15 +10,14 @@ ACRISS classification of the car, see https://en.wikipedia.org/wiki/ACRISS_Car_C
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/components/ACRISS.json';
-// Default
-// The purpose of this remains a mystery
+
 export type Default = t.Branded<string, DefaultBrand>;
 export const Default = t.brand(
   t.string,
   (x): x is t.Branded<string, DefaultBrand> =>
     typeof x !== 'string' ||
     x.match(
-      '[MNEHCDIJSRFGPULWOX][BCDWVLSTFJXPQZEMRHYNGK][MNCABD][RNDQHIECLSABMFVZUX]',
+      /[MNEHCDIJSRFGPULWOX][BCDWVLSTFJXPQZEMRHYNGK][MNCABD][RNDQHIECLSABMFVZUX]/,
     ) !== null,
   'Default',
 );

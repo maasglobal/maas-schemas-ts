@@ -10,8 +10,7 @@ Schema for MODE_FERRY meta field
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_FERRY.json';
-// Default
-// The purpose of this remains a mystery
+
 export type Default = t.Branded<{}, DefaultBrand>;
 export const Default = t.brand(
   t.type({}),

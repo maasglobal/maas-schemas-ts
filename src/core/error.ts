@@ -10,8 +10,7 @@ An error that the service may send
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/error.json';
-// Default
-// The purpose of this remains a mystery
+
 export type Default = t.Branded<
   {
     message: string;

@@ -10,7 +10,7 @@ MaaS state schemas
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/components/state.json';
-// BookingState
+
 // The life-cycle state of a booking
 export type BookingState = t.Branded<string, BookingStateBrand>;
 export const BookingState = t.brand(
@@ -26,13 +26,14 @@ export const BookingState = t.brand(
     JSON.stringify(x) === JSON.stringify('CANCELLED') ||
     JSON.stringify(x) === JSON.stringify('EXPIRED') ||
     JSON.stringify(x) === JSON.stringify('REJECTED') ||
-    JSON.stringify(x) === JSON.stringify('FINISHED'),
+    JSON.stringify(x) === JSON.stringify('FINISHED') ||
+    JSON.stringify(x) === JSON.stringify('UNKNOWN'),
   'BookingState',
 );
 export interface BookingStateBrand {
   readonly BookingState: unique symbol;
 }
-// LegState
+
 // The life-cycle state of a leg
 export type LegState = t.Branded<string, LegStateBrand>;
 export const LegState = t.brand(
@@ -49,7 +50,7 @@ export const LegState = t.brand(
 export interface LegStateBrand {
   readonly LegState: unique symbol;
 }
-// ItineraryState
+
 // The life-cycle state of an itinerary
 export type ItineraryState = t.Branded<string, ItineraryStateBrand>;
 export const ItineraryState = t.brand(
