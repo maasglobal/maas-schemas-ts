@@ -1,7 +1,7 @@
 #!/usr/bin/env ts-node
 
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import * as gen from 'io-ts-codegen';
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema';
 
@@ -13,19 +13,31 @@ const supportedEverywhere = [
   'definitions',
   'type',
   'properties',
+  'patternProperties',
   'required',
   'additionalProperties',
+  'allOf',
+  'anyOf',
+  'enum',
+  'const',
+  'items',
+  'additionalItems',
+  'default', // ignored
+  'examples', // ignored
 ];
 const supportedAtRoot = [
   'minimum',
   'maximum',
+  'multipleOf',
   'minLength',
   'maxLength',
   'pattern',
-  'enum',
+  'minItems',
+  'maxItems',
+  'uniqueItems',
 ];
 
-const [, , inputFile, outputDir] = process.argv;
+const [, , inputFile, outputDir, strict] = process.argv;
 const outputFile = path.join(outputDir, inputFile.split('.json').join('.ts'));
 
 const schema: JSONSchema7 = JSON.parse(fs.readFileSync(inputFile, 'utf-8'));
@@ -35,29 +47,50 @@ const exps = new Set<string>();
 const titles: Record<string, string | undefined> = {};
 const descriptions: Record<string, string | undefined> = {};
 
+enum ErrorCode {
+  WARNING = 1,
+  ERROR = 2,
+}
+type OK = 0;
+const OK: OK = 0;
+type ReturnCode = OK | ErrorCode;
 // eslint-disable-next-line
-let failure: any = false;
+let returnCode: ReturnCode = OK;
 
-function notImplemented(pre: string, item: string, post: string) {
-  const WARNING = 'WARNING';
-  const ERROR = 'ERROR';
-  const isOutsideRoot = supportedAtRoot.includes(item);
-  const level = isOutsideRoot ? WARNING : ERROR;
-  const where = isOutsideRoot ? 'outside DIRECT exports' : '';
-  console.error(),
-    console.error(
-      [`${level}:`, pre, item, post, 'NOT supported', where, 'by convert.ts']
-        .filter((s) => s.length > 0)
-        .join(' '),
-    );
-  console.error(`  in ${path.resolve(inputFile)}`);
-  if (level === ERROR) {
-    // eslint-disable-next-line
-    failure = true;
-    const escalate = "throw new Error('schema conversion failed')";
-    return gen.customCombinator(escalate, escalate);
+function updateFailure(level: ErrorCode) {
+  if (returnCode === ErrorCode.ERROR) {
+    return;
   }
-  return null;
+  // eslint-disable-next-line
+  returnCode = level;
+}
+
+function error(message: string) {
+  updateFailure(ErrorCode.ERROR);
+  // eslint-disable-next-line
+  console.error(`ERROR: ${message}`);
+  const escalate = "throw new Error('schema conversion failed')";
+  return gen.customCombinator(escalate, escalate);
+}
+function warning(message: string) {
+  updateFailure(ErrorCode.WARNING);
+  // eslint-disable-next-line
+  console.error(`WARNING ${message}`);
+}
+
+function notImplemented(pre: string, item: string, post: string, fatal = false) {
+  const isOutsideRoot = supportedAtRoot.includes(item);
+  const where = isOutsideRoot ? 'outside DIRECT exports' : '';
+  const message =
+    [pre, item, post, 'NOT supported', where, 'by convert.ts']
+      .filter((s) => s.length > 0)
+      .join(' ') + `\n  in ${path.resolve(inputFile)}`;
+
+  if (fatal !== true && isOutsideRoot) {
+    warning(message);
+    return null;
+  }
+  return error(message);
 }
 
 function capitalize(word: string) {
@@ -86,7 +119,20 @@ function parseRef(ref: string) {
   }
   const [filePath, jsonPath] = parts;
   // eslint-disable-next-line
-  const [name] = jsonPath.split('/').reverse();
+  const jsonPathParts = jsonPath.split('/');
+  if (jsonPathParts.length !== 3) {
+    // eslint-disable-next-line
+    throw new Error('unknown ref format');
+  }
+  const [empty, definitions, name] = jsonPathParts;
+  if (empty !== '') {
+    // eslint-disable-next-line
+    throw new Error('unknown ref format');
+  }
+  if (definitions !== 'definitions') {
+    // eslint-disable-next-line
+    throw new Error('unknown ref format');
+  }
   const variableName = camelFromKebab(name);
   return { filePath, variableName };
 }
@@ -102,24 +148,54 @@ function getRequiredProperties(schema: JSONSchema7): { [key: string]: true } {
   return required;
 }
 
-function toInterfaceCombinator(schema: JSONSchema7): gen.TypeReference {
-  const properties = schema.properties || {};
-  const required = getRequiredProperties(schema);
-  const combinator = gen.interfaceCombinator(
-    Object.entries(properties).map(<K extends string, V>([key, value]: [K, V]) =>
-      gen.property(
-        key,
-        // eslint-disable-next-line
-        fromSchema(value),
-        !required.hasOwnProperty(key),
+function fromProperties(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if ('properties' in schema && typeof schema.properties !== 'undefined') {
+    const required = getRequiredProperties(schema);
+    const combinator = gen.interfaceCombinator(
+      Object.entries(schema.properties).map(<K extends string, V>([key, value]: [K, V]) =>
+        gen.property(
+          key,
+          // eslint-disable-next-line
+          fromSchema(value),
+          !required.hasOwnProperty(key),
+        ),
       ),
-    ),
-  );
-  if (schema.hasOwnProperty('additionalProperties') === false) {
+    );
+    return [combinator];
+  }
+  return [];
+}
+
+function fromPatternProperties(schema: JSONSchema7): Array<gen.TypeReference> {
+  if ('patternProperties' in schema && typeof schema.patternProperties !== 'undefined') {
+    warning('patternProperty KEY validation NOT implemented');
+    const combinators = Object.entries(schema.patternProperties).map(
+      <K extends string, V>([_key, value]: [K, V]) =>
+        gen.recordCombinator(gen.stringType, fromSchema(value)),
+    );
+    return combinators;
+  }
+  return [];
+}
+
+function toInterfaceCombinator(schema: JSONSchema7): gen.TypeReference {
+  const combinators = [...fromProperties(schema), ...fromPatternProperties(schema)];
+  const combinator = (() => {
+    if (combinators.length > 1) {
+      return gen.intersectionCombinator(combinators);
+    }
+    if (combinators.length === 1) {
+      const [combinator] = combinators;
+      return combinator;
+    }
+    return gen.interfaceCombinator([]);
+  })();
+
+  if (schema.hasOwnProperty('additionalproperties') === false) {
     return combinator;
   }
   if (typeof schema.additionalProperties !== 'boolean') {
-    const escalate = notImplemented('specific', 'additionalProperties', 'SCHEMA');
+    const escalate = notImplemented('specific', 'additionalProperties', 'schema', true);
     if (escalate !== null) {
       return escalate;
     }
@@ -128,6 +204,28 @@ function toInterfaceCombinator(schema: JSONSchema7): gen.TypeReference {
     return gen.exactCombinator(combinator);
   }
   return combinator;
+}
+
+function toArrayCombinator(schema: JSONSchema7): gen.TypeReference {
+  if (
+    'items' in schema &&
+    typeof schema.items !== 'undefined' &&
+    typeof schema.items !== 'boolean'
+  ) {
+    if (schema.items instanceof Array) {
+      if ('additionalItems' in schema && schema.additionalItems === false) {
+        const combinators = schema.items.map((s) => fromSchema(s));
+        return gen.tupleCombinator(combinators);
+      }
+      // eslint-disable-next-line
+      throw new Error('tuples with ...REST are not supported, set additionalItems false');
+    }
+    return gen.arrayCombinator(fromSchema(schema.items));
+  }
+  // eslint-disable-next-line
+  throw new Error(
+    `arrays without specific ITEMS are not supported ${JSON.stringify(schema)}`,
+  );
 }
 
 function checkPattern(x: string, pattern: string): string {
@@ -148,22 +246,27 @@ function checkMinimum(x: string, minimum: number): string {
 }
 
 function checkMaximum(x: string, maximum: number): string {
-  return `( typeof x !== 'string' || ${x} <= ${maximum} )`;
+  return `( typeof x !== 'number' || ${x} <= ${maximum} )`;
+}
+
+function checkMultipleOf(x: string, divisor: number): string {
+  return `( typeof x !== 'number' || ${x} % ${divisor} === 0 )`;
 }
 
 function checkInteger(x: string): string {
   return `( Number.isInteger(${x}) )`;
 }
 
-function checkEnum(x: string, examples: Array<any>): string {
-  const options = examples.map((example) => {
-    // use our JSON.stringify to convert example into js code
-    const jsExample = JSON.stringify(example);
+function checkMinItems(x: string, minItems: number): string {
+  return `( Array.isArray(x) === false || ${x}.length >= ${minItems} )`;
+}
 
-    // use user's JSON.stringify to perform object comparison
-    return `JSON.stringify(${x}) === JSON.stringify(${jsExample})`;
-  });
-  return options.join(' || ');
+function checkMaxItems(x: string, maxItems: number): string {
+  return `( Array.isArray(x) === false || ${x}.length <= ${maxItems} )`;
+}
+
+function checkUniqueItems(x: string): string {
+  return `( Array.isArray(x) === false || ${x}.length === [...new Set(x)].length )`;
 }
 
 function generateChecks(x: string, schema: JSONSchema7): string {
@@ -173,8 +276,11 @@ function generateChecks(x: string, schema: JSONSchema7): string {
     ...(schema.maxLength ? [checkMaxLength(x, schema.maxLength)] : []),
     ...(schema.minimum ? [checkMinimum(x, schema.minimum)] : []),
     ...(schema.maximum ? [checkMaximum(x, schema.maximum)] : []),
+    ...(schema.multipleOf ? [checkMultipleOf(x, schema.multipleOf)] : []),
     ...(schema.type === 'integer' ? [checkInteger(x)] : []),
-    ...(schema.enum ? [checkEnum(x, schema.enum)] : []),
+    ...(schema.minItems ? [checkMinItems(x, schema.minItems)] : []),
+    ...(schema.maxItems ? [checkMaxItems(x, schema.maxItems)] : []),
+    ...(schema.uniqueItems === true ? [checkUniqueItems(x)] : []),
   ];
   if (checks.length < 1) {
     return 'true';
@@ -200,8 +306,8 @@ function fromRef(refString: string): gen.TypeReference {
     const [fullPath] = withoutDomain.split('.json');
     imps.add(`import * as ${importName} from 'src/${fullPath}';`);
   } else {
-    const relativePath = ref.filePath;
-    imps.add(`import * as ${importName} from '${relativePath}';`);
+    const [relativePath] = ref.filePath.split('.json');
+    imps.add(`import * as ${importName} from './${relativePath}';`);
   }
   const variableRef = `${importName}.${ref.variableName}`;
   return gen.customCombinator(variableRef, variableRef, [importName]);
@@ -212,6 +318,97 @@ function isSupported(feature: string, isRoot: boolean) {
     return true;
   }
   return supportedEverywhere.includes(feature);
+}
+
+function fromType(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if (Array.isArray(schema.type)) {
+    const combinators = schema.type.map((t) => {
+      // eslint-disable-next-line
+      switch (t) {
+        case 'string':
+          return gen.stringType;
+        case 'number':
+        case 'integer':
+          return gen.numberType;
+        case 'boolean':
+          return gen.booleanType;
+        case 'null':
+          return gen.nullType;
+      }
+      // eslint-disable-next-line
+      throw new Error(`${t}s are not supported as part of type MULTIPLES`);
+    });
+    return [gen.unionCombinator(combinators)];
+  }
+  switch (schema.type) {
+    case 'string':
+      return [gen.stringType];
+    case 'number':
+    case 'integer':
+      return [gen.numberType];
+    case 'boolean':
+      return [gen.booleanType];
+    case 'null':
+      return [gen.nullType];
+    case 'object':
+      return [toInterfaceCombinator(schema)];
+    case 'array':
+      return [toArrayCombinator(schema)];
+  }
+  if (typeof schema.type !== 'undefined') {
+    const escalate = notImplemented('', JSON.stringify(schema.type), 'TYPE', true);
+    if (escalate !== null) {
+      return [escalate];
+    }
+  }
+  return [];
+}
+
+function fromEnum(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if ('enum' in schema && typeof schema.enum !== 'undefined') {
+    const combinators = schema.enum.map((s) => {
+      switch (typeof s) {
+        case 'string':
+        case 'boolean':
+        case 'number':
+          return gen.literalCombinator(s);
+      }
+      // eslint-disable-next-line
+      throw new Error(`${typeof s}s are not supported as part of ENUM`);
+    });
+    return [gen.unionCombinator(combinators)];
+  }
+  return [];
+}
+
+function fromConst(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if ('const' in schema && typeof schema.const !== 'undefined') {
+    switch (typeof schema.const) {
+      case 'string':
+      case 'boolean':
+      case 'number':
+        return [gen.literalCombinator(schema.const)];
+    }
+    // eslint-disable-next-line
+    throw new Error(`${typeof schema.const}s are not supported as part of CONST`);
+  }
+  return [];
+}
+
+function fromAllOf(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if ('allOf' in schema && typeof schema.allOf !== 'undefined') {
+    const combinators = schema.allOf.map((s) => fromSchema(s));
+    return [gen.intersectionCombinator(combinators)];
+  }
+  return [];
+}
+
+function fromAnyOf(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if ('anyOf' in schema && typeof schema.anyOf !== 'undefined') {
+    const combinators = schema.anyOf.map((s) => fromSchema(s));
+    return [gen.unionCombinator(combinators)];
+  }
+  return [];
 }
 
 function fromSchema(schema: JSONSchema7Definition, isRoot = false): gen.TypeReference {
@@ -236,36 +433,26 @@ function fromSchema(schema: JSONSchema7Definition, isRoot = false): gen.TypeRefe
     return fromRef(schema['$ref']);
   }
   imps.add("import * as t from 'io-ts';");
-  switch (schema.type) {
-    case 'string':
-      return gen.stringType;
-    case 'number':
-    case 'integer':
-      return gen.numberType;
-    case 'boolean':
-      return gen.booleanType;
-    case 'object':
-      return toInterfaceCombinator(schema);
-    case 'array':
-      const escalate = notImplemented('', 'array', 'TYPE');
-      if (escalate !== null) {
-        return escalate;
-      }
+  const combinators = [
+    ...fromType(schema),
+    ...fromEnum(schema),
+    ...fromConst(schema),
+    ...fromAllOf(schema),
+    ...fromAnyOf(schema),
+  ];
+  if (combinators.length > 1) {
+    return gen.intersectionCombinator(combinators);
   }
-  if ('enum' in schema) {
-    const escalate = notImplemented('standalone', 'enum', 'TYPE');
-    if (escalate !== null) {
-      return escalate;
-    }
+  if (combinators.length === 1) {
+    const [combinator] = combinators;
+    return combinator;
   }
-  if (typeof schema.type !== 'undefined') {
-    const escalate = notImplemented('', JSON.stringify(schema.type), 'TYPE');
-    if (escalate !== null) {
-      return escalate;
-    }
+  if (generateChecks('x', schema).length > 1) {
+    // skip checks
+    return gen.unknownType;
   }
   // eslint-disable-next-line
-  throw new Error(`unknown schema: ${JSON.stringify(schema)}`)
+  throw new Error(`unknown schema: ${JSON.stringify(schema)}`);
 }
 
 function fromDefinitions(
@@ -316,35 +503,31 @@ function fromNonRefRoot(
   schema: JSONSchema7,
 ): Array<[JSONSchema7['title'], JSONSchema7['description'], gen.TypeDeclaration]> {
   // root schema info is printed in the beginning of the file
-  const title = undefined;
-  const description = undefined;
-  try {
-    return [
-      [
-        title,
-        description,
-        gen.typeDeclaration(
+  const title = 'Default';
+  const description = 'The default export. More information at the top.';
+  return [
+    [
+      title,
+      description,
+      gen.typeDeclaration(
+        'Default',
+        gen.brandCombinator(
+          fromSchema(schema, true),
+          (x) => generateChecks(x, schema),
           'Default',
-          gen.brandCombinator(
-            fromSchema(schema, true),
-            (x) => generateChecks(x, schema),
-            'Default',
-          ),
-          true,
         ),
-      ],
-    ];
-  } catch {
-    return [];
-  }
+        true,
+      ),
+    ],
+  ];
 }
 
 function fromRoot(
   root: JSONSchema7,
 ): Array<[JSONSchema7['title'], JSONSchema7['description'], gen.TypeDeclaration]> {
   // root schema info is printed in the beginning of the file
-  const title = undefined;
-  const description = undefined;
+  const title = 'Default';
+  const description = 'The default export. More information at the top.';
 
   if ('$ref' in root) {
     if (typeof root['$ref'] === 'undefined') {
@@ -385,8 +568,11 @@ const defs: Array<[string, string, string]> = declarations.map((d) => [
   gen.printRuntime(d).replace(/\ninterface /, '\nexport interface '),
 ]);
 
-if (failure === true) {
-  process.exit();
+if (returnCode === ErrorCode.ERROR) {
+  process.exit(returnCode);
+}
+if (returnCode === ErrorCode.WARNING && strict === '--strict') {
+  process.exit(returnCode);
 }
 
 fs.mkdirSync(path.dirname(outputFile), { recursive: true });
