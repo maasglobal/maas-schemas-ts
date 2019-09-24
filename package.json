@@ -14,7 +14,7 @@
     "build": "yarn clean && tsc",
     "ci": "yarn lint && yarn build",
     "convert": "./converter.ts",
-    "convert-all": "yarn build-converter && (cd node_modules/@maasglobal/maas-schemas/schemas/; find . -name '*.json' -print0|sort -z -R|xargs -0 -I {} node ../../../../tmp/converter.js {} ../../../../src \\;) && yarn eslint --fix",
+    "convert-all": "yarn build-converter && (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z -R|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;) && yarn eslint --fix",
     "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {
