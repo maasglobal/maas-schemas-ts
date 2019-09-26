@@ -10,10 +10,11 @@
     "eslint": "eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore",
     "lint": "yarn eslint",
     "clean": "rm -rf lib",
+    "build-converter": "tsc converter.ts -outdir tmp",
     "build": "yarn clean && tsc",
     "ci": "yarn lint && yarn build",
     "convert": "./converter.ts",
-    "convert-all": "(cd node_modules/maas-schemas/schemas/; find . -iname '*.json' -exec ../../../converter.ts {} ../../../src \\;) && yarn eslint --fix",
+    "convert-all": "yarn build-converter && (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z -R|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;) && yarn eslint --fix",
     "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {
@@ -48,8 +49,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "fp-ts": "^2.0.5",
     "io-ts": "^2.0.1",
-    "io-ts-codegen": "^0.4.1",
-    "maas-schemas": "^3.3.0",
+    "io-ts-codegen": "^0.4.2",
     "prettier": "^1.18.2",
     "typescript": "^3.5.3"
   }

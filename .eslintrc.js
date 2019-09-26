@@ -12,7 +12,7 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/array-type': [2, { default: 'generic' }],
-    '@typescript-eslint/camelcase': [2, { ignoreDestructuring: true }],
+    '@typescript-eslint/camelcase': [0],
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-empty-interface': 0,
     '@typescript-eslint/no-explicit-any': 0,
@@ -42,6 +42,7 @@ module.exports = {
     {
       files: ['**/converter.ts'],
       rules: {
+        '@typescript-eslint/camelcase': [2, { ignoreDestructuring: true }],
         '@typescript-eslint/no-unused-vars': [1, { argsIgnorePattern: '(^_)', ignoreRestSiblings: true }],
       },
     },
