@@ -10,27 +10,37 @@ undefined
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_SCOOTER.json';
-
+// Default
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
     scooter?: {
-      id: string;
+      id?: string;
+    } & {
+      id: unknown;
     };
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.partial({
-    scooter: t.type({
-      id: t.string,
-    }),
+    scooter: t.intersection([
+      t.partial({
+        id: t.string,
+      }),
+      t.type({
+        id: t.unknown,
+      }),
+    ]),
   }),
   (
     x,
   ): x is t.Branded<
     {
       scooter?: {
-        id: string;
+        id?: string;
+      } & {
+        id: unknown;
       };
     },
     DefaultBrand

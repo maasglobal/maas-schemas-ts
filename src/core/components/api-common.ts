@@ -65,5 +65,18 @@ export const Headers = t.brand(
 export interface HeadersBrand {
   readonly Headers: unique symbol;
 }
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<unknown, DefaultBrand>;
+export const Default = t.brand(
+  t.unknown,
+  (x): x is t.Branded<unknown, DefaultBrand> => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

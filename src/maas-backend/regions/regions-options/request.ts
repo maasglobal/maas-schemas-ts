@@ -14,31 +14,34 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/regions/regions-options/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    identityId: Units_.IdentityId;
+    identityId?: Units_.IdentityId;
     headers?: ApiCommon_.Headers;
+  } & {
+    identityId: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        identityId: Units_.IdentityId,
-      }),
-      t.partial({
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+  t.intersection([
+    t.partial({
+      identityId: Units_.IdentityId,
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      identityId: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      identityId: Units_.IdentityId;
+      identityId?: Units_.IdentityId;
       headers?: ApiCommon_.Headers;
+    } & {
+      identityId: unknown;
     },
     DefaultBrand
   > => true,

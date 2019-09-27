@@ -14,10 +14,10 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-list/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    identityId: Units_.IdentityId;
+    identityId?: Units_.IdentityId;
     payload?: {
       startTime?: Units_.Time;
       endTime?: Units_.Time;
@@ -25,33 +25,32 @@ export type Default = t.Branded<
       modes?: string;
     };
     headers?: ApiCommon_.Headers;
+  } & {
+    identityId: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        identityId: Units_.IdentityId,
+  t.intersection([
+    t.partial({
+      identityId: Units_.IdentityId,
+      payload: t.partial({
+        startTime: Units_.Time,
+        endTime: Units_.Time,
+        states: t.string,
+        modes: t.string,
       }),
-      t.partial({
-        payload: t.exact(
-          t.partial({
-            startTime: Units_.Time,
-            endTime: Units_.Time,
-            states: t.string,
-            modes: t.string,
-          }),
-        ),
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      identityId: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      identityId: Units_.IdentityId;
+      identityId?: Units_.IdentityId;
       payload?: {
         startTime?: Units_.Time;
         endTime?: Units_.Time;
@@ -59,6 +58,8 @@ export const Default = t.brand(
         modes?: string;
       };
       headers?: ApiCommon_.Headers;
+    } & {
+      identityId: unknown;
     },
     DefaultBrand
   > => true,

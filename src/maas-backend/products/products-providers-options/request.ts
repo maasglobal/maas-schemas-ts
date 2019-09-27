@@ -18,22 +18,34 @@ export const schemaId =
 // The purpose of this remains a mystery
 export type Payload = t.Branded<
   {
-    lat: UnitsGeo_.RelaxedLatitude;
-    lon: UnitsGeo_.RelaxedLongitude;
+    lat?: UnitsGeo_.RelaxedLatitude;
+    lon?: UnitsGeo_.RelaxedLongitude;
+  } & {
+    lat: unknown;
+    lon: unknown;
   },
   PayloadBrand
 >;
 export const Payload = t.brand(
-  t.type({
-    lat: UnitsGeo_.RelaxedLatitude,
-    lon: UnitsGeo_.RelaxedLongitude,
-  }),
+  t.intersection([
+    t.partial({
+      lat: UnitsGeo_.RelaxedLatitude,
+      lon: UnitsGeo_.RelaxedLongitude,
+    }),
+    t.type({
+      lat: t.unknown,
+      lon: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      lat: UnitsGeo_.RelaxedLatitude;
-      lon: UnitsGeo_.RelaxedLongitude;
+      lat?: UnitsGeo_.RelaxedLatitude;
+      lon?: UnitsGeo_.RelaxedLongitude;
+    } & {
+      lat: unknown;
+      lon: unknown;
     },
     PayloadBrand
   > => true,
@@ -43,34 +55,40 @@ export interface PayloadBrand {
   readonly Payload: unique symbol;
 }
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    identityId: Units_.IdentityId;
-    payload: Payload;
+    identityId?: Units_.IdentityId;
+    payload?: Payload;
     headers?: ApiCommon_.Headers;
+  } & {
+    identityId: unknown;
+    payload: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        identityId: Units_.IdentityId,
-        payload: Payload,
-      }),
-      t.partial({
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+  t.intersection([
+    t.partial({
+      identityId: Units_.IdentityId,
+      payload: Payload,
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      identityId: t.unknown,
+      payload: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      identityId: Units_.IdentityId;
-      payload: Payload;
+      identityId?: Units_.IdentityId;
+      payload?: Payload;
       headers?: ApiCommon_.Headers;
+    } & {
+      identityId: unknown;
+      payload: unknown;
     },
     DefaultBrand
   > => true,

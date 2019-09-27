@@ -12,21 +12,60 @@ import * as t from 'io-ts';
 export const schemaId = 'http://maasglobal.com/core/components/state.json';
 // BookingState
 // The life-cycle state of a booking
-export type BookingState = t.Branded<string, BookingStateBrand>;
+export type BookingState = t.Branded<
+  string &
+    (
+      | 'START'
+      | 'PENDING'
+      | 'PAID'
+      | 'RESERVED'
+      | 'CONFIRMED'
+      | 'ACTIVATED'
+      | 'ON_HOLD'
+      | 'CANCELLED'
+      | 'EXPIRED'
+      | 'REJECTED'
+      | 'FINISHED'
+      | 'UNKNOWN'),
+  BookingStateBrand
+>;
 export const BookingState = t.brand(
-  t.string,
-  (x): x is t.Branded<string, BookingStateBrand> =>
-    JSON.stringify(x) === JSON.stringify('START') ||
-    JSON.stringify(x) === JSON.stringify('PENDING') ||
-    JSON.stringify(x) === JSON.stringify('PAID') ||
-    JSON.stringify(x) === JSON.stringify('RESERVED') ||
-    JSON.stringify(x) === JSON.stringify('CONFIRMED') ||
-    JSON.stringify(x) === JSON.stringify('ACTIVATED') ||
-    JSON.stringify(x) === JSON.stringify('ON_HOLD') ||
-    JSON.stringify(x) === JSON.stringify('CANCELLED') ||
-    JSON.stringify(x) === JSON.stringify('EXPIRED') ||
-    JSON.stringify(x) === JSON.stringify('REJECTED') ||
-    JSON.stringify(x) === JSON.stringify('FINISHED'),
+  t.intersection([
+    t.string,
+    t.union([
+      t.literal('START'),
+      t.literal('PENDING'),
+      t.literal('PAID'),
+      t.literal('RESERVED'),
+      t.literal('CONFIRMED'),
+      t.literal('ACTIVATED'),
+      t.literal('ON_HOLD'),
+      t.literal('CANCELLED'),
+      t.literal('EXPIRED'),
+      t.literal('REJECTED'),
+      t.literal('FINISHED'),
+      t.literal('UNKNOWN'),
+    ]),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    string &
+      (
+        | 'START'
+        | 'PENDING'
+        | 'PAID'
+        | 'RESERVED'
+        | 'CONFIRMED'
+        | 'ACTIVATED'
+        | 'ON_HOLD'
+        | 'CANCELLED'
+        | 'EXPIRED'
+        | 'REJECTED'
+        | 'FINISHED'
+        | 'UNKNOWN'),
+    BookingStateBrand
+  > => true,
   'BookingState',
 );
 export interface BookingStateBrand {
@@ -34,16 +73,28 @@ export interface BookingStateBrand {
 }
 // LegState
 // The life-cycle state of a leg
-export type LegState = t.Branded<string, LegStateBrand>;
+export type LegState = t.Branded<
+  string & ('START' | 'PLANNED' | 'PAID' | 'ACTIVATED' | 'CANCELLED' | 'FINISHED'),
+  LegStateBrand
+>;
 export const LegState = t.brand(
-  t.string,
-  (x): x is t.Branded<string, LegStateBrand> =>
-    JSON.stringify(x) === JSON.stringify('START') ||
-    JSON.stringify(x) === JSON.stringify('PLANNED') ||
-    JSON.stringify(x) === JSON.stringify('PAID') ||
-    JSON.stringify(x) === JSON.stringify('ACTIVATED') ||
-    JSON.stringify(x) === JSON.stringify('CANCELLED') ||
-    JSON.stringify(x) === JSON.stringify('FINISHED'),
+  t.intersection([
+    t.string,
+    t.union([
+      t.literal('START'),
+      t.literal('PLANNED'),
+      t.literal('PAID'),
+      t.literal('ACTIVATED'),
+      t.literal('CANCELLED'),
+      t.literal('FINISHED'),
+    ]),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    string & ('START' | 'PLANNED' | 'PAID' | 'ACTIVATED' | 'CANCELLED' | 'FINISHED'),
+    LegStateBrand
+  > => true,
   'LegState',
 );
 export interface LegStateBrand {
@@ -51,21 +102,62 @@ export interface LegStateBrand {
 }
 // ItineraryState
 // The life-cycle state of an itinerary
-export type ItineraryState = t.Branded<string, ItineraryStateBrand>;
+export type ItineraryState = t.Branded<
+  string &
+    (
+      | 'START'
+      | 'PLANNED'
+      | 'PAID'
+      | 'ACTIVATED'
+      | 'CANCELLED'
+      | 'CANCELLED_WITH_ERRORS'
+      | 'FINISHED'),
+  ItineraryStateBrand
+>;
 export const ItineraryState = t.brand(
-  t.string,
-  (x): x is t.Branded<string, ItineraryStateBrand> =>
-    JSON.stringify(x) === JSON.stringify('START') ||
-    JSON.stringify(x) === JSON.stringify('PLANNED') ||
-    JSON.stringify(x) === JSON.stringify('PAID') ||
-    JSON.stringify(x) === JSON.stringify('ACTIVATED') ||
-    JSON.stringify(x) === JSON.stringify('CANCELLED') ||
-    JSON.stringify(x) === JSON.stringify('CANCELLED_WITH_ERRORS') ||
-    JSON.stringify(x) === JSON.stringify('FINISHED'),
+  t.intersection([
+    t.string,
+    t.union([
+      t.literal('START'),
+      t.literal('PLANNED'),
+      t.literal('PAID'),
+      t.literal('ACTIVATED'),
+      t.literal('CANCELLED'),
+      t.literal('CANCELLED_WITH_ERRORS'),
+      t.literal('FINISHED'),
+    ]),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    string &
+      (
+        | 'START'
+        | 'PLANNED'
+        | 'PAID'
+        | 'ACTIVATED'
+        | 'CANCELLED'
+        | 'CANCELLED_WITH_ERRORS'
+        | 'FINISHED'),
+    ItineraryStateBrand
+  > => true,
   'ItineraryState',
 );
 export interface ItineraryStateBrand {
   readonly ItineraryState: unique symbol;
 }
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<unknown, DefaultBrand>;
+export const Default = t.brand(
+  t.unknown,
+  (x): x is t.Branded<unknown, DefaultBrand> => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

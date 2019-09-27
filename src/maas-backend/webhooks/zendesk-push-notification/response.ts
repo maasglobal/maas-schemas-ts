@@ -11,5 +11,50 @@ import * as t from 'io-ts';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/zendesk-push-notification/response.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    results?: {
+      successCount: unknown;
+      failureCount: unknown;
+    };
+  } & {
+    results: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.intersection([
+    t.partial({
+      results: t.type({
+        successCount: t.unknown,
+        failureCount: t.unknown,
+      }),
+    }),
+    t.type({
+      results: t.unknown,
+    }),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      results?: {
+        successCount: unknown;
+        failureCount: unknown;
+      };
+    } & {
+      results: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

@@ -10,7 +10,8 @@ MaaS common components that are used consistently within our own objects
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/components/common.json';
-
+// AgencyId
+// The purpose of this remains a mystery
 export type AgencyId = t.Branded<string, AgencyIdBrand>;
 export const AgencyId = t.brand(
   t.string,
@@ -21,18 +22,19 @@ export const AgencyId = t.brand(
 export interface AgencyIdBrand {
   readonly AgencyId: unique symbol;
 }
-
+// DeviceToken
+// The purpose of this remains a mystery
 export type DeviceToken = t.Branded<string, DeviceTokenBrand>;
 export const DeviceToken = t.brand(
   t.string,
   (x): x is t.Branded<string, DeviceTokenBrand> =>
-    typeof x !== 'string' || x.match(/^([A-Fa-f0-9]{2}){8,64}$/) !== null,
+    typeof x !== 'string' || x.match('^([A-Fa-f0-9]{2}){8,64}$') !== null,
   'DeviceToken',
 );
 export interface DeviceTokenBrand {
   readonly DeviceToken: unique symbol;
 }
-
+// Signature
 // Signature of a signed object
 export type Signature = t.Branded<string, SignatureBrand>;
 export const Signature = t.brand(
@@ -45,7 +47,7 @@ export const Signature = t.brand(
 export interface SignatureBrand {
   readonly Signature: unique symbol;
 }
-
+// HtmlBlock
 // HTML string of block level content
 export type HtmlBlock = t.Branded<string, HtmlBlockBrand>;
 export const HtmlBlock = t.brand(
@@ -56,7 +58,7 @@ export const HtmlBlock = t.brand(
 export interface HtmlBlockBrand {
   readonly HtmlBlock: unique symbol;
 }
-
+// JsonParam
 // JSON encoded object or array
 export type JsonParam = t.Branded<string, JsonParamBrand>;
 export const JsonParam = t.brand(
@@ -67,58 +69,59 @@ export const JsonParam = t.brand(
 export interface JsonParamBrand {
   readonly JsonParam: unique symbol;
 }
-
+// PersonalName
 // First or last name of a customer (e.g. John)
 export type PersonalName = t.Branded<string, PersonalNameBrand>;
 export const PersonalName = t.brand(
   t.string,
   (x): x is t.Branded<string, PersonalNameBrand> =>
     (typeof x !== 'string' ||
-      x.match(/^(?:\p{L})+(?:[`'´\-\.,]?\s?(?:\p{L})*)*$/) !== null) &&
+      x.match("^(?:\\p{L})+(?:[`'´\\-\\.,]?\\s?(?:\\p{L})*)*$") !== null) &&
     (typeof x !== 'string' || x.length <= 255),
   'PersonalName',
 );
 export interface PersonalNameBrand {
   readonly PersonalName: unique symbol;
 }
-
+// Phone
 // ITU-T E.164 phone number, see https://www.safaribooksonline.com/library/view/regular-expressions-cookbook/9781449327453/ch04s03.html
 export type Phone = t.Branded<string, PhoneBrand>;
 export const Phone = t.brand(
   t.string,
   (x): x is t.Branded<string, PhoneBrand> =>
-    typeof x !== 'string' || x.match(/^\+(?:\d){6,14}\d$/) !== null,
+    typeof x !== 'string' || x.match('^\\+(?:\\d){6,14}\\d$') !== null,
   'Phone',
 );
 export interface PhoneBrand {
   readonly Phone: unique symbol;
 }
-
+// RawPhone
 // Slightly looser definition of phone number
 export type RawPhone = t.Branded<string, RawPhoneBrand>;
 export const RawPhone = t.brand(
   t.string,
   (x): x is t.Branded<string, RawPhoneBrand> =>
-    typeof x !== 'string' || x.match(/^\+?(?:\d){6,14}\d$/) !== null,
+    typeof x !== 'string' || x.match('^\\+?(?:\\d){6,14}\\d$') !== null,
   'RawPhone',
 );
 export interface RawPhoneBrand {
   readonly RawPhone: unique symbol;
 }
-
+// Email
 // Rough validation of a valid e-mail address, see https://davidcel.is/posts/stop-validating-email-addresses-with-regex/
 export type Email = t.Branded<string, EmailBrand>;
 export const Email = t.brand(
   t.string,
   (x): x is t.Branded<string, EmailBrand> =>
-    (typeof x !== 'string' || x.match(/^.+@.+\..+$/) !== null) &&
+    (typeof x !== 'string' || x.match('^.+@.+\\..+$') !== null) &&
     (typeof x !== 'string' || x.length <= 64),
   'Email',
 );
 export interface EmailBrand {
   readonly Email: unique symbol;
 }
-
+// PaymentSourceId
+// The purpose of this remains a mystery
 export type PaymentSourceId = t.Branded<string, PaymentSourceIdBrand>;
 export const PaymentSourceId = t.brand(
   t.string,
@@ -130,7 +133,7 @@ export const PaymentSourceId = t.brand(
 export interface PaymentSourceIdBrand {
   readonly PaymentSourceId: unique symbol;
 }
-
+// AppInstanceId
 // An id specific to a user device
 export type AppInstanceId = t.Branded<string, AppInstanceIdBrand>;
 export const AppInstanceId = t.brand(
@@ -142,32 +145,30 @@ export const AppInstanceId = t.brand(
 export interface AppInstanceIdBrand {
   readonly AppInstanceId: unique symbol;
 }
-
+// OpaqueId
 // Typically the hash of the identityId
 export type OpaqueId = t.Branded<string, OpaqueIdBrand>;
 export const OpaqueId = t.brand(
   t.string,
   (x): x is t.Branded<string, OpaqueIdBrand> =>
-    typeof x !== 'string' || x.match(/^[0-9abcdefABCDEF]+$/) !== null,
+    typeof x !== 'string' || x.match('^[0-9abcdefABCDEF]+$') !== null,
   'OpaqueId',
 );
 export interface OpaqueIdBrand {
   readonly OpaqueId: unique symbol;
 }
-
+// ClientId
 // An id indicating the source of the client
-export type ClientId = t.Branded<string, ClientIdBrand>;
+export type ClientId = t.Branded<string & ('whim' | 'wechat'), ClientIdBrand>;
 export const ClientId = t.brand(
-  t.string,
-  (x): x is t.Branded<string, ClientIdBrand> =>
-    JSON.stringify(x) === JSON.stringify('whim') ||
-    JSON.stringify(x) === JSON.stringify('wechat'),
+  t.intersection([t.string, t.union([t.literal('whim'), t.literal('wechat')])]),
+  (x): x is t.Branded<string & ('whim' | 'wechat'), ClientIdBrand> => true,
   'ClientId',
 );
 export interface ClientIdBrand {
   readonly ClientId: unique symbol;
 }
-
+// Ssid
 // Social Security ID
 export type Ssid = t.Branded<string, SsidBrand>;
 export const Ssid = t.brand(
@@ -178,7 +179,7 @@ export const Ssid = t.brand(
 export interface SsidBrand {
   readonly Ssid: unique symbol;
 }
-
+// EncodedQueryParam
 // Encoded Query Params
 export type EncodedQueryParam = t.Branded<string, EncodedQueryParamBrand>;
 export const EncodedQueryParam = t.brand(
@@ -191,7 +192,7 @@ export const EncodedQueryParam = t.brand(
 export interface EncodedQueryParamBrand {
   readonly EncodedQueryParam: unique symbol;
 }
-
+// ErrorKey
 // Error key
 export type ErrorKey = t.Branded<string, ErrorKeyBrand>;
 export const ErrorKey = t.brand(
@@ -204,17 +205,30 @@ export const ErrorKey = t.brand(
 export interface ErrorKeyBrand {
   readonly ErrorKey: unique symbol;
 }
-
+// WhimDeepLink
 // Whim only deep link to localhost and freely defined view - not a complete URI validation
 export type WhimDeepLink = t.Branded<string, WhimDeepLinkBrand>;
 export const WhimDeepLink = t.brand(
   t.string,
   (x): x is t.Branded<string, WhimDeepLinkBrand> =>
-    typeof x !== 'string' || x.match(/^(whim):\/\/\/[^\s/$.?#].[^\s]*$/) !== null,
+    typeof x !== 'string' || x.match('^(whim):\\/\\/\\/[^\\s/$.?#].[^\\s]*$') !== null,
   'WhimDeepLink',
 );
 export interface WhimDeepLinkBrand {
   readonly WhimDeepLink: unique symbol;
 }
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<unknown, DefaultBrand>;
+export const Default = t.brand(
+  t.unknown,
+  (x): x is t.Branded<unknown, DefaultBrand> => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

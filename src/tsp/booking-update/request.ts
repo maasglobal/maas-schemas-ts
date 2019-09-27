@@ -9,7 +9,65 @@ Request schema for update a state of a specific booking with a TSP ID from a TSP
 
 import * as t from 'io-ts';
 import * as Booking_ from 'src/core/booking';
+import * as Configurator_ from 'src/core/components/configurator';
+import * as CustomerSelection_ from 'src/core/components/customerSelection';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-update/request.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    tspId?: Booking_.TspId;
+    state?: 'RESERVED' | 'ACTIVATED' | 'ON_HOLD' | 'EXPIRED';
+    configurator?: Configurator_.Default;
+    meta?: Booking_.Meta;
+    terms?: Booking_.Terms;
+    customerSelection?: CustomerSelection_.Default;
+  } & {
+    tspId: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.intersection([
+    t.partial({
+      tspId: Booking_.TspId,
+      state: t.union([
+        t.literal('RESERVED'),
+        t.literal('ACTIVATED'),
+        t.literal('ON_HOLD'),
+        t.literal('EXPIRED'),
+      ]),
+      configurator: Configurator_.Default,
+      meta: Booking_.Meta,
+      terms: Booking_.Terms,
+      customerSelection: CustomerSelection_.Default,
+    }),
+    t.type({
+      tspId: t.unknown,
+    }),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      tspId?: Booking_.TspId;
+      state?: 'RESERVED' | 'ACTIVATED' | 'ON_HOLD' | 'EXPIRED';
+      configurator?: Configurator_.Default;
+      meta?: Booking_.Meta;
+      terms?: Booking_.Terms;
+      customerSelection?: CustomerSelection_.Default;
+    } & {
+      tspId: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

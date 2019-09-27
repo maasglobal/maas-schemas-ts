@@ -10,12 +10,15 @@ undefined
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_SHARED_BICYCLE.json';
-
+// Default
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
     bike?: {
-      id: string;
+      id?: string;
       type?: string;
+    } & {
+      id: unknown;
     };
   },
   DefaultBrand
@@ -23,11 +26,12 @@ export type Default = t.Branded<
 export const Default = t.brand(
   t.partial({
     bike: t.intersection([
-      t.type({
-        id: t.string,
-      }),
       t.partial({
+        id: t.string,
         type: t.string,
+      }),
+      t.type({
+        id: t.unknown,
       }),
     ]),
   }),
@@ -36,8 +40,10 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       bike?: {
-        id: string;
+        id?: string;
         type?: string;
+      } & {
+        id: unknown;
       };
     },
     DefaultBrand

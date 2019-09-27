@@ -15,7 +15,7 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/profile/profile-favoriteLocations-add/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
     identityId?: Units_.IdentityId;
@@ -25,13 +25,11 @@ export type Default = t.Branded<
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.partial({
-      identityId: Units_.IdentityId,
-      payload: UnitsGeo_.Place,
-      headers: ApiCommon_.Headers,
-    }),
-  ),
+  t.partial({
+    identityId: Units_.IdentityId,
+    payload: UnitsGeo_.Place,
+    headers: ApiCommon_.Headers,
+  }),
   (
     x,
   ): x is t.Branded<

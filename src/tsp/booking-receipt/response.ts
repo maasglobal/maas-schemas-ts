@@ -10,5 +10,35 @@ Response schema for getting a receipt for specific booking
 import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-receipt/response.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    tspId: unknown;
+    cost: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.type({
+    tspId: t.unknown,
+    cost: t.unknown,
+  }),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      tspId: unknown;
+      cost: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

@@ -8,31 +8,60 @@ Response schema for retrieving a ticket from booking through a TSP adapter
 */
 
 import * as t from 'io-ts';
+import * as Units_ from 'src/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-ticket/response.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    ticket: string;
-    type: string;
-    contentType: string;
+    ticket?: string;
+    type?: string & ('html' | 'pdf' | 'svg');
+    contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
+    refreshAt?: Units_.Time;
+  } & {
+    ticket: unknown;
+    type: unknown;
+    contentType: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.type({
-    ticket: t.string,
-    type: t.string,
-    contentType: t.string,
-  }),
+  t.intersection([
+    t.partial({
+      ticket: t.string,
+      type: t.intersection([
+        t.string,
+        t.union([t.literal('html'), t.literal('pdf'), t.literal('svg')]),
+      ]),
+      contentType: t.intersection([
+        t.string,
+        t.union([
+          t.literal('application/pdf'),
+          t.literal('image/svg+xml'),
+          t.literal('text/html'),
+        ]),
+      ]),
+      refreshAt: Units_.Time,
+    }),
+    t.type({
+      ticket: t.unknown,
+      type: t.unknown,
+      contentType: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      ticket: string;
-      type: string;
-      contentType: string;
+      ticket?: string;
+      type?: string & ('html' | 'pdf' | 'svg');
+      contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
+      refreshAt?: Units_.Time;
+    } & {
+      ticket: unknown;
+      type: unknown;
+      contentType: unknown;
     },
     DefaultBrand
   > => true,

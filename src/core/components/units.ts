@@ -67,41 +67,17 @@ export interface IdentityIdBrand {
 }
 // Currency
 // Accepted monetary unit in ISO 4127 format, see https://en.wikipedia.org/wiki/ISO_4217#cite_note-1
-export type Currency = t.Branded<string, CurrencyBrand>;
+export type Currency = t.Branded<string & ('EUR' | 'GBP' | 'SGD' | 'USD'), CurrencyBrand>;
 export const Currency = t.brand(
-  t.string,
-  (x): x is t.Branded<string, CurrencyBrand> =>
-    JSON.stringify(x) === JSON.stringify('EUR') ||
-    JSON.stringify(x) === JSON.stringify('GBP') ||
-    JSON.stringify(x) === JSON.stringify('SGD'),
+  t.intersection([
+    t.string,
+    t.union([t.literal('EUR'), t.literal('GBP'), t.literal('SGD'), t.literal('USD')]),
+  ]),
+  (x): x is t.Branded<string & ('EUR' | 'GBP' | 'SGD' | 'USD'), CurrencyBrand> => true,
   'Currency',
 );
 export interface CurrencyBrand {
   readonly Currency: unique symbol;
-}
-// AgencyId
-// The purpose of this remains a mystery
-export type AgencyId = t.Branded<string, AgencyIdBrand>;
-export const AgencyId = t.brand(
-  t.string,
-  (x): x is t.Branded<string, AgencyIdBrand> =>
-    (typeof x !== 'string' || x.length >= 2) && (typeof x !== 'string' || x.length <= 64),
-  'AgencyId',
-);
-export interface AgencyIdBrand {
-  readonly AgencyId: unique symbol;
-}
-// DeviceToken
-// The purpose of this remains a mystery
-export type DeviceToken = t.Branded<string, DeviceTokenBrand>;
-export const DeviceToken = t.brand(
-  t.string,
-  (x): x is t.Branded<string, DeviceTokenBrand> =>
-    typeof x !== 'string' || x.match('^([A-Fa-f0-9]{2}){8,64}$') !== null,
-  'DeviceToken',
-);
-export interface DeviceTokenBrand {
-  readonly DeviceToken: unique symbol;
 }
 // Time
 // POSIX time in milliseconds, https://en.wikipedia.org/wiki/Unix_time
@@ -110,7 +86,7 @@ export const Time = t.brand(
   t.number,
   (x): x is t.Branded<number, TimeBrand> =>
     (typeof x !== 'number' || x >= 1451606400) &&
-    (typeof x !== 'string' || x <= 9007199254740991) &&
+    (typeof x !== 'number' || x <= 9007199254740991) &&
     Number.isInteger(x),
   'Time',
 );
@@ -124,25 +100,12 @@ export const Duration = t.brand(
   t.number,
   (x): x is t.Branded<number, DurationBrand> =>
     (typeof x !== 'number' || x >= -9007199254740991) &&
-    (typeof x !== 'string' || x <= 9007199254740991) &&
+    (typeof x !== 'number' || x <= 9007199254740991) &&
     Number.isInteger(x),
   'Duration',
 );
 export interface DurationBrand {
   readonly Duration: unique symbol;
-}
-// Signature
-// Signature of a signed object
-export type Signature = t.Branded<string, SignatureBrand>;
-export const Signature = t.brand(
-  t.string,
-  (x): x is t.Branded<string, SignatureBrand> =>
-    (typeof x !== 'string' || x.length >= 1) &&
-    (typeof x !== 'string' || x.length <= 1024),
-  'Signature',
-);
-export interface SignatureBrand {
-  readonly Signature: unique symbol;
 }
 // IsoDate
 // A date in the form YYYY-MM-DD without a time component
@@ -156,78 +119,18 @@ export const IsoDate = t.brand(
 export interface IsoDateBrand {
   readonly IsoDate: unique symbol;
 }
-// HtmlBlock
-// HTML string of block level content
-export type HtmlBlock = t.Branded<string, HtmlBlockBrand>;
-export const HtmlBlock = t.brand(
-  t.string,
-  (x): x is t.Branded<string, HtmlBlockBrand> => true,
-  'HtmlBlock',
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<unknown, DefaultBrand>;
+export const Default = t.brand(
+  t.unknown,
+  (x): x is t.Branded<unknown, DefaultBrand> => true,
+  'Default',
 );
-export interface HtmlBlockBrand {
-  readonly HtmlBlock: unique symbol;
+export interface DefaultBrand {
+  readonly Default: unique symbol;
 }
-// JsonParam
-// JSON encoded object or array
-export type JsonParam = t.Branded<string, JsonParamBrand>;
-export const JsonParam = t.brand(
-  t.string,
-  (x): x is t.Branded<string, JsonParamBrand> => typeof x !== 'string' || x.length >= 2,
-  'JsonParam',
-);
-export interface JsonParamBrand {
-  readonly JsonParam: unique symbol;
-}
-// PersonalName
-// First or last name of a customer (e.g. John)
-export type PersonalName = t.Branded<string, PersonalNameBrand>;
-export const PersonalName = t.brand(
-  t.string,
-  (x): x is t.Branded<string, PersonalNameBrand> =>
-    (typeof x !== 'string' ||
-      x.match("^(?:\\p{L})+(?:[`'´\\-\\.,]?\\s?(?:\\p{L})*)*$") !== null) &&
-    (typeof x !== 'string' || x.length <= 255),
-  'PersonalName',
-);
-export interface PersonalNameBrand {
-  readonly PersonalName: unique symbol;
-}
-// Phone
-// ITU-T E.164 phone number, see https://www.safaribooksonline.com/library/view/regular-expressions-cookbook/9781449327453/ch04s03.html
-export type Phone = t.Branded<string, PhoneBrand>;
-export const Phone = t.brand(
-  t.string,
-  (x): x is t.Branded<string, PhoneBrand> =>
-    typeof x !== 'string' || x.match('^\\+(?:\\d){6,14}\\d$') !== null,
-  'Phone',
-);
-export interface PhoneBrand {
-  readonly Phone: unique symbol;
-}
-// RawPhone
-// Slightly looser definition of phone number
-export type RawPhone = t.Branded<string, RawPhoneBrand>;
-export const RawPhone = t.brand(
-  t.string,
-  (x): x is t.Branded<string, RawPhoneBrand> =>
-    typeof x !== 'string' || x.match('^\\+?(?:\\d){6,14}\\d$') !== null,
-  'RawPhone',
-);
-export interface RawPhoneBrand {
-  readonly RawPhone: unique symbol;
-}
-// Email
-// Rough validation of a valid e-mail address, see https://davidcel.is/posts/stop-validating-email-addresses-with-regex/
-export type Email = t.Branded<string, EmailBrand>;
-export const Email = t.brand(
-  t.string,
-  (x): x is t.Branded<string, EmailBrand> =>
-    (typeof x !== 'string' || x.match('^.+@.+\\..+$') !== null) &&
-    (typeof x !== 'string' || x.length <= 64),
-  'Email',
-);
-export interface EmailBrand {
-  readonly Email: unique symbol;
-}
+
+export default Default;
 
 // Success
