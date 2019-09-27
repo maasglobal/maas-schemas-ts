@@ -1,6 +1,6 @@
 {
   "name": "maas-schemas-ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "TypeScript types and io-ts validators for maas-schemas",
   "main": "index.js",
   "files": [
@@ -12,7 +12,7 @@
     "clean-src": "rm -rf src",
     "clean": "rm -rf lib",
     "build-converter": "tsc converter.ts -outdir tmp",
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && tsc && mv lib/src/* lib/ && rmdir lib/src",
     "ci": "yarn lint && yarn build",
     "convert-all": "(yarn clean-src && yarn lint && yarn build-converter && (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;) && yarn eslint --fix && yarn build) 2>&1|tee translation.log",
     "deploy-npm": "yarn ci && yarn publish"
