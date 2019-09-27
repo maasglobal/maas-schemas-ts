@@ -14,31 +14,37 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-retrieve/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    itineraryId: Units_.Uuid;
+    itineraryId?: Units_.Uuid;
+    originalFare?: string;
     headers?: ApiCommon_.Headers;
+  } & {
+    itineraryId: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        itineraryId: Units_.Uuid,
-      }),
-      t.partial({
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+  t.intersection([
+    t.partial({
+      itineraryId: Units_.Uuid,
+      originalFare: t.string,
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      itineraryId: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      itineraryId: Units_.Uuid;
+      itineraryId?: Units_.Uuid;
+      originalFare?: string;
       headers?: ApiCommon_.Headers;
+    } & {
+      itineraryId: unknown;
     },
     DefaultBrand
   > => true,

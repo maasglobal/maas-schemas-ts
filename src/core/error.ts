@@ -11,25 +11,37 @@ import * as t from 'io-ts';
 
 export const schemaId = 'http://maasglobal.com/core/error.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    message: string;
-    code: string;
+    message?: string;
+    code?: string;
+  } & {
+    message: unknown;
+    code: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.type({
-    message: t.string,
-    code: t.string,
-  }),
+  t.intersection([
+    t.partial({
+      message: t.string,
+      code: t.string,
+    }),
+    t.type({
+      message: t.unknown,
+      code: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      message: string;
-      code: string;
+      message?: string;
+      code?: string;
+    } & {
+      message: unknown;
+      code: unknown;
     },
     DefaultBrand
   > => true,

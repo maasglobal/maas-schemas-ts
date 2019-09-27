@@ -9,49 +9,55 @@ Request schema for regions-options
 
 import * as t from 'io-ts';
 import * as Units_ from 'src/core/components/units';
-import * as AgencyId_ from 'src/core/components/agencyId';
+import * as Common_ from 'src/core/components/common';
 import * as ApiCommon_ from 'src/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/stations/stations-retrieve/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    identityId: Units_.IdentityId;
-    payload: {
-      agencyId?: AgencyId_.Default;
+    identityId?: Units_.IdentityId;
+    payload?: {
+      agencyId?: Common_.AgencyId;
       stationId?: string;
     };
     headers?: ApiCommon_.Headers;
+  } & {
+    identityId: unknown;
+    payload: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        identityId: Units_.IdentityId,
-        payload: t.partial({
-          agencyId: AgencyId_.Default,
-          stationId: t.string,
-        }),
+  t.intersection([
+    t.partial({
+      identityId: Units_.IdentityId,
+      payload: t.partial({
+        agencyId: Common_.AgencyId,
+        stationId: t.string,
       }),
-      t.partial({
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      identityId: t.unknown,
+      payload: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      identityId: Units_.IdentityId;
-      payload: {
-        agencyId?: AgencyId_.Default;
+      identityId?: Units_.IdentityId;
+      payload?: {
+        agencyId?: Common_.AgencyId;
         stationId?: string;
       };
       headers?: ApiCommon_.Headers;
+    } & {
+      identityId: unknown;
+      payload: unknown;
     },
     DefaultBrand
   > => true,

@@ -8,8 +8,54 @@ MaaS.fi geocoding (GeoJSON) response schema
 */
 
 import * as t from 'io-ts';
+import * as Geolocation_ from 'src/core/components/geolocation';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/geocoding/geocoding-query/response.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    type?: 'FeatureCollection';
+    features?: Array<Geolocation_.Feature>;
+    debug?: {};
+  } & {
+    type: unknown;
+    features: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.intersection([
+    t.partial({
+      type: t.literal('FeatureCollection'),
+      features: t.array(Geolocation_.Feature),
+      debug: t.type({}),
+    }),
+    t.type({
+      type: t.unknown,
+      features: t.unknown,
+    }),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      type?: 'FeatureCollection';
+      features?: Array<Geolocation_.Feature>;
+      debug?: {};
+    } & {
+      type: unknown;
+      features: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

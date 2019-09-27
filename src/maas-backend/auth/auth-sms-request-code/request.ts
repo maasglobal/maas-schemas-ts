@@ -8,45 +8,55 @@ Request schema for auth-sms-request-code
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
+import * as Common_ from 'src/core/components/common';
 import * as ApiCommon_ from 'src/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/auth/auth-sms-request.code/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    payload: {
-      phone: Units_.RawPhone;
+    payload?: {
+      phone?: Common_.RawPhone;
+    } & {
+      phone: unknown;
     };
     headers?: ApiCommon_.Headers;
+  } & {
+    payload: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        payload: t.exact(
-          t.type({
-            phone: Units_.RawPhone,
-          }),
-        ),
-      }),
-      t.partial({
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+  t.intersection([
+    t.partial({
+      payload: t.intersection([
+        t.partial({
+          phone: Common_.RawPhone,
+        }),
+        t.type({
+          phone: t.unknown,
+        }),
+      ]),
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      payload: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      payload: {
-        phone: Units_.RawPhone;
+      payload?: {
+        phone?: Common_.RawPhone;
+      } & {
+        phone: unknown;
       };
       headers?: ApiCommon_.Headers;
+    } & {
+      payload: unknown;
     },
     DefaultBrand
   > => true,

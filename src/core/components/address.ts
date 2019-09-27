@@ -8,6 +8,7 @@ MaaS schema for address related information
 */
 
 import * as t from 'io-ts';
+import * as Common_ from 'src/core/components/common';
 
 export const schemaId = 'http://maasglobal.com/core/components/address.json';
 // ComponentAddress
@@ -42,58 +43,21 @@ export interface PlaceNameBrand {
   readonly PlaceName: unique symbol;
 }
 // FirstName
-// First name of the customer (e.g. John)
-export type FirstName = t.Branded<string, FirstNameBrand>;
-export const FirstName = t.brand(
-  t.string,
-  (x): x is t.Branded<string, FirstNameBrand> =>
-    (typeof x !== 'string' ||
-      x.match("^(?:\\p{L})+(?:[`'´\\-\\.,]?\\s?(?:\\p{L})*)*$") !== null) &&
-    (typeof x !== 'string' || x.length <= 255),
-  'FirstName',
-);
-export interface FirstNameBrand {
-  readonly FirstName: unique symbol;
-}
+// The purpose of this remains a mystery
+export type FirstName = Common_.PersonalName;
+export const FirstName = Common_.PersonalName;
 // LastName
-// Last name of the customer (e.g. Doe)
-export type LastName = t.Branded<string, LastNameBrand>;
-export const LastName = t.brand(
-  t.string,
-  (x): x is t.Branded<string, LastNameBrand> =>
-    (typeof x !== 'string' ||
-      x.match("^(?:\\p{L})+(?:[`'´\\-\\.,]?\\s?(?:\\p{L})*)*$") !== null) &&
-    (typeof x !== 'string' || x.length <= 255),
-  'LastName',
-);
-export interface LastNameBrand {
-  readonly LastName: unique symbol;
-}
+// The purpose of this remains a mystery
+export type LastName = Common_.PersonalName;
+export const LastName = Common_.PersonalName;
 // Phone
-// ITU-T E.164 phone number, see https://www.safaribooksonline.com/library/view/regular-expressions-cookbook/9781449327453/ch04s03.html
-export type Phone = t.Branded<string, PhoneBrand>;
-export const Phone = t.brand(
-  t.string,
-  (x): x is t.Branded<string, PhoneBrand> =>
-    typeof x !== 'string' || x.match('^\\+(?:\\d){6,14}\\d$') !== null,
-  'Phone',
-);
-export interface PhoneBrand {
-  readonly Phone: unique symbol;
-}
+// The purpose of this remains a mystery
+export type Phone = Common_.Phone;
+export const Phone = Common_.Phone;
 // Email
-// Rough validation of a valid e-mail address, see https://davidcel.is/posts/stop-validating-email-addresses-with-regex/
-export type Email = t.Branded<string, EmailBrand>;
-export const Email = t.brand(
-  t.string,
-  (x): x is t.Branded<string, EmailBrand> =>
-    (typeof x !== 'string' || x.match('^.+@.+\\..+$') !== null) &&
-    (typeof x !== 'string' || x.length <= 64),
-  'Email',
-);
-export interface EmailBrand {
-  readonly Email: unique symbol;
-}
+// The purpose of this remains a mystery
+export type Email = Common_.Email;
+export const Email = Common_.Email;
 // Address
 // Street address (and optional number), http://www.bitboost.com/ref/international-address-formats.html
 export type Address = t.Branded<string, AddressBrand>;
@@ -160,5 +124,18 @@ export const City = t.brand(
 export interface CityBrand {
   readonly City: unique symbol;
 }
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<unknown, DefaultBrand>;
+export const Default = t.brand(
+  t.unknown,
+  (x): x is t.Branded<unknown, DefaultBrand> => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

@@ -14,7 +14,7 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-cancel/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
     identityId?: Units_.IdentityId;

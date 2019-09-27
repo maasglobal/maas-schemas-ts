@@ -9,7 +9,68 @@ Response schema for canceling a booking through a TSP adapter
 
 import * as t from 'io-ts';
 import * as Booking_ from 'src/core/booking';
+import * as BookingOption_ from 'src/core/booking-option';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-cancel/response.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    tspId?: Booking_.TspId;
+    state?: 'CANCELLED' | 'RESERVED';
+    cost?: Booking_.Cost;
+    leg?: BookingOption_.Leg;
+    meta?: Booking_.Meta;
+    terms?: Booking_.Terms;
+    token?: Booking_.Token;
+    tspProduct?: BookingOption_.TspProduct;
+  } & {
+    tspId: unknown;
+    state: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.intersection([
+    t.partial({
+      tspId: Booking_.TspId,
+      state: t.union([t.literal('CANCELLED'), t.literal('RESERVED')]),
+      cost: Booking_.Cost,
+      leg: BookingOption_.Leg,
+      meta: Booking_.Meta,
+      terms: Booking_.Terms,
+      token: Booking_.Token,
+      tspProduct: BookingOption_.TspProduct,
+    }),
+    t.type({
+      tspId: t.unknown,
+      state: t.unknown,
+    }),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      tspId?: Booking_.TspId;
+      state?: 'CANCELLED' | 'RESERVED';
+      cost?: Booking_.Cost;
+      leg?: BookingOption_.Leg;
+      meta?: Booking_.Meta;
+      terms?: Booking_.Terms;
+      token?: Booking_.Token;
+      tspProduct?: BookingOption_.TspProduct;
+    } & {
+      tspId: unknown;
+      state: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

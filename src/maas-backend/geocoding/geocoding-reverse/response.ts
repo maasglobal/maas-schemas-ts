@@ -8,8 +8,84 @@ MaaS.fi geocoding (GeoJSON) response schema
 */
 
 import * as t from 'io-ts';
+import * as Geolocation_ from 'src/core/components/geolocation';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/geocoding/geocoding-reverse/response.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    type?: 'FeatureCollection';
+    features?: Array<
+      Geolocation_.Feature & {
+        properties?: {} & {
+          city: unknown;
+          country: unknown;
+          countryCode: unknown;
+        };
+      }
+    >;
+    debug?: {};
+  } & {
+    type: unknown;
+    features: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.intersection([
+    t.partial({
+      type: t.literal('FeatureCollection'),
+      features: t.array(
+        t.intersection([
+          Geolocation_.Feature,
+          t.partial({
+            properties: t.intersection([
+              t.type({}),
+              t.type({
+                city: t.unknown,
+                country: t.unknown,
+                countryCode: t.unknown,
+              }),
+            ]),
+          }),
+        ]),
+      ),
+      debug: t.type({}),
+    }),
+    t.type({
+      type: t.unknown,
+      features: t.unknown,
+    }),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      type?: 'FeatureCollection';
+      features?: Array<
+        Geolocation_.Feature & {
+          properties?: {} & {
+            city: unknown;
+            country: unknown;
+            countryCode: unknown;
+          };
+        }
+      >;
+      debug?: {};
+    } & {
+      type: unknown;
+      features: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success

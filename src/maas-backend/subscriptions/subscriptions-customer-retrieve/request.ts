@@ -14,34 +14,37 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-customer-retrieve/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
     userId?: Units_.IdentityId;
-    customerId: Units_.IdentityId;
+    customerId?: Units_.IdentityId;
     headers?: ApiCommon_.Headers;
+  } & {
+    customerId: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        customerId: Units_.IdentityId,
-      }),
-      t.partial({
-        userId: Units_.IdentityId,
-        headers: ApiCommon_.Headers,
-      }),
-    ]),
-  ),
+  t.intersection([
+    t.partial({
+      userId: Units_.IdentityId,
+      customerId: Units_.IdentityId,
+      headers: ApiCommon_.Headers,
+    }),
+    t.type({
+      customerId: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
       userId?: Units_.IdentityId;
-      customerId: Units_.IdentityId;
+      customerId?: Units_.IdentityId;
       headers?: ApiCommon_.Headers;
+    } & {
+      customerId: unknown;
     },
     DefaultBrand
   > => true,

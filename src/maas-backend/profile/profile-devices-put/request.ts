@@ -14,42 +14,56 @@ import * as ApiCommon_ from 'src/core/components/api-common';
 export const schemaId =
   'http://maasglobal.com/maas-backend/profile/profile-devices-put/request.json';
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
     identityId?: Units_.IdentityId;
     payload?: {
-      devicePushToken: string;
-      deviceIdentifier: Units_.Uuid;
-      deviceType: string;
+      devicePushToken?: string;
+      deviceIdentifier?: Units_.Uuid;
+      deviceType?: string & ('iOS' | 'Android');
+    } & {
+      devicePushToken: unknown;
+      deviceIdentifier: unknown;
+      deviceType: unknown;
     };
     headers?: ApiCommon_.Headers;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.partial({
-      identityId: Units_.IdentityId,
-      payload: t.exact(
-        t.type({
-          devicePushToken: t.string,
-          deviceIdentifier: Units_.Uuid,
-          deviceType: t.string,
-        }),
-      ),
-      headers: ApiCommon_.Headers,
-    }),
-  ),
+  t.partial({
+    identityId: Units_.IdentityId,
+    payload: t.intersection([
+      t.partial({
+        devicePushToken: t.string,
+        deviceIdentifier: Units_.Uuid,
+        deviceType: t.intersection([
+          t.string,
+          t.union([t.literal('iOS'), t.literal('Android')]),
+        ]),
+      }),
+      t.type({
+        devicePushToken: t.unknown,
+        deviceIdentifier: t.unknown,
+        deviceType: t.unknown,
+      }),
+    ]),
+    headers: ApiCommon_.Headers,
+  }),
   (
     x,
   ): x is t.Branded<
     {
       identityId?: Units_.IdentityId;
       payload?: {
-        devicePushToken: string;
-        deviceIdentifier: Units_.Uuid;
-        deviceType: string;
+        devicePushToken?: string;
+        deviceIdentifier?: Units_.Uuid;
+        deviceType?: string & ('iOS' | 'Android');
+      } & {
+        devicePushToken: unknown;
+        deviceIdentifier: unknown;
+        deviceType: unknown;
       };
       headers?: ApiCommon_.Headers;
     },

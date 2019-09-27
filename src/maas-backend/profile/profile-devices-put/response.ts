@@ -16,27 +16,43 @@ export const schemaId =
 // The purpose of this remains a mystery
 export type Device = t.Branded<
   {
-    devicePushToken: string;
-    deviceIdentifier: Units_.Uuid;
-    deviceType: string;
+    devicePushToken?: string;
+    deviceIdentifier?: Units_.Uuid;
+    deviceType?: string & ('iOS' | 'Android');
+  } & {
+    devicePushToken: unknown;
+    deviceIdentifier: unknown;
+    deviceType: unknown;
   },
   DeviceBrand
 >;
 export const Device = t.brand(
-  t.exact(
-    t.type({
+  t.intersection([
+    t.partial({
       devicePushToken: t.string,
       deviceIdentifier: Units_.Uuid,
-      deviceType: t.string,
+      deviceType: t.intersection([
+        t.string,
+        t.union([t.literal('iOS'), t.literal('Android')]),
+      ]),
     }),
-  ),
+    t.type({
+      devicePushToken: t.unknown,
+      deviceIdentifier: t.unknown,
+      deviceType: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      devicePushToken: string;
-      deviceIdentifier: Units_.Uuid;
-      deviceType: string;
+      devicePushToken?: string;
+      deviceIdentifier?: Units_.Uuid;
+      deviceType?: string & ('iOS' | 'Android');
+    } & {
+      devicePushToken: unknown;
+      deviceIdentifier: unknown;
+      deviceType: unknown;
     },
     DeviceBrand
   > => true,
@@ -46,31 +62,34 @@ export interface DeviceBrand {
   readonly Device: unique symbol;
 }
 // Default
-// The purpose of this remains a mystery
+// The default export. More information at the top.
 export type Default = t.Branded<
   {
-    device: Device;
+    device?: Device;
     debug?: {};
+  } & {
+    device: unknown;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
-  t.exact(
-    t.intersection([
-      t.type({
-        device: Device,
-      }),
-      t.partial({
-        debug: t.type({}),
-      }),
-    ]),
-  ),
+  t.intersection([
+    t.partial({
+      device: Device,
+      debug: t.type({}),
+    }),
+    t.type({
+      device: t.unknown,
+    }),
+  ]),
   (
     x,
   ): x is t.Branded<
     {
-      device: Device;
+      device?: Device;
       debug?: {};
+    } & {
+      device: unknown;
     },
     DefaultBrand
   > => true,

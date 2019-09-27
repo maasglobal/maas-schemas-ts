@@ -9,8 +9,79 @@ Remote request schema, e.g. how TSP should call MaaS-backend
 
 import * as t from 'io-ts';
 import * as Booking_ from 'src/core/booking';
+import * as BookingOption_ from 'src/core/booking-option';
 
 export const schemaId =
   'http://maasglobal.com/tsp/webhooks-bookings-update/remote-request.json';
+// Default
+// The default export. More information at the top.
+export type Default = t.Branded<
+  {
+    tspId?: Booking_.TspId;
+    cost?: Booking_.Cost;
+    state?: 'RESERVED' | 'CONFIRMED' | 'ACTIVATED' | 'EXPIRED' | 'CANCELLED' | 'REJECTED';
+    leg?: BookingOption_.LegDelta;
+    meta?: Booking_.Meta;
+    terms?: Booking_.Terms;
+    token?: Booking_.Token;
+  } & {
+    tspId: unknown;
+    state: unknown;
+  },
+  DefaultBrand
+>;
+export const Default = t.brand(
+  t.intersection([
+    t.partial({
+      tspId: Booking_.TspId,
+      cost: Booking_.Cost,
+      state: t.union([
+        t.literal('RESERVED'),
+        t.literal('CONFIRMED'),
+        t.literal('ACTIVATED'),
+        t.literal('EXPIRED'),
+        t.literal('CANCELLED'),
+        t.literal('REJECTED'),
+      ]),
+      leg: BookingOption_.LegDelta,
+      meta: Booking_.Meta,
+      terms: Booking_.Terms,
+      token: Booking_.Token,
+    }),
+    t.type({
+      tspId: t.unknown,
+      state: t.unknown,
+    }),
+  ]),
+  (
+    x,
+  ): x is t.Branded<
+    {
+      tspId?: Booking_.TspId;
+      cost?: Booking_.Cost;
+      state?:
+        | 'RESERVED'
+        | 'CONFIRMED'
+        | 'ACTIVATED'
+        | 'EXPIRED'
+        | 'CANCELLED'
+        | 'REJECTED';
+      leg?: BookingOption_.LegDelta;
+      meta?: Booking_.Meta;
+      terms?: Booking_.Terms;
+      token?: Booking_.Token;
+    } & {
+      tspId: unknown;
+      state: unknown;
+    },
+    DefaultBrand
+  > => true,
+  'Default',
+);
+export interface DefaultBrand {
+  readonly Default: unique symbol;
+}
+
+export default Default;
 
 // Success
