@@ -8,12 +8,12 @@ Request schema for bookings-agency-options
 */
 
 import * as t from 'io-ts';
-import * as TravelMode_ from 'src/core/components/travel-mode';
-import * as Common_ from 'src/core/components/common';
-import * as Units_ from 'src/core/components/units';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Address_ from 'src/core/components/address';
-import * as ApiCommon_ from 'src/core/components/api-common';
+import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
+import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-agency-options/request.json';

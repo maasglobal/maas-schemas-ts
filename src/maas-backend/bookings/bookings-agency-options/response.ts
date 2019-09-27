@@ -8,8 +8,8 @@ Response schema for bookings-agency-options
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
-import * as BikeStation_ from 'src/core/components/bike-station';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as BikeStation_ from 'maas-schemas-ts/core/components/bike-station';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-agency-options/response.json';

@@ -8,7 +8,7 @@ MaaS subscription address schema
 */
 
 import * as t from 'io-ts';
-import * as Address_ from 'src/core/components/address';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptionAddress.json';

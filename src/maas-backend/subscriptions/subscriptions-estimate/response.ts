@@ -8,7 +8,7 @@ Response schema for subscriptions-estimate
 */
 
 import * as t from 'io-ts';
-import * as Pricing_ from 'src/maas-backend/subscriptions/pricing';
+import * as Pricing_ from 'maas-schemas-ts/maas-backend/subscriptions/pricing';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-estimate/response.json';

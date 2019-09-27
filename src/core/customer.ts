@@ -8,11 +8,11 @@ MaaS customer schema
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Common_ from 'src/core/components/common';
-import * as Address_ from 'src/core/components/address';
-import * as I18n_ from 'src/core/components/i18n';
-import * as Fare_ from 'src/core/components/fare';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
+import * as I18n_ from 'maas-schemas-ts/core/components/i18n';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 
 export const schemaId = 'http://maasglobal.com/core/customer.json';
 // Default

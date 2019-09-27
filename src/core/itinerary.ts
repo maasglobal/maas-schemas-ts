@@ -7,14 +7,14 @@ OpenTripPlanner itinerary, augmented with leg bookings per leg
 
 */
 
-import * as Units_ from 'src/core/components/units';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
-import * as State_ from 'src/core/components/state';
-import * as Fare_ from 'src/core/components/fare';
-import * as Leg_ from 'src/core/leg';
-import * as ProductOption_ from 'src/core/product-option';
-import * as Booking_ from 'src/core/booking';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as State_ from 'maas-schemas-ts/core/components/state';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
+import * as Leg_ from 'maas-schemas-ts/core/leg';
+import * as ProductOption_ from 'maas-schemas-ts/core/product-option';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
 
 export const schemaId = 'http://maasglobal.com/core/itinerary.json';
 // Id

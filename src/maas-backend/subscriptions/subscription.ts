@@ -8,13 +8,13 @@ MaaS subscription schema
 */
 
 import * as t from 'io-ts';
-import * as Contact_ from 'src/maas-backend/subscriptions/contact';
-import * as PointCost_ from 'src/core/components/point-cost';
-import * as Region_ from 'src/core/region';
-import * as SubscriptionAddress_ from 'src/maas-backend/subscriptions/subscriptionAddress';
-import * as SubscriptionChangeState_ from 'src/core/components/subscriptionChangeState';
-import * as Cost_ from 'src/core/components/cost';
-import * as Units_ from 'src/core/components/units';
+import * as Contact_ from 'maas-schemas-ts/maas-backend/subscriptions/contact';
+import * as PointCost_ from 'maas-schemas-ts/core/components/point-cost';
+import * as Region_ from 'maas-schemas-ts/core/region';
+import * as SubscriptionAddress_ from 'maas-schemas-ts/maas-backend/subscriptions/subscriptionAddress';
+import * as SubscriptionChangeState_ from 'maas-schemas-ts/core/components/subscriptionChangeState';
+import * as Cost_ from 'maas-schemas-ts/core/components/cost';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscription.json';

@@ -8,7 +8,7 @@ MaaS schema for address related information
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId = 'http://maasglobal.com/core/components/address.json';
 // ComponentAddress

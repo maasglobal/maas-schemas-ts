@@ -8,9 +8,9 @@ MaaS pricing schema
 */
 
 import * as t from 'io-ts';
-import * as Subscription_ from 'src/maas-backend/subscriptions/subscription';
-import * as Cost_ from 'src/core/components/cost';
-import * as Units_ from 'src/core/components/units';
+import * as Subscription_ from 'maas-schemas-ts/maas-backend/subscriptions/subscription';
+import * as Cost_ from 'maas-schemas-ts/core/components/cost';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/maas-backend/subscriptions/pricing.json';
 // LineItem

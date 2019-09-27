@@ -8,7 +8,7 @@ Request schema for getting a receipt for a specific booking
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-receipt/request.json';
 // Default

@@ -8,7 +8,7 @@ Response schema for subscriptions-change-state
 */
 
 import * as t from 'io-ts';
-import * as SubscriptionChangeState_ from 'src/core/components/subscriptionChangeState';
+import * as SubscriptionChangeState_ from 'maas-schemas-ts/core/components/subscriptionChangeState';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-change-state/response.json';

@@ -8,11 +8,11 @@ Request schema for creating a booking through a TSP adapter
 */
 
 import * as t from 'io-ts';
-import * as BookingOption_ from 'src/core/booking-option';
-import * as Booking_ from 'src/core/booking';
-import * as Customer_ from 'src/core/customer';
-import * as Configurator_ from 'src/core/components/configurator';
-import * as CustomerSelection_ from 'src/core/components/customerSelection';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as Customer_ from 'maas-schemas-ts/core/customer';
+import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
+import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-create/request.json';
 // Default

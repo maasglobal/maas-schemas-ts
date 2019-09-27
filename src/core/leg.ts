@@ -7,14 +7,14 @@ The base leg object with all fields, to be inherited
 
 */
 
-import * as State_ from 'src/core/components/state';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Units_ from 'src/core/components/units';
+import * as State_ from 'maas-schemas-ts/core/components/state';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as t from 'io-ts';
-import * as TravelMode_ from 'src/core/components/travel-mode';
-import * as Stop_ from 'src/core/stop';
-import * as Common_ from 'src/core/components/common';
-import * as BookingOption_ from 'src/core/booking-option';
+import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
+import * as Stop_ from 'maas-schemas-ts/core/stop';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 
 export const schemaId = 'http://maasglobal.com/core/leg.json';
 // State

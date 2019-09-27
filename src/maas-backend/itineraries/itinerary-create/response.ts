@@ -8,8 +8,8 @@ Response schema for itineraries-create
 */
 
 import * as t from 'io-ts';
-import * as PaymentParameters_ from 'src/core/components/payment-parameters';
-import * as Itinerary_ from 'src/core/itinerary';
+import * as PaymentParameters_ from 'maas-schemas-ts/core/components/payment-parameters';
+import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-create/response.json';

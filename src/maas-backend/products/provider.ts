@@ -8,9 +8,9 @@ MaaS product provider schema
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
-import * as Units_ from 'src/core/components/units';
-import * as PersonalDataAllowItem_ from 'src/core/components/personalDataAllowItem';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as PersonalDataAllowItem_ from 'maas-schemas-ts/core/components/personalDataAllowItem';
 
 export const schemaId = 'http://maasglobal.com/maas-backend/products/provider.json';
 // Default

@@ -8,8 +8,8 @@ MaaS region schema
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Card_ from 'src/core/card';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Card_ from 'maas-schemas-ts/core/card';
 
 export const schemaId = 'http://maasglobal.com/core/paymentSource.json';
 // Default

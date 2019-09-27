@@ -8,7 +8,7 @@ MaaS webhook to update bookings for tsp adapter callback request schema.
 */
 
 import * as t from 'io-ts';
-import * as RemoteRequest_ from 'src/tsp/webhooks-bookings-update/remote-request';
+import * as RemoteRequest_ from 'maas-schemas-ts/tsp/webhooks-bookings-update/remote-request';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/webhooks-bookings-update/request.json';

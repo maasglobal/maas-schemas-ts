@@ -8,7 +8,7 @@ Response schema for profile-devices-put
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/profile/profile-devices-put/response.json';

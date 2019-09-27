@@ -8,7 +8,7 @@ Response schema for products-providers-retrieve
 */
 
 import * as t from 'io-ts';
-import * as Provider_ from 'src/maas-backend/products/provider';
+import * as Provider_ from 'maas-schemas-ts/maas-backend/products/provider';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/products/products-providers-retrieve/response.json';

@@ -8,9 +8,9 @@ Request schema for products-providers-options
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Units_ from 'src/core/components/units';
-import * as ApiCommon_ from 'src/core/components/api-common';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/products/products-providers-options/request.json';

@@ -8,14 +8,14 @@ Product option for an itinerary, is either an existing booking pointer or a new 
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Product_ from 'src/core/product';
-import * as Terms_ from 'src/core/components/terms';
-import * as Booking_ from 'src/core/booking';
-import * as Configurator_ from 'src/core/components/configurator';
-import * as BookingOption_ from 'src/core/booking-option';
-import * as Fare_ from 'src/core/components/fare';
-import * as Cost_ from 'src/core/components/cost';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Product_ from 'maas-schemas-ts/core/product';
+import * as Terms_ from 'maas-schemas-ts/core/components/terms';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
+import * as Cost_ from 'maas-schemas-ts/core/components/cost';
 
 export const schemaId = 'http://maasglobal.com/core/product-option.json';
 // Ref

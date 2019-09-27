@@ -8,9 +8,9 @@ MaaS booking terms and condition for its business engine
 */
 
 import * as t from 'io-ts';
-import * as Cost_ from 'src/core/components/cost';
-import * as Fare_ from 'src/core/components/fare';
-import * as Units_ from 'src/core/components/units';
+import * as Cost_ from 'maas-schemas-ts/core/components/cost';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/core/components/terms.json';
 // Seat

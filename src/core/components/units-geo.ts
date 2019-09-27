@@ -8,8 +8,8 @@ MaaS common geolocaion units that are used consistently within our own objects
 */
 
 import * as t from 'io-ts';
-import * as Address_ from 'src/core/components/address';
-import * as Station_ from 'src/core/components/station';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
+import * as Station_ from 'maas-schemas-ts/core/components/station';
 
 export const schemaId = 'http://maasglobal.com/core/components/units-geo.json';
 // Latitude

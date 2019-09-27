@@ -8,8 +8,8 @@ Response schema for canceling a booking through a TSP adapter
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
-import * as BookingOption_ from 'src/core/booking-option';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-cancel/response.json';
 // Default

@@ -8,8 +8,8 @@ Response schema for routes providers, subset of routes-query response schema
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Itinerary_ from 'src/core/itinerary';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/provider/routes/response.json';

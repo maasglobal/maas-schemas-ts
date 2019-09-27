@@ -8,9 +8,9 @@ Configurator schema to customize a booking option
 */
 
 import * as t from 'io-ts';
-import * as Cost_ from 'src/core/components/cost';
-import * as Fare_ from 'src/core/components/fare';
-import * as Terms_ from 'src/core/components/terms';
+import * as Cost_ from 'maas-schemas-ts/core/components/cost';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
+import * as Terms_ from 'maas-schemas-ts/core/components/terms';
 
 export const schemaId = 'http://maasglobal.com/core/components/configurator.json';
 // Choice

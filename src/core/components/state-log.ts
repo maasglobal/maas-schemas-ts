@@ -8,8 +8,8 @@ Set of booking state transitions
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as State_ from 'src/core/components/state';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as State_ from 'maas-schemas-ts/core/components/state';
 
 export const schemaId = 'http://maasglobal.com/core/components/state-log.json';
 // ObsoleteTime

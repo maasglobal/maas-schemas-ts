@@ -8,8 +8,8 @@ MaaS subscription option schema
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
-import * as Subscription_ from 'src/maas-backend/subscriptions/subscription';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Subscription_ from 'maas-schemas-ts/maas-backend/subscriptions/subscription';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptionOption.json';

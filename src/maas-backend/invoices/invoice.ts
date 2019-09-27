@@ -8,8 +8,8 @@ MaaS Invoice schema
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as InvoiceLineItem_ from 'src/maas-backend/invoices/invoiceLineItem';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as InvoiceLineItem_ from 'maas-schemas-ts/maas-backend/invoices/invoiceLineItem';
 
 export const schemaId = 'http://maasglobal.com/maas-backend/invoices/invoice.json';
 // InvoiceId

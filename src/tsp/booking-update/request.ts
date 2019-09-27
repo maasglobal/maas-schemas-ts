@@ -8,9 +8,9 @@ Request schema for update a state of a specific booking with a TSP ID from a TSP
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
-import * as Configurator_ from 'src/core/components/configurator';
-import * as CustomerSelection_ from 'src/core/components/customerSelection';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
+import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-update/request.json';
 // Default

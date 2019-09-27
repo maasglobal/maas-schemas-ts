@@ -8,7 +8,7 @@ MaaS.fi geocoding (GeoJSON) response schema
 */
 
 import * as t from 'io-ts';
-import * as Geolocation_ from 'src/core/components/geolocation';
+import * as Geolocation_ from 'maas-schemas-ts/core/components/geolocation';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/geocoding/geocoding-query/response.json';

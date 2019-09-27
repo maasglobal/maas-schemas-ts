@@ -8,9 +8,9 @@ Response schema for bookings-agency-products
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Fare_ from 'src/core/components/fare';
-import * as Common_ from 'src/core/components/common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-agency-products/response.json';

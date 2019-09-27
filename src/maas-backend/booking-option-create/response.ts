@@ -8,7 +8,7 @@ Response schema for booking-option-create
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/booking-option-create/response.json';

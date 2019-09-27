@@ -8,7 +8,7 @@ Request schema for getting a specific booking with a TSP ID from a TSP adapter
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-read-by-id/request.json';
 // Default

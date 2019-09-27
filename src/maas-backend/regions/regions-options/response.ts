@@ -8,7 +8,7 @@ Response schema for regions-options
 */
 
 import * as t from 'io-ts';
-import * as Region_ from 'src/core/region';
+import * as Region_ from 'maas-schemas-ts/core/region';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/regions/regions-options/response.json';

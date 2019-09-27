@@ -8,7 +8,7 @@ Response schema for subscriptions-update
 */
 
 import * as t from 'io-ts';
-import * as Subscription_ from 'src/maas-backend/subscriptions/subscription';
+import * as Subscription_ from 'maas-schemas-ts/maas-backend/subscriptions/subscription';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-update/response.json';
