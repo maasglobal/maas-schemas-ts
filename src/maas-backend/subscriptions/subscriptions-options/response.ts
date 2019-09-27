@@ -8,7 +8,7 @@ Response schema for subscriptions-options
 */
 
 import * as t from 'io-ts';
-import * as SubscriptionOption_ from 'src/maas-backend/subscriptions/subscriptionOption';
+import * as SubscriptionOption_ from 'maas-schemas-ts/maas-backend/subscriptions/subscriptionOption';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-options/response.json';

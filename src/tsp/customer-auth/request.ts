@@ -8,9 +8,9 @@ Request schema for initiating customer authorization for TSP
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
-import * as Units_ from 'src/core/components/units';
-import * as I18n_ from 'src/core/components/i18n';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as I18n_ from 'maas-schemas-ts/core/components/i18n';
 
 export const schemaId = 'http://maasglobal.com/tsp/customer-auth/request.json';
 // Default

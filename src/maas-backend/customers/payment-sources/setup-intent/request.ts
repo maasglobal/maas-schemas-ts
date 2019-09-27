@@ -8,10 +8,10 @@ MaaS customer payment sources setup intent create
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Common_ from 'src/core/components/common';
-import * as PaymentSource_ from 'src/maas-backend/customers/payment-sources/paymentSource';
-import * as ApiCommon_ from 'src/core/components/api-common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
+import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/payment-sources/setup-intent/request.json';

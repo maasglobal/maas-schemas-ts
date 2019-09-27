@@ -8,9 +8,9 @@ Remote response schema, e.g. how MaaS-backend responds back to TSP
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Booking_ from 'src/core/booking';
-import * as BookingOption_ from 'src/core/booking-option';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 
 export const schemaId =
   'http://maasglobal.com/tsp/webhooks-bookings-update/remote-response.json';

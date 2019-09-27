@@ -8,12 +8,12 @@ Request schema for getting options from a TSP adapter.
 */
 
 import * as t from 'io-ts';
-import * as TravelMode_ from 'src/core/components/travel-mode';
-import * as Units_ from 'src/core/components/units';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Address_ from 'src/core/components/address';
-import * as Booking_ from 'src/core/booking';
-import * as Common_ from 'src/core/components/common';
+import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-options-list/request.json';
 // Default

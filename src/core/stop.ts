@@ -8,8 +8,8 @@ undefined
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Units_ from 'src/core/components/units';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/core/stop.json';
 // Default

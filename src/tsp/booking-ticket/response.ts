@@ -8,7 +8,7 @@ Response schema for retrieving a ticket from booking through a TSP adapter
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-ticket/response.json';
 // Default

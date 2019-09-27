@@ -8,7 +8,7 @@ MaaS customer retrieve
 */
 
 import * as t from 'io-ts';
-import * as Customer_ from 'src/maas-backend/customers/customer';
+import * as Customer_ from 'maas-schemas-ts/maas-backend/customers/customer';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/retrieve/response.json';

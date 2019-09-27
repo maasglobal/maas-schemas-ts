@@ -8,9 +8,9 @@ OpenTripPlanner compatible format for plans, extended with id for legs and itine
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Units_ from 'src/core/components/units';
-import * as Itinerary_ from 'src/core/itinerary';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
 export const schemaId = 'http://maasglobal.com/core/plan.json';
 // Itineraries

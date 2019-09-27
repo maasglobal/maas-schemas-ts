@@ -8,9 +8,9 @@ Request schema for subscriptions-customer-update
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Contact_ from 'src/maas-backend/subscriptions/contact';
-import * as ApiCommon_ from 'src/core/components/api-common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Contact_ from 'maas-schemas-ts/maas-backend/subscriptions/contact';
+import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-customer-update/request.json';

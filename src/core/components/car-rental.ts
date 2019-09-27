@@ -8,10 +8,10 @@ Base schema for MODE_CAR* metas
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as ACRISS_ from 'src/core/components/ACRISS';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Common_ from 'src/core/components/common';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as ACRISS_ from 'maas-schemas-ts/core/components/ACRISS';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId = 'http://maasglobal.com/core/components/car-rental.json';
 // Default

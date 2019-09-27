@@ -865,5 +865,5 @@ DONE
 DONE
 DONE
 $ eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore --fix
-$ yarn clean && tsc
+$ yarn clean && ttsc
 $ rm -rf lib

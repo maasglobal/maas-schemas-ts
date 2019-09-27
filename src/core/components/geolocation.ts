@@ -8,7 +8,7 @@ Partial (Points only) GeoJSON Schema
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 
 export const schemaId = 'http://maasglobal.com/core/components/geolocation.json';
 // Geometry

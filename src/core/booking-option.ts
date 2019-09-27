@@ -8,14 +8,14 @@ MaaS single TSP adapter option
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
-import * as Cost_ from 'src/core/components/cost';
-import * as Configurator_ from 'src/core/components/configurator';
-import * as Customer_ from 'src/core/customer';
-import * as TravelMode_ from 'src/core/components/travel-mode';
-import * as Units_ from 'src/core/components/units';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Common_ from 'src/core/components/common';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as Cost_ from 'maas-schemas-ts/core/components/cost';
+import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
+import * as Customer_ from 'maas-schemas-ts/core/customer';
+import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId = 'http://maasglobal.com/core/booking-option.json';
 // Leg

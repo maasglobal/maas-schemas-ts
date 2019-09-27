@@ -8,8 +8,8 @@ Response schema for updating state of a specific booking with a TSP ID from a TS
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'src/core/booking';
-import * as BookingOption_ from 'src/core/booking-option';
+import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-update/response.json';
 // Default

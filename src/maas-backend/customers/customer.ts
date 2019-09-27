@@ -8,11 +8,11 @@ MaaS customer schema
 */
 
 import * as t from 'io-ts';
-import * as PersonalData_ from 'src/maas-backend/customers/personalData';
-import * as PaymentSource_ from 'src/maas-backend/customers/payment-sources/paymentSource';
-import * as Fare_ from 'src/core/components/fare';
-import * as Region_ from 'src/core/region';
-import * as Authorization_ from 'src/core/components/authorization';
+import * as PersonalData_ from 'maas-schemas-ts/maas-backend/customers/personalData';
+import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
+import * as Fare_ from 'maas-schemas-ts/core/components/fare';
+import * as Region_ from 'maas-schemas-ts/core/region';
+import * as Authorization_ from 'maas-schemas-ts/core/components/authorization';
 
 export const schemaId = 'http://maasglobal.com/maas-backend/customers/customer.json';
 // Default

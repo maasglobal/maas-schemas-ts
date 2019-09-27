@@ -8,12 +8,12 @@ Request schema for booking-option-create
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
-import * as Product_ from 'src/core/product';
-import * as CustomerSelection_ from 'src/core/components/customerSelection';
-import * as Units_ from 'src/core/components/units';
-import * as AgencyOptions_ from 'src/core/components/agencyOptions';
-import * as ApiCommon_ from 'src/core/components/api-common';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Product_ from 'maas-schemas-ts/core/product';
+import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as AgencyOptions_ from 'maas-schemas-ts/core/components/agencyOptions';
+import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/booking-option-create/request.json';

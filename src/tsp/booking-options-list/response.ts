@@ -8,8 +8,8 @@ Response schema for getting options from a TSP adapter
 */
 
 import * as t from 'io-ts';
-import * as BookingOption_ from 'src/core/booking-option';
-import * as BikeStation_ from 'src/core/components/bike-station';
+import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BikeStation_ from 'maas-schemas-ts/core/components/bike-station';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-options-list/response.json';
 // Default

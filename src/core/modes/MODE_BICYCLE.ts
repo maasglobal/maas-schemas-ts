@@ -8,7 +8,7 @@ undefined
 */
 
 import * as t from 'io-ts';
-import * as BikeStation_ from 'src/core/components/bike-station';
+import * as BikeStation_ from 'maas-schemas-ts/core/components/bike-station';
 
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_BICYCLE.json';
 // Default

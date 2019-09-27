@@ -8,7 +8,7 @@ MaaS common units that are used consistently within our own objects
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/core/components/cost.json';
 // Default

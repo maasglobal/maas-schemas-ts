@@ -8,9 +8,9 @@ MaaS customer personal data schema
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
-import * as Address_ from 'src/core/components/address';
-import * as Units_ from 'src/core/components/units';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/maas-backend/customers/personalData.json';
 // Default

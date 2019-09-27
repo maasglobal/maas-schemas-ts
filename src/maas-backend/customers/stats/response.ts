@@ -8,7 +8,7 @@ MaaS customer stats. Give lifetime stats of customer e.g total number of booking
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/stats/response.json';

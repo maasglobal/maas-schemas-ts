@@ -8,8 +8,8 @@ Schema for MODE_RAIL meta field
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'src/core/components/units-geo';
-import * as Station_ from 'src/core/components/station';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Station_ from 'maas-schemas-ts/core/components/station';
 
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_RAIL.json';
 // Default

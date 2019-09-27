@@ -8,7 +8,7 @@ Response schema for tsp-auth validate
 */
 
 import * as t from 'io-ts';
-import * as Common_ from 'src/core/components/common';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/tsp-auth/validate/response.json';

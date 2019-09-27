@@ -8,7 +8,7 @@ Response schema for initiating customer authorization for TSP
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/tsp/customer-auth/response.json';
 // Default

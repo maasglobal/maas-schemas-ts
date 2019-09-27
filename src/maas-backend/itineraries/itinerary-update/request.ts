@@ -8,12 +8,12 @@ Maas Itinerary update request
 */
 
 import * as t from 'io-ts';
-import * as Units_ from 'src/core/components/units';
-import * as Itinerary_ from 'src/core/itinerary';
-import * as ApiCommon_ from 'src/core/components/api-common';
-import * as Common_ from 'src/core/components/common';
-import * as ProductOption_ from 'src/core/product-option';
-import * as CustomerSelection_ from 'src/core/components/customerSelection';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
+import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
+import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
+import * as Common_ from 'maas-schemas-ts/core/components/common';
+import * as ProductOption_ from 'maas-schemas-ts/core/product-option';
+import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-update/request.json';
