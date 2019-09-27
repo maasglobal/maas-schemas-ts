@@ -9,11 +9,12 @@
   "scripts": {
     "eslint": "eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore",
     "lint": "yarn eslint",
+    "clean-src": "rm -rf src",
     "clean": "rm -rf lib",
     "build-converter": "tsc converter.ts -outdir tmp",
     "build": "yarn clean && tsc",
     "ci": "yarn lint && yarn build",
-    "convert-all": "yarn lint && yarn build-converter && (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z -R|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;) && yarn eslint --fix && yarn build",
+    "convert-all": "(yarn clean-src && yarn lint && yarn build-converter && (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;) && yarn eslint --fix && yarn build) 2>&1|tee translation.log",
     "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {
