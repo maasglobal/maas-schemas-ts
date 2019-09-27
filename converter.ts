@@ -286,7 +286,7 @@ function fromRef(refString: string): gen.TypeReference {
     const URI = ref.filePath;
     const [, withoutDomain] = URI.split(domain);
     const [fullPath] = withoutDomain.split('.json');
-    imps.add(`import * as ${importName} from 'src/${fullPath}';`);
+    imps.add(`import * as ${importName} from 'maas-schemas-ts/${fullPath}';`);
   } else {
     const [relativePath] = ref.filePath.split('.json');
     imps.add(`import * as ${importName} from './${relativePath}';`);

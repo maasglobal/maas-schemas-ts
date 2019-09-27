@@ -13,9 +13,17 @@
     "typeRoots": ["./node_modules/@types"],
     "downlevelIteration": true,
     "declaration": true,
-    "rootDir": ".",
     "baseUrl": ".",
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "paths": {
+      "maas-schemas-ts/*": ["src/*"]
+    },
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths",
+        "exclude": ["*"]
+      }
+    ]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]
