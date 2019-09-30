@@ -17,7 +17,7 @@ export const Uuid = t.brand(
   t.string,
   (x): x is t.Branded<string, UuidBrand> =>
     typeof x !== 'string' ||
-    x.match('^[A-Fa-f0-9]{8}(-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}$') !== null,
+    x.match(RegExp('^[A-Fa-f0-9]{8}(-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}$', 'u')) !== null,
   'Uuid',
 );
 export interface UuidBrand {
@@ -29,7 +29,8 @@ export type Url = t.Branded<string, UrlBrand>;
 export const Url = t.brand(
   t.string,
   (x): x is t.Branded<string, UrlBrand> =>
-    typeof x !== 'string' || x.match('^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$') !== null,
+    typeof x !== 'string' ||
+    x.match(RegExp('^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$', 'u')) !== null,
   'Url',
 );
 export interface UrlBrand {
@@ -42,8 +43,9 @@ export const Arn = t.brand(
   t.string,
   (x): x is t.Branded<string, ArnBrand> =>
     (typeof x !== 'string' ||
-      x.match('^arn:aws:[a-z]+:[\\w\\-]*:\\d{12}:[ \\w\\-]+(\\/[\\w\\- \\/]+)*') !==
-        null) &&
+      x.match(
+        RegExp('^arn:aws:[a-z]+:[\\w\\-]*:\\d{12}:[ \\w\\-]+(\\/[\\w\\- \\/]+)*', 'u'),
+      ) !== null) &&
     (typeof x !== 'string' || x.length >= 1) &&
     (typeof x !== 'string' || x.length <= 256),
   'Arn',
@@ -58,8 +60,9 @@ export const IdentityId = t.brand(
   t.string,
   (x): x is t.Branded<string, IdentityIdBrand> =>
     typeof x !== 'string' ||
-    x.match('^[aepus]{2}-[\\w]{4}-\\d:[a-f\\d]{8}(-[a-f\\d]{4}){3}-[a-f\\d]{12}$') !==
-      null,
+    x.match(
+      RegExp('^[aepus]{2}-[\\w]{4}-\\d:[a-f\\d]{8}(-[a-f\\d]{4}){3}-[a-f\\d]{12}$', 'u'),
+    ) !== null,
   'IdentityId',
 );
 export interface IdentityIdBrand {
@@ -113,7 +116,7 @@ export type IsoDate = t.Branded<string, IsoDateBrand>;
 export const IsoDate = t.brand(
   t.string,
   (x): x is t.Branded<string, IsoDateBrand> =>
-    typeof x !== 'string' || x.match('^\\d{4}-\\d{2}-\\d{2}') !== null,
+    typeof x !== 'string' || x.match(RegExp('^\\d{4}-\\d{2}-\\d{2}', 'u')) !== null,
   'IsoDate',
 );
 export interface IsoDateBrand {

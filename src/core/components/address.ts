@@ -19,7 +19,10 @@ export const ComponentAddress = t.brand(
   (x): x is t.Branded<string, ComponentAddressBrand> =>
     typeof x !== 'string' ||
     x.match(
-      "^(?:(?:(?:country:(?:\\p{L}|[,\\.:\\-`'´\\s])+)|(?:state:(?:\\p{L}|[,\\.:\\-`'´\\s])+)|(?:city:(?:\\p{L}|[,\\.:\\-`'´\\s])+)|(?:zipCode:(?:\\d{3,10}|(?:\\p{L}|\\d){2,4}(\\s(?:\\p{L}|\\d){2,4})?))|(?:streetName:[^|]+)|(?:streetNumber:\\d+))\\|?){4,6}$",
+      RegExp(
+        "^(?:(?:(?:country:(?:\\p{L}|[,\\.:\\-`'´\\s])+)|(?:state:(?:\\p{L}|[,\\.:\\-`'´\\s])+)|(?:city:(?:\\p{L}|[,\\.:\\-`'´\\s])+)|(?:zipCode:(?:\\d{3,10}|(?:\\p{L}|\\d){2,4}(\\s(?:\\p{L}|\\d){2,4})?))|(?:streetName:[^|]+)|(?:streetNumber:\\d+))\\|?){4,6}$",
+        'u',
+      ),
     ) !== null,
   'ComponentAddress',
 );
@@ -34,7 +37,10 @@ export const PlaceName = t.brand(
   (x): x is t.Branded<string, PlaceNameBrand> =>
     (typeof x !== 'string' ||
       x.match(
-        '^(?:\\p{L}|\\d)(?:\\p{L}|\\d|[!-/:-@[-`{-\\xA9\\xAB-\\xB4\\xB6-\\xB9\\xBB-\\xBF\\xD7\\xF7])*(?:\\s(?:\\p{L}|\\d|[!-/:-@[-`{-\\xA9\\xAB-\\xB4\\xB6-\\xB9\\xBB-\\xBF\\xD7\\xF7])+)*$',
+        RegExp(
+          '^(?:\\p{L}|\\d)(?:\\p{L}|\\d|[!-/:-@[-`{-\\xA9\\xAB-\\xB4\\xB6-\\xB9\\xBB-\\xBF\\xD7\\xF7])*(?:\\s(?:\\p{L}|\\d|[!-/:-@[-`{-\\xA9\\xAB-\\xB4\\xB6-\\xB9\\xBB-\\xBF\\xD7\\xF7])+)*$',
+          'u',
+        ),
       ) !== null) &&
     (typeof x !== 'string' || x.length <= 255),
   'PlaceName',
@@ -66,7 +72,10 @@ export const Address = t.brand(
   (x): x is t.Branded<string, AddressBrand> =>
     (typeof x !== 'string' ||
       x.match(
-        "^(?:(?:\\p{L}|\\d)+[`'´\\(\\)\\-/,\\.]?)+(\\s?(?:\\p{L}|[\\d`'´\\(\\)\\-/,\\.])?)*$",
+        RegExp(
+          "^(?:(?:\\p{L}|\\d)+[`'´\\(\\)\\-/,\\.]?)+(\\s?(?:\\p{L}|[\\d`'´\\(\\)\\-/,\\.])?)*$",
+          'u',
+        ),
       ) !== null) &&
     (typeof x !== 'string' || x.length <= 255),
   'Address',
@@ -92,7 +101,7 @@ export type CountryName = t.Branded<string, CountryNameBrand>;
 export const CountryName = t.brand(
   t.string,
   (x): x is t.Branded<string, CountryNameBrand> =>
-    (typeof x !== 'string' || x.match('^(?:\\p{L}|\\s)+$') !== null) &&
+    (typeof x !== 'string' || x.match(RegExp('^(?:\\p{L}|\\s)+$', 'u')) !== null) &&
     (typeof x !== 'string' || x.length <= 64),
   'CountryName',
 );
@@ -105,7 +114,7 @@ export type Country = t.Branded<string, CountryBrand>;
 export const Country = t.brand(
   t.string,
   (x): x is t.Branded<string, CountryBrand> =>
-    typeof x !== 'string' || x.match('^[A-Z]{2,2}$') !== null,
+    typeof x !== 'string' || x.match(RegExp('^[A-Z]{2,2}$', 'u')) !== null,
   'Country',
 );
 export interface CountryBrand {
@@ -117,7 +126,7 @@ export type City = t.Branded<string, CityBrand>;
 export const City = t.brand(
   t.string,
   (x): x is t.Branded<string, CityBrand> =>
-    (typeof x !== 'string' || x.match("^(?:\\p{L}|[\\s`'´])+$") !== null) &&
+    (typeof x !== 'string' || x.match(RegExp("^(?:\\p{L}|[\\s`'´])+$", 'u')) !== null) &&
     (typeof x !== 'string' || x.length <= 64),
   'City',
 );
