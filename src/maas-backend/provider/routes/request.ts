@@ -31,7 +31,22 @@ export type Default = t.Branded<
     leaveAt?: Units_.Time;
     arriveBy?: Units_.Time;
     modes?: TravelMode_.Default;
-  } & Record<string, string | number | boolean>) & {
+  } & Record<
+    string,
+    | Units_.IdentityId
+    | UnitsGeo_.ShortLocation
+    | Address_.PlaceName
+    | Address_.ComponentAddress
+    | Station_.Id
+    | UnitsGeo_.ShortLocation
+    | Address_.PlaceName
+    | Address_.ComponentAddress
+    | Station_.Id
+    | Units_.Time
+    | Units_.Time
+    | TravelMode_.Default
+    | (string | number | boolean)
+  >) & {
     from: unknown;
     to: unknown;
   },
@@ -54,7 +69,24 @@ export const Default = t.brand(
         arriveBy: Units_.Time,
         modes: TravelMode_.Default,
       }),
-      t.record(t.string, t.union([t.string, t.number, t.boolean])),
+      t.record(
+        t.string,
+        t.union([
+          Units_.IdentityId,
+          UnitsGeo_.ShortLocation,
+          Address_.PlaceName,
+          Address_.ComponentAddress,
+          Station_.Id,
+          UnitsGeo_.ShortLocation,
+          Address_.PlaceName,
+          Address_.ComponentAddress,
+          Station_.Id,
+          Units_.Time,
+          Units_.Time,
+          TravelMode_.Default,
+          t.union([t.string, t.number, t.boolean]),
+        ]),
+      ),
     ]),
     t.type({
       from: t.unknown,
@@ -77,7 +109,22 @@ export const Default = t.brand(
       leaveAt?: Units_.Time;
       arriveBy?: Units_.Time;
       modes?: TravelMode_.Default;
-    } & Record<string, string | number | boolean>) & {
+    } & Record<
+      string,
+      | Units_.IdentityId
+      | UnitsGeo_.ShortLocation
+      | Address_.PlaceName
+      | Address_.ComponentAddress
+      | Station_.Id
+      | UnitsGeo_.ShortLocation
+      | Address_.PlaceName
+      | Address_.ComponentAddress
+      | Station_.Id
+      | Units_.Time
+      | Units_.Time
+      | TravelMode_.Default
+      | (string | number | boolean)
+    >) & {
       from: unknown;
       to: unknown;
     },

@@ -33,7 +33,25 @@ export type Default = t.Branded<
       arriveByReturn?: Units_.Time;
       mode?: string;
     };
-  } & Record<string, string | number | boolean>,
+  } & Record<
+    string,
+    | {
+        from?: UnitsGeo_.ShortLocationString;
+        fromName?: Address_.PlaceName;
+        fromAddress?: Address_.ComponentAddress;
+        fromStationId?: Station_.Id;
+        to?: UnitsGeo_.ShortLocationString;
+        toName?: Address_.PlaceName;
+        toAddress?: Address_.ComponentAddress;
+        toStationId?: Station_.Id;
+        leaveAt?: Units_.Time;
+        arriveBy?: Units_.Time;
+        leaveAtReturn?: Units_.Time;
+        arriveByReturn?: Units_.Time;
+        mode?: string;
+      }
+    | (string | number | boolean)
+  >,
   DefaultBrand
 >;
 export const Default = t.brand(
@@ -55,7 +73,27 @@ export const Default = t.brand(
         mode: t.string,
       }),
     }),
-    t.record(t.string, t.union([t.string, t.number, t.boolean])),
+    t.record(
+      t.string,
+      t.union([
+        t.partial({
+          from: UnitsGeo_.ShortLocationString,
+          fromName: Address_.PlaceName,
+          fromAddress: Address_.ComponentAddress,
+          fromStationId: Station_.Id,
+          to: UnitsGeo_.ShortLocationString,
+          toName: Address_.PlaceName,
+          toAddress: Address_.ComponentAddress,
+          toStationId: Station_.Id,
+          leaveAt: Units_.Time,
+          arriveBy: Units_.Time,
+          leaveAtReturn: Units_.Time,
+          arriveByReturn: Units_.Time,
+          mode: t.string,
+        }),
+        t.union([t.string, t.number, t.boolean]),
+      ]),
+    ),
   ]),
   (
     x,
@@ -76,7 +114,25 @@ export const Default = t.brand(
         arriveByReturn?: Units_.Time;
         mode?: string;
       };
-    } & Record<string, string | number | boolean>,
+    } & Record<
+      string,
+      | {
+          from?: UnitsGeo_.ShortLocationString;
+          fromName?: Address_.PlaceName;
+          fromAddress?: Address_.ComponentAddress;
+          fromStationId?: Station_.Id;
+          to?: UnitsGeo_.ShortLocationString;
+          toName?: Address_.PlaceName;
+          toAddress?: Address_.ComponentAddress;
+          toStationId?: Station_.Id;
+          leaveAt?: Units_.Time;
+          arriveBy?: Units_.Time;
+          leaveAtReturn?: Units_.Time;
+          arriveByReturn?: Units_.Time;
+          mode?: string;
+        }
+      | (string | number | boolean)
+    >,
     DefaultBrand
   > => true,
   'Default',

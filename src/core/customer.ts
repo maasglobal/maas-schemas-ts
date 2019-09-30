@@ -44,15 +44,22 @@ export type Default = t.Branded<
       };
     } & Record<
       string,
-      {
-        currency?: 'TOKEN';
-        tokenId?: Fare_.TokenId;
-        amount?: number | null;
-      } & {
-        currency: unknown;
-        tokenId: unknown;
-        amount: unknown;
-      }
+      | ({
+          currency?: 'WMP';
+          amount?: number;
+        } & {
+          currency: unknown;
+          amount: unknown;
+        })
+      | ({
+          currency?: 'TOKEN';
+          tokenId?: Fare_.TokenId;
+          amount?: number | null;
+        } & {
+          currency: unknown;
+          tokenId: unknown;
+          amount: unknown;
+        })
     >) & {
       WMP: unknown;
     };
@@ -94,17 +101,29 @@ export const Default = t.brand(
         }),
         t.record(
           t.string,
-          t.intersection([
-            t.partial({
-              currency: t.literal('TOKEN'),
-              tokenId: Fare_.TokenId,
-              amount: t.union([t.number, t.null]),
-            }),
-            t.type({
-              currency: t.unknown,
-              tokenId: t.unknown,
-              amount: t.unknown,
-            }),
+          t.union([
+            t.intersection([
+              t.partial({
+                currency: t.literal('WMP'),
+                amount: t.number,
+              }),
+              t.type({
+                currency: t.unknown,
+                amount: t.unknown,
+              }),
+            ]),
+            t.intersection([
+              t.partial({
+                currency: t.literal('TOKEN'),
+                tokenId: Fare_.TokenId,
+                amount: t.union([t.number, t.null]),
+              }),
+              t.type({
+                currency: t.unknown,
+                tokenId: t.unknown,
+                amount: t.unknown,
+              }),
+            ]),
           ]),
         ),
       ]),
@@ -144,15 +163,22 @@ export const Default = t.brand(
         };
       } & Record<
         string,
-        {
-          currency?: 'TOKEN';
-          tokenId?: Fare_.TokenId;
-          amount?: number | null;
-        } & {
-          currency: unknown;
-          tokenId: unknown;
-          amount: unknown;
-        }
+        | ({
+            currency?: 'WMP';
+            amount?: number;
+          } & {
+            currency: unknown;
+            amount: unknown;
+          })
+        | ({
+            currency?: 'TOKEN';
+            tokenId?: Fare_.TokenId;
+            amount?: number | null;
+          } & {
+            currency: unknown;
+            tokenId: unknown;
+            amount: unknown;
+          })
       >) & {
         WMP: unknown;
       };
