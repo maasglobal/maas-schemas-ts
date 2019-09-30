@@ -18,7 +18,10 @@ export const AcceptHeader = t.brand(
   (x): x is t.Branded<string, AcceptHeaderBrand> =>
     typeof x !== 'string' ||
     x.match(
-      '\\bapplication/json[;,]\\s*version=((0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[\\da-z\\-]+(?:\\.[\\da-z\\-]+)*)?(?:\\+[\\da-z\\-]+(?:\\.[\\da-z\\-]+)*)?)\\b',
+      RegExp(
+        '\\bapplication/json[;,]\\s*version=((0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[\\da-z\\-]+(?:\\.[\\da-z\\-]+)*)?(?:\\+[\\da-z\\-]+(?:\\.[\\da-z\\-]+)*)?)\\b',
+        'u',
+      ),
     ) !== null,
   'AcceptHeader',
 );

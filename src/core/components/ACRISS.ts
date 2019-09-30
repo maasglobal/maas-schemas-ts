@@ -18,7 +18,10 @@ export const Default = t.brand(
   (x): x is t.Branded<string, DefaultBrand> =>
     typeof x !== 'string' ||
     x.match(
-      '[MNEHCDIJSRFGPULWOX][BCDWVLSTFJXPQZEMRHYNGK][MNCABD][RNDQHIECLSABMFVZUX]',
+      RegExp(
+        '[MNEHCDIJSRFGPULWOX][BCDWVLSTFJXPQZEMRHYNGK][MNCABD][RNDQHIECLSABMFVZUX]',
+        'u',
+      ),
     ) !== null,
   'Default',
 );

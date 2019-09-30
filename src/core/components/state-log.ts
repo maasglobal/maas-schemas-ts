@@ -18,7 +18,7 @@ export type ObsoleteTime = t.Branded<string, ObsoleteTimeBrand>;
 export const ObsoleteTime = t.brand(
   t.string,
   (x): x is t.Branded<string, ObsoleteTimeBrand> =>
-    typeof x !== 'string' || x.match('^[0-9]+$') !== null,
+    typeof x !== 'string' || x.match(RegExp('^[0-9]+$', 'u')) !== null,
   'ObsoleteTime',
 );
 export interface ObsoleteTimeBrand {
