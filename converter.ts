@@ -139,6 +139,35 @@ function parseRef(ref: string) {
   return { filePath, variableName };
 }
 
+function fromPatternProperties(schema: JSONSchema7): [gen.TypeReference] | [] {
+  if ('patternProperties' in schema && typeof schema.patternProperties !== 'undefined') {
+    // the mapping from pattern to item is lost in the process
+    // See https://github.com/microsoft/TypeScript/issues/6579
+    warning('patternProperty support has limitations');
+
+    // The Record must also support non-pattern properties
+    const exactPairs = Object.entries(schema.properties || {}).map(
+      <K extends string, V>([key, value]: [K, V]) => [`^${key}$`, value],
+    );
+    const fuzzyPairs = Object.entries(schema.patternProperties);
+    const allPairs = exactPairs.concat(fuzzyPairs);
+    const valueCombinators = allPairs.map(<K extends string, V>([_key, value]: [K, V]) =>
+      fromSchema(value),
+    );
+
+    const valueCombinator = (() => {
+      if (valueCombinators.length > 1) {
+        return gen.unionCombinator(valueCombinators);
+      }
+      const [combinator] = valueCombinators;
+      return combinator;
+    })();
+
+    return [gen.recordCombinator(gen.stringType, valueCombinator)];
+  }
+  return [];
+}
+
 function fromProperties(schema: JSONSchema7): [gen.TypeReference] | [] {
   if ('properties' in schema && typeof schema.properties !== 'undefined') {
     const combinator = gen.partialCombinator(
@@ -147,18 +176,6 @@ function fromProperties(schema: JSONSchema7): [gen.TypeReference] | [] {
       ),
     );
     return [combinator];
-  }
-  return [];
-}
-
-function fromPatternProperties(schema: JSONSchema7): Array<gen.TypeReference> {
-  if ('patternProperties' in schema && typeof schema.patternProperties !== 'undefined') {
-    warning('patternProperty KEY validation NOT implemented');
-    const combinators = Object.entries(schema.patternProperties).map(
-      <K extends string, V>([_key, value]: [K, V]) =>
-        gen.recordCombinator(gen.stringType, fromSchema(value)),
-    );
-    return combinators;
   }
   return [];
 }

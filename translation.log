@@ -220,7 +220,9 @@ DONE
 DONE
 WARNING minimum FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/core/customer.json
-WARNING patternProperty KEY validation NOT implemented
+WARNING patternProperty support has limitations
+WARNING minimum FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/customer.json
 WARNING minimum FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/core/customer.json
 DONE
@@ -413,7 +415,7 @@ WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
 WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/maas-backend/booking-option-create/response.json
 DONE
-WARNING patternProperty KEY validation NOT implemented
+WARNING patternProperty support has limitations
 DONE
 DONE
 DONE
@@ -603,7 +605,7 @@ DONE
 DONE
 DONE
 DONE
-WARNING patternProperty KEY validation NOT implemented
+WARNING patternProperty support has limitations
 DONE
 DONE
 DONE
@@ -636,7 +638,7 @@ DONE
 DONE
 DONE
 DONE
-WARNING patternProperty KEY validation NOT implemented
+WARNING patternProperty support has limitations
 DONE
 DONE
 WARNING minimum FIELD NOT supported outside DIRECT exports by convert.ts
@@ -830,7 +832,21 @@ WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
 WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
-WARNING patternProperty KEY validation NOT implemented
+WARNING patternProperty support has limitations
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
+WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
+WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/tsp/booking-options-list/request.json
 DONE
 DONE
 DONE
@@ -851,7 +867,7 @@ DONE
 DONE
 DONE
 DONE
-WARNING patternProperty KEY validation NOT implemented
+WARNING patternProperty support has limitations
 DONE
 DONE
 WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts

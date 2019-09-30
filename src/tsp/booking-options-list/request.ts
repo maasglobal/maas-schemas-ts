@@ -36,7 +36,26 @@ export type Default = t.Branded<
     tspProductIds?: string;
     tspIdToExtend?: Booking_.TspId;
     purchasingAppInstanceId?: Common_.AppInstanceId;
-  } & Record<string, string | number | boolean>) & {
+  } & Record<
+    string,
+    | TravelMode_.Default
+    | Units_.Time
+    | Units_.Time
+    | UnitsGeo_.ShortLocationString
+    | (Address_.PlaceName | string)
+    | (Address_.ComponentAddress | string)
+    | UnitsGeo_.Distance
+    | (UnitsGeo_.ShortLocationString | string)
+    | (Address_.PlaceName | string)
+    | (Address_.ComponentAddress | string)
+    | UnitsGeo_.Distance
+    | UnitsGeo_.Distance
+    | string
+    | string
+    | Booking_.TspId
+    | Common_.AppInstanceId
+    | (string | number | boolean)
+  >) & {
     startTime: unknown;
     from: unknown;
   },
@@ -63,7 +82,28 @@ export const Default = t.brand(
         tspIdToExtend: Booking_.TspId,
         purchasingAppInstanceId: Common_.AppInstanceId,
       }),
-      t.record(t.string, t.union([t.string, t.number, t.boolean])),
+      t.record(
+        t.string,
+        t.union([
+          TravelMode_.Default,
+          Units_.Time,
+          Units_.Time,
+          UnitsGeo_.ShortLocationString,
+          t.union([Address_.PlaceName, t.string]),
+          t.union([Address_.ComponentAddress, t.string]),
+          UnitsGeo_.Distance,
+          t.union([UnitsGeo_.ShortLocationString, t.string]),
+          t.union([Address_.PlaceName, t.string]),
+          t.union([Address_.ComponentAddress, t.string]),
+          UnitsGeo_.Distance,
+          UnitsGeo_.Distance,
+          t.string,
+          t.string,
+          Booking_.TspId,
+          Common_.AppInstanceId,
+          t.union([t.string, t.number, t.boolean]),
+        ]),
+      ),
     ]),
     t.type({
       startTime: t.unknown,
@@ -90,7 +130,26 @@ export const Default = t.brand(
       tspProductIds?: string;
       tspIdToExtend?: Booking_.TspId;
       purchasingAppInstanceId?: Common_.AppInstanceId;
-    } & Record<string, string | number | boolean>) & {
+    } & Record<
+      string,
+      | TravelMode_.Default
+      | Units_.Time
+      | Units_.Time
+      | UnitsGeo_.ShortLocationString
+      | (Address_.PlaceName | string)
+      | (Address_.ComponentAddress | string)
+      | UnitsGeo_.Distance
+      | (UnitsGeo_.ShortLocationString | string)
+      | (Address_.PlaceName | string)
+      | (Address_.ComponentAddress | string)
+      | UnitsGeo_.Distance
+      | UnitsGeo_.Distance
+      | string
+      | string
+      | Booking_.TspId
+      | Common_.AppInstanceId
+      | (string | number | boolean)
+    >) & {
       startTime: unknown;
       from: unknown;
     },

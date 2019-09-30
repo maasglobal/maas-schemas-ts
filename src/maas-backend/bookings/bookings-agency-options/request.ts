@@ -34,7 +34,23 @@ export type Payload = t.Branded<
     toAddress?: Address_.ComponentAddress;
     toRadius?: UnitsGeo_.Distance;
     bookingIdToExtend?: Units_.Uuid;
-  } & Record<string, string | number | boolean>,
+  } & Record<
+    string,
+    | TravelMode_.Default
+    | Common_.AgencyId
+    | Units_.Time
+    | Units_.Time
+    | UnitsGeo_.ShortLocationString
+    | UnitsGeo_.ShortLocationString
+    | Address_.PlaceName
+    | Address_.ComponentAddress
+    | UnitsGeo_.Distance
+    | Address_.PlaceName
+    | Address_.ComponentAddress
+    | UnitsGeo_.Distance
+    | Units_.Uuid
+    | (string | number | boolean)
+  >,
   PayloadBrand
 >;
 export const Payload = t.brand(
@@ -54,7 +70,25 @@ export const Payload = t.brand(
       toRadius: UnitsGeo_.Distance,
       bookingIdToExtend: Units_.Uuid,
     }),
-    t.record(t.string, t.union([t.string, t.number, t.boolean])),
+    t.record(
+      t.string,
+      t.union([
+        TravelMode_.Default,
+        Common_.AgencyId,
+        Units_.Time,
+        Units_.Time,
+        UnitsGeo_.ShortLocationString,
+        UnitsGeo_.ShortLocationString,
+        Address_.PlaceName,
+        Address_.ComponentAddress,
+        UnitsGeo_.Distance,
+        Address_.PlaceName,
+        Address_.ComponentAddress,
+        UnitsGeo_.Distance,
+        Units_.Uuid,
+        t.union([t.string, t.number, t.boolean]),
+      ]),
+    ),
   ]),
   (
     x,
@@ -73,7 +107,23 @@ export const Payload = t.brand(
       toAddress?: Address_.ComponentAddress;
       toRadius?: UnitsGeo_.Distance;
       bookingIdToExtend?: Units_.Uuid;
-    } & Record<string, string | number | boolean>,
+    } & Record<
+      string,
+      | TravelMode_.Default
+      | Common_.AgencyId
+      | Units_.Time
+      | Units_.Time
+      | UnitsGeo_.ShortLocationString
+      | UnitsGeo_.ShortLocationString
+      | Address_.PlaceName
+      | Address_.ComponentAddress
+      | UnitsGeo_.Distance
+      | Address_.PlaceName
+      | Address_.ComponentAddress
+      | UnitsGeo_.Distance
+      | Units_.Uuid
+      | (string | number | boolean)
+    >,
     PayloadBrand
   > => true,
   'Payload',

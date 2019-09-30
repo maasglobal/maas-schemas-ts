@@ -37,7 +37,26 @@ export type Payload = t.Branded<
     transitMode?: string & ('TRAIN' | 'BUS' | 'SUBWAY' | 'TRAM' | 'RAIL');
     options?: {};
     bookingIdToExtend?: Units_.Uuid;
-  } & Record<string, string | number | boolean>) & {
+  } & Record<
+    string,
+    | UnitsGeo_.ShortLocationString
+    | Address_.PlaceName
+    | Address_.ComponentAddress
+    | Station_.Id
+    | UnitsGeo_.ShortLocationString
+    | Address_.PlaceName
+    | Address_.ComponentAddress
+    | Station_.Id
+    | Units_.Time
+    | Units_.Time
+    | Units_.Time
+    | Units_.Time
+    | (string & ('PUBLIC_TRANSIT' | 'TAXI' | 'CAR' | 'WALK' | 'BICYCLE' | 'BICYCLE_RENT'))
+    | (string & ('TRAIN' | 'BUS' | 'SUBWAY' | 'TRAM' | 'RAIL'))
+    | {}
+    | Units_.Uuid
+    | (string | number | boolean)
+  >) & {
     from: unknown;
     to: unknown;
   },
@@ -83,7 +102,47 @@ export const Payload = t.brand(
         options: t.type({}),
         bookingIdToExtend: Units_.Uuid,
       }),
-      t.record(t.string, t.union([t.string, t.number, t.boolean])),
+      t.record(
+        t.string,
+        t.union([
+          UnitsGeo_.ShortLocationString,
+          Address_.PlaceName,
+          Address_.ComponentAddress,
+          Station_.Id,
+          UnitsGeo_.ShortLocationString,
+          Address_.PlaceName,
+          Address_.ComponentAddress,
+          Station_.Id,
+          Units_.Time,
+          Units_.Time,
+          Units_.Time,
+          Units_.Time,
+          t.intersection([
+            t.string,
+            t.union([
+              t.literal('PUBLIC_TRANSIT'),
+              t.literal('TAXI'),
+              t.literal('CAR'),
+              t.literal('WALK'),
+              t.literal('BICYCLE'),
+              t.literal('BICYCLE_RENT'),
+            ]),
+          ]),
+          t.intersection([
+            t.string,
+            t.union([
+              t.literal('TRAIN'),
+              t.literal('BUS'),
+              t.literal('SUBWAY'),
+              t.literal('TRAM'),
+              t.literal('RAIL'),
+            ]),
+          ]),
+          t.type({}),
+          Units_.Uuid,
+          t.union([t.string, t.number, t.boolean]),
+        ]),
+      ),
     ]),
     t.type({
       from: t.unknown,
@@ -111,7 +170,27 @@ export const Payload = t.brand(
       transitMode?: string & ('TRAIN' | 'BUS' | 'SUBWAY' | 'TRAM' | 'RAIL');
       options?: {};
       bookingIdToExtend?: Units_.Uuid;
-    } & Record<string, string | number | boolean>) & {
+    } & Record<
+      string,
+      | UnitsGeo_.ShortLocationString
+      | Address_.PlaceName
+      | Address_.ComponentAddress
+      | Station_.Id
+      | UnitsGeo_.ShortLocationString
+      | Address_.PlaceName
+      | Address_.ComponentAddress
+      | Station_.Id
+      | Units_.Time
+      | Units_.Time
+      | Units_.Time
+      | Units_.Time
+      | (string &
+          ('PUBLIC_TRANSIT' | 'TAXI' | 'CAR' | 'WALK' | 'BICYCLE' | 'BICYCLE_RENT'))
+      | (string & ('TRAIN' | 'BUS' | 'SUBWAY' | 'TRAM' | 'RAIL'))
+      | {}
+      | Units_.Uuid
+      | (string | number | boolean)
+    >) & {
       from: unknown;
       to: unknown;
     },
