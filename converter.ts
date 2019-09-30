@@ -212,7 +212,7 @@ function toArrayCombinator(schema: JSONSchema7): gen.TypeReference {
 
 function checkPattern(x: string, pattern: string): string {
   const stringLiteral = JSON.stringify(pattern);
-  return `( typeof x !== 'string' || ${x}.match(${stringLiteral}) !== null )`;
+  return `( typeof x !== 'string' || ${x}.match(RegExp(${stringLiteral}, 'u')) !== null )`;
 }
 
 function checkMinLength(x: string, minLength: number): string {
