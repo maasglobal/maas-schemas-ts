@@ -35,18 +35,24 @@ export type Request = t.Branded<
         };
       };
     } & {
-      type: {} | null;
-      id: {} | null;
-      data: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      data: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     params?: {
       gatewayName?: string & 'stripe';
     } & {
-      gatewayName: {} | null;
+      gatewayName:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   } & {
-    params: {} | null;
-    payload: {} | null;
+    params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   RequestBrand
 >;
@@ -77,9 +83,30 @@ export const Request = t.brand(
           }),
         }),
         t.type({
-          type: t.union([t.type({}), t.null]),
-          id: t.union([t.type({}), t.null]),
-          data: t.union([t.type({}), t.null]),
+          type: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          id: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          data: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       params: t.intersection([
@@ -87,13 +114,34 @@ export const Request = t.brand(
           gatewayName: t.intersection([t.string, t.literal('stripe')]),
         }),
         t.type({
-          gatewayName: t.union([t.type({}), t.null]),
+          gatewayName: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
     }),
     t.type({
-      params: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
+      params: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -120,18 +168,30 @@ export const Request = t.brand(
           };
         };
       } & {
-        type: {} | null;
-        id: {} | null;
-        data: {} | null;
+        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        data: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
       params?: {
         gatewayName?: string & 'stripe';
       } & {
-        gatewayName: {} | null;
+        gatewayName:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     } & {
-      params: {} | null;
-      payload: {} | null;
+      params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     RequestBrand
   > => true,

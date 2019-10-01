@@ -21,16 +21,16 @@ export type Default = t.Branded<
       from?: Place_.Default;
       to?: Place_.Default;
     } & {
-      from: {} | null;
-      to: {} | null;
+      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     return?: {
       id?: string;
       from?: Place_.Default;
       to?: Place_.Default;
     } & {
-      from: {} | null;
-      to: {} | null;
+      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     deliveryMethod?: {
       name?: string;
@@ -49,8 +49,22 @@ export const Default = t.brand(
         to: Place_.Default,
       }),
       t.type({
-        from: t.union([t.type({}), t.null]),
-        to: t.union([t.type({}), t.null]),
+        from: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        to: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     return: t.intersection([
@@ -60,8 +74,22 @@ export const Default = t.brand(
         to: Place_.Default,
       }),
       t.type({
-        from: t.union([t.type({}), t.null]),
-        to: t.union([t.type({}), t.null]),
+        from: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        to: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     deliveryMethod: t.partial({
@@ -79,16 +107,16 @@ export const Default = t.brand(
         from?: Place_.Default;
         to?: Place_.Default;
       } & {
-        from: {} | null;
-        to: {} | null;
+        from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
       return?: {
         id?: string;
         from?: Place_.Default;
         to?: Place_.Default;
       } & {
-        from: {} | null;
-        to: {} | null;
+        from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
       deliveryMethod?: {
         name?: string;

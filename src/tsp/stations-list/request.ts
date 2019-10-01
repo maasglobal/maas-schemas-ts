@@ -18,15 +18,21 @@ export type Default = t.Branded<
       location?: UnitsGeo_.ShortLocationString;
       radius?: UnitsGeo_.Distance;
     } & {
-      location: {} | null;
+      location:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     })
   | ({
       name?: string;
       count?: number;
       type?: 'origin' | 'destination' | 'viaAvoid';
     } & {
-      name: {} | null;
-      type: {} | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     }),
   DefaultBrand
 >;
@@ -38,7 +44,14 @@ export const Default = t.brand(
         radius: UnitsGeo_.Distance,
       }),
       t.type({
-        location: t.union([t.type({}), t.null]),
+        location: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     t.intersection([
@@ -52,8 +65,22 @@ export const Default = t.brand(
         ]),
       }),
       t.type({
-        name: t.union([t.type({}), t.null]),
-        type: t.union([t.type({}), t.null]),
+        name: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        type: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   ]),
@@ -64,15 +91,21 @@ export const Default = t.brand(
         location?: UnitsGeo_.ShortLocationString;
         radius?: UnitsGeo_.Distance;
       } & {
-        location: {} | null;
+        location:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       })
     | ({
         name?: string;
         count?: number;
         type?: 'origin' | 'destination' | 'viaAvoid';
       } & {
-        name: {} | null;
-        type: {} | null;
+        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       }),
     DefaultBrand
   > => true,

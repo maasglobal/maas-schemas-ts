@@ -17,8 +17,8 @@ export const schemaId = 'http://maasglobal.com/core/components/place.json';
 // The default export. More information at the top.
 export type Default = t.Branded<
   {} & {
-    lat: {} | null;
-    lon: {} | null;
+    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   } & (UnitsGeo_.RelaxedLocation & {
       name?: Address_.PlaceName;
       address?: Address_.ComponentAddress;
@@ -36,8 +36,22 @@ export const Default = t.brand(
   t.intersection([
     t.type({}),
     t.type({
-      lat: t.union([t.type({}), t.null]),
-      lon: t.union([t.type({}), t.null]),
+      lat: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lon: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
     t.intersection([
       UnitsGeo_.RelaxedLocation,
@@ -58,8 +72,8 @@ export const Default = t.brand(
     x,
   ): x is t.Branded<
     {} & {
-      lat: {} | null;
-      lon: {} | null;
+      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     } & (UnitsGeo_.RelaxedLocation & {
         name?: Address_.PlaceName;
         address?: Address_.ComponentAddress;

@@ -21,8 +21,8 @@ export type Default = t.Branded<
     taxes?: number;
     currency?: Units_.Currency | null;
   } & {
-    amount: {} | null;
-    currency: {} | null;
+    amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    currency: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -36,8 +36,22 @@ export const Default = t.brand(
       currency: t.union([Units_.Currency, t.null]),
     }),
     t.type({
-      amount: t.union([t.type({}), t.null]),
-      currency: t.union([t.type({}), t.null]),
+      amount: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      currency: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -50,8 +64,14 @@ export const Default = t.brand(
       taxes?: number;
       currency?: Units_.Currency | null;
     } & {
-      amount: {} | null;
-      currency: {} | null;
+      amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      currency:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

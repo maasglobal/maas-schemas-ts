@@ -23,9 +23,27 @@ export type Default = t.Branded<
       deviceIdentifier?: Units_.Uuid;
       deviceType?: string & ('iOS' | 'Android');
     } & {
-      devicePushToken: {} | null;
-      deviceIdentifier: {} | null;
-      deviceType: {} | null;
+      devicePushToken:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      deviceIdentifier:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      deviceType:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     headers?: ApiCommon_.Headers;
   },
@@ -44,9 +62,30 @@ export const Default = t.brand(
         ]),
       }),
       t.type({
-        devicePushToken: t.union([t.type({}), t.null]),
-        deviceIdentifier: t.union([t.type({}), t.null]),
-        deviceType: t.union([t.type({}), t.null]),
+        devicePushToken: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        deviceIdentifier: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        deviceType: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     headers: ApiCommon_.Headers,
@@ -61,9 +100,27 @@ export const Default = t.brand(
         deviceIdentifier?: Units_.Uuid;
         deviceType?: string & ('iOS' | 'Android');
       } & {
-        devicePushToken: {} | null;
-        deviceIdentifier: {} | null;
-        deviceType: {} | null;
+        devicePushToken:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        deviceIdentifier:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        deviceType:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       headers?: ApiCommon_.Headers;
     },

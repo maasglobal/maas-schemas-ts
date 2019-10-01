@@ -33,9 +33,21 @@ export type Default = t.Branded<
       stationsList?: boolean;
       stationsRetrieve?: boolean;
     } & {
-      ticket: {} | null;
-      stationsList: {} | null;
-      stationsRetrieve: {} | null;
+      ticket: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      stationsList:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      stationsRetrieve:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     extra?: {
       radius?: {
@@ -44,9 +56,27 @@ export type Default = t.Branded<
         maxRadiusMetres?: number;
         description?: string;
       } & {
-        fixedFareAmount: {} | null;
-        fixedFareCurrency: {} | null;
-        maxRadiusMetres: {} | null;
+        fixedFareAmount:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        fixedFareCurrency:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        maxRadiusMetres:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       prebookingSupported?: boolean;
     };
@@ -65,27 +95,69 @@ export type Default = t.Branded<
             type?: 'string' | 'number' | 'boolean' | 'station';
             default?: string | number | boolean;
           } & {
-            id: {} | null;
-            name: {} | null;
-            type: {} | null;
+            id:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
+            name:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
+            type:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
           }
         >;
       } & {
-        id: {} | null;
-        name: {} | null;
-        inputs: {} | null;
+        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        inputs:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }
     >;
   } & {
-    name: {} | null;
-    agencyId: {} | null;
-    groupId: {} | null;
-    branding: {} | null;
-    hidden: {} | null;
-    features: {} | null;
-    personalDataOptionsAllow: {} | null;
-    personalDataCreateAllow: {} | null;
-    optionalParameters: {} | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    groupId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    branding: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    hidden: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    features: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    personalDataOptionsAllow:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    personalDataCreateAllow:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    optionalParameters:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -110,9 +182,30 @@ export const Default = t.brand(
           stationsRetrieve: t.boolean,
         }),
         t.type({
-          ticket: t.union([t.type({}), t.null]),
-          stationsList: t.union([t.type({}), t.null]),
-          stationsRetrieve: t.union([t.type({}), t.null]),
+          ticket: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          stationsList: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          stationsRetrieve: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       extra: t.partial({
@@ -127,9 +220,30 @@ export const Default = t.brand(
             description: t.string,
           }),
           t.type({
-            fixedFareAmount: t.union([t.type({}), t.null]),
-            fixedFareCurrency: t.union([t.type({}), t.null]),
-            maxRadiusMetres: t.union([t.type({}), t.null]),
+            fixedFareAmount: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
+            fixedFareCurrency: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
+            maxRadiusMetres: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
           }),
         ]),
         prebookingSupported: t.boolean,
@@ -163,31 +277,136 @@ export const Default = t.brand(
                   default: t.union([t.string, t.number, t.boolean]),
                 }),
                 t.type({
-                  id: t.union([t.type({}), t.null]),
-                  name: t.union([t.type({}), t.null]),
-                  type: t.union([t.type({}), t.null]),
+                  id: t.union([
+                    t.UnknownRecord,
+                    t.UnknownArray,
+                    t.string,
+                    t.boolean,
+                    t.number,
+                    t.null,
+                  ]),
+                  name: t.union([
+                    t.UnknownRecord,
+                    t.UnknownArray,
+                    t.string,
+                    t.boolean,
+                    t.number,
+                    t.null,
+                  ]),
+                  type: t.union([
+                    t.UnknownRecord,
+                    t.UnknownArray,
+                    t.string,
+                    t.boolean,
+                    t.number,
+                    t.null,
+                  ]),
                 }),
               ]),
             ),
           }),
           t.type({
-            id: t.union([t.type({}), t.null]),
-            name: t.union([t.type({}), t.null]),
-            inputs: t.union([t.type({}), t.null]),
+            id: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
+            name: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
+            inputs: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
           }),
         ]),
       ),
     }),
     t.type({
-      name: t.union([t.type({}), t.null]),
-      agencyId: t.union([t.type({}), t.null]),
-      groupId: t.union([t.type({}), t.null]),
-      branding: t.union([t.type({}), t.null]),
-      hidden: t.union([t.type({}), t.null]),
-      features: t.union([t.type({}), t.null]),
-      personalDataOptionsAllow: t.union([t.type({}), t.null]),
-      personalDataCreateAllow: t.union([t.type({}), t.null]),
-      optionalParameters: t.union([t.type({}), t.null]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      agencyId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      groupId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      branding: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      hidden: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      features: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      personalDataOptionsAllow: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      personalDataCreateAllow: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      optionalParameters: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -210,9 +429,27 @@ export const Default = t.brand(
         stationsList?: boolean;
         stationsRetrieve?: boolean;
       } & {
-        ticket: {} | null;
-        stationsList: {} | null;
-        stationsRetrieve: {} | null;
+        ticket:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        stationsList:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        stationsRetrieve:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       extra?: {
         radius?: {
@@ -221,9 +458,27 @@ export const Default = t.brand(
           maxRadiusMetres?: number;
           description?: string;
         } & {
-          fixedFareAmount: {} | null;
-          fixedFareCurrency: {} | null;
-          maxRadiusMetres: {} | null;
+          fixedFareAmount:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          fixedFareCurrency:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          maxRadiusMetres:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         };
         prebookingSupported?: boolean;
       };
@@ -242,27 +497,99 @@ export const Default = t.brand(
               type?: 'string' | 'number' | 'boolean' | 'station';
               default?: string | number | boolean;
             } & {
-              id: {} | null;
-              name: {} | null;
-              type: {} | null;
+              id:
+                | Record<string, unknown>
+                | Array<unknown>
+                | string
+                | boolean
+                | number
+                | null;
+              name:
+                | Record<string, unknown>
+                | Array<unknown>
+                | string
+                | boolean
+                | number
+                | null;
+              type:
+                | Record<string, unknown>
+                | Array<unknown>
+                | string
+                | boolean
+                | number
+                | null;
             }
           >;
         } & {
-          id: {} | null;
-          name: {} | null;
-          inputs: {} | null;
+          id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+          name:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          inputs:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         }
       >;
     } & {
-      name: {} | null;
-      agencyId: {} | null;
-      groupId: {} | null;
-      branding: {} | null;
-      hidden: {} | null;
-      features: {} | null;
-      personalDataOptionsAllow: {} | null;
-      personalDataCreateAllow: {} | null;
-      optionalParameters: {} | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      agencyId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      groupId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      branding:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      hidden: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      features:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      personalDataOptionsAllow:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      personalDataCreateAllow:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      optionalParameters:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

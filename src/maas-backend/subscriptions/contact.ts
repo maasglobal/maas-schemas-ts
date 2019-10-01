@@ -73,8 +73,8 @@ export type StripePaymentMethod = t.Branded<
     type?: string & 'stripe';
     token?: string;
   } & {
-    type: {} | null;
-    token: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   StripePaymentMethodBrand
 >;
@@ -85,8 +85,22 @@ export const StripePaymentMethod = t.brand(
       token: t.string,
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      token: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      token: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -96,8 +110,8 @@ export const StripePaymentMethod = t.brand(
       type?: string & 'stripe';
       token?: string;
     } & {
-      type: {} | null;
-      token: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     StripePaymentMethodBrand
   > => true,
@@ -116,11 +130,23 @@ export type CreditCardPaymentMethod = t.Branded<
     expiryYear?: number;
     cvv?: string;
   } & {
-    type: {} | null;
-    number: {} | null;
-    expiryMonth: {} | null;
-    expiryYear: {} | null;
-    cvv: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    number: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    expiryMonth:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    expiryYear:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    cvv: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   CreditCardPaymentMethodBrand
 >;
@@ -134,11 +160,46 @@ export const CreditCardPaymentMethod = t.brand(
       cvv: t.string,
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      number: t.union([t.type({}), t.null]),
-      expiryMonth: t.union([t.type({}), t.null]),
-      expiryYear: t.union([t.type({}), t.null]),
-      cvv: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      number: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      expiryMonth: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      expiryYear: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      cvv: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -151,11 +212,23 @@ export const CreditCardPaymentMethod = t.brand(
       expiryYear?: number;
       cvv?: string;
     } & {
-      type: {} | null;
-      number: {} | null;
-      expiryMonth: {} | null;
-      expiryYear: {} | null;
-      cvv: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      number: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      expiryMonth:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      expiryYear:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      cvv: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     CreditCardPaymentMethodBrand
   > => true,
@@ -187,8 +260,14 @@ export interface NewPaymentMethodBrand {
 // The purpose of this remains a mystery
 export type NewContact = t.Branded<
   {
-    identityId: {} | null;
-    phone: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   } & (ContactBase & {
     paymentMethod?: NewPaymentMethod;
   }),
@@ -197,8 +276,22 @@ export type NewContact = t.Branded<
 export const NewContact = t.brand(
   t.intersection([
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      phone: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      phone: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
     t.intersection([
       ContactBase,
@@ -211,8 +304,14 @@ export const NewContact = t.brand(
     x,
   ): x is t.Branded<
     {
-      identityId: {} | null;
-      phone: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     } & (ContactBase & {
       paymentMethod?: NewPaymentMethod;
     }),
@@ -227,7 +326,13 @@ export interface NewContactBrand {
 // The purpose of this remains a mystery
 export type ContactUpdate = t.Branded<
   {
-    identityId: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   } & (ContactBase & {
     paymentMethod?: NewPaymentMethod;
   }),
@@ -236,7 +341,14 @@ export type ContactUpdate = t.Branded<
 export const ContactUpdate = t.brand(
   t.intersection([
     t.type({
-      identityId: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
     t.intersection([
       ContactBase,
@@ -249,7 +361,13 @@ export const ContactUpdate = t.brand(
     x,
   ): x is t.Branded<
     {
-      identityId: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     } & (ContactBase & {
       paymentMethod?: NewPaymentMethod;
     }),
@@ -267,8 +385,8 @@ export type PaymentMethodResponse = t.Branded<
     type?: string;
     valid?: boolean;
   } & {
-    type: {} | null;
-    valid: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   PaymentMethodResponseBrand
 >;
@@ -279,8 +397,22 @@ export const PaymentMethodResponse = t.brand(
       valid: t.boolean,
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      valid: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      valid: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -290,8 +422,8 @@ export const PaymentMethodResponse = t.brand(
       type?: string;
       valid?: boolean;
     } & {
-      type: {} | null;
-      valid: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     PaymentMethodResponseBrand
   > => true,
@@ -304,8 +436,14 @@ export interface PaymentMethodResponseBrand {
 // The purpose of this remains a mystery
 export type ContactResponse = t.Branded<
   {
-    identityId: {} | null;
-    phone: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   } & (ContactBase & {
     paymentMethod?: PaymentMethodResponse;
   }),
@@ -314,8 +452,22 @@ export type ContactResponse = t.Branded<
 export const ContactResponse = t.brand(
   t.intersection([
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      phone: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      phone: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
     t.intersection([
       ContactBase,
@@ -328,8 +480,14 @@ export const ContactResponse = t.brand(
     x,
   ): x is t.Branded<
     {
-      identityId: {} | null;
-      phone: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     } & (ContactBase & {
       paymentMethod?: PaymentMethodResponse;
     }),

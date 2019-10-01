@@ -18,7 +18,13 @@ export type Default = t.Branded<
   {
     changeState?: SubscriptionChangeState_.Default;
   } & {
-    changeState: {} | null;
+    changeState:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -28,7 +34,14 @@ export const Default = t.brand(
       changeState: SubscriptionChangeState_.Default,
     }),
     t.type({
-      changeState: t.union([t.type({}), t.null]),
+      changeState: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -37,7 +50,13 @@ export const Default = t.brand(
     {
       changeState?: SubscriptionChangeState_.Default;
     } & {
-      changeState: {} | null;
+      changeState:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

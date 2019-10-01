@@ -17,8 +17,8 @@ export type Default = t.Branded<
     message?: string;
     code?: string;
   } & {
-    message: {} | null;
-    code: {} | null;
+    message: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    code: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -29,8 +29,22 @@ export const Default = t.brand(
       code: t.string,
     }),
     t.type({
-      message: t.union([t.type({}), t.null]),
-      code: t.union([t.type({}), t.null]),
+      message: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      code: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -40,8 +54,14 @@ export const Default = t.brand(
       message?: string;
       code?: string;
     } & {
-      message: {} | null;
-      code: {} | null;
+      message:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      code: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

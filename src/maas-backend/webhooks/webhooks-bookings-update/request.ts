@@ -19,8 +19,8 @@ export type Default = t.Branded<
     agencyId?: string;
     payload?: RemoteRequest_.Default;
   } & {
-    agencyId: {} | null;
-    payload: {} | null;
+    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -31,8 +31,22 @@ export const Default = t.brand(
       payload: RemoteRequest_.Default,
     }),
     t.type({
-      agencyId: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
+      agencyId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -42,8 +56,20 @@ export const Default = t.brand(
       agencyId?: string;
       payload?: RemoteRequest_.Default;
     } & {
-      agencyId: {} | null;
-      payload: {} | null;
+      agencyId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

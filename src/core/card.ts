@@ -25,10 +25,16 @@ export type Default = t.Branded<
     billingCountry?: Address_.Country;
     billingZip?: Address_.ZipCode;
   } & {
-    id: {} | null;
-    customerId: {} | null;
-    status: {} | null;
-    valid: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -54,10 +60,38 @@ export const Default = t.brand(
       billingZip: Address_.ZipCode,
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      customerId: t.union([t.type({}), t.null]),
-      status: t.union([t.type({}), t.null]),
-      valid: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      status: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      valid: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -74,10 +108,16 @@ export const Default = t.brand(
       billingCountry?: Address_.Country;
       billingZip?: Address_.ZipCode;
     } & {
-      id: {} | null;
-      customerId: {} | null;
-      status: {} | null;
-      valid: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

@@ -22,8 +22,14 @@ export type Default = t.Branded<
     nextPeriod?: boolean;
     headers?: ApiCommon_.Headers;
   } & {
-    customerId: {} | null;
-    userId: {} | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    userId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -36,8 +42,22 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      customerId: t.union([t.type({}), t.null]),
-      userId: t.union([t.type({}), t.null]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      userId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -49,8 +69,14 @@ export const Default = t.brand(
       nextPeriod?: boolean;
       headers?: ApiCommon_.Headers;
     } & {
-      customerId: {} | null;
-      userId: {} | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      userId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

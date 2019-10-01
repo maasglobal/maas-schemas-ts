@@ -47,8 +47,8 @@ export type Default = t.Branded<
     | TravelMode_.Default
     | (string | number | boolean)
   >) & {
-    from: {} | null;
-    to: {} | null;
+    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -89,8 +89,22 @@ export const Default = t.brand(
       ),
     ]),
     t.type({
-      from: t.union([t.type({}), t.null]),
-      to: t.union([t.type({}), t.null]),
+      from: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      to: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -125,8 +139,8 @@ export const Default = t.brand(
       | TravelMode_.Default
       | (string | number | boolean)
     >) & {
-      from: {} | null;
-      to: {} | null;
+      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

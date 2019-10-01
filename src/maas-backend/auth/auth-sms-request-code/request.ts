@@ -20,11 +20,11 @@ export type Default = t.Branded<
     payload?: {
       phone?: Common_.RawPhone;
     } & {
-      phone: {} | null;
+      phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: {} | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -36,13 +36,27 @@ export const Default = t.brand(
           phone: Common_.RawPhone,
         }),
         t.type({
-          phone: t.union([t.type({}), t.null]),
+          phone: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.union([t.type({}), t.null]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -52,11 +66,23 @@ export const Default = t.brand(
       payload?: {
         phone?: Common_.RawPhone;
       } & {
-        phone: {} | null;
+        phone:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload: {} | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

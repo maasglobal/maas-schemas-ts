@@ -36,9 +36,15 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     tspProductId?: string;
   } & {
-    id: {} | null;
-    tspProductId: {} | null;
-    name: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspProductId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -54,9 +60,30 @@ export const Default = t.brand(
       tspProductId: t.string,
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      tspProductId: t.union([t.type({}), t.null]),
-      name: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      tspProductId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -71,9 +98,15 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       tspProductId?: string;
     } & {
-      id: {} | null;
-      tspProductId: {} | null;
-      name: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspProductId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

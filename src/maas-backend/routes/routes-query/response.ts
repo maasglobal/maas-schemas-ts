@@ -15,19 +15,26 @@ export const schemaId =
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    plan: {} | null;
+    plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    plan: t.union([t.type({}), t.null]),
+    plan: t.union([
+      t.UnknownRecord,
+      t.UnknownArray,
+      t.string,
+      t.boolean,
+      t.number,
+      t.null,
+    ]),
   }),
   (
     x,
   ): x is t.Branded<
     {
-      plan: {} | null;
+      plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

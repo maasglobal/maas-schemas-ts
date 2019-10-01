@@ -17,7 +17,7 @@ export type Default = t.Branded<
     scooter?: {
       id?: string;
     } & {
-      id: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
   },
   DefaultBrand
@@ -29,7 +29,14 @@ export const Default = t.brand(
         id: t.string,
       }),
       t.type({
-        id: t.union([t.type({}), t.null]),
+        id: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   }),
@@ -40,7 +47,7 @@ export const Default = t.brand(
       scooter?: {
         id?: string;
       } & {
-        id: {} | null;
+        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
     },
     DefaultBrand

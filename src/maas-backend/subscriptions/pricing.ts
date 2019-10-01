@@ -23,11 +23,23 @@ export type LineItem = t.Branded<
     quantity?: number;
     unitPrice?: Cost_.Default;
   } & {
-    id: {} | null;
-    type: {} | null;
-    description: {} | null;
-    quantity: {} | null;
-    unitPrice: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    description:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    quantity: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    unitPrice:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   LineItemBrand
 >;
@@ -41,11 +53,46 @@ export const LineItem = t.brand(
       unitPrice: Cost_.Default,
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      type: t.union([t.type({}), t.null]),
-      description: t.union([t.type({}), t.null]),
-      quantity: t.union([t.type({}), t.null]),
-      unitPrice: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      description: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      quantity: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      unitPrice: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -58,11 +105,29 @@ export const LineItem = t.brand(
       quantity?: number;
       unitPrice?: Cost_.Default;
     } & {
-      id: {} | null;
-      type: {} | null;
-      description: {} | null;
-      quantity: {} | null;
-      unitPrice: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      description:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      quantity:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      unitPrice:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     LineItemBrand
   > => true,
@@ -78,8 +143,14 @@ export type Discount = t.Branded<
     description?: string;
     discount?: Cost_.Default;
   } & {
-    description: {} | null;
-    discount: {} | null;
+    description:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    discount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DiscountBrand
 >;
@@ -90,8 +161,22 @@ export const Discount = t.brand(
       discount: Cost_.Default,
     }),
     t.type({
-      description: t.union([t.type({}), t.null]),
-      discount: t.union([t.type({}), t.null]),
+      description: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      discount: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -101,8 +186,20 @@ export const Discount = t.brand(
       description?: string;
       discount?: Cost_.Default;
     } & {
-      description: {} | null;
-      discount: {} | null;
+      description:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      discount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DiscountBrand
   > => true,
@@ -119,11 +216,23 @@ export type Terms = t.Branded<
       startTime?: Units_.Time;
       endTime?: Units_.Time;
     } & {
-      startTime: {} | null;
-      endTime: {} | null;
+      startTime:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      endTime:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   } & {
-    validity: {} | null;
+    validity: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   TermsBrand
 >;
@@ -136,13 +245,34 @@ export const Terms = t.brand(
           endTime: Units_.Time,
         }),
         t.type({
-          startTime: t.union([t.type({}), t.null]),
-          endTime: t.union([t.type({}), t.null]),
+          startTime: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          endTime: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
     }),
     t.type({
-      validity: t.union([t.type({}), t.null]),
+      validity: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -153,11 +283,29 @@ export const Terms = t.brand(
         startTime?: Units_.Time;
         endTime?: Units_.Time;
       } & {
-        startTime: {} | null;
-        endTime: {} | null;
+        startTime:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        endTime:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     } & {
-      validity: {} | null;
+      validity:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     TermsBrand
   > => true,
@@ -175,8 +323,14 @@ export type Default = t.Branded<
     total?: Cost_.Default;
     terms?: Terms;
   } & {
-    lineItems: {} | null;
-    total: {} | null;
+    lineItems:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    total: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -189,8 +343,22 @@ export const Default = t.brand(
       terms: Terms,
     }),
     t.type({
-      lineItems: t.union([t.type({}), t.null]),
-      total: t.union([t.type({}), t.null]),
+      lineItems: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      total: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -202,8 +370,14 @@ export const Default = t.brand(
       total?: Cost_.Default;
       terms?: Terms;
     } & {
-      lineItems: {} | null;
-      total: {} | null;
+      lineItems:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      total: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

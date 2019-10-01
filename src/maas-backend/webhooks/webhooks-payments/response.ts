@@ -25,8 +25,20 @@ export type AvainpayResponse = t.Branded<
     };
     response_map?: {};
   } & {
-    action_str: {} | null;
-    data_type: {} | null;
+    action_str:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    data_type:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   AvainpayResponseBrand
 >;
@@ -44,8 +56,22 @@ export const AvainpayResponse = t.brand(
       response_map: t.type({}),
     }),
     t.type({
-      action_str: t.union([t.type({}), t.null]),
-      data_type: t.union([t.type({}), t.null]),
+      action_str: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      data_type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -62,8 +88,20 @@ export const AvainpayResponse = t.brand(
       };
       response_map?: {};
     } & {
-      action_str: {} | null;
-      data_type: {} | null;
+      action_str:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      data_type:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     AvainpayResponseBrand
   > => true,

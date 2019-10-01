@@ -21,8 +21,8 @@ export type Payload = t.Branded<
     lat?: UnitsGeo_.RelaxedLatitude;
     lon?: UnitsGeo_.RelaxedLongitude;
   } & {
-    lat: {} | null;
-    lon: {} | null;
+    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   PayloadBrand
 >;
@@ -33,8 +33,22 @@ export const Payload = t.brand(
       lon: UnitsGeo_.RelaxedLongitude,
     }),
     t.type({
-      lat: t.union([t.type({}), t.null]),
-      lon: t.union([t.type({}), t.null]),
+      lat: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lon: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -44,8 +58,8 @@ export const Payload = t.brand(
       lat?: UnitsGeo_.RelaxedLatitude;
       lon?: UnitsGeo_.RelaxedLongitude;
     } & {
-      lat: {} | null;
-      lon: {} | null;
+      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     PayloadBrand
   > => true,
@@ -62,8 +76,14 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: {} | null;
-    payload: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -75,8 +95,22 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -87,8 +121,20 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: {} | null;
-      payload: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

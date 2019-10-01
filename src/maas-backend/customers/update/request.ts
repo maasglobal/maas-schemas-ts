@@ -26,14 +26,32 @@ export type Default = t.Branded<
         personalData?: PersonalData_.Default;
       };
     } & {
-      customer: {} | null;
+      customer:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: {} | null;
-    customerId: {} | null;
-    payload: {} | null;
-    headers: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -50,16 +68,51 @@ export const Default = t.brand(
           }),
         }),
         t.type({
-          customer: t.union([t.type({}), t.null]),
+          customer: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      customerId: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
-      headers: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      headers: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -74,14 +127,44 @@ export const Default = t.brand(
           personalData?: PersonalData_.Default;
         };
       } & {
-        customer: {} | null;
+        customer:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: {} | null;
-      customerId: {} | null;
-      payload: {} | null;
-      headers: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      headers:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

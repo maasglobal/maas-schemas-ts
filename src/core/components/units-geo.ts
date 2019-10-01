@@ -92,8 +92,8 @@ export type Location = t.Branded<
     lat?: Latitude;
     lon?: Longitude;
   } & {
-    lat: {} | null;
-    lon: {} | null;
+    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   LocationBrand
 >;
@@ -104,8 +104,22 @@ export const Location = t.brand(
       lon: Longitude,
     }),
     t.type({
-      lat: t.union([t.type({}), t.null]),
-      lon: t.union([t.type({}), t.null]),
+      lat: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lon: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -115,8 +129,8 @@ export const Location = t.brand(
       lat?: Latitude;
       lon?: Longitude;
     } & {
-      lat: {} | null;
-      lon: {} | null;
+      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     LocationBrand
   > => true,
@@ -132,8 +146,8 @@ export type RelaxedLocation = t.Branded<
     lat?: RelaxedLatitude;
     lon?: RelaxedLongitude;
   } & {
-    lat: {} | null;
-    lon: {} | null;
+    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   RelaxedLocationBrand
 >;
@@ -144,8 +158,22 @@ export const RelaxedLocation = t.brand(
       lon: RelaxedLongitude,
     }),
     t.type({
-      lat: t.union([t.type({}), t.null]),
-      lon: t.union([t.type({}), t.null]),
+      lat: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lon: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -155,8 +183,8 @@ export const RelaxedLocation = t.brand(
       lat?: RelaxedLatitude;
       lon?: RelaxedLongitude;
     } & {
-      lat: {} | null;
-      lon: {} | null;
+      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     RelaxedLocationBrand
   > => true,

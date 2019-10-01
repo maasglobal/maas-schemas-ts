@@ -14,22 +14,36 @@ export const schemaId = 'http://maasglobal.com/tsp/bookings-receipt/response.jso
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    tspId: {} | null;
-    cost: {} | null;
+    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    tspId: t.union([t.type({}), t.null]),
-    cost: t.union([t.type({}), t.null]),
+    tspId: t.union([
+      t.UnknownRecord,
+      t.UnknownArray,
+      t.string,
+      t.boolean,
+      t.number,
+      t.null,
+    ]),
+    cost: t.union([
+      t.UnknownRecord,
+      t.UnknownArray,
+      t.string,
+      t.boolean,
+      t.number,
+      t.null,
+    ]),
   }),
   (
     x,
   ): x is t.Branded<
     {
-      tspId: {} | null;
-      cost: {} | null;
+      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

@@ -109,11 +109,29 @@ export type PaymentSource = t.Branded<
     status?: Status;
     setupIntentId?: SetupIntentId;
   } & {
-    paymentSourceId: {} | null;
-    gatewayName: {} | null;
-    type: {} | null;
-    isDefault: {} | null;
-    status: {} | null;
+    paymentSourceId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    gatewayName:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    isDefault:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   PaymentSourceBrand
 >;
@@ -136,11 +154,46 @@ export const PaymentSource = t.brand(
       setupIntentId: SetupIntentId,
     }),
     t.type({
-      paymentSourceId: t.union([t.type({}), t.null]),
-      gatewayName: t.union([t.type({}), t.null]),
-      type: t.union([t.type({}), t.null]),
-      isDefault: t.union([t.type({}), t.null]),
-      status: t.union([t.type({}), t.null]),
+      paymentSourceId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      gatewayName: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      isDefault: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      status: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -162,11 +215,29 @@ export const PaymentSource = t.brand(
       status?: Status;
       setupIntentId?: SetupIntentId;
     } & {
-      paymentSourceId: {} | null;
-      gatewayName: {} | null;
-      type: {} | null;
-      isDefault: {} | null;
-      status: {} | null;
+      paymentSourceId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      gatewayName:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      isDefault:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     PaymentSourceBrand
   > => true,

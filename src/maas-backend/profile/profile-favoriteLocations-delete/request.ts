@@ -21,7 +21,7 @@ export type Default = t.Branded<
     payload?: {
       name?: string;
     } & {
-      name: {} | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     headers?: {
       Accept?: ApiCommon_.AcceptHeader;
@@ -38,7 +38,14 @@ export const Default = t.brand(
         name: t.string,
       }),
       t.type({
-        name: t.union([t.type({}), t.null]),
+        name: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     headers: t.partial({
@@ -54,7 +61,7 @@ export const Default = t.brand(
       payload?: {
         name?: string;
       } & {
-        name: {} | null;
+        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
       headers?: {
         Accept?: ApiCommon_.AcceptHeader;

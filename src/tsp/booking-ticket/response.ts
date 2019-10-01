@@ -20,9 +20,15 @@ export type Default = t.Branded<
     contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
     refreshAt?: Units_.Time;
   } & {
-    ticket: {} | null;
-    type: {} | null;
-    contentType: {} | null;
+    ticket: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    contentType:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -45,9 +51,30 @@ export const Default = t.brand(
       refreshAt: Units_.Time,
     }),
     t.type({
-      ticket: t.union([t.type({}), t.null]),
-      type: t.union([t.type({}), t.null]),
-      contentType: t.union([t.type({}), t.null]),
+      ticket: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      contentType: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -59,9 +86,15 @@ export const Default = t.brand(
       contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
       refreshAt?: Units_.Time;
     } & {
-      ticket: {} | null;
-      type: {} | null;
-      contentType: {} | null;
+      ticket: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      contentType:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

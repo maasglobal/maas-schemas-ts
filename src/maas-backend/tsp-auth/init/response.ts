@@ -17,7 +17,7 @@ export type Default = t.Branded<
   {
     authUrl?: Units_.Url;
   } & {
-    authUrl: {} | null;
+    authUrl: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -27,7 +27,14 @@ export const Default = t.brand(
       authUrl: Units_.Url,
     }),
     t.type({
-      authUrl: t.union([t.type({}), t.null]),
+      authUrl: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -36,7 +43,13 @@ export const Default = t.brand(
     {
       authUrl?: Units_.Url;
     } & {
-      authUrl: {} | null;
+      authUrl:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

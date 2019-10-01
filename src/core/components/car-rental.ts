@@ -44,15 +44,27 @@ export type Default = t.Branded<
       fuelLevel?: number;
       location?: UnitsGeo_.Location;
     } & {
-      classification: {} | null;
+      classification:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     pickupInfo?: Common_.HtmlBlock;
     returnInfo?: Common_.HtmlBlock;
     startEndGeoRegionUrl?: Units_.Url;
   } & {
-    name: {} | null;
-    description: {} | null;
-    image: {} | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    description:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    image: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -88,7 +100,14 @@ export const Default = t.brand(
           location: UnitsGeo_.Location,
         }),
         t.type({
-          classification: t.union([t.type({}), t.null]),
+          classification: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       pickupInfo: Common_.HtmlBlock,
@@ -96,9 +115,30 @@ export const Default = t.brand(
       startEndGeoRegionUrl: Units_.Url,
     }),
     t.type({
-      name: t.union([t.type({}), t.null]),
-      description: t.union([t.type({}), t.null]),
-      image: t.union([t.type({}), t.null]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      description: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      image: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -131,15 +171,27 @@ export const Default = t.brand(
         fuelLevel?: number;
         location?: UnitsGeo_.Location;
       } & {
-        classification: {} | null;
+        classification:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       pickupInfo?: Common_.HtmlBlock;
       returnInfo?: Common_.HtmlBlock;
       startEndGeoRegionUrl?: Units_.Url;
     } & {
-      name: {} | null;
-      description: {} | null;
-      image: {} | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      description:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      image: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

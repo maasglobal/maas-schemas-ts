@@ -25,7 +25,7 @@ export type Default = t.Branded<
     terms?: Booking_.Terms;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    tspId: {} | null;
+    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -45,7 +45,14 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      tspId: t.union([t.type({}), t.null]),
+      tspId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -59,7 +66,7 @@ export const Default = t.brand(
       terms?: Booking_.Terms;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      tspId: {} | null;
+      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

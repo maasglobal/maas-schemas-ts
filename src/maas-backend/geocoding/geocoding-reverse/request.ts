@@ -27,12 +27,12 @@ export type Default = t.Branded<
       radius?: UnitsGeo_.Distance;
       locale?: I18n_.Locale;
     } & {
-      lat: {} | null;
-      lon: {} | null;
+      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: {} | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -49,14 +49,35 @@ export const Default = t.brand(
           locale: I18n_.Locale,
         }),
         t.type({
-          lat: t.union([t.type({}), t.null]),
-          lon: t.union([t.type({}), t.null]),
+          lat: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          lon: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.union([t.type({}), t.null]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -71,12 +92,18 @@ export const Default = t.brand(
         radius?: UnitsGeo_.Distance;
         locale?: I18n_.Locale;
       } & {
-        lat: {} | null;
-        lon: {} | null;
+        lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload: {} | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

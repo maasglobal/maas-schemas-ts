@@ -26,11 +26,29 @@ export type Default = t.Branded<
     region?: Region_.Default;
     authorizations?: Array<Authorization_.Default>;
   } & {
-    personalData: {} | null;
-    paymentSources: {} | null;
-    balances: {} | null;
-    region: {} | null;
-    authorizations: {} | null;
+    personalData:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    paymentSources:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    balances: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    region: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    authorizations:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -45,11 +63,46 @@ export const Default = t.brand(
       authorizations: t.array(Authorization_.Default),
     }),
     t.type({
-      personalData: t.union([t.type({}), t.null]),
-      paymentSources: t.union([t.type({}), t.null]),
-      balances: t.union([t.type({}), t.null]),
-      region: t.union([t.type({}), t.null]),
-      authorizations: t.union([t.type({}), t.null]),
+      personalData: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      paymentSources: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      balances: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      region: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      authorizations: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -63,11 +116,35 @@ export const Default = t.brand(
       region?: Region_.Default;
       authorizations?: Array<Authorization_.Default>;
     } & {
-      personalData: {} | null;
-      paymentSources: {} | null;
-      balances: {} | null;
-      region: {} | null;
-      authorizations: {} | null;
+      personalData:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      paymentSources:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      balances:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      region: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      authorizations:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

@@ -16,11 +16,23 @@ export const schemaId =
 export type Default = t.Branded<
   {
     results?: {
-      successCount: {} | null;
-      failureCount: {} | null;
+      successCount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      failureCount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   } & {
-    results: {} | null;
+    results: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -28,12 +40,33 @@ export const Default = t.brand(
   t.intersection([
     t.partial({
       results: t.type({
-        successCount: t.union([t.type({}), t.null]),
-        failureCount: t.union([t.type({}), t.null]),
+        successCount: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        failureCount: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     }),
     t.type({
-      results: t.union([t.type({}), t.null]),
+      results: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -41,11 +74,29 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       results?: {
-        successCount: {} | null;
-        failureCount: {} | null;
+        successCount:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        failureCount:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     } & {
-      results: {} | null;
+      results:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

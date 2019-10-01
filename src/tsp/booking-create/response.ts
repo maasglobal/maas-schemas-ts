@@ -32,12 +32,18 @@ export type Default = t.Branded<
     customerSelection?: CustomerSelection_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    tspId: {} | null;
-    state: {} | null;
-    meta: {} | null;
-    terms: {} | null;
-    token: {} | null;
-    tspProduct: {} | null;
+    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspProduct:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -57,12 +63,54 @@ export const Default = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      tspId: t.union([t.type({}), t.null]),
-      state: t.union([t.type({}), t.null]),
-      meta: t.union([t.type({}), t.null]),
-      terms: t.union([t.type({}), t.null]),
-      token: t.union([t.type({}), t.null]),
-      tspProduct: t.union([t.type({}), t.null]),
+      tspId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      state: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      meta: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      terms: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      token: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      tspProduct: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -81,12 +129,18 @@ export const Default = t.brand(
       customerSelection?: CustomerSelection_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      tspId: {} | null;
-      state: {} | null;
-      meta: {} | null;
-      terms: {} | null;
-      token: {} | null;
-      tspProduct: {} | null;
+      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspProduct:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

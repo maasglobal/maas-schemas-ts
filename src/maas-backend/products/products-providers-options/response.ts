@@ -18,7 +18,13 @@ export type Default = t.Branded<
   {
     providers?: Array<Provider_.Default>;
   } & {
-    providers: {} | null;
+    providers:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -28,7 +34,14 @@ export const Default = t.brand(
       providers: t.array(Provider_.Default),
     }),
     t.type({
-      providers: t.union([t.type({}), t.null]),
+      providers: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -37,7 +50,13 @@ export const Default = t.brand(
     {
       providers?: Array<Provider_.Default>;
     } & {
-      providers: {} | null;
+      providers:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

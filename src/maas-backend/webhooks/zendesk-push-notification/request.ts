@@ -16,8 +16,14 @@ export const schemaId =
 export type Default = t.Branded<
   {
     devices?: Array<{
-      identifier: {} | null;
-      type: {} | null;
+      identifier:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     }>;
     notification?: {
       body?: string;
@@ -25,8 +31,14 @@ export type Default = t.Branded<
       ticket_id?: string;
     };
   } & {
-    devices: {} | null;
-    notification: {} | null;
+    devices: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    notification:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -35,8 +47,22 @@ export const Default = t.brand(
     t.partial({
       devices: t.array(
         t.type({
-          identifier: t.union([t.type({}), t.null]),
-          type: t.union([t.type({}), t.null]),
+          identifier: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          type: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ),
       notification: t.partial({
@@ -46,8 +72,22 @@ export const Default = t.brand(
       }),
     }),
     t.type({
-      devices: t.union([t.type({}), t.null]),
-      notification: t.union([t.type({}), t.null]),
+      devices: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      notification: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -55,8 +95,14 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       devices?: Array<{
-        identifier: {} | null;
-        type: {} | null;
+        identifier:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       }>;
       notification?: {
         body?: string;
@@ -64,8 +110,20 @@ export const Default = t.brand(
         ticket_id?: string;
       };
     } & {
-      devices: {} | null;
-      notification: {} | null;
+      devices:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      notification:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

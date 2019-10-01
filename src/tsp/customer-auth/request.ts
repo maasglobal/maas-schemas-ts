@@ -21,8 +21,14 @@ export type Default = t.Branded<
     returnUrl?: Units_.Url;
     locale?: I18n_.Locale;
   } & {
-    nonce: {} | null;
-    returnUrl: {} | null;
+    nonce: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    returnUrl:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -34,8 +40,22 @@ export const Default = t.brand(
       locale: I18n_.Locale,
     }),
     t.type({
-      nonce: t.union([t.type({}), t.null]),
-      returnUrl: t.union([t.type({}), t.null]),
+      nonce: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      returnUrl: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -46,8 +66,14 @@ export const Default = t.brand(
       returnUrl?: Units_.Url;
       locale?: I18n_.Locale;
     } & {
-      nonce: {} | null;
-      returnUrl: {} | null;
+      nonce: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      returnUrl:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

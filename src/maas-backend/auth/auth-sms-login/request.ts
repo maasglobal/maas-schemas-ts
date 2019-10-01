@@ -21,12 +21,12 @@ export type Default = t.Branded<
       phone?: Common_.RawPhone;
       code?: string;
     } & {
-      phone: {} | null;
-      code: {} | null;
+      phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      code: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: {} | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -39,14 +39,35 @@ export const Default = t.brand(
           code: t.string,
         }),
         t.type({
-          phone: t.union([t.type({}), t.null]),
-          code: t.union([t.type({}), t.null]),
+          phone: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          code: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.union([t.type({}), t.null]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -57,12 +78,24 @@ export const Default = t.brand(
         phone?: Common_.RawPhone;
         code?: string;
       } & {
-        phone: {} | null;
-        code: {} | null;
+        phone:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        code: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload: {} | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

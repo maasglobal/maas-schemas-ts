@@ -21,7 +21,13 @@ export type Default = t.Branded<
     customerId?: Units_.IdentityId;
     headers?: ApiCommon_.Headers;
   } & {
-    customerId: {} | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -33,7 +39,14 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      customerId: t.union([t.type({}), t.null]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -44,7 +57,13 @@ export const Default = t.brand(
       customerId?: Units_.IdentityId;
       headers?: ApiCommon_.Headers;
     } & {
-      customerId: {} | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

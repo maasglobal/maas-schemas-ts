@@ -23,13 +23,43 @@ export type Default = t.Branded<
     error?: Error_.Default;
   } & (
     | {
-        authToken: {} | null;
-        nonce: {} | null;
-        validTo: {} | null;
+        authToken:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        nonce:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        validTo:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }
     | {
-        error: {} | null;
-        nonce: {} | null;
+        error:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        nonce:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }),
   DefaultBrand
 >;
@@ -43,13 +73,48 @@ export const Default = t.brand(
     }),
     t.union([
       t.type({
-        authToken: t.union([t.type({}), t.null]),
-        nonce: t.union([t.type({}), t.null]),
-        validTo: t.union([t.type({}), t.null]),
+        authToken: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        nonce: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        validTo: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
       t.type({
-        error: t.union([t.type({}), t.null]),
-        nonce: t.union([t.type({}), t.null]),
+        error: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        nonce: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   ]),
@@ -63,13 +128,43 @@ export const Default = t.brand(
       error?: Error_.Default;
     } & (
       | {
-          authToken: {} | null;
-          nonce: {} | null;
-          validTo: {} | null;
+          authToken:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          nonce:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          validTo:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         }
       | {
-          error: {} | null;
-          nonce: {} | null;
+          error:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          nonce:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         }),
     DefaultBrand
   > => true,

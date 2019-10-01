@@ -20,8 +20,8 @@ export type Default = t.Branded<
     features?: Array<Geolocation_.Feature>;
     debug?: {};
   } & {
-    type: {} | null;
-    features: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    features: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -33,8 +33,22 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      features: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      features: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -45,8 +59,14 @@ export const Default = t.brand(
       features?: Array<Geolocation_.Feature>;
       debug?: {};
     } & {
-      type: {} | null;
-      features: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      features:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

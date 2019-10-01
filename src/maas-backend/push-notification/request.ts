@@ -28,22 +28,52 @@ export type Default = t.Branded<
           objectType?: 'Itinerary' | 'Booking';
           ids?: Array<Units_.Uuid>;
         } & {
-          objectType: {} | null;
-          ids: {} | null;
+          objectType:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          ids:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         })
       | null
       | ({
           objectType?: 'Profile' | 'Subscription';
           ids?: Array<Units_.IdentityId>;
         } & {
-          objectType: {} | null;
-          ids: {} | null;
+          objectType:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          ids:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         });
   } & {
-    identityId: {} | null;
-    severity: {} | null;
-    badge: {} | null;
-    type: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    severity: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    badge: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -72,8 +102,22 @@ export const Default = t.brand(
             ids: t.array(Units_.Uuid),
           }),
           t.type({
-            objectType: t.union([t.type({}), t.null]),
-            ids: t.union([t.type({}), t.null]),
+            objectType: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
+            ids: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
           }),
         ]),
         t.null,
@@ -83,17 +127,59 @@ export const Default = t.brand(
             ids: t.array(Units_.IdentityId),
           }),
           t.type({
-            objectType: t.union([t.type({}), t.null]),
-            ids: t.union([t.type({}), t.null]),
+            objectType: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
+            ids: t.union([
+              t.UnknownRecord,
+              t.UnknownArray,
+              t.string,
+              t.boolean,
+              t.number,
+              t.null,
+            ]),
           }),
         ]),
       ]),
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      severity: t.union([t.type({}), t.null]),
-      badge: t.union([t.type({}), t.null]),
-      type: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      severity: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      badge: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -112,22 +198,58 @@ export const Default = t.brand(
             objectType?: 'Itinerary' | 'Booking';
             ids?: Array<Units_.Uuid>;
           } & {
-            objectType: {} | null;
-            ids: {} | null;
+            objectType:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
+            ids:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
           })
         | null
         | ({
             objectType?: 'Profile' | 'Subscription';
             ids?: Array<Units_.IdentityId>;
           } & {
-            objectType: {} | null;
-            ids: {} | null;
+            objectType:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
+            ids:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
           });
     } & {
-      identityId: {} | null;
-      severity: {} | null;
-      badge: {} | null;
-      type: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      severity:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      badge: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

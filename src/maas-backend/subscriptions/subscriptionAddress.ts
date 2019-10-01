@@ -24,8 +24,8 @@ export type SubscriptionAddress = t.Branded<
     phone?: Address_.Phone;
     email?: Address_.Email;
   } & {
-    zipCode: {} | null;
-    country: {} | null;
+    zipCode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    country: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   SubscriptionAddressBrand
 >;
@@ -41,8 +41,22 @@ export const SubscriptionAddress = t.brand(
       email: Address_.Email,
     }),
     t.type({
-      zipCode: t.union([t.type({}), t.null]),
-      country: t.union([t.type({}), t.null]),
+      zipCode: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      country: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -57,8 +71,20 @@ export const SubscriptionAddress = t.brand(
       phone?: Address_.Phone;
       email?: Address_.Email;
     } & {
-      zipCode: {} | null;
-      country: {} | null;
+      zipCode:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      country:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     SubscriptionAddressBrand
   > => true,

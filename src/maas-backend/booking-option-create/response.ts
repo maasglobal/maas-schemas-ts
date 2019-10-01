@@ -18,14 +18,20 @@ export type Default = t.Branded<
   | ({
       booking?: Booking_.Default;
     } & {
-      booking: {} | null;
+      booking:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     })
   | ({
       error?: {
         message?: string;
       };
     } & {
-      error: {} | null;
+      error: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     }),
   DefaultBrand
 >;
@@ -36,7 +42,14 @@ export const Default = t.brand(
         booking: Booking_.Default,
       }),
       t.type({
-        booking: t.union([t.type({}), t.null]),
+        booking: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     t.intersection([
@@ -46,7 +59,14 @@ export const Default = t.brand(
         }),
       }),
       t.type({
-        error: t.union([t.type({}), t.null]),
+        error: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   ]),
@@ -56,14 +76,26 @@ export const Default = t.brand(
     | ({
         booking?: Booking_.Default;
       } & {
-        booking: {} | null;
+        booking:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       })
     | ({
         error?: {
           message?: string;
         };
       } & {
-        error: {} | null;
+        error:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }),
     DefaultBrand
   > => true,

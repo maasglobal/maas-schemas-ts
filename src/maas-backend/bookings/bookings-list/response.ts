@@ -19,7 +19,7 @@ export type Default = t.Branded<
     bookings?: Array<Booking_.Default>;
     debug?: {};
   } & {
-    bookings: {} | null;
+    bookings: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -30,7 +30,14 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      bookings: t.union([t.type({}), t.null]),
+      bookings: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -40,7 +47,13 @@ export const Default = t.brand(
       bookings?: Array<Booking_.Default>;
       debug?: {};
     } & {
-      bookings: {} | null;
+      bookings:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

@@ -21,10 +21,34 @@ export type Default = t.Branded<
     lifetimeItinerariesCount?: number;
     profileCreationTimestamp?: Units_.Time;
   } & {
-    identityId: {} | null;
-    lifetimeBookingsCount: {} | null;
-    lifetimeItinerariesCount: {} | null;
-    profileCreationTimestamp: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    lifetimeBookingsCount:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    lifetimeItinerariesCount:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    profileCreationTimestamp:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -37,10 +61,38 @@ export const Default = t.brand(
       profileCreationTimestamp: Units_.Time,
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      lifetimeBookingsCount: t.union([t.type({}), t.null]),
-      lifetimeItinerariesCount: t.union([t.type({}), t.null]),
-      profileCreationTimestamp: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lifetimeBookingsCount: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lifetimeItinerariesCount: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      profileCreationTimestamp: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -52,10 +104,34 @@ export const Default = t.brand(
       lifetimeItinerariesCount?: number;
       profileCreationTimestamp?: Units_.Time;
     } & {
-      identityId: {} | null;
-      lifetimeBookingsCount: {} | null;
-      lifetimeItinerariesCount: {} | null;
-      profileCreationTimestamp: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      lifetimeBookingsCount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      lifetimeItinerariesCount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      profileCreationTimestamp:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

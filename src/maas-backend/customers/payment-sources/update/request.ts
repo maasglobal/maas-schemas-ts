@@ -27,21 +27,57 @@ export type Default = t.Branded<
         alias?: PaymentSource_.Alias;
       } & (
         | {
-            isDefault: {} | null;
+            isDefault:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
           }
         | {
-            alias: {} | null;
+            alias:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
           });
     } & {
-      paymentSource: {} | null;
+      paymentSource:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: {} | null;
-    customerId: {} | null;
-    paymentSourceId: {} | null;
-    payload: {} | null;
-    headers: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    paymentSourceId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -60,26 +96,82 @@ export const Default = t.brand(
             }),
             t.union([
               t.type({
-                isDefault: t.union([t.type({}), t.null]),
+                isDefault: t.union([
+                  t.UnknownRecord,
+                  t.UnknownArray,
+                  t.string,
+                  t.boolean,
+                  t.number,
+                  t.null,
+                ]),
               }),
               t.type({
-                alias: t.union([t.type({}), t.null]),
+                alias: t.union([
+                  t.UnknownRecord,
+                  t.UnknownArray,
+                  t.string,
+                  t.boolean,
+                  t.number,
+                  t.null,
+                ]),
               }),
             ]),
           ]),
         }),
         t.type({
-          paymentSource: t.union([t.type({}), t.null]),
+          paymentSource: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      customerId: t.union([t.type({}), t.null]),
-      paymentSourceId: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
-      headers: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      paymentSourceId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      headers: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -95,21 +187,69 @@ export const Default = t.brand(
           alias?: PaymentSource_.Alias;
         } & (
           | {
-              isDefault: {} | null;
+              isDefault:
+                | Record<string, unknown>
+                | Array<unknown>
+                | string
+                | boolean
+                | number
+                | null;
             }
           | {
-              alias: {} | null;
+              alias:
+                | Record<string, unknown>
+                | Array<unknown>
+                | string
+                | boolean
+                | number
+                | null;
             });
       } & {
-        paymentSource: {} | null;
+        paymentSource:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: {} | null;
-      customerId: {} | null;
-      paymentSourceId: {} | null;
-      payload: {} | null;
-      headers: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      paymentSourceId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      headers:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

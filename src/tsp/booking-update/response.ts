@@ -26,8 +26,8 @@ export type Default = t.Branded<
     token?: Booking_.Token;
     tspProduct?: BookingOption_.TspProduct;
   } & {
-    tspId: {} | null;
-    state: {} | null;
+    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -51,8 +51,22 @@ export const Default = t.brand(
       tspProduct: BookingOption_.TspProduct,
     }),
     t.type({
-      tspId: t.union([t.type({}), t.null]),
-      state: t.union([t.type({}), t.null]),
+      tspId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      state: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -74,8 +88,8 @@ export const Default = t.brand(
       token?: Booking_.Token;
       tspProduct?: BookingOption_.TspProduct;
     } & {
-      tspId: {} | null;
-      state: {} | null;
+      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,
