@@ -10,6 +10,7 @@ Remote request schema, e.g. how TSP should call MaaS-backend
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 
 export const schemaId =
   'http://maasglobal.com/tsp/webhooks-bookings-update/remote-request.json';
@@ -21,7 +22,7 @@ export type Default = t.Branded<
     cost?: Booking_.Cost;
     state?: 'RESERVED' | 'CONFIRMED' | 'ACTIVATED' | 'EXPIRED' | 'CANCELLED' | 'REJECTED';
     leg?: BookingOption_.LegDelta;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     token?: Booking_.Token;
   } & {
@@ -44,7 +45,7 @@ export const Default = t.brand(
         t.literal('REJECTED'),
       ]),
       leg: BookingOption_.LegDelta,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       token: Booking_.Token,
     }),
@@ -67,7 +68,7 @@ export const Default = t.brand(
         | 'CANCELLED'
         | 'REJECTED';
       leg?: BookingOption_.LegDelta;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       token?: Booking_.Token;
     } & {

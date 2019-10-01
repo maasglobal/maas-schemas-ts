@@ -8,13 +8,14 @@ MaaS single TSP adapter option
 */
 
 import * as t from 'io-ts';
-import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as Terms_ from 'maas-schemas-ts/core/components/terms';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as Cost_ from 'maas-schemas-ts/core/components/cost';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
 import * as Customer_ from 'maas-schemas-ts/core/customer';
 import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
 export const schemaId = 'http://maasglobal.com/core/booking-option.json';
@@ -25,8 +26,8 @@ export type Leg = t.Branded<
     mode?: TravelMode_.Default;
     startTime?: Units_.Time;
     endTime?: Units_.Time;
-    from?: UnitsGeo_.Place;
-    to?: UnitsGeo_.Place;
+    from?: Place_.Default;
+    to?: Place_.Default;
     departureDelay?: Units_.Duration;
     agencyId?: Common_.AgencyId;
   } & {
@@ -44,8 +45,8 @@ export const Leg = t.brand(
       mode: TravelMode_.Default,
       startTime: Units_.Time,
       endTime: Units_.Time,
-      from: UnitsGeo_.Place,
-      to: UnitsGeo_.Place,
+      from: Place_.Default,
+      to: Place_.Default,
       departureDelay: Units_.Duration,
       agencyId: Common_.AgencyId,
     }),
@@ -64,8 +65,8 @@ export const Leg = t.brand(
       mode?: TravelMode_.Default;
       startTime?: Units_.Time;
       endTime?: Units_.Time;
-      from?: UnitsGeo_.Place;
-      to?: UnitsGeo_.Place;
+      from?: Place_.Default;
+      to?: Place_.Default;
       departureDelay?: Units_.Duration;
       agencyId?: Common_.AgencyId;
     } & {
@@ -125,8 +126,8 @@ export const Customer = Customer_.Default;
 export type ContentWithCost = t.Branded<
   {
     leg?: Leg;
-    terms?: Booking_.Terms;
-    meta?: Booking_.Meta;
+    terms?: Terms_.Default;
+    meta?: BookingMeta_.Default;
     tspProduct?: TspProduct;
     cost?: Cost_.Default;
     customer?: Customer;
@@ -143,8 +144,8 @@ export const ContentWithCost = t.brand(
   t.intersection([
     t.partial({
       leg: Leg,
-      terms: Booking_.Terms,
-      meta: Booking_.Meta,
+      terms: Terms_.Default,
+      meta: BookingMeta_.Default,
       tspProduct: TspProduct,
       cost: Cost_.Default,
       customer: Customer,
@@ -162,8 +163,8 @@ export const ContentWithCost = t.brand(
   ): x is t.Branded<
     {
       leg?: Leg;
-      terms?: Booking_.Terms;
-      meta?: Booking_.Meta;
+      terms?: Terms_.Default;
+      meta?: BookingMeta_.Default;
       tspProduct?: TspProduct;
       cost?: Cost_.Default;
       customer?: Customer;
@@ -186,8 +187,8 @@ export interface ContentWithCostBrand {
 export type ContentWithConfigurator = t.Branded<
   {
     leg?: Leg;
-    terms?: Booking_.Terms;
-    meta?: Booking_.Meta;
+    terms?: Terms_.Default;
+    meta?: BookingMeta_.Default;
     tspProduct?: TspProduct;
     configurator?: Configurator_.Default;
     customer?: Customer;
@@ -204,8 +205,8 @@ export const ContentWithConfigurator = t.brand(
   t.intersection([
     t.partial({
       leg: Leg,
-      terms: Booking_.Terms,
-      meta: Booking_.Meta,
+      terms: Terms_.Default,
+      meta: BookingMeta_.Default,
       tspProduct: TspProduct,
       configurator: Configurator_.Default,
       customer: Customer,
@@ -223,8 +224,8 @@ export const ContentWithConfigurator = t.brand(
   ): x is t.Branded<
     {
       leg?: Leg;
-      terms?: Booking_.Terms;
-      meta?: Booking_.Meta;
+      terms?: Terms_.Default;
+      meta?: BookingMeta_.Default;
       tspProduct?: TspProduct;
       configurator?: Configurator_.Default;
       customer?: Customer;
@@ -250,8 +251,8 @@ export type LegDelta = t.Branded<
     startTime?: Units_.Time;
     endTime?: Units_.Time;
     departureDelay?: Units_.Duration;
-    from?: UnitsGeo_.Place;
-    to?: UnitsGeo_.Place;
+    from?: Place_.Default;
+    to?: Place_.Default;
   },
   LegDeltaBrand
 >;
@@ -261,8 +262,8 @@ export const LegDelta = t.brand(
     startTime: Units_.Time,
     endTime: Units_.Time,
     departureDelay: Units_.Duration,
-    from: UnitsGeo_.Place,
-    to: UnitsGeo_.Place,
+    from: Place_.Default,
+    to: Place_.Default,
   }),
   (
     x,
@@ -272,8 +273,8 @@ export const LegDelta = t.brand(
       startTime?: Units_.Time;
       endTime?: Units_.Time;
       departureDelay?: Units_.Duration;
-      from?: UnitsGeo_.Place;
-      to?: UnitsGeo_.Place;
+      from?: Place_.Default;
+      to?: Place_.Default;
     },
     LegDeltaBrand
   > => true,

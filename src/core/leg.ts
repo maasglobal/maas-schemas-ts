@@ -8,11 +8,12 @@ The base leg object with all fields, to be inherited
 */
 
 import * as State_ from 'maas-schemas-ts/core/components/state';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as t from 'io-ts';
 import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
 import * as Stop_ from 'maas-schemas-ts/core/stop';
+import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 
@@ -23,12 +24,12 @@ export type State = State_.LegState;
 export const State = State_.LegState;
 // From
 // The purpose of this remains a mystery
-export type From = UnitsGeo_.Place;
-export const From = UnitsGeo_.Place;
+export type From = Place_.Default;
+export const From = Place_.Default;
 // To
 // The purpose of this remains a mystery
-export type To = UnitsGeo_.Place;
-export const To = UnitsGeo_.Place;
+export type To = Place_.Default;
+export const To = Place_.Default;
 // StartTime
 // The purpose of this remains a mystery
 export type StartTime = Units_.Time;

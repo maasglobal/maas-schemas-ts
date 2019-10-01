@@ -9,7 +9,7 @@ Request schema for profile-favoriteLocations-add
 
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
 export const schemaId =
@@ -19,7 +19,7 @@ export const schemaId =
 export type Default = t.Branded<
   {
     identityId?: Units_.IdentityId;
-    payload?: UnitsGeo_.Place;
+    payload?: Place_.Default;
     headers?: ApiCommon_.Headers;
   },
   DefaultBrand
@@ -27,7 +27,7 @@ export type Default = t.Branded<
 export const Default = t.brand(
   t.partial({
     identityId: Units_.IdentityId,
-    payload: UnitsGeo_.Place,
+    payload: Place_.Default,
     headers: ApiCommon_.Headers,
   }),
   (
@@ -35,7 +35,7 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       identityId?: Units_.IdentityId;
-      payload?: UnitsGeo_.Place;
+      payload?: Place_.Default;
       headers?: ApiCommon_.Headers;
     },
     DefaultBrand

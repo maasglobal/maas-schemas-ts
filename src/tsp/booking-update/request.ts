@@ -10,6 +10,7 @@ Request schema for update a state of a specific booking with a TSP ID from a TSP
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-update/request.json';
@@ -20,7 +21,7 @@ export type Default = t.Branded<
     tspId?: Booking_.TspId;
     state?: 'RESERVED' | 'ACTIVATED' | 'ON_HOLD' | 'EXPIRED';
     configurator?: Configurator_.Default;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     customerSelection?: CustomerSelection_.Default;
   } & {
@@ -39,7 +40,7 @@ export const Default = t.brand(
         t.literal('EXPIRED'),
       ]),
       configurator: Configurator_.Default,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       customerSelection: CustomerSelection_.Default,
     }),
@@ -54,7 +55,7 @@ export const Default = t.brand(
       tspId?: Booking_.TspId;
       state?: 'RESERVED' | 'ACTIVATED' | 'ON_HOLD' | 'EXPIRED';
       configurator?: Configurator_.Default;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       customerSelection?: CustomerSelection_.Default;
     } & {

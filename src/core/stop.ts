@@ -8,21 +8,21 @@ undefined
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
 export const schemaId = 'http://maasglobal.com/core/stop.json';
 // Default
 // The default export. More information at the top.
 export type Default = t.Branded<
-  UnitsGeo_.Place & {
+  Place_.Default & {
     startTime?: Units_.Time;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.intersection([
-    UnitsGeo_.Place,
+    Place_.Default,
     t.partial({
       startTime: Units_.Time,
     }),
@@ -30,7 +30,7 @@ export const Default = t.brand(
   (
     x,
   ): x is t.Branded<
-    UnitsGeo_.Place & {
+    Place_.Default & {
       startTime?: Units_.Time;
     },
     DefaultBrand

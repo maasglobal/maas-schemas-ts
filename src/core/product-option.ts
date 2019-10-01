@@ -11,7 +11,7 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Product_ from 'maas-schemas-ts/core/product';
 import * as Terms_ from 'maas-schemas-ts/core/components/terms';
-import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
@@ -38,7 +38,7 @@ export type WithConfigurator = t.Branded<
     ref?: Ref;
     product?: Product_.Default;
     terms?: Terms_.Default;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     configurator?: Configurator_.Default;
     customer?: BookingOption_.Customer;
   } & {
@@ -57,7 +57,7 @@ export const WithConfigurator = t.brand(
       ref: Ref,
       product: Product_.Default,
       terms: Terms_.Default,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       configurator: Configurator_.Default,
       customer: BookingOption_.Customer,
     }),
@@ -77,7 +77,7 @@ export const WithConfigurator = t.brand(
       ref?: Ref;
       product?: Product_.Default;
       terms?: Terms_.Default;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       configurator?: Configurator_.Default;
       customer?: BookingOption_.Customer;
     } & {
@@ -103,7 +103,7 @@ export type WithFares = t.Branded<
     product?: Product_.Default;
     fares?: Array<Fare_.Default>;
     terms?: Terms_.Default;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     customer?: BookingOption_.Customer;
   } & {
     ref: unknown;
@@ -122,7 +122,7 @@ export const WithFares = t.brand(
       product: Product_.Default,
       fares: t.array(Fare_.Default),
       terms: Terms_.Default,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       customer: BookingOption_.Customer,
     }),
     t.type({
@@ -142,7 +142,7 @@ export const WithFares = t.brand(
       product?: Product_.Default;
       fares?: Array<Fare_.Default>;
       terms?: Terms_.Default;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       customer?: BookingOption_.Customer;
     } & {
       ref: unknown;
@@ -167,7 +167,7 @@ export type WithCost = t.Branded<
     product?: Product_.Default;
     cost?: Cost_.Default;
     terms?: Terms_.Default;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     customer?: BookingOption_.Customer;
   } & {
     ref: unknown;
@@ -186,7 +186,7 @@ export const WithCost = t.brand(
       product: Product_.Default,
       cost: Cost_.Default,
       terms: Terms_.Default,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       customer: BookingOption_.Customer,
     }),
     t.type({
@@ -206,7 +206,7 @@ export const WithCost = t.brand(
       product?: Product_.Default;
       cost?: Cost_.Default;
       terms?: Terms_.Default;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       customer?: BookingOption_.Customer;
     } & {
       ref: unknown;

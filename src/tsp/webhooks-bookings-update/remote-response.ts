@@ -11,6 +11,7 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 
 export const schemaId =
   'http://maasglobal.com/tsp/webhooks-bookings-update/remote-response.json';
@@ -23,7 +24,7 @@ export type BookingDelta = t.Branded<
     cost?: Booking_.Cost;
     state?: 'RESERVED' | 'CONFIRMED' | 'ACTIVATED' | 'EXPIRED' | 'CANCELLED' | 'REJECTED';
     leg?: BookingOption_.Leg;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     token?: Booking_.Token;
     customer?: BookingOption_.Customer;
@@ -48,7 +49,7 @@ export const BookingDelta = t.brand(
         t.literal('REJECTED'),
       ]),
       leg: BookingOption_.Leg,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       token: Booking_.Token,
       customer: BookingOption_.Customer,
@@ -73,7 +74,7 @@ export const BookingDelta = t.brand(
         | 'CANCELLED'
         | 'REJECTED';
       leg?: BookingOption_.Leg;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       token?: Booking_.Token;
       customer?: BookingOption_.Customer;

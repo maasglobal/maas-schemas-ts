@@ -10,6 +10,7 @@ Response schema for canceling a booking through a TSP adapter
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-cancel/response.json';
 // Default
@@ -20,7 +21,7 @@ export type Default = t.Branded<
     state?: 'CANCELLED' | 'RESERVED';
     cost?: Booking_.Cost;
     leg?: BookingOption_.Leg;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     token?: Booking_.Token;
     tspProduct?: BookingOption_.TspProduct;
@@ -37,7 +38,7 @@ export const Default = t.brand(
       state: t.union([t.literal('CANCELLED'), t.literal('RESERVED')]),
       cost: Booking_.Cost,
       leg: BookingOption_.Leg,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       token: Booking_.Token,
       tspProduct: BookingOption_.TspProduct,
@@ -55,7 +56,7 @@ export const Default = t.brand(
       state?: 'CANCELLED' | 'RESERVED';
       cost?: Booking_.Cost;
       leg?: BookingOption_.Leg;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       token?: Booking_.Token;
       tspProduct?: BookingOption_.TspProduct;

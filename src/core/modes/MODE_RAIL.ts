@@ -8,7 +8,7 @@ Schema for MODE_RAIL meta field
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Station_ from 'maas-schemas-ts/core/components/station';
 
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_RAIL.json';
@@ -18,16 +18,16 @@ export type Default = t.Branded<
   {
     outward?: {
       id?: string;
-      from?: UnitsGeo_.Place;
-      to?: UnitsGeo_.Place;
+      from?: Place_.Default;
+      to?: Place_.Default;
     } & {
       from: unknown;
       to: unknown;
     };
     return?: {
       id?: string;
-      from?: UnitsGeo_.Place;
-      to?: UnitsGeo_.Place;
+      from?: Place_.Default;
+      to?: Place_.Default;
     } & {
       from: unknown;
       to: unknown;
@@ -45,8 +45,8 @@ export const Default = t.brand(
     outward: t.intersection([
       t.partial({
         id: t.string,
-        from: UnitsGeo_.Place,
-        to: UnitsGeo_.Place,
+        from: Place_.Default,
+        to: Place_.Default,
       }),
       t.type({
         from: t.unknown,
@@ -56,8 +56,8 @@ export const Default = t.brand(
     return: t.intersection([
       t.partial({
         id: t.string,
-        from: UnitsGeo_.Place,
-        to: UnitsGeo_.Place,
+        from: Place_.Default,
+        to: Place_.Default,
       }),
       t.type({
         from: t.unknown,
@@ -76,16 +76,16 @@ export const Default = t.brand(
     {
       outward?: {
         id?: string;
-        from?: UnitsGeo_.Place;
-        to?: UnitsGeo_.Place;
+        from?: Place_.Default;
+        to?: Place_.Default;
       } & {
         from: unknown;
         to: unknown;
       };
       return?: {
         id?: string;
-        from?: UnitsGeo_.Place;
-        to?: UnitsGeo_.Place;
+        from?: Place_.Default;
+        to?: Place_.Default;
       } & {
         from: unknown;
         to: unknown;

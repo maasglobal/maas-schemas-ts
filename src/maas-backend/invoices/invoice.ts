@@ -8,26 +8,16 @@ MaaS Invoice schema
 */
 
 import * as t from 'io-ts';
+import * as InvoiceUnits_ from 'maas-schemas-ts/maas-backend/invoices/invoiceUnits';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as InvoiceLineItem_ from 'maas-schemas-ts/maas-backend/invoices/invoiceLineItem';
 
 export const schemaId = 'http://maasglobal.com/maas-backend/invoices/invoice.json';
-// InvoiceId
-// The purpose of this remains a mystery
-export type InvoiceId = t.Branded<string, InvoiceIdBrand>;
-export const InvoiceId = t.brand(
-  t.string,
-  (x): x is t.Branded<string, InvoiceIdBrand> => typeof x !== 'string' || x.length >= 2,
-  'InvoiceId',
-);
-export interface InvoiceIdBrand {
-  readonly InvoiceId: unique symbol;
-}
 // Invoice
 // The purpose of this remains a mystery
 export type Invoice = t.Branded<
   {
-    id?: InvoiceId;
+    id?: InvoiceUnits_.InvoiceId;
     customerId?: Units_.IdentityId;
     bookingId?: Units_.Uuid;
     lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
@@ -42,7 +32,7 @@ export type Invoice = t.Branded<
 export const Invoice = t.brand(
   t.intersection([
     t.partial({
-      id: InvoiceId,
+      id: InvoiceUnits_.InvoiceId,
       customerId: Units_.IdentityId,
       bookingId: Units_.Uuid,
       lineItems: t.array(InvoiceLineItem_.InvoiceLineItem),
@@ -58,7 +48,7 @@ export const Invoice = t.brand(
     x,
   ): x is t.Branded<
     {
-      id?: InvoiceId;
+      id?: InvoiceUnits_.InvoiceId;
       customerId?: Units_.IdentityId;
       bookingId?: Units_.Uuid;
       lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;

@@ -9,6 +9,7 @@ Response schema for bookings-agency-options
 
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as BikeStation_ from 'maas-schemas-ts/core/components/bike-station';
 
 export const schemaId =
@@ -20,7 +21,7 @@ export type Option = t.Branded<
     fares?: Booking_.Fares;
     cost?: Booking_.Cost;
     leg?: Booking_.Leg;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     tspProduct?: {
       id?: string;
@@ -47,7 +48,7 @@ export const Option = t.brand(
       fares: Booking_.Fares,
       cost: Booking_.Cost,
       leg: Booking_.Leg,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       tspProduct: t.partial({
         id: t.string,
@@ -76,7 +77,7 @@ export const Option = t.brand(
       fares?: Booking_.Fares;
       cost?: Booking_.Cost;
       leg?: Booking_.Leg;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       tspProduct?: {
         id?: string;
