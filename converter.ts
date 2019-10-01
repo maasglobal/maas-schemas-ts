@@ -5,14 +5,23 @@ import * as path from 'path';
 import * as gen from 'io-ts-codegen';
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema';
 
-const Defined = gen.unionCombinator([
-  gen.unknownRecordType,
-  gen.unknownArrayType,
-  gen.stringType,
-  gen.booleanType,
-  gen.numberType,
-  gen.nullType,
-]);
+const createHelper = (d: gen.TypeDeclaration) =>
+  `\n${gen.printStatic(d)}\n${gen.printRuntime(d)}\n`;
+
+const definedHelper = createHelper(
+  gen.typeDeclaration(
+    'Defined',
+    gen.unionCombinator([
+      gen.unknownRecordType,
+      gen.unknownArrayType,
+      gen.stringType,
+      gen.booleanType,
+      gen.numberType,
+      gen.nullType,
+    ]),
+  ),
+);
+const Defined = gen.customCombinator('Defined', 'Defined');
 
 const supportedEverywhere = [
   '$ref',
@@ -54,6 +63,7 @@ const outputFile = path.join(outputDir, inputFile.split('.json').join('.ts'));
 const schema: JSONSchema7 = JSON.parse(fs.readFileSync(inputFile, 'utf-8'));
 
 const imps = new Set<string>();
+const helpers = new Set<string>();
 const exps = new Set<string>();
 const titles: Record<string, string | undefined> = {};
 const descriptions: Record<string, string | undefined> = {};
@@ -379,7 +389,10 @@ function fromType(schema: JSONSchema7): [gen.TypeReference] | [] {
 function fromRequired(schema: JSONSchema7): [gen.TypeReference] | [] {
   if ('required' in schema && typeof schema.required !== 'undefined') {
     const combinator = gen.interfaceCombinator(
-      schema.required.map((key) => gen.property(key, Defined)),
+      schema.required.map((key) => {
+        helpers.add(definedHelper);
+        return gen.property(key, Defined);
+      }),
     );
     return [combinator];
   }
@@ -656,6 +669,8 @@ log('');
 log('*/');
 log('');
 imps.forEach(log);
+log('');
+helpers.forEach(log);
 log('');
 log(`export const schemaId = '${schema.$id}';`);
 
