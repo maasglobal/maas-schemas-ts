@@ -8,38 +8,26 @@ MaaS InvoiceLineItem schema
 */
 
 import * as t from 'io-ts';
-import * as Invoice_ from 'maas-schemas-ts/maas-backend/invoices/invoice';
+import * as InvoiceUnits_ from 'maas-schemas-ts/maas-backend/invoices/invoiceUnits';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 
 export const schemaId =
   'http://maasglobal.com/maas-backend/invoices/invoiceLineItem.json';
-// InvoiceLineItemId
-// The purpose of this remains a mystery
-export type InvoiceLineItemId = t.Branded<string, InvoiceLineItemIdBrand>;
-export const InvoiceLineItemId = t.brand(
-  t.string,
-  (x): x is t.Branded<string, InvoiceLineItemIdBrand> =>
-    typeof x !== 'string' || x.length >= 2,
-  'InvoiceLineItemId',
-);
-export interface InvoiceLineItemIdBrand {
-  readonly InvoiceLineItemId: unique symbol;
-}
 // InvoiceLineItem
 // Invoice line item
 export type InvoiceLineItem = t.Branded<
   {
-    id?: InvoiceLineItemId;
+    id?: InvoiceUnits_.InvoiceLineItemId;
     gatewayId?: string;
-    invoiceId?: Invoice_.InvoiceId;
+    invoiceId?: InvoiceUnits_.InvoiceId;
     type?: string & ('authorization' | 'capture' | 'charge' | 'refund');
     paymentSourceId?: string;
     date?: Units_.Time;
     description?: string;
     amount?: number;
     currency?: Units_.Currency;
-    referenceInvoiceLineItemId?: InvoiceLineItemId;
+    referenceInvoiceLineItemId?: InvoiceUnits_.InvoiceLineItemId;
     tokenId?: Fare_.TokenId;
     token?: {};
   } & {
@@ -55,9 +43,9 @@ export type InvoiceLineItem = t.Branded<
 export const InvoiceLineItem = t.brand(
   t.intersection([
     t.partial({
-      id: InvoiceLineItemId,
+      id: InvoiceUnits_.InvoiceLineItemId,
       gatewayId: t.string,
-      invoiceId: Invoice_.InvoiceId,
+      invoiceId: InvoiceUnits_.InvoiceId,
       type: t.intersection([
         t.string,
         t.union([
@@ -72,7 +60,7 @@ export const InvoiceLineItem = t.brand(
       description: t.string,
       amount: t.number,
       currency: Units_.Currency,
-      referenceInvoiceLineItemId: InvoiceLineItemId,
+      referenceInvoiceLineItemId: InvoiceUnits_.InvoiceLineItemId,
       tokenId: Fare_.TokenId,
       token: t.type({}),
     }),
@@ -89,16 +77,16 @@ export const InvoiceLineItem = t.brand(
     x,
   ): x is t.Branded<
     {
-      id?: InvoiceLineItemId;
+      id?: InvoiceUnits_.InvoiceLineItemId;
       gatewayId?: string;
-      invoiceId?: Invoice_.InvoiceId;
+      invoiceId?: InvoiceUnits_.InvoiceId;
       type?: string & ('authorization' | 'capture' | 'charge' | 'refund');
       paymentSourceId?: string;
       date?: Units_.Time;
       description?: string;
       amount?: number;
       currency?: Units_.Currency;
-      referenceInvoiceLineItemId?: InvoiceLineItemId;
+      referenceInvoiceLineItemId?: InvoiceUnits_.InvoiceLineItemId;
       tokenId?: Fare_.TokenId;
       token?: {};
     } & {

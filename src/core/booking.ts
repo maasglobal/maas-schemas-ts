@@ -14,28 +14,10 @@ import * as Cost_ from 'maas-schemas-ts/core/components/cost';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Leg_ from 'maas-schemas-ts/core/leg';
-import * as MODE_WALK_ from 'maas-schemas-ts/core/modes/MODE_WALK';
-import * as MODE_BICYCLE_ from 'maas-schemas-ts/core/modes/MODE_BICYCLE';
-import * as MODE_CAR_ from 'maas-schemas-ts/core/modes/MODE_CAR';
-import * as MODE_TRAM_ from 'maas-schemas-ts/core/modes/MODE_TRAM';
-import * as MODE_SUBWAY_ from 'maas-schemas-ts/core/modes/MODE_SUBWAY';
-import * as MODE_RAIL_ from 'maas-schemas-ts/core/modes/MODE_RAIL';
-import * as MODE_BUS_ from 'maas-schemas-ts/core/modes/MODE_BUS';
-import * as MODE_FERRY_ from 'maas-schemas-ts/core/modes/MODE_FERRY';
-import * as MODE_CABLE_CAR_ from 'maas-schemas-ts/core/modes/MODE_CABLE_CAR';
-import * as MODE_GONDOLA_ from 'maas-schemas-ts/core/modes/MODE_GONDOLA';
-import * as MODE_FUNICULAR_ from 'maas-schemas-ts/core/modes/MODE_FUNICULAR';
-import * as MODE_SHARED_BICYCLE_ from 'maas-schemas-ts/core/modes/MODE_SHARED_BICYCLE';
-import * as MODE_SHARED_CAR_ from 'maas-schemas-ts/core/modes/MODE_SHARED_CAR';
-import * as MODE_TRANSIT_ from 'maas-schemas-ts/core/modes/MODE_TRANSIT';
-import * as MODE_TRAIN_ from 'maas-schemas-ts/core/modes/MODE_TRAIN';
-import * as MODE_TRAINISH_ from 'maas-schemas-ts/core/modes/MODE_TRAINISH';
-import * as MODE_BUSISH_ from 'maas-schemas-ts/core/modes/MODE_BUSISH';
-import * as MODE_TAXI_ from 'maas-schemas-ts/core/modes/MODE_TAXI';
-import * as MODE_SCOOTER_ from 'maas-schemas-ts/core/modes/MODE_SCOOTER';
 import * as Terms_ from 'maas-schemas-ts/core/components/terms';
 import * as State_ from 'maas-schemas-ts/core/components/state';
 import * as StateLog_ from 'maas-schemas-ts/core/components/state-log';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as Customer_ from 'maas-schemas-ts/core/customer';
 import * as Product_ from 'maas-schemas-ts/core/product';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
@@ -153,85 +135,6 @@ export const Leg = t.brand(
 export interface LegBrand {
   readonly Leg: unique symbol;
 }
-// Meta
-// TSP/mode-specific additional information. The TSP adapter should set MODE_{mode} with defined data, otherwise 'meta' can be used freely.
-export type Meta = t.Branded<
-  {
-    MODE_WALK?: MODE_WALK_.Default;
-    MODE_BICYCLE?: MODE_BICYCLE_.Default;
-    MODE_CAR?: MODE_CAR_.Default;
-    MODE_TRAM?: MODE_TRAM_.Default;
-    MODE_SUBWAY?: MODE_SUBWAY_.Default;
-    MODE_RAIL?: MODE_RAIL_.Default;
-    MODE_BUS?: MODE_BUS_.Default;
-    MODE_FERRY?: MODE_FERRY_.Default;
-    MODE_CABLE_CAR?: MODE_CABLE_CAR_.Default;
-    MODE_GONDOLA?: MODE_GONDOLA_.Default;
-    MODE_FUNICULAR?: MODE_FUNICULAR_.Default;
-    MODE_SHARED_BICYCLE?: MODE_SHARED_BICYCLE_.Default;
-    MODE_SHARED_CAR?: MODE_SHARED_CAR_.Default;
-    MODE_TRANSIT?: MODE_TRANSIT_.Default;
-    MODE_TRAIN?: MODE_TRAIN_.Default;
-    MODE_TRAINISH?: MODE_TRAINISH_.Default;
-    MODE_BUSISH?: MODE_BUSISH_.Default;
-    MODE_TAXI?: MODE_TAXI_.Default;
-    MODE_SCOOTER?: MODE_SCOOTER_.Default;
-  },
-  MetaBrand
->;
-export const Meta = t.brand(
-  t.partial({
-    MODE_WALK: MODE_WALK_.Default,
-    MODE_BICYCLE: MODE_BICYCLE_.Default,
-    MODE_CAR: MODE_CAR_.Default,
-    MODE_TRAM: MODE_TRAM_.Default,
-    MODE_SUBWAY: MODE_SUBWAY_.Default,
-    MODE_RAIL: MODE_RAIL_.Default,
-    MODE_BUS: MODE_BUS_.Default,
-    MODE_FERRY: MODE_FERRY_.Default,
-    MODE_CABLE_CAR: MODE_CABLE_CAR_.Default,
-    MODE_GONDOLA: MODE_GONDOLA_.Default,
-    MODE_FUNICULAR: MODE_FUNICULAR_.Default,
-    MODE_SHARED_BICYCLE: MODE_SHARED_BICYCLE_.Default,
-    MODE_SHARED_CAR: MODE_SHARED_CAR_.Default,
-    MODE_TRANSIT: MODE_TRANSIT_.Default,
-    MODE_TRAIN: MODE_TRAIN_.Default,
-    MODE_TRAINISH: MODE_TRAINISH_.Default,
-    MODE_BUSISH: MODE_BUSISH_.Default,
-    MODE_TAXI: MODE_TAXI_.Default,
-    MODE_SCOOTER: MODE_SCOOTER_.Default,
-  }),
-  (
-    x,
-  ): x is t.Branded<
-    {
-      MODE_WALK?: MODE_WALK_.Default;
-      MODE_BICYCLE?: MODE_BICYCLE_.Default;
-      MODE_CAR?: MODE_CAR_.Default;
-      MODE_TRAM?: MODE_TRAM_.Default;
-      MODE_SUBWAY?: MODE_SUBWAY_.Default;
-      MODE_RAIL?: MODE_RAIL_.Default;
-      MODE_BUS?: MODE_BUS_.Default;
-      MODE_FERRY?: MODE_FERRY_.Default;
-      MODE_CABLE_CAR?: MODE_CABLE_CAR_.Default;
-      MODE_GONDOLA?: MODE_GONDOLA_.Default;
-      MODE_FUNICULAR?: MODE_FUNICULAR_.Default;
-      MODE_SHARED_BICYCLE?: MODE_SHARED_BICYCLE_.Default;
-      MODE_SHARED_CAR?: MODE_SHARED_CAR_.Default;
-      MODE_TRANSIT?: MODE_TRANSIT_.Default;
-      MODE_TRAIN?: MODE_TRAIN_.Default;
-      MODE_TRAINISH?: MODE_TRAINISH_.Default;
-      MODE_BUSISH?: MODE_BUSISH_.Default;
-      MODE_TAXI?: MODE_TAXI_.Default;
-      MODE_SCOOTER?: MODE_SCOOTER_.Default;
-    },
-    MetaBrand
-  > => true,
-  'Meta',
-);
-export interface MetaBrand {
-  readonly Meta: unique symbol;
-}
 // Terms
 // The purpose of this remains a mystery
 export type Terms = Terms_.Default;
@@ -288,7 +191,7 @@ export type Default = t.Branded<
     cost?: Cost;
     leg?: Leg;
     token?: Token;
-    meta?: Meta;
+    meta?: BookingMeta_.Default;
     terms?: Terms;
     customer?: Customer_.Default & {
       identityId: unknown;
@@ -319,7 +222,7 @@ export const Default = t.brand(
       cost: Cost,
       leg: Leg,
       token: Token,
-      meta: Meta,
+      meta: BookingMeta_.Default,
       terms: Terms,
       customer: t.intersection([
         Customer_.Default,
@@ -354,7 +257,7 @@ export const Default = t.brand(
       cost?: Cost;
       leg?: Leg;
       token?: Token;
-      meta?: Meta;
+      meta?: BookingMeta_.Default;
       terms?: Terms;
       customer?: Customer_.Default & {
         identityId: unknown;

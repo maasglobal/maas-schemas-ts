@@ -9,6 +9,7 @@ Request schema for creating a booking through a TSP adapter
 
 import * as t from 'io-ts';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as Customer_ from 'maas-schemas-ts/core/customer';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
@@ -20,7 +21,7 @@ export const schemaId = 'http://maasglobal.com/tsp/bookings-create/request.json'
 export type Default = t.Branded<
   {
     leg?: BookingOption_.Leg;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     customer?: Customer_.Default;
     tspProduct?: BookingOption_.TspProduct;
@@ -39,7 +40,7 @@ export const Default = t.brand(
   t.intersection([
     t.partial({
       leg: BookingOption_.Leg,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       customer: Customer_.Default,
       tspProduct: BookingOption_.TspProduct,
@@ -59,7 +60,7 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       leg?: BookingOption_.Leg;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       customer?: Customer_.Default;
       tspProduct?: BookingOption_.TspProduct;

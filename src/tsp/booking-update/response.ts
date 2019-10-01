@@ -10,6 +10,7 @@ Response schema for updating state of a specific booking with a TSP ID from a TS
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 
 export const schemaId = 'http://maasglobal.com/tsp/bookings-update/response.json';
 // Default
@@ -20,7 +21,7 @@ export type Default = t.Branded<
     cost?: Booking_.Cost;
     state?: 'RESERVED' | 'CONFIRMED' | 'ACTIVATED' | 'ON_HOLD' | 'EXPIRED' | 'CANCELLED';
     leg?: BookingOption_.LegDelta;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     token?: Booking_.Token;
     tspProduct?: BookingOption_.TspProduct;
@@ -44,7 +45,7 @@ export const Default = t.brand(
         t.literal('CANCELLED'),
       ]),
       leg: BookingOption_.LegDelta,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       token: Booking_.Token,
       tspProduct: BookingOption_.TspProduct,
@@ -68,7 +69,7 @@ export const Default = t.brand(
         | 'EXPIRED'
         | 'CANCELLED';
       leg?: BookingOption_.LegDelta;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       token?: Booking_.Token;
       tspProduct?: BookingOption_.TspProduct;

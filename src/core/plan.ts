@@ -8,7 +8,7 @@ OpenTripPlanner compatible format for plans, extended with id for legs and itine
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
@@ -28,7 +28,7 @@ export interface ItinerariesBrand {
 // The purpose of this remains a mystery
 export type Plan1 = t.Branded<
   {
-    from?: UnitsGeo_.Place;
+    from?: Place_.Default;
     planId?: Units_.Uuid;
     outwards?: Itineraries;
     returns?: Itineraries;
@@ -43,7 +43,7 @@ export type Plan1 = t.Branded<
 export const Plan1 = t.brand(
   t.intersection([
     t.partial({
-      from: UnitsGeo_.Place,
+      from: Place_.Default,
       planId: Units_.Uuid,
       outwards: Itineraries,
       returns: Itineraries,
@@ -59,7 +59,7 @@ export const Plan1 = t.brand(
     x,
   ): x is t.Branded<
     {
-      from?: UnitsGeo_.Place;
+      from?: Place_.Default;
       planId?: Units_.Uuid;
       outwards?: Itineraries;
       returns?: Itineraries;
@@ -80,7 +80,7 @@ export interface Plan1Brand {
 // The purpose of this remains a mystery
 export type Plan2 = t.Branded<
   {
-    from?: UnitsGeo_.Place;
+    from?: Place_.Default;
     planId?: Units_.Uuid;
     itineraries?: Itineraries;
   } & {
@@ -93,7 +93,7 @@ export type Plan2 = t.Branded<
 export const Plan2 = t.brand(
   t.intersection([
     t.partial({
-      from: UnitsGeo_.Place,
+      from: Place_.Default,
       planId: Units_.Uuid,
       itineraries: Itineraries,
     }),
@@ -107,7 +107,7 @@ export const Plan2 = t.brand(
     x,
   ): x is t.Branded<
     {
-      from?: UnitsGeo_.Place;
+      from?: Place_.Default;
       planId?: Units_.Uuid;
       itineraries?: Itineraries;
     } & {

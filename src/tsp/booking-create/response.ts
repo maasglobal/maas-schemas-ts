@@ -11,6 +11,7 @@ import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as State_ from 'maas-schemas-ts/core/components/state';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
+import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
@@ -23,7 +24,7 @@ export type Default = t.Branded<
     state?: State_.BookingState;
     cost?: Booking_.Cost;
     leg?: BookingOption_.Leg;
-    meta?: Booking_.Meta;
+    meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
     token?: Booking_.Token;
     tspProduct?: BookingOption_.TspProduct;
@@ -47,7 +48,7 @@ export const Default = t.brand(
       state: State_.BookingState,
       cost: Booking_.Cost,
       leg: BookingOption_.Leg,
-      meta: Booking_.Meta,
+      meta: BookingMeta_.Default,
       terms: Booking_.Terms,
       token: Booking_.Token,
       tspProduct: BookingOption_.TspProduct,
@@ -72,7 +73,7 @@ export const Default = t.brand(
       state?: State_.BookingState;
       cost?: Booking_.Cost;
       leg?: BookingOption_.Leg;
-      meta?: Booking_.Meta;
+      meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;
       token?: Booking_.Token;
       tspProduct?: BookingOption_.TspProduct;

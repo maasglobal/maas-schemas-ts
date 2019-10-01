@@ -2,6 +2,8 @@ $ rm -rf src
 $ yarn eslint
 $ eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore
 $ tsc converter.ts -outdir tmp
+$ (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \;)
+DONE
 WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/core/booking-option.json
 WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
@@ -173,6 +175,23 @@ DONE
 WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/core/components/personalDataAllowItem.json
 DONE
+WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
+  in /Users/twruottu/src/maas-schemas/schemas/core/components/place.json
+DONE
 DONE
 DONE
 DONE
@@ -200,22 +219,6 @@ WARNING multipleOf FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/core/components/terms.json
 DONE
 DONE
-WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING minLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
-WARNING maxLength FIELD NOT supported outside DIRECT exports by convert.ts
-  in /Users/twruottu/src/maas-schemas/schemas/core/components/units-geo.json
 DONE
 DONE
 WARNING minimum FIELD NOT supported outside DIRECT exports by convert.ts
@@ -539,6 +542,7 @@ WARNING minimum FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/maas-backend/invoices/invoiceLineItem.json
 WARNING multipleOf FIELD NOT supported outside DIRECT exports by convert.ts
   in /Users/twruottu/src/maas-schemas/schemas/maas-backend/invoices/invoiceLineItem.json
+DONE
 DONE
 DONE
 DONE
@@ -881,5 +885,6 @@ DONE
 DONE
 DONE
 $ eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore --fix
+$ eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore
 $ yarn clean && ttsc
 $ rm -rf lib

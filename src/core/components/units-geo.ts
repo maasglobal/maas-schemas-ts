@@ -8,8 +8,6 @@ MaaS common geolocaion units that are used consistently within our own objects
 */
 
 import * as t from 'io-ts';
-import * as Address_ from 'maas-schemas-ts/core/components/address';
-import * as Station_ from 'maas-schemas-ts/core/components/station';
 
 export const schemaId = 'http://maasglobal.com/core/components/units-geo.json';
 // Latitude
@@ -193,71 +191,6 @@ export const ShortLocationString = t.brand(
 );
 export interface ShortLocationStringBrand {
   readonly ShortLocationString: unique symbol;
-}
-// Place
-// A place, as a location-name pair with name and address
-export type Place = t.Branded<
-  {} & {
-    lat: unknown;
-    lon: unknown;
-  } & (RelaxedLocation & {
-      name?: Address_.PlaceName;
-      address?: Address_.ComponentAddress;
-      localeAddress?: string;
-      stopId?: string;
-      stopCode?: string;
-      stationId?: string;
-      facilities?: Array<string>;
-      openingHours?: Station_.OpeningHours;
-      zone?: Station_.Zone;
-    }),
-  PlaceBrand
->;
-export const Place = t.brand(
-  t.intersection([
-    t.type({}),
-    t.type({
-      lat: t.unknown,
-      lon: t.unknown,
-    }),
-    t.intersection([
-      RelaxedLocation,
-      t.partial({
-        name: Address_.PlaceName,
-        address: Address_.ComponentAddress,
-        localeAddress: t.string,
-        stopId: t.string,
-        stopCode: t.string,
-        stationId: t.string,
-        facilities: t.array(t.string),
-        openingHours: Station_.OpeningHours,
-        zone: Station_.Zone,
-      }),
-    ]),
-  ]),
-  (
-    x,
-  ): x is t.Branded<
-    {} & {
-      lat: unknown;
-      lon: unknown;
-    } & (RelaxedLocation & {
-        name?: Address_.PlaceName;
-        address?: Address_.ComponentAddress;
-        localeAddress?: string;
-        stopId?: string;
-        stopCode?: string;
-        stationId?: string;
-        facilities?: Array<string>;
-        openingHours?: Station_.OpeningHours;
-        zone?: Station_.Zone;
-      }),
-    PlaceBrand
-  > => true,
-  'Place',
-);
-export interface PlaceBrand {
-  readonly Place: unique symbol;
 }
 // Default
 // The default export. More information at the top.

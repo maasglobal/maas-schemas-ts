@@ -13,7 +13,7 @@ import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Address_ from 'maas-schemas-ts/core/components/address';
 import * as Region_ from 'maas-schemas-ts/core/region';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 
 export const schemaId = 'http://maasglobal.com/core/profile.json';
@@ -121,7 +121,7 @@ export type Default = t.Branded<
     regionId?: string;
     region?: Region_.Default;
     profileImageUrl?: string;
-    favoriteLocations?: Array<UnitsGeo_.Place>;
+    favoriteLocations?: Array<Place_.Default>;
     paymentMethod?: {
       type?: string & ('unknown' | 'card' | 'stripe');
       valid?: boolean;
@@ -164,7 +164,7 @@ export const Default = t.brand(
       regionId: t.string,
       region: Region_.Default,
       profileImageUrl: t.string,
-      favoriteLocations: t.array(UnitsGeo_.Place),
+      favoriteLocations: t.array(Place_.Default),
       paymentMethod: t.intersection([
         t.partial({
           type: t.intersection([
@@ -214,7 +214,7 @@ export const Default = t.brand(
       regionId?: string;
       region?: Region_.Default;
       profileImageUrl?: string;
-      favoriteLocations?: Array<UnitsGeo_.Place>;
+      favoriteLocations?: Array<Place_.Default>;
       paymentMethod?: {
         type?: string & ('unknown' | 'card' | 'stripe');
         valid?: boolean;

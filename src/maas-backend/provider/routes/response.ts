@@ -8,7 +8,7 @@ Response schema for routes providers, subset of routes-query response schema
 */
 
 import * as t from 'io-ts';
-import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
 export const schemaId =
@@ -28,7 +28,7 @@ export interface ItinerariesBrand {
 // The purpose of this remains a mystery
 export type Plan1 = t.Branded<
   {
-    from?: UnitsGeo_.Place;
+    from?: Place_.Default;
     outwards?: Itineraries;
     returns?: Itineraries;
   } & {
@@ -41,7 +41,7 @@ export type Plan1 = t.Branded<
 export const Plan1 = t.brand(
   t.intersection([
     t.partial({
-      from: UnitsGeo_.Place,
+      from: Place_.Default,
       outwards: Itineraries,
       returns: Itineraries,
     }),
@@ -55,7 +55,7 @@ export const Plan1 = t.brand(
     x,
   ): x is t.Branded<
     {
-      from?: UnitsGeo_.Place;
+      from?: Place_.Default;
       outwards?: Itineraries;
       returns?: Itineraries;
     } & {
@@ -74,7 +74,7 @@ export interface Plan1Brand {
 // The purpose of this remains a mystery
 export type Plan2 = t.Branded<
   {
-    from?: UnitsGeo_.Place;
+    from?: Place_.Default;
     itineraries?: Itineraries;
   } & {
     from: unknown;
@@ -85,7 +85,7 @@ export type Plan2 = t.Branded<
 export const Plan2 = t.brand(
   t.intersection([
     t.partial({
-      from: UnitsGeo_.Place,
+      from: Place_.Default,
       itineraries: Itineraries,
     }),
     t.type({
@@ -97,7 +97,7 @@ export const Plan2 = t.brand(
     x,
   ): x is t.Branded<
     {
-      from?: UnitsGeo_.Place;
+      from?: Place_.Default;
       itineraries?: Itineraries;
     } & {
       from: unknown;
