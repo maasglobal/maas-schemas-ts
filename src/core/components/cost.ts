@@ -10,6 +10,22 @@ MaaS common units that are used consistently within our own objects
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/cost.json';
 // Default
 // The default export. More information at the top.
@@ -21,8 +37,8 @@ export type Default = t.Branded<
     taxes?: number;
     currency?: Units_.Currency | null;
   } & {
-    amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    currency: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    amount: Defined;
+    currency: Defined;
   },
   DefaultBrand
 >;
@@ -36,22 +52,8 @@ export const Default = t.brand(
       currency: t.union([Units_.Currency, t.null]),
     }),
     t.type({
-      amount: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      currency: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      amount: Defined,
+      currency: Defined,
     }),
   ]),
   (
@@ -64,14 +66,8 @@ export const Default = t.brand(
       taxes?: number;
       currency?: Units_.Currency | null;
     } & {
-      amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      currency:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      amount: Defined;
+      currency: Defined;
     },
     DefaultBrand
   > => true,

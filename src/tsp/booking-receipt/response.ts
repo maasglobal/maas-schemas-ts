@@ -9,41 +9,43 @@ Response schema for getting a receipt for specific booking
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-receipt/response.json';
 // Default
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspId: Defined;
+    cost: Defined;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    tspId: t.union([
-      t.UnknownRecord,
-      t.UnknownArray,
-      t.string,
-      t.boolean,
-      t.number,
-      t.null,
-    ]),
-    cost: t.union([
-      t.UnknownRecord,
-      t.UnknownArray,
-      t.string,
-      t.boolean,
-      t.number,
-      t.null,
-    ]),
+    tspId: Defined,
+    cost: Defined,
   }),
   (
     x,
   ): x is t.Branded<
     {
-      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspId: Defined;
+      cost: Defined;
     },
     DefaultBrand
   > => true,

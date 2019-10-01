@@ -9,6 +9,22 @@ Response for MaaS webhook to receive payment status updates from payment gateway
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/webhooks-payments/response.json';
 // AvainpayResponse
@@ -25,20 +41,8 @@ export type AvainpayResponse = t.Branded<
     };
     response_map?: {};
   } & {
-    action_str:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    data_type:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    action_str: Defined;
+    data_type: Defined;
   },
   AvainpayResponseBrand
 >;
@@ -56,22 +60,8 @@ export const AvainpayResponse = t.brand(
       response_map: t.type({}),
     }),
     t.type({
-      action_str: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      data_type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      action_str: Defined,
+      data_type: Defined,
     }),
   ]),
   (
@@ -88,20 +78,8 @@ export const AvainpayResponse = t.brand(
       };
       response_map?: {};
     } & {
-      action_str:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      data_type:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      action_str: Defined;
+      data_type: Defined;
     },
     AvainpayResponseBrand
   > => true,

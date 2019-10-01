@@ -14,6 +14,22 @@ import * as Address_ from 'maas-schemas-ts/core/components/address';
 import * as Station_ from 'maas-schemas-ts/core/components/station';
 import * as TravelMode_ from 'maas-schemas-ts/core/components/travel-mode';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/maas-backend/provider/routes/request.json';
 // Default
 // The default export. More information at the top.
@@ -47,8 +63,8 @@ export type Default = t.Branded<
     | TravelMode_.Default
     | (string | number | boolean)
   >) & {
-    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    from: Defined;
+    to: Defined;
   },
   DefaultBrand
 >;
@@ -89,22 +105,8 @@ export const Default = t.brand(
       ),
     ]),
     t.type({
-      from: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      to: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      from: Defined,
+      to: Defined,
     }),
   ]),
   (
@@ -139,8 +141,8 @@ export const Default = t.brand(
       | TravelMode_.Default
       | (string | number | boolean)
     >) & {
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      from: Defined;
+      to: Defined;
     },
     DefaultBrand
   > => true,

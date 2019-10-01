@@ -15,6 +15,22 @@ import * as Address_ from 'maas-schemas-ts/core/components/address';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-options-list/request.json';
 // Default
 // The default export. More information at the top.
@@ -56,14 +72,8 @@ export type Default = t.Branded<
     | Common_.AppInstanceId
     | (string | number | boolean)
   >) & {
-    startTime:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    startTime: Defined;
+    from: Defined;
   },
   DefaultBrand
 >;
@@ -112,22 +122,8 @@ export const Default = t.brand(
       ),
     ]),
     t.type({
-      startTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      from: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      startTime: Defined,
+      from: Defined,
     }),
   ]),
   (
@@ -170,14 +166,8 @@ export const Default = t.brand(
       | Common_.AppInstanceId
       | (string | number | boolean)
     >) & {
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      startTime: Defined;
+      from: Defined;
     },
     DefaultBrand
   > => true,

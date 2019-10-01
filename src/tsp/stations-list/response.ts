@@ -10,6 +10,22 @@ MaaS stations query response schema
 import * as t from 'io-ts';
 import * as Station_ from 'maas-schemas-ts/core/components/station';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/stations-list/response.json';
 // Default
 // The default export. More information at the top.
@@ -29,28 +45,10 @@ export type Default = t.Branded<
         zone?: Station_.Zone;
         platformCode?: Station_.PlatformCode;
       } & {
-        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        location:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        agencyId:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        services:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        id: Defined;
+        location: Defined;
+        agencyId: Defined;
+        services: Defined;
       }
     >;
   },
@@ -74,38 +72,10 @@ export const Default = t.brand(
           platformCode: Station_.PlatformCode,
         }),
         t.type({
-          id: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          location: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          agencyId: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          services: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          id: Defined,
+          location: Defined,
+          agencyId: Defined,
+          services: Defined,
         }),
       ]),
     ),
@@ -128,28 +98,10 @@ export const Default = t.brand(
           zone?: Station_.Zone;
           platformCode?: Station_.PlatformCode;
         } & {
-          id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-          location:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          agencyId:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          services:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          id: Defined;
+          location: Defined;
+          agencyId: Defined;
+          services: Defined;
         }
       >;
     },

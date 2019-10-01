@@ -14,6 +14,22 @@ import * as Address_ from 'maas-schemas-ts/core/components/address';
 import * as I18n_ from 'maas-schemas-ts/core/components/i18n';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/customer.json';
 // Default
 // The default export. More information at the top.
@@ -39,20 +55,8 @@ export type Default = t.Branded<
         currency?: 'WMP';
         amount?: number;
       } & {
-        currency:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        amount:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        currency: Defined;
+        amount: Defined;
       };
     } & Record<
       string,
@@ -60,50 +64,20 @@ export type Default = t.Branded<
           currency?: 'WMP';
           amount?: number;
         } & {
-          currency:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          amount:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          currency: Defined;
+          amount: Defined;
         })
       | ({
           currency?: 'TOKEN';
           tokenId?: Fare_.TokenId;
           amount?: number | null;
         } & {
-          currency:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          tokenId:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          amount:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          currency: Defined;
+          tokenId: Defined;
+          amount: Defined;
         })
     >) & {
-      WMP: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      WMP: Defined;
     };
     subscriberType?: string;
     authToken?: Common_.EncodedQueryParam;
@@ -136,22 +110,8 @@ export const Default = t.brand(
               amount: t.number,
             }),
             t.type({
-              currency: t.union([
-                t.UnknownRecord,
-                t.UnknownArray,
-                t.string,
-                t.boolean,
-                t.number,
-                t.null,
-              ]),
-              amount: t.union([
-                t.UnknownRecord,
-                t.UnknownArray,
-                t.string,
-                t.boolean,
-                t.number,
-                t.null,
-              ]),
+              currency: Defined,
+              amount: Defined,
             }),
           ]),
         }),
@@ -164,22 +124,8 @@ export const Default = t.brand(
                 amount: t.number,
               }),
               t.type({
-                currency: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
-                amount: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
+                currency: Defined,
+                amount: Defined,
               }),
             ]),
             t.intersection([
@@ -189,44 +135,16 @@ export const Default = t.brand(
                 amount: t.union([t.number, t.null]),
               }),
               t.type({
-                currency: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
-                tokenId: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
-                amount: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
+                currency: Defined,
+                tokenId: Defined,
+                amount: Defined,
               }),
             ]),
           ]),
         ),
       ]),
       t.type({
-        WMP: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        WMP: Defined,
       }),
     ]),
     subscriberType: t.string,
@@ -256,20 +174,8 @@ export const Default = t.brand(
           currency?: 'WMP';
           amount?: number;
         } & {
-          currency:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          amount:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          currency: Defined;
+          amount: Defined;
         };
       } & Record<
         string,
@@ -277,50 +183,20 @@ export const Default = t.brand(
             currency?: 'WMP';
             amount?: number;
           } & {
-            currency:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            amount:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            currency: Defined;
+            amount: Defined;
           })
         | ({
             currency?: 'TOKEN';
             tokenId?: Fare_.TokenId;
             amount?: number | null;
           } & {
-            currency:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            tokenId:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            amount:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            currency: Defined;
+            tokenId: Defined;
+            amount: Defined;
           })
       >) & {
-        WMP: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        WMP: Defined;
       };
       subscriberType?: string;
       authToken?: Common_.EncodedQueryParam;

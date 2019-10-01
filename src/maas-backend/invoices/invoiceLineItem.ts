@@ -12,6 +12,22 @@ import * as InvoiceUnits_ from 'maas-schemas-ts/maas-backend/invoices/invoiceUni
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/invoices/invoiceLineItem.json';
 // InvoiceLineItem
@@ -31,24 +47,12 @@ export type InvoiceLineItem = t.Branded<
     tokenId?: Fare_.TokenId;
     token?: {};
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    gatewayId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    description:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    currency: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    gatewayId: Defined;
+    description: Defined;
+    amount: Defined;
+    currency: Defined;
+    type: Defined;
   },
   InvoiceLineItemBrand
 >;
@@ -77,54 +81,12 @@ export const InvoiceLineItem = t.brand(
       token: t.type({}),
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      gatewayId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      description: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      amount: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      currency: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      gatewayId: Defined,
+      description: Defined,
+      amount: Defined,
+      currency: Defined,
+      type: Defined,
     }),
   ]),
   (
@@ -144,30 +106,12 @@ export const InvoiceLineItem = t.brand(
       tokenId?: Fare_.TokenId;
       token?: {};
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      gatewayId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      description:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      currency:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
+      gatewayId: Defined;
+      description: Defined;
+      amount: Defined;
+      currency: Defined;
+      type: Defined;
     },
     InvoiceLineItemBrand
   > => true,

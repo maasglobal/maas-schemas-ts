@@ -12,6 +12,22 @@ import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-update/request.json';
 // Default
@@ -23,14 +39,8 @@ export type Default = t.Branded<
     payload?: Booking_.Default;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -43,22 +53,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -70,20 +66,8 @@ export const Default = t.brand(
       payload?: Booking_.Default;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      payload: Defined;
     },
     DefaultBrand
   > => true,

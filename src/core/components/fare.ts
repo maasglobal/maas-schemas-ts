@@ -9,6 +9,22 @@ A fare/price as billed to the user in WMPs or in tokens
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/fare.json';
 // TokenId
 // The purpose of this remains a mystery
@@ -34,8 +50,8 @@ export type Default = t.Branded<
     productionAmount?: number | null;
     type?: string & ('charge' | 'refund');
   } & {
-    amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    currency: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    amount: Defined;
+    currency: Defined;
   },
   DefaultBrand
 >;
@@ -56,22 +72,8 @@ export const Default = t.brand(
       ]),
     }),
     t.type({
-      amount: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      currency: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      amount: Defined,
+      currency: Defined,
     }),
   ]),
   (
@@ -85,14 +87,8 @@ export const Default = t.brand(
       productionAmount?: number | null;
       type?: string & ('charge' | 'refund');
     } & {
-      amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      currency:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      amount: Defined;
+      currency: Defined;
     },
     DefaultBrand
   > => true,

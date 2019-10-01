@@ -15,6 +15,22 @@ import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-create/response.json';
 // Default
 // The default export. More information at the top.
@@ -32,18 +48,12 @@ export type Default = t.Branded<
     customerSelection?: CustomerSelection_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    tspProduct:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    tspId: Defined;
+    state: Defined;
+    meta: Defined;
+    terms: Defined;
+    token: Defined;
+    tspProduct: Defined;
   },
   DefaultBrand
 >;
@@ -63,54 +73,12 @@ export const Default = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      tspId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      state: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      meta: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      terms: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      token: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      tspProduct: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      tspId: Defined,
+      state: Defined,
+      meta: Defined,
+      terms: Defined,
+      token: Defined,
+      tspProduct: Defined,
     }),
   ]),
   (
@@ -129,18 +97,12 @@ export const Default = t.brand(
       customerSelection?: CustomerSelection_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      tspProduct:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      tspId: Defined;
+      state: Defined;
+      meta: Defined;
+      terms: Defined;
+      token: Defined;
+      tspProduct: Defined;
     },
     DefaultBrand
   > => true,

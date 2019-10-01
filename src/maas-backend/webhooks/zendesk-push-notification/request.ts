@@ -9,6 +9,22 @@ MaaS Zendesk push notification forwarder request schema.
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/zendesk-push-notification/request.json';
 // Default
@@ -16,14 +32,8 @@ export const schemaId =
 export type Default = t.Branded<
   {
     devices?: Array<{
-      identifier:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      identifier: Defined;
+      type: Defined;
     }>;
     notification?: {
       body?: string;
@@ -31,14 +41,8 @@ export type Default = t.Branded<
       ticket_id?: string;
     };
   } & {
-    devices: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    notification:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    devices: Defined;
+    notification: Defined;
   },
   DefaultBrand
 >;
@@ -47,22 +51,8 @@ export const Default = t.brand(
     t.partial({
       devices: t.array(
         t.type({
-          identifier: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          type: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          identifier: Defined,
+          type: Defined,
         }),
       ),
       notification: t.partial({
@@ -72,22 +62,8 @@ export const Default = t.brand(
       }),
     }),
     t.type({
-      devices: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      notification: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      devices: Defined,
+      notification: Defined,
     }),
   ]),
   (
@@ -95,14 +71,8 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       devices?: Array<{
-        identifier:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        identifier: Defined;
+        type: Defined;
       }>;
       notification?: {
         body?: string;
@@ -110,20 +80,8 @@ export const Default = t.brand(
         ticket_id?: string;
       };
     } & {
-      devices:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      notification:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      devices: Defined;
+      notification: Defined;
     },
     DefaultBrand
   > => true,

@@ -10,6 +10,22 @@ Partial (Points only) GeoJSON Schema
 import * as t from 'io-ts';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/geolocation.json';
 // Geometry
 // The purpose of this remains a mystery
@@ -18,14 +34,8 @@ export type Geometry = t.Branded<
     type?: 'Point';
     coordinates?: UnitsGeo_.ShortLocation;
   } & {
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    coordinates:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    type: Defined;
+    coordinates: Defined;
   },
   GeometryBrand
 >;
@@ -36,22 +46,8 @@ export const Geometry = t.brand(
       coordinates: UnitsGeo_.ShortLocation,
     }),
     t.type({
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      coordinates: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      type: Defined,
+      coordinates: Defined,
     }),
   ]),
   (
@@ -61,14 +57,8 @@ export const Geometry = t.brand(
       type?: 'Point';
       coordinates?: UnitsGeo_.ShortLocation;
     } & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      coordinates:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      type: Defined;
+      coordinates: Defined;
     },
     GeometryBrand
   > => true,
@@ -90,7 +80,7 @@ export type Properties = t.Branded<
     houseNumber?: number;
     zipcode?: number;
   } & {
-    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    name: Defined;
   },
   PropertiesBrand
 >;
@@ -107,14 +97,7 @@ export const Properties = t.brand(
       zipcode: t.number,
     }),
     t.type({
-      name: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      name: Defined,
     }),
   ]),
   (
@@ -130,7 +113,7 @@ export const Properties = t.brand(
       houseNumber?: number;
       zipcode?: number;
     } & {
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Defined;
     },
     PropertiesBrand
   > => true,
@@ -147,15 +130,9 @@ export type Feature = t.Branded<
     geometry?: Geometry;
     properties?: Properties;
   } & {
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    geometry: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    properties:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    type: Defined;
+    geometry: Defined;
+    properties: Defined;
   },
   FeatureBrand
 >;
@@ -167,30 +144,9 @@ export const Feature = t.brand(
       properties: Properties,
     }),
     t.type({
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      geometry: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      properties: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      type: Defined,
+      geometry: Defined,
+      properties: Defined,
     }),
   ]),
   (
@@ -201,21 +157,9 @@ export const Feature = t.brand(
       geometry?: Geometry;
       properties?: Properties;
     } & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      geometry:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      properties:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      type: Defined;
+      geometry: Defined;
+      properties: Defined;
     },
     FeatureBrand
   > => true,
@@ -231,8 +175,8 @@ export type FeatureCollection = t.Branded<
     type?: 'FeatureCollection';
     features?: Array<Feature>;
   } & {
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    features: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    type: Defined;
+    features: Defined;
   },
   FeatureCollectionBrand
 >;
@@ -243,22 +187,8 @@ export const FeatureCollection = t.brand(
       features: t.array(Feature),
     }),
     t.type({
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      features: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      type: Defined,
+      features: Defined,
     }),
   ]),
   (
@@ -268,14 +198,8 @@ export const FeatureCollection = t.brand(
       type?: 'FeatureCollection';
       features?: Array<Feature>;
     } & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      features:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      type: Defined;
+      features: Defined;
     },
     FeatureCollectionBrand
   > => true,

@@ -12,6 +12,22 @@ import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/maas-backend/tsp-auth/init/request.json';
 // Default
 // The default export. More information at the top.
@@ -21,14 +37,8 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    agencyId: Defined;
   },
   DefaultBrand
 >;
@@ -40,22 +50,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      agencyId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      agencyId: Defined,
     }),
   ]),
   (
@@ -66,20 +62,8 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      agencyId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      agencyId: Defined;
     },
     DefaultBrand
   > => true,

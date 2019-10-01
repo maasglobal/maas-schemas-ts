@@ -10,6 +10,22 @@ MaaS region schema
 import * as t from 'io-ts';
 import * as Address_ from 'maas-schemas-ts/core/components/address';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/card.json';
 // Default
 // The default export. More information at the top.
@@ -25,16 +41,10 @@ export type Default = t.Branded<
     billingCountry?: Address_.Country;
     billingZip?: Address_.ZipCode;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    customerId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    customerId: Defined;
+    status: Defined;
+    valid: Defined;
   },
   DefaultBrand
 >;
@@ -60,38 +70,10 @@ export const Default = t.brand(
       billingZip: Address_.ZipCode,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      customerId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      status: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      valid: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      customerId: Defined,
+      status: Defined,
+      valid: Defined,
     }),
   ]),
   (
@@ -108,16 +90,10 @@ export const Default = t.brand(
       billingCountry?: Address_.Country;
       billingZip?: Address_.ZipCode;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      customerId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
+      customerId: Defined;
+      status: Defined;
+      valid: Defined;
     },
     DefaultBrand
   > => true,

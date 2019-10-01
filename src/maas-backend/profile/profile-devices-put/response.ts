@@ -10,6 +10,22 @@ Response schema for profile-devices-put
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/profile/profile-devices-put/response.json';
 // Device
@@ -20,27 +36,9 @@ export type Device = t.Branded<
     deviceIdentifier?: Units_.Uuid;
     deviceType?: string & ('iOS' | 'Android');
   } & {
-    devicePushToken:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    deviceIdentifier:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    deviceType:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    devicePushToken: Defined;
+    deviceIdentifier: Defined;
+    deviceType: Defined;
   },
   DeviceBrand
 >;
@@ -55,30 +53,9 @@ export const Device = t.brand(
       ]),
     }),
     t.type({
-      devicePushToken: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      deviceIdentifier: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      deviceType: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      devicePushToken: Defined,
+      deviceIdentifier: Defined,
+      deviceType: Defined,
     }),
   ]),
   (
@@ -89,27 +66,9 @@ export const Device = t.brand(
       deviceIdentifier?: Units_.Uuid;
       deviceType?: string & ('iOS' | 'Android');
     } & {
-      devicePushToken:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      deviceIdentifier:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      deviceType:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      devicePushToken: Defined;
+      deviceIdentifier: Defined;
+      deviceType: Defined;
     },
     DeviceBrand
   > => true,
@@ -125,7 +84,7 @@ export type Default = t.Branded<
     device?: Device;
     debug?: {};
   } & {
-    device: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    device: Defined;
   },
   DefaultBrand
 >;
@@ -136,14 +95,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      device: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      device: Defined,
     }),
   ]),
   (
@@ -153,7 +105,7 @@ export const Default = t.brand(
       device?: Device;
       debug?: {};
     } & {
-      device: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      device: Defined;
     },
     DefaultBrand
   > => true,

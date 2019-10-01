@@ -13,6 +13,22 @@ import * as ACRISS_ from 'maas-schemas-ts/core/components/ACRISS';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/car-rental.json';
 // Default
 // The default export. More information at the top.
@@ -44,27 +60,15 @@ export type Default = t.Branded<
       fuelLevel?: number;
       location?: UnitsGeo_.Location;
     } & {
-      classification:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      classification: Defined;
     };
     pickupInfo?: Common_.HtmlBlock;
     returnInfo?: Common_.HtmlBlock;
     startEndGeoRegionUrl?: Units_.Url;
   } & {
-    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    description:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    image: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    name: Defined;
+    description: Defined;
+    image: Defined;
   },
   DefaultBrand
 >;
@@ -100,14 +104,7 @@ export const Default = t.brand(
           location: UnitsGeo_.Location,
         }),
         t.type({
-          classification: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          classification: Defined,
         }),
       ]),
       pickupInfo: Common_.HtmlBlock,
@@ -115,30 +112,9 @@ export const Default = t.brand(
       startEndGeoRegionUrl: Units_.Url,
     }),
     t.type({
-      name: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      description: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      image: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      name: Defined,
+      description: Defined,
+      image: Defined,
     }),
   ]),
   (
@@ -171,27 +147,15 @@ export const Default = t.brand(
         fuelLevel?: number;
         location?: UnitsGeo_.Location;
       } & {
-        classification:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        classification: Defined;
       };
       pickupInfo?: Common_.HtmlBlock;
       returnInfo?: Common_.HtmlBlock;
       startEndGeoRegionUrl?: Units_.Url;
     } & {
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      description:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      image: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Defined;
+      description: Defined;
+      image: Defined;
     },
     DefaultBrand
   > => true,

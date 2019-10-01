@@ -10,6 +10,22 @@ Response schema for products-providers-retrieve
 import * as t from 'io-ts';
 import * as Provider_ from 'maas-schemas-ts/maas-backend/products/provider';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/products/products-providers-retrieve/response.json';
 // Default
@@ -18,7 +34,7 @@ export type Default = t.Branded<
   {
     provider?: Provider_.Default;
   } & {
-    provider: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    provider: Defined;
   },
   DefaultBrand
 >;
@@ -28,14 +44,7 @@ export const Default = t.brand(
       provider: Provider_.Default,
     }),
     t.type({
-      provider: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      provider: Defined,
     }),
   ]),
   (
@@ -44,13 +53,7 @@ export const Default = t.brand(
     {
       provider?: Provider_.Default;
     } & {
-      provider:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      provider: Defined;
     },
     DefaultBrand
   > => true,

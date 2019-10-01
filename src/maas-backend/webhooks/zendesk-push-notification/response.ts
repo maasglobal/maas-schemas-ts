@@ -9,6 +9,22 @@ MaaS Zendesk push notification forwarder response schema.
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/zendesk-push-notification/response.json';
 // Default
@@ -16,23 +32,11 @@ export const schemaId =
 export type Default = t.Branded<
   {
     results?: {
-      successCount:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      failureCount:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      successCount: Defined;
+      failureCount: Defined;
     };
   } & {
-    results: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    results: Defined;
   },
   DefaultBrand
 >;
@@ -40,33 +44,12 @@ export const Default = t.brand(
   t.intersection([
     t.partial({
       results: t.type({
-        successCount: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        failureCount: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        successCount: Defined,
+        failureCount: Defined,
       }),
     }),
     t.type({
-      results: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      results: Defined,
     }),
   ]),
   (
@@ -74,29 +57,11 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       results?: {
-        successCount:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        failureCount:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        successCount: Defined;
+        failureCount: Defined;
       };
     } & {
-      results:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      results: Defined;
     },
     DefaultBrand
   > => true,

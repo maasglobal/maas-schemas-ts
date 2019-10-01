@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Station_ from 'maas-schemas-ts/core/components/station';
 import * as Address_ from 'maas-schemas-ts/core/components/address';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/payment-sources/paymentSource.json';
 // PaymentSourceId
@@ -109,29 +125,11 @@ export type PaymentSource = t.Branded<
     status?: Status;
     setupIntentId?: SetupIntentId;
   } & {
-    paymentSourceId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    gatewayName:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    isDefault:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    paymentSourceId: Defined;
+    gatewayName: Defined;
+    type: Defined;
+    isDefault: Defined;
+    status: Defined;
   },
   PaymentSourceBrand
 >;
@@ -154,46 +152,11 @@ export const PaymentSource = t.brand(
       setupIntentId: SetupIntentId,
     }),
     t.type({
-      paymentSourceId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      gatewayName: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      isDefault: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      status: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      paymentSourceId: Defined,
+      gatewayName: Defined,
+      type: Defined,
+      isDefault: Defined,
+      status: Defined,
     }),
   ]),
   (
@@ -215,29 +178,11 @@ export const PaymentSource = t.brand(
       status?: Status;
       setupIntentId?: SetupIntentId;
     } & {
-      paymentSourceId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      gatewayName:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      isDefault:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      paymentSourceId: Defined;
+      gatewayName: Defined;
+      type: Defined;
+      isDefault: Defined;
+      status: Defined;
     },
     PaymentSourceBrand
   > => true,

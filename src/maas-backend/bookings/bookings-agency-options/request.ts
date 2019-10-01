@@ -15,6 +15,22 @@ import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as Address_ from 'maas-schemas-ts/core/components/address';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-agency-options/request.json';
 // Payload
@@ -139,15 +155,9 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    payload: Defined;
+    headers: Defined;
   },
   DefaultBrand
 >;
@@ -159,30 +169,9 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      headers: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      payload: Defined,
+      headers: Defined,
     }),
   ]),
   (
@@ -193,27 +182,9 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      headers:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      payload: Defined;
+      headers: Defined;
     },
     DefaultBrand
   > => true,

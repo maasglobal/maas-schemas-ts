@@ -17,6 +17,22 @@ import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/leg.json';
 // State
 // The purpose of this remains a mystery
@@ -220,24 +236,12 @@ export type LegCore = t.Branded<
     tspProduct?: TspProduct;
     productOption?: ProductOption;
   } & {
-    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    startTime:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    endTime: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    legGeometry:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    from: Defined;
+    to: Defined;
+    mode: Defined;
+    startTime: Defined;
+    endTime: Defined;
+    legGeometry: Defined;
   },
   LegCoreBrand
 >;
@@ -263,54 +267,12 @@ export const LegCore = t.brand(
       productOption: ProductOption,
     }),
     t.type({
-      from: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      to: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      mode: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      startTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      endTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      legGeometry: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      from: Defined,
+      to: Defined,
+      mode: Defined,
+      startTime: Defined,
+      endTime: Defined,
+      legGeometry: Defined,
     }),
   ]),
   (
@@ -335,30 +297,12 @@ export const LegCore = t.brand(
       tspProduct?: TspProduct;
       productOption?: ProductOption;
     } & {
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      endTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      legGeometry:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      from: Defined;
+      to: Defined;
+      mode: Defined;
+      startTime: Defined;
+      endTime: Defined;
+      legGeometry: Defined;
     },
     LegCoreBrand
   > => true,
@@ -375,15 +319,9 @@ export type WaitingLeg = t.Branded<
     endTime?: Units_.Time;
     mode?: TravelMode_.WaitingMode;
   } & {
-    mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    startTime:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    endTime: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    mode: Defined;
+    startTime: Defined;
+    endTime: Defined;
   },
   WaitingLegBrand
 >;
@@ -395,30 +333,9 @@ export const WaitingLeg = t.brand(
       mode: TravelMode_.WaitingMode,
     }),
     t.type({
-      mode: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      startTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      endTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      mode: Defined,
+      startTime: Defined,
+      endTime: Defined,
     }),
   ]),
   (
@@ -429,21 +346,9 @@ export const WaitingLeg = t.brand(
       endTime?: Units_.Time;
       mode?: TravelMode_.WaitingMode;
     } & {
-      mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      endTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      mode: Defined;
+      startTime: Defined;
+      endTime: Defined;
     },
     WaitingLegBrand
   > => true,
@@ -460,15 +365,9 @@ export type TransferLeg = t.Branded<
     endTime?: Units_.Time;
     mode?: TravelMode_.TransferMode;
   } & {
-    mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    startTime:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    endTime: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    mode: Defined;
+    startTime: Defined;
+    endTime: Defined;
   },
   TransferLegBrand
 >;
@@ -480,30 +379,9 @@ export const TransferLeg = t.brand(
       mode: TravelMode_.TransferMode,
     }),
     t.type({
-      mode: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      startTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      endTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      mode: Defined,
+      startTime: Defined,
+      endTime: Defined,
     }),
   ]),
   (
@@ -514,21 +392,9 @@ export const TransferLeg = t.brand(
       endTime?: Units_.Time;
       mode?: TravelMode_.TransferMode;
     } & {
-      mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      endTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      mode: Defined;
+      startTime: Defined;
+      endTime: Defined;
     },
     TransferLegBrand
   > => true,

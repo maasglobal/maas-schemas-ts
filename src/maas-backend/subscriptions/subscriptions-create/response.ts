@@ -10,6 +10,22 @@ Response schema for subscriptions-create
 import * as t from 'io-ts';
 import * as Subscription_ from 'maas-schemas-ts/maas-backend/subscriptions/subscription';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-create/response.json';
 // Default
@@ -19,13 +35,7 @@ export type Default = t.Branded<
     subscription?: Subscription_.Subscription;
     debug?: {};
   } & {
-    subscription:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    subscription: Defined;
   },
   DefaultBrand
 >;
@@ -36,14 +46,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      subscription: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      subscription: Defined,
     }),
   ]),
   (
@@ -53,13 +56,7 @@ export const Default = t.brand(
       subscription?: Subscription_.Subscription;
       debug?: {};
     } & {
-      subscription:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      subscription: Defined;
     },
     DefaultBrand
   > => true,

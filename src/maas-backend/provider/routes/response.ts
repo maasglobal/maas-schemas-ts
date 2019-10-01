@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/provider/routes/response.json';
 // Itineraries
@@ -32,9 +48,9 @@ export type Plan1 = t.Branded<
     outwards?: Itineraries;
     returns?: Itineraries;
   } & {
-    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    outwards: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    returns: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    from: Defined;
+    outwards: Defined;
+    returns: Defined;
   },
   Plan1Brand
 >;
@@ -46,30 +62,9 @@ export const Plan1 = t.brand(
       returns: Itineraries,
     }),
     t.type({
-      from: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      outwards: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      returns: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      from: Defined,
+      outwards: Defined,
+      returns: Defined,
     }),
   ]),
   (
@@ -80,21 +75,9 @@ export const Plan1 = t.brand(
       outwards?: Itineraries;
       returns?: Itineraries;
     } & {
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      outwards:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      returns:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      from: Defined;
+      outwards: Defined;
+      returns: Defined;
     },
     Plan1Brand
   > => true,
@@ -110,14 +93,8 @@ export type Plan2 = t.Branded<
     from?: Place_.Default;
     itineraries?: Itineraries;
   } & {
-    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    itineraries:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    from: Defined;
+    itineraries: Defined;
   },
   Plan2Brand
 >;
@@ -128,22 +105,8 @@ export const Plan2 = t.brand(
       itineraries: Itineraries,
     }),
     t.type({
-      from: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      itineraries: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      from: Defined,
+      itineraries: Defined,
     }),
   ]),
   (
@@ -153,14 +116,8 @@ export const Plan2 = t.brand(
       from?: Place_.Default;
       itineraries?: Itineraries;
     } & {
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      itineraries:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      from: Defined;
+      itineraries: Defined;
     },
     Plan2Brand
   > => true,

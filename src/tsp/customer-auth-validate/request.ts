@@ -10,6 +10,22 @@ Request schema for completing customer authorization for TSP
 import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/customer-auth-validate/request.json';
 // Default
 // The default export. More information at the top.
@@ -18,13 +34,7 @@ export type Default = t.Branded<
     encodedData?: Common_.EncodedQueryParam;
     error?: Common_.ErrorKey;
   } & {
-    encodedData:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    encodedData: Defined;
   },
   DefaultBrand
 >;
@@ -35,14 +45,7 @@ export const Default = t.brand(
       error: Common_.ErrorKey,
     }),
     t.type({
-      encodedData: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      encodedData: Defined,
     }),
   ]),
   (
@@ -52,13 +55,7 @@ export const Default = t.brand(
       encodedData?: Common_.EncodedQueryParam;
       error?: Common_.ErrorKey;
     } & {
-      encodedData:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      encodedData: Defined;
     },
     DefaultBrand
   > => true,

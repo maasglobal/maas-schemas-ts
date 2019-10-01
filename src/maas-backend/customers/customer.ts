@@ -14,6 +14,22 @@ import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 import * as Region_ from 'maas-schemas-ts/core/region';
 import * as Authorization_ from 'maas-schemas-ts/core/components/authorization';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/maas-backend/customers/customer.json';
 // Default
 // The default export. More information at the top.
@@ -26,29 +42,11 @@ export type Default = t.Branded<
     region?: Region_.Default;
     authorizations?: Array<Authorization_.Default>;
   } & {
-    personalData:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    paymentSources:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    balances: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    region: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    authorizations:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    personalData: Defined;
+    paymentSources: Defined;
+    balances: Defined;
+    region: Defined;
+    authorizations: Defined;
   },
   DefaultBrand
 >;
@@ -63,46 +61,11 @@ export const Default = t.brand(
       authorizations: t.array(Authorization_.Default),
     }),
     t.type({
-      personalData: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      paymentSources: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      balances: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      region: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      authorizations: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      personalData: Defined,
+      paymentSources: Defined,
+      balances: Defined,
+      region: Defined,
+      authorizations: Defined,
     }),
   ]),
   (
@@ -116,35 +79,11 @@ export const Default = t.brand(
       region?: Region_.Default;
       authorizations?: Array<Authorization_.Default>;
     } & {
-      personalData:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      paymentSources:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      balances:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      region: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      authorizations:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      personalData: Defined;
+      paymentSources: Defined;
+      balances: Defined;
+      region: Defined;
+      authorizations: Defined;
     },
     DefaultBrand
   > => true,

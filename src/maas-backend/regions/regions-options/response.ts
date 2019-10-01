@@ -10,6 +10,22 @@ Response schema for regions-options
 import * as t from 'io-ts';
 import * as Region_ from 'maas-schemas-ts/core/region';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/regions/regions-options/response.json';
 // Default
@@ -19,7 +35,7 @@ export type Default = t.Branded<
     options?: Array<Region_.Default>;
     debug?: {};
   } & {
-    options: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    options: Defined;
   },
   DefaultBrand
 >;
@@ -30,14 +46,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      options: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      options: Defined,
     }),
   ]),
   (
@@ -47,13 +56,7 @@ export const Default = t.brand(
       options?: Array<Region_.Default>;
       debug?: {};
     } & {
-      options:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      options: Defined;
     },
     DefaultBrand
   > => true,

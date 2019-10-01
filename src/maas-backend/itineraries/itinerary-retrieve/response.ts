@@ -10,6 +10,22 @@ Response schema for itinerary-retrieve
 import * as t from 'io-ts';
 import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-retrieve/response.json';
 // Default
@@ -19,13 +35,7 @@ export type Default = t.Branded<
     itinerary?: Itinerary_.Default;
     maas?: {};
   } & {
-    itinerary:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    itinerary: Defined;
   },
   DefaultBrand
 >;
@@ -36,14 +46,7 @@ export const Default = t.brand(
       maas: t.type({}),
     }),
     t.type({
-      itinerary: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      itinerary: Defined,
     }),
   ]),
   (
@@ -53,13 +56,7 @@ export const Default = t.brand(
       itinerary?: Itinerary_.Default;
       maas?: {};
     } & {
-      itinerary:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      itinerary: Defined;
     },
     DefaultBrand
   > => true,

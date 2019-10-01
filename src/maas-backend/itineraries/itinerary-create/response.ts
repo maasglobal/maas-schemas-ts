@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as PaymentParameters_ from 'maas-schemas-ts/core/components/payment-parameters';
 import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-create/response.json';
 // PaymentParameter
@@ -65,26 +81,14 @@ export type Default = t.Branded<
       itinerary?: Itinerary_.Default;
       paymentParameters?: PaymentParameters;
     } & {
-      itinerary:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      itinerary: Defined;
     })
   | ({
       outward?: Itinerary_.Default;
       return?: Itinerary_.Default;
       paymentParameters?: PaymentParameters;
     } & {
-      outward:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      outward: Defined;
     }),
   DefaultBrand
 >;
@@ -96,14 +100,7 @@ export const Default = t.brand(
         paymentParameters: PaymentParameters,
       }),
       t.type({
-        itinerary: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        itinerary: Defined,
       }),
     ]),
     t.intersection([
@@ -113,14 +110,7 @@ export const Default = t.brand(
         paymentParameters: PaymentParameters,
       }),
       t.type({
-        outward: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        outward: Defined,
       }),
     ]),
   ]),
@@ -131,26 +121,14 @@ export const Default = t.brand(
         itinerary?: Itinerary_.Default;
         paymentParameters?: PaymentParameters;
       } & {
-        itinerary:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        itinerary: Defined;
       })
     | ({
         outward?: Itinerary_.Default;
         return?: Itinerary_.Default;
         paymentParameters?: PaymentParameters;
       } & {
-        outward:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        outward: Defined;
       }),
     DefaultBrand
   > => true,

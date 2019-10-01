@@ -10,6 +10,22 @@ Request schema for getting a specific booking with a TSP ID from a TSP adapter
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-read-by-id/request.json';
 // Default
 // The default export. More information at the top.
@@ -17,7 +33,7 @@ export type Default = t.Branded<
   {
     tspId?: Booking_.TspId;
   } & {
-    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspId: Defined;
   },
   DefaultBrand
 >;
@@ -27,14 +43,7 @@ export const Default = t.brand(
       tspId: Booking_.TspId,
     }),
     t.type({
-      tspId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      tspId: Defined,
     }),
   ]),
   (
@@ -43,7 +52,7 @@ export const Default = t.brand(
     {
       tspId?: Booking_.TspId;
     } & {
-      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspId: Defined;
     },
     DefaultBrand
   > => true,

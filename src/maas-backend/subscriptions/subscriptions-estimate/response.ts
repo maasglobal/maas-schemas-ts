@@ -10,6 +10,22 @@ Response schema for subscriptions-estimate
 import * as t from 'io-ts';
 import * as Pricing_ from 'maas-schemas-ts/maas-backend/subscriptions/pricing';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-estimate/response.json';
 // Default
@@ -20,7 +36,7 @@ export type Default = t.Branded<
     immediateUpdate?: boolean;
     debug?: {};
   } & {
-    estimate: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    estimate: Defined;
   },
   DefaultBrand
 >;
@@ -32,14 +48,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      estimate: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      estimate: Defined,
     }),
   ]),
   (
@@ -50,13 +59,7 @@ export const Default = t.brand(
       immediateUpdate?: boolean;
       debug?: {};
     } & {
-      estimate:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      estimate: Defined;
     },
     DefaultBrand
   > => true,

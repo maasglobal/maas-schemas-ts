@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/authorization.json';
 // Default
 // The default export. More information at the top.
@@ -22,10 +38,10 @@ export type Default = t.Branded<
     created?: Units_.Time;
     modified?: Units_.Time;
   } & {
-    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    validTo: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    created: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    agencyId: Defined;
+    state: Defined;
+    validTo: Defined;
+    created: Defined;
   },
   DefaultBrand
 >;
@@ -42,38 +58,10 @@ export const Default = t.brand(
       modified: Units_.Time,
     }),
     t.type({
-      agencyId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      state: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      validTo: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      created: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      agencyId: Defined,
+      state: Defined,
+      validTo: Defined,
+      created: Defined,
     }),
   ]),
   (
@@ -86,28 +74,10 @@ export const Default = t.brand(
       created?: Units_.Time;
       modified?: Units_.Time;
     } & {
-      agencyId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      validTo:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      created:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      agencyId: Defined;
+      state: Defined;
+      validTo: Defined;
+      created: Defined;
     },
     DefaultBrand
   > => true,

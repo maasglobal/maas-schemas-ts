@@ -15,6 +15,22 @@ import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as ProductOption_ from 'maas-schemas-ts/core/product-option';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-update/request.json';
 // Default
@@ -32,20 +48,8 @@ export type Default = t.Branded<
         customerSelection?: CustomerSelection_.Default;
       }>;
     } & {
-      itinerary:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      customerSelections:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      itinerary: Defined;
+      customerSelections: Defined;
     };
   },
   DefaultBrand
@@ -67,22 +71,8 @@ export const Default = t.brand(
         ),
       }),
       t.type({
-        itinerary: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        customerSelections: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        itinerary: Defined,
+        customerSelections: Defined,
       }),
     ]),
   }),
@@ -101,20 +91,8 @@ export const Default = t.brand(
           customerSelection?: CustomerSelection_.Default;
         }>;
       } & {
-        itinerary:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        customerSelections:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        itinerary: Defined;
+        customerSelections: Defined;
       };
     },
     DefaultBrand

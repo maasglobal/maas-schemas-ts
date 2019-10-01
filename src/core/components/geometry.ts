@@ -9,6 +9,22 @@ GeoJSON geometry, forked from https://github.com/fge/sample-json-schemas/ under 
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/geometry.json';
 // Position
 // A single position
@@ -70,14 +86,8 @@ export interface PolygonBrand {
 // The default export. More information at the top.
 export type Default = t.Branded<
   {} & {
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    coordinates:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    type: Defined;
+    coordinates: Defined;
   } & (unknown | unknown | unknown | unknown | unknown | unknown),
   DefaultBrand
 >;
@@ -85,22 +95,8 @@ export const Default = t.brand(
   t.intersection([
     t.type({}),
     t.type({
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      coordinates: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      type: Defined,
+      coordinates: Defined,
     }),
     t.union([t.unknown, t.unknown, t.unknown, t.unknown, t.unknown, t.unknown]),
   ]),
@@ -108,14 +104,8 @@ export const Default = t.brand(
     x,
   ): x is t.Branded<
     {} & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      coordinates:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      type: Defined;
+      coordinates: Defined;
     } & (unknown | unknown | unknown | unknown | unknown | unknown),
     DefaultBrand
   > => true,

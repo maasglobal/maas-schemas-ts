@@ -10,6 +10,22 @@ Response schema for retrieving a ticket from booking through a TSP adapter
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-ticket/response.json';
 // Default
 // The default export. More information at the top.
@@ -20,15 +36,9 @@ export type Default = t.Branded<
     contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
     refreshAt?: Units_.Time;
   } & {
-    ticket: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    contentType:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    ticket: Defined;
+    type: Defined;
+    contentType: Defined;
   },
   DefaultBrand
 >;
@@ -51,30 +61,9 @@ export const Default = t.brand(
       refreshAt: Units_.Time,
     }),
     t.type({
-      ticket: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      contentType: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      ticket: Defined,
+      type: Defined,
+      contentType: Defined,
     }),
   ]),
   (
@@ -86,15 +75,9 @@ export const Default = t.brand(
       contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
       refreshAt?: Units_.Time;
     } & {
-      ticket: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      contentType:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      ticket: Defined;
+      type: Defined;
+      contentType: Defined;
     },
     DefaultBrand
   > => true,

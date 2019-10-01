@@ -16,6 +16,22 @@ import * as Leg_ from 'maas-schemas-ts/core/leg';
 import * as ProductOption_ from 'maas-schemas-ts/core/product-option';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/itinerary.json';
 // Id
 // The purpose of this remains a mystery
@@ -40,15 +56,9 @@ export type Default = t.Branded<
     type?: 'outward' | 'return';
     bookings?: Array<Booking_.Default>;
   } & {
-    startTime:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    endTime: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    legs: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    startTime: Defined;
+    endTime: Defined;
+    legs: Defined;
   },
   DefaultBrand
 >;
@@ -71,30 +81,9 @@ export const Default = t.brand(
       bookings: t.array(Booking_.Default),
     }),
     t.type({
-      startTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      endTime: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      legs: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      startTime: Defined,
+      endTime: Defined,
+      legs: Defined,
     }),
   ]),
   (
@@ -116,21 +105,9 @@ export const Default = t.brand(
       type?: 'outward' | 'return';
       bookings?: Array<Booking_.Default>;
     } & {
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      endTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      legs: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      startTime: Defined;
+      endTime: Defined;
+      legs: Defined;
     },
     DefaultBrand
   > => true,

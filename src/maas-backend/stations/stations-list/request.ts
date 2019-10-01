@@ -13,6 +13,22 @@ import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/stations/stations-list/request.json';
 // Default
@@ -28,34 +44,10 @@ export type Default = t.Branded<
           radius?: number;
           type?: 'origin' | 'destination' | 'viaAvoid';
         } & {
-          agencyId:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          lat:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          lon:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          type:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          agencyId: Defined;
+          lat: Defined;
+          lon: Defined;
+          type: Defined;
         })
       | ({
           agencyId?: Common_.AgencyId;
@@ -63,45 +55,15 @@ export type Default = t.Branded<
           count?: number;
           type?: 'origin' | 'destination' | 'viaAvoid';
         } & {
-          agencyId:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          name:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          count:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          type:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          agencyId: Defined;
+          name: Defined;
+          count: Defined;
+          type: Defined;
         });
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -123,38 +85,10 @@ export const Default = t.brand(
             ]),
           }),
           t.type({
-            agencyId: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            lat: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            lon: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            type: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
+            agencyId: Defined,
+            lat: Defined,
+            lon: Defined,
+            type: Defined,
           }),
         ]),
         t.intersection([
@@ -169,60 +103,18 @@ export const Default = t.brand(
             ]),
           }),
           t.type({
-            agencyId: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            name: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            count: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            type: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
+            agencyId: Defined,
+            name: Defined,
+            count: Defined,
+            type: Defined,
           }),
         ]),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -238,34 +130,10 @@ export const Default = t.brand(
             radius?: number;
             type?: 'origin' | 'destination' | 'viaAvoid';
           } & {
-            agencyId:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            lat:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            lon:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            type:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            agencyId: Defined;
+            lat: Defined;
+            lon: Defined;
+            type: Defined;
           })
         | ({
             agencyId?: Common_.AgencyId;
@@ -273,51 +141,15 @@ export const Default = t.brand(
             count?: number;
             type?: 'origin' | 'destination' | 'viaAvoid';
           } & {
-            agencyId:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            name:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            count:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            type:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            agencyId: Defined;
+            name: Defined;
+            count: Defined;
+            type: Defined;
           });
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      payload: Defined;
     },
     DefaultBrand
   > => true,

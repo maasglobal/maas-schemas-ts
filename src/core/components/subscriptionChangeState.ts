@@ -10,6 +10,22 @@ MaaS state schemas
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/core/components/subscriptionChangeState.json';
 // Default
@@ -21,8 +37,8 @@ export type Default = t.Branded<
     created?: Units_.Time;
     failureKey?: string & ('UNKNOWN_ERROR' | 'NOT_ELIGIBLE' | 'EXISTING_TICKET');
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    state: Defined;
   },
   DefaultBrand
 >;
@@ -45,22 +61,8 @@ export const Default = t.brand(
       ]),
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      state: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      state: Defined,
     }),
   ]),
   (
@@ -72,8 +74,8 @@ export const Default = t.brand(
       created?: Units_.Time;
       failureKey?: string & ('UNKNOWN_ERROR' | 'NOT_ELIGIBLE' | 'EXISTING_TICKET');
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
+      state: Defined;
     },
     DefaultBrand
   > => true,

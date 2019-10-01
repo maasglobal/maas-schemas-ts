@@ -9,6 +9,22 @@ MaaS common geolocaion units that are used consistently within our own objects
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/units-geo.json';
 // Latitude
 // Geographic latitude (north-south axis) in WGS-84 system, see https://en.wikipedia.org/wiki/World_Geodetic_System
@@ -92,8 +108,8 @@ export type Location = t.Branded<
     lat?: Latitude;
     lon?: Longitude;
   } & {
-    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lat: Defined;
+    lon: Defined;
   },
   LocationBrand
 >;
@@ -104,22 +120,8 @@ export const Location = t.brand(
       lon: Longitude,
     }),
     t.type({
-      lat: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      lon: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      lat: Defined,
+      lon: Defined,
     }),
   ]),
   (
@@ -129,8 +131,8 @@ export const Location = t.brand(
       lat?: Latitude;
       lon?: Longitude;
     } & {
-      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lat: Defined;
+      lon: Defined;
     },
     LocationBrand
   > => true,
@@ -146,8 +148,8 @@ export type RelaxedLocation = t.Branded<
     lat?: RelaxedLatitude;
     lon?: RelaxedLongitude;
   } & {
-    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lat: Defined;
+    lon: Defined;
   },
   RelaxedLocationBrand
 >;
@@ -158,22 +160,8 @@ export const RelaxedLocation = t.brand(
       lon: RelaxedLongitude,
     }),
     t.type({
-      lat: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      lon: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      lat: Defined,
+      lon: Defined,
     }),
   ]),
   (
@@ -183,8 +171,8 @@ export const RelaxedLocation = t.brand(
       lat?: RelaxedLatitude;
       lon?: RelaxedLongitude;
     } & {
-      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lat: Defined;
+      lon: Defined;
     },
     RelaxedLocationBrand
   > => true,

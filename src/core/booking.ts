@@ -22,6 +22,22 @@ import * as Customer_ from 'maas-schemas-ts/core/customer';
 import * as Product_ from 'maas-schemas-ts/core/product';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/booking.json#';
 // Id
 // The purpose of this remains a mystery
@@ -194,26 +210,20 @@ export type Default = t.Branded<
     meta?: BookingMeta_.Default;
     terms?: Terms;
     customer?: Customer_.Default & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
     };
     product?: Product_.Default;
     signature?: Common_.Signature;
     configurator?: Configurator;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    customer: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    state: Defined;
+    leg: Defined;
+    meta: Defined;
+    terms: Defined;
+    token: Defined;
+    customer: Defined;
   },
   DefaultBrand
 >;
@@ -233,14 +243,7 @@ export const Default = t.brand(
       customer: t.intersection([
         Customer_.Default,
         t.type({
-          identityId: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          identityId: Defined,
         }),
       ]),
       product: Product_.Default,
@@ -249,62 +252,13 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      state: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      leg: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      meta: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      terms: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      token: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      customer: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      state: Defined,
+      leg: Defined,
+      meta: Defined,
+      terms: Defined,
+      token: Defined,
+      customer: Defined,
     }),
   ]),
   (
@@ -322,32 +276,20 @@ export const Default = t.brand(
       meta?: BookingMeta_.Default;
       terms?: Terms;
       customer?: Customer_.Default & {
-        identityId:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        identityId: Defined;
       };
       product?: Product_.Default;
       signature?: Common_.Signature;
       configurator?: Configurator;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      token: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      customer:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      id: Defined;
+      state: Defined;
+      leg: Defined;
+      meta: Defined;
+      terms: Defined;
+      token: Defined;
+      customer: Defined;
     },
     DefaultBrand
   > => true,

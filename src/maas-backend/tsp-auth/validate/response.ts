@@ -10,6 +10,22 @@ Response schema for tsp-auth validate
 import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/tsp-auth/validate/response.json';
 // Default
@@ -18,7 +34,7 @@ export type Default = t.Branded<
   {
     location?: Common_.WhimDeepLink;
   } & {
-    location: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    location: Defined;
   },
   DefaultBrand
 >;
@@ -28,14 +44,7 @@ export const Default = t.brand(
       location: Common_.WhimDeepLink,
     }),
     t.type({
-      location: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      location: Defined,
     }),
   ]),
   (
@@ -44,13 +53,7 @@ export const Default = t.brand(
     {
       location?: Common_.WhimDeepLink;
     } & {
-      location:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      location: Defined;
     },
     DefaultBrand
   > => true,

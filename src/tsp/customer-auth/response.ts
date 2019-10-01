@@ -10,6 +10,22 @@ Response schema for initiating customer authorization for TSP
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/customer-auth/response.json';
 // Default
 // The default export. More information at the top.
@@ -17,7 +33,7 @@ export type Default = t.Branded<
   {
     authUrl?: Units_.Url;
   } & {
-    authUrl: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    authUrl: Defined;
   },
   DefaultBrand
 >;
@@ -27,14 +43,7 @@ export const Default = t.brand(
       authUrl: Units_.Url,
     }),
     t.type({
-      authUrl: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      authUrl: Defined,
     }),
   ]),
   (
@@ -43,13 +52,7 @@ export const Default = t.brand(
     {
       authUrl?: Units_.Url;
     } & {
-      authUrl:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      authUrl: Defined;
     },
     DefaultBrand
   > => true,

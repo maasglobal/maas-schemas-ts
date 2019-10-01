@@ -9,6 +9,22 @@ undefined
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_SHARED_BICYCLE.json';
 // Default
 // The default export. More information at the top.
@@ -18,7 +34,7 @@ export type Default = t.Branded<
       id?: string;
       type?: string;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
     };
   },
   DefaultBrand
@@ -31,14 +47,7 @@ export const Default = t.brand(
         type: t.string,
       }),
       t.type({
-        id: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        id: Defined,
       }),
     ]),
   }),
@@ -50,7 +59,7 @@ export const Default = t.brand(
         id?: string;
         type?: string;
       } & {
-        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        id: Defined;
       };
     },
     DefaultBrand

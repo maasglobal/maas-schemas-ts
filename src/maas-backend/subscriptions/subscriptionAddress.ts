@@ -10,6 +10,22 @@ MaaS subscription address schema
 import * as t from 'io-ts';
 import * as Address_ from 'maas-schemas-ts/core/components/address';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptionAddress.json';
 // SubscriptionAddress
@@ -24,8 +40,8 @@ export type SubscriptionAddress = t.Branded<
     phone?: Address_.Phone;
     email?: Address_.Email;
   } & {
-    zipCode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    country: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    zipCode: Defined;
+    country: Defined;
   },
   SubscriptionAddressBrand
 >;
@@ -41,22 +57,8 @@ export const SubscriptionAddress = t.brand(
       email: Address_.Email,
     }),
     t.type({
-      zipCode: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      country: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      zipCode: Defined,
+      country: Defined,
     }),
   ]),
   (
@@ -71,20 +73,8 @@ export const SubscriptionAddress = t.brand(
       phone?: Address_.Phone;
       email?: Address_.Email;
     } & {
-      zipCode:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      country:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      zipCode: Defined;
+      country: Defined;
     },
     SubscriptionAddressBrand
   > => true,
