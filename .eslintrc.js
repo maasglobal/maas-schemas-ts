@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'fp', 'json', 'prettier', 'import'],
+  plugins: ['@typescript-eslint', 'fp', 'json', 'prettier', 'import', '@typescript-eslint/tslint'],
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
@@ -40,7 +40,23 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/converter.ts'],
+      files: ['src/**/*'],
+      parserOptions: {
+        project: ['tsconfig.json'],
+      },
+      rules: {
+        '@typescript-eslint/tslint/config': [2, {
+          'rules': {
+            'no-circular-imports': true,
+          },
+          'rulesDirectory': [
+            'node_modules/tslint-no-circular-imports',
+          ]
+        }],
+      },
+    },
+    {
+      files: ['converter/**/*'],
       rules: {
         '@typescript-eslint/camelcase': [2, { ignoreDestructuring: true }],
         '@typescript-eslint/no-unused-vars': [1, { argsIgnorePattern: '(^_)', ignoreRestSiblings: true }],

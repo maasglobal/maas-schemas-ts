@@ -7,14 +7,18 @@
     "lib/**/*"
   ],
   "scripts": {
+    "//": [
+      "Run eslint without --fix to check for cyclic dependencies"
+    ],
     "eslint": "eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore",
     "lint": "yarn eslint",
     "clean-src": "rm -rf src",
     "clean": "rm -rf lib",
     "build-converter": "tsc converter.ts -outdir tmp",
+    "run-converter": "(cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;)",
     "build": "yarn clean && ttsc",
     "ci": "yarn lint && yarn build",
-    "convert-all": "(yarn clean-src && yarn lint && yarn build-converter && (cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;) && yarn eslint --fix && yarn build) 2>&1|tee translation.log",
+    "convert-all": "(yarn clean-src && yarn lint && yarn build-converter && yarn run-converter && yarn eslint --fix && yarn eslint && yarn build) 2>&1|tee translation.log",
     "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {
@@ -40,6 +44,7 @@
     "@types/json-schema": "^7.0.3",
     "@types/node": "^12.7.5",
     "@typescript-eslint/eslint-plugin": "^2.1.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.3.2",
     "@typescript-eslint/parser": "^2.1.0",
     "@zerollup/ts-transform-paths": "^1.7.3",
     "eslint": "^6.3.0",
@@ -52,6 +57,9 @@
     "io-ts": "^2.0.1",
     "io-ts-codegen": "^0.4.2",
     "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "tslint-no-circular-imports": "^0.7.0",
     "ttypescript": "^1.5.7",
     "typescript": "^3.5.3"
   }
