@@ -28,11 +28,11 @@ export type Default = t.Branded<
     configurator?: Configurator_.Default;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    leg: unknown;
-    meta: unknown;
-    terms: unknown;
-    customer: unknown;
-    tspProduct: unknown;
+    leg: {} | null;
+    meta: {} | null;
+    terms: {} | null;
+    customer: {} | null;
+    tspProduct: {} | null;
   },
   DefaultBrand
 >;
@@ -48,11 +48,11 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      leg: t.unknown,
-      meta: t.unknown,
-      terms: t.unknown,
-      customer: t.unknown,
-      tspProduct: t.unknown,
+      leg: t.union([t.type({}), t.null]),
+      meta: t.union([t.type({}), t.null]),
+      terms: t.union([t.type({}), t.null]),
+      customer: t.union([t.type({}), t.null]),
+      tspProduct: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -67,11 +67,11 @@ export const Default = t.brand(
       configurator?: Configurator_.Default;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      leg: unknown;
-      meta: unknown;
-      terms: unknown;
-      customer: unknown;
-      tspProduct: unknown;
+      leg: {} | null;
+      meta: {} | null;
+      terms: {} | null;
+      customer: {} | null;
+      tspProduct: {} | null;
     },
     DefaultBrand
   > => true,

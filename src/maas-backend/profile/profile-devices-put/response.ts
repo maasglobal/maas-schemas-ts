@@ -20,9 +20,9 @@ export type Device = t.Branded<
     deviceIdentifier?: Units_.Uuid;
     deviceType?: string & ('iOS' | 'Android');
   } & {
-    devicePushToken: unknown;
-    deviceIdentifier: unknown;
-    deviceType: unknown;
+    devicePushToken: {} | null;
+    deviceIdentifier: {} | null;
+    deviceType: {} | null;
   },
   DeviceBrand
 >;
@@ -37,9 +37,9 @@ export const Device = t.brand(
       ]),
     }),
     t.type({
-      devicePushToken: t.unknown,
-      deviceIdentifier: t.unknown,
-      deviceType: t.unknown,
+      devicePushToken: t.union([t.type({}), t.null]),
+      deviceIdentifier: t.union([t.type({}), t.null]),
+      deviceType: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -50,9 +50,9 @@ export const Device = t.brand(
       deviceIdentifier?: Units_.Uuid;
       deviceType?: string & ('iOS' | 'Android');
     } & {
-      devicePushToken: unknown;
-      deviceIdentifier: unknown;
-      deviceType: unknown;
+      devicePushToken: {} | null;
+      deviceIdentifier: {} | null;
+      deviceType: {} | null;
     },
     DeviceBrand
   > => true,
@@ -68,7 +68,7 @@ export type Default = t.Branded<
     device?: Device;
     debug?: {};
   } & {
-    device: unknown;
+    device: {} | null;
   },
   DefaultBrand
 >;
@@ -79,7 +79,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      device: t.unknown,
+      device: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -89,7 +89,7 @@ export const Default = t.brand(
       device?: Device;
       debug?: {};
     } & {
-      device: unknown;
+      device: {} | null;
     },
     DefaultBrand
   > => true,

@@ -44,15 +44,15 @@ export type Default = t.Branded<
       fuelLevel?: number;
       location?: UnitsGeo_.Location;
     } & {
-      classification: unknown;
+      classification: {} | null;
     };
     pickupInfo?: Common_.HtmlBlock;
     returnInfo?: Common_.HtmlBlock;
     startEndGeoRegionUrl?: Units_.Url;
   } & {
-    name: unknown;
-    description: unknown;
-    image: unknown;
+    name: {} | null;
+    description: {} | null;
+    image: {} | null;
   },
   DefaultBrand
 >;
@@ -88,7 +88,7 @@ export const Default = t.brand(
           location: UnitsGeo_.Location,
         }),
         t.type({
-          classification: t.unknown,
+          classification: t.union([t.type({}), t.null]),
         }),
       ]),
       pickupInfo: Common_.HtmlBlock,
@@ -96,9 +96,9 @@ export const Default = t.brand(
       startEndGeoRegionUrl: Units_.Url,
     }),
     t.type({
-      name: t.unknown,
-      description: t.unknown,
-      image: t.unknown,
+      name: t.union([t.type({}), t.null]),
+      description: t.union([t.type({}), t.null]),
+      image: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -131,15 +131,15 @@ export const Default = t.brand(
         fuelLevel?: number;
         location?: UnitsGeo_.Location;
       } & {
-        classification: unknown;
+        classification: {} | null;
       };
       pickupInfo?: Common_.HtmlBlock;
       returnInfo?: Common_.HtmlBlock;
       startEndGeoRegionUrl?: Units_.Url;
     } & {
-      name: unknown;
-      description: unknown;
-      image: unknown;
+      name: {} | null;
+      description: {} | null;
+      image: {} | null;
     },
     DefaultBrand
   > => true,

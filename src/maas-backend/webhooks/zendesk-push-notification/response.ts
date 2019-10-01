@@ -16,11 +16,11 @@ export const schemaId =
 export type Default = t.Branded<
   {
     results?: {
-      successCount: unknown;
-      failureCount: unknown;
+      successCount: {} | null;
+      failureCount: {} | null;
     };
   } & {
-    results: unknown;
+    results: {} | null;
   },
   DefaultBrand
 >;
@@ -28,12 +28,12 @@ export const Default = t.brand(
   t.intersection([
     t.partial({
       results: t.type({
-        successCount: t.unknown,
-        failureCount: t.unknown,
+        successCount: t.union([t.type({}), t.null]),
+        failureCount: t.union([t.type({}), t.null]),
       }),
     }),
     t.type({
-      results: t.unknown,
+      results: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -41,11 +41,11 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       results?: {
-        successCount: unknown;
-        failureCount: unknown;
+        successCount: {} | null;
+        failureCount: {} | null;
       };
     } & {
-      results: unknown;
+      results: {} | null;
     },
     DefaultBrand
   > => true,

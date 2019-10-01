@@ -19,8 +19,8 @@ export type Default = t.Branded<
     agencyId?: string;
     payload?: RemoteRequest_.Default;
   } & {
-    agencyId: unknown;
-    payload: unknown;
+    agencyId: {} | null;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -31,8 +31,8 @@ export const Default = t.brand(
       payload: RemoteRequest_.Default,
     }),
     t.type({
-      agencyId: t.unknown,
-      payload: t.unknown,
+      agencyId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -42,8 +42,8 @@ export const Default = t.brand(
       agencyId?: string;
       payload?: RemoteRequest_.Default;
     } & {
-      agencyId: unknown;
-      payload: unknown;
+      agencyId: {} | null;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

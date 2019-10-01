@@ -27,7 +27,7 @@ export type Default = t.Branded<
       count?: number;
       radius?: UnitsGeo_.Distance;
     } & {
-      name: unknown;
+      name: {} | null;
     };
     headers?: ApiCommon_.Headers;
   },
@@ -45,7 +45,7 @@ export const Default = t.brand(
         radius: UnitsGeo_.Distance,
       }),
       t.type({
-        name: t.unknown,
+        name: t.union([t.type({}), t.null]),
       }),
     ]),
     headers: ApiCommon_.Headers,
@@ -62,7 +62,7 @@ export const Default = t.brand(
         count?: number;
         radius?: UnitsGeo_.Distance;
       } & {
-        name: unknown;
+        name: {} | null;
       };
       headers?: ApiCommon_.Headers;
     },

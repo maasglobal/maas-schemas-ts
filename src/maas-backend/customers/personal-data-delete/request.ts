@@ -22,14 +22,14 @@ export type Default = t.Branded<
     payload?: {
       itemName?: string;
     } & {
-      itemName: unknown;
+      itemName: {} | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    customerId: unknown;
-    payload: unknown;
-    headers: unknown;
+    identityId: {} | null;
+    customerId: {} | null;
+    payload: {} | null;
+    headers: {} | null;
   },
   DefaultBrand
 >;
@@ -43,16 +43,16 @@ export const Default = t.brand(
           itemName: t.string,
         }),
         t.type({
-          itemName: t.unknown,
+          itemName: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      customerId: t.unknown,
-      payload: t.unknown,
-      headers: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
+      headers: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -64,14 +64,14 @@ export const Default = t.brand(
       payload?: {
         itemName?: string;
       } & {
-        itemName: unknown;
+        itemName: {} | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      customerId: unknown;
-      payload: unknown;
-      headers: unknown;
+      identityId: {} | null;
+      customerId: {} | null;
+      payload: {} | null;
+      headers: {} | null;
     },
     DefaultBrand
   > => true,

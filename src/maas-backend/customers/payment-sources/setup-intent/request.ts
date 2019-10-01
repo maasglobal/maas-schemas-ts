@@ -29,20 +29,20 @@ export type Default = t.Branded<
         type?: PaymentSource_.Type;
         alias?: PaymentSource_.Alias;
       } & {
-        paymentSourceId: unknown;
-        gatewayName: unknown;
-        isDefault: unknown;
-        type: unknown;
+        paymentSourceId: {} | null;
+        gatewayName: {} | null;
+        isDefault: {} | null;
+        type: {} | null;
       };
     } & {
-      setupIntent: unknown;
+      setupIntent: {} | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    customerId: unknown;
-    payload: unknown;
-    headers: unknown;
+    identityId: {} | null;
+    customerId: {} | null;
+    payload: {} | null;
+    headers: {} | null;
   },
   DefaultBrand
 >;
@@ -62,24 +62,24 @@ export const Default = t.brand(
               alias: PaymentSource_.Alias,
             }),
             t.type({
-              paymentSourceId: t.unknown,
-              gatewayName: t.unknown,
-              isDefault: t.unknown,
-              type: t.unknown,
+              paymentSourceId: t.union([t.type({}), t.null]),
+              gatewayName: t.union([t.type({}), t.null]),
+              isDefault: t.union([t.type({}), t.null]),
+              type: t.union([t.type({}), t.null]),
             }),
           ]),
         }),
         t.type({
-          setupIntent: t.unknown,
+          setupIntent: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      customerId: t.unknown,
-      payload: t.unknown,
-      headers: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
+      headers: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -96,20 +96,20 @@ export const Default = t.brand(
           type?: PaymentSource_.Type;
           alias?: PaymentSource_.Alias;
         } & {
-          paymentSourceId: unknown;
-          gatewayName: unknown;
-          isDefault: unknown;
-          type: unknown;
+          paymentSourceId: {} | null;
+          gatewayName: {} | null;
+          isDefault: {} | null;
+          type: {} | null;
         };
       } & {
-        setupIntent: unknown;
+        setupIntent: {} | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      customerId: unknown;
-      payload: unknown;
-      headers: unknown;
+      identityId: {} | null;
+      customerId: {} | null;
+      payload: {} | null;
+      headers: {} | null;
     },
     DefaultBrand
   > => true,

@@ -25,8 +25,8 @@ export type AvainpayResponse = t.Branded<
     };
     response_map?: {};
   } & {
-    action_str: unknown;
-    data_type: unknown;
+    action_str: {} | null;
+    data_type: {} | null;
   },
   AvainpayResponseBrand
 >;
@@ -44,8 +44,8 @@ export const AvainpayResponse = t.brand(
       response_map: t.type({}),
     }),
     t.type({
-      action_str: t.unknown,
-      data_type: t.unknown,
+      action_str: t.union([t.type({}), t.null]),
+      data_type: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -62,8 +62,8 @@ export const AvainpayResponse = t.brand(
       };
       response_map?: {};
     } & {
-      action_str: unknown;
-      data_type: unknown;
+      action_str: {} | null;
+      data_type: {} | null;
     },
     AvainpayResponseBrand
   > => true,

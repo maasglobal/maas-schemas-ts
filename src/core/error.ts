@@ -17,8 +17,8 @@ export type Default = t.Branded<
     message?: string;
     code?: string;
   } & {
-    message: unknown;
-    code: unknown;
+    message: {} | null;
+    code: {} | null;
   },
   DefaultBrand
 >;
@@ -29,8 +29,8 @@ export const Default = t.brand(
       code: t.string,
     }),
     t.type({
-      message: t.unknown,
-      code: t.unknown,
+      message: t.union([t.type({}), t.null]),
+      code: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -40,8 +40,8 @@ export const Default = t.brand(
       message?: string;
       code?: string;
     } & {
-      message: unknown;
-      code: unknown;
+      message: {} | null;
+      code: {} | null;
     },
     DefaultBrand
   > => true,

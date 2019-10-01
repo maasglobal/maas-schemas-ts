@@ -26,11 +26,11 @@ export type Default = t.Branded<
     region?: Region_.Default;
     authorizations?: Array<Authorization_.Default>;
   } & {
-    personalData: unknown;
-    paymentSources: unknown;
-    balances: unknown;
-    region: unknown;
-    authorizations: unknown;
+    personalData: {} | null;
+    paymentSources: {} | null;
+    balances: {} | null;
+    region: {} | null;
+    authorizations: {} | null;
   },
   DefaultBrand
 >;
@@ -45,11 +45,11 @@ export const Default = t.brand(
       authorizations: t.array(Authorization_.Default),
     }),
     t.type({
-      personalData: t.unknown,
-      paymentSources: t.unknown,
-      balances: t.unknown,
-      region: t.unknown,
-      authorizations: t.unknown,
+      personalData: t.union([t.type({}), t.null]),
+      paymentSources: t.union([t.type({}), t.null]),
+      balances: t.union([t.type({}), t.null]),
+      region: t.union([t.type({}), t.null]),
+      authorizations: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -63,11 +63,11 @@ export const Default = t.brand(
       region?: Region_.Default;
       authorizations?: Array<Authorization_.Default>;
     } & {
-      personalData: unknown;
-      paymentSources: unknown;
-      balances: unknown;
-      region: unknown;
-      authorizations: unknown;
+      personalData: {} | null;
+      paymentSources: {} | null;
+      balances: {} | null;
+      region: {} | null;
+      authorizations: {} | null;
     },
     DefaultBrand
   > => true,

@@ -17,8 +17,8 @@ export const schemaId = 'http://maasglobal.com/core/components/place.json';
 // The default export. More information at the top.
 export type Default = t.Branded<
   {} & {
-    lat: unknown;
-    lon: unknown;
+    lat: {} | null;
+    lon: {} | null;
   } & (UnitsGeo_.RelaxedLocation & {
       name?: Address_.PlaceName;
       address?: Address_.ComponentAddress;
@@ -36,8 +36,8 @@ export const Default = t.brand(
   t.intersection([
     t.type({}),
     t.type({
-      lat: t.unknown,
-      lon: t.unknown,
+      lat: t.union([t.type({}), t.null]),
+      lon: t.union([t.type({}), t.null]),
     }),
     t.intersection([
       UnitsGeo_.RelaxedLocation,
@@ -58,8 +58,8 @@ export const Default = t.brand(
     x,
   ): x is t.Branded<
     {} & {
-      lat: unknown;
-      lon: unknown;
+      lat: {} | null;
+      lon: {} | null;
     } & (UnitsGeo_.RelaxedLocation & {
         name?: Address_.PlaceName;
         address?: Address_.ComponentAddress;

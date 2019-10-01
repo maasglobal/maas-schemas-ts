@@ -56,8 +56,8 @@ export type Default = t.Branded<
     | Common_.AppInstanceId
     | (string | number | boolean)
   >) & {
-    startTime: unknown;
-    from: unknown;
+    startTime: {} | null;
+    from: {} | null;
   },
   DefaultBrand
 >;
@@ -106,8 +106,8 @@ export const Default = t.brand(
       ),
     ]),
     t.type({
-      startTime: t.unknown,
-      from: t.unknown,
+      startTime: t.union([t.type({}), t.null]),
+      from: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -150,8 +150,8 @@ export const Default = t.brand(
       | Common_.AppInstanceId
       | (string | number | boolean)
     >) & {
-      startTime: unknown;
-      from: unknown;
+      startTime: {} | null;
+      from: {} | null;
     },
     DefaultBrand
   > => true,

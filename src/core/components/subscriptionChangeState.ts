@@ -21,8 +21,8 @@ export type Default = t.Branded<
     created?: Units_.Time;
     failureKey?: string & ('UNKNOWN_ERROR' | 'NOT_ELIGIBLE' | 'EXISTING_TICKET');
   } & {
-    id: unknown;
-    state: unknown;
+    id: {} | null;
+    state: {} | null;
   },
   DefaultBrand
 >;
@@ -45,8 +45,8 @@ export const Default = t.brand(
       ]),
     }),
     t.type({
-      id: t.unknown,
-      state: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      state: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -58,8 +58,8 @@ export const Default = t.brand(
       created?: Units_.Time;
       failureKey?: string & ('UNKNOWN_ERROR' | 'NOT_ELIGIBLE' | 'EXISTING_TICKET');
     } & {
-      id: unknown;
-      state: unknown;
+      id: {} | null;
+      state: {} | null;
     },
     DefaultBrand
   > => true,

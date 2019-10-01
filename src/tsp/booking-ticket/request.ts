@@ -19,9 +19,9 @@ export type Default = t.Branded<
     ticket?: string | Array<string>;
     token?: Booking_.Token;
   } & {
-    ticket: unknown;
-    token: unknown;
-    tspId: unknown;
+    ticket: {} | null;
+    token: {} | null;
+    tspId: {} | null;
   },
   DefaultBrand
 >;
@@ -33,9 +33,9 @@ export const Default = t.brand(
       token: Booking_.Token,
     }),
     t.type({
-      ticket: t.unknown,
-      token: t.unknown,
-      tspId: t.unknown,
+      ticket: t.union([t.type({}), t.null]),
+      token: t.union([t.type({}), t.null]),
+      tspId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -46,9 +46,9 @@ export const Default = t.brand(
       ticket?: string | Array<string>;
       token?: Booking_.Token;
     } & {
-      ticket: unknown;
-      token: unknown;
-      tspId: unknown;
+      ticket: {} | null;
+      token: {} | null;
+      tspId: {} | null;
     },
     DefaultBrand
   > => true,

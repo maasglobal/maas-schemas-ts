@@ -33,9 +33,9 @@ export type Default = t.Branded<
       stationsList?: boolean;
       stationsRetrieve?: boolean;
     } & {
-      ticket: unknown;
-      stationsList: unknown;
-      stationsRetrieve: unknown;
+      ticket: {} | null;
+      stationsList: {} | null;
+      stationsRetrieve: {} | null;
     };
     extra?: {
       radius?: {
@@ -44,9 +44,9 @@ export type Default = t.Branded<
         maxRadiusMetres?: number;
         description?: string;
       } & {
-        fixedFareAmount: unknown;
-        fixedFareCurrency: unknown;
-        maxRadiusMetres: unknown;
+        fixedFareAmount: {} | null;
+        fixedFareCurrency: {} | null;
+        maxRadiusMetres: {} | null;
       };
       prebookingSupported?: boolean;
     };
@@ -65,27 +65,27 @@ export type Default = t.Branded<
             type?: 'string' | 'number' | 'boolean' | 'station';
             default?: string | number | boolean;
           } & {
-            id: unknown;
-            name: unknown;
-            type: unknown;
+            id: {} | null;
+            name: {} | null;
+            type: {} | null;
           }
         >;
       } & {
-        id: unknown;
-        name: unknown;
-        inputs: unknown;
+        id: {} | null;
+        name: {} | null;
+        inputs: {} | null;
       }
     >;
   } & {
-    name: unknown;
-    agencyId: unknown;
-    groupId: unknown;
-    branding: unknown;
-    hidden: unknown;
-    features: unknown;
-    personalDataOptionsAllow: unknown;
-    personalDataCreateAllow: unknown;
-    optionalParameters: unknown;
+    name: {} | null;
+    agencyId: {} | null;
+    groupId: {} | null;
+    branding: {} | null;
+    hidden: {} | null;
+    features: {} | null;
+    personalDataOptionsAllow: {} | null;
+    personalDataCreateAllow: {} | null;
+    optionalParameters: {} | null;
   },
   DefaultBrand
 >;
@@ -110,9 +110,9 @@ export const Default = t.brand(
           stationsRetrieve: t.boolean,
         }),
         t.type({
-          ticket: t.unknown,
-          stationsList: t.unknown,
-          stationsRetrieve: t.unknown,
+          ticket: t.union([t.type({}), t.null]),
+          stationsList: t.union([t.type({}), t.null]),
+          stationsRetrieve: t.union([t.type({}), t.null]),
         }),
       ]),
       extra: t.partial({
@@ -127,9 +127,9 @@ export const Default = t.brand(
             description: t.string,
           }),
           t.type({
-            fixedFareAmount: t.unknown,
-            fixedFareCurrency: t.unknown,
-            maxRadiusMetres: t.unknown,
+            fixedFareAmount: t.union([t.type({}), t.null]),
+            fixedFareCurrency: t.union([t.type({}), t.null]),
+            maxRadiusMetres: t.union([t.type({}), t.null]),
           }),
         ]),
         prebookingSupported: t.boolean,
@@ -163,31 +163,31 @@ export const Default = t.brand(
                   default: t.union([t.string, t.number, t.boolean]),
                 }),
                 t.type({
-                  id: t.unknown,
-                  name: t.unknown,
-                  type: t.unknown,
+                  id: t.union([t.type({}), t.null]),
+                  name: t.union([t.type({}), t.null]),
+                  type: t.union([t.type({}), t.null]),
                 }),
               ]),
             ),
           }),
           t.type({
-            id: t.unknown,
-            name: t.unknown,
-            inputs: t.unknown,
+            id: t.union([t.type({}), t.null]),
+            name: t.union([t.type({}), t.null]),
+            inputs: t.union([t.type({}), t.null]),
           }),
         ]),
       ),
     }),
     t.type({
-      name: t.unknown,
-      agencyId: t.unknown,
-      groupId: t.unknown,
-      branding: t.unknown,
-      hidden: t.unknown,
-      features: t.unknown,
-      personalDataOptionsAllow: t.unknown,
-      personalDataCreateAllow: t.unknown,
-      optionalParameters: t.unknown,
+      name: t.union([t.type({}), t.null]),
+      agencyId: t.union([t.type({}), t.null]),
+      groupId: t.union([t.type({}), t.null]),
+      branding: t.union([t.type({}), t.null]),
+      hidden: t.union([t.type({}), t.null]),
+      features: t.union([t.type({}), t.null]),
+      personalDataOptionsAllow: t.union([t.type({}), t.null]),
+      personalDataCreateAllow: t.union([t.type({}), t.null]),
+      optionalParameters: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -210,9 +210,9 @@ export const Default = t.brand(
         stationsList?: boolean;
         stationsRetrieve?: boolean;
       } & {
-        ticket: unknown;
-        stationsList: unknown;
-        stationsRetrieve: unknown;
+        ticket: {} | null;
+        stationsList: {} | null;
+        stationsRetrieve: {} | null;
       };
       extra?: {
         radius?: {
@@ -221,9 +221,9 @@ export const Default = t.brand(
           maxRadiusMetres?: number;
           description?: string;
         } & {
-          fixedFareAmount: unknown;
-          fixedFareCurrency: unknown;
-          maxRadiusMetres: unknown;
+          fixedFareAmount: {} | null;
+          fixedFareCurrency: {} | null;
+          maxRadiusMetres: {} | null;
         };
         prebookingSupported?: boolean;
       };
@@ -242,27 +242,27 @@ export const Default = t.brand(
               type?: 'string' | 'number' | 'boolean' | 'station';
               default?: string | number | boolean;
             } & {
-              id: unknown;
-              name: unknown;
-              type: unknown;
+              id: {} | null;
+              name: {} | null;
+              type: {} | null;
             }
           >;
         } & {
-          id: unknown;
-          name: unknown;
-          inputs: unknown;
+          id: {} | null;
+          name: {} | null;
+          inputs: {} | null;
         }
       >;
     } & {
-      name: unknown;
-      agencyId: unknown;
-      groupId: unknown;
-      branding: unknown;
-      hidden: unknown;
-      features: unknown;
-      personalDataOptionsAllow: unknown;
-      personalDataCreateAllow: unknown;
-      optionalParameters: unknown;
+      name: {} | null;
+      agencyId: {} | null;
+      groupId: {} | null;
+      branding: {} | null;
+      hidden: {} | null;
+      features: {} | null;
+      personalDataOptionsAllow: {} | null;
+      personalDataCreateAllow: {} | null;
+      optionalParameters: {} | null;
     },
     DefaultBrand
   > => true,

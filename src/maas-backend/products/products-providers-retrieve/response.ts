@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     provider?: Provider_.Default;
   } & {
-    provider: unknown;
+    provider: {} | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,7 @@ export const Default = t.brand(
       provider: Provider_.Default,
     }),
     t.type({
-      provider: t.unknown,
+      provider: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -37,7 +37,7 @@ export const Default = t.brand(
     {
       provider?: Provider_.Default;
     } & {
-      provider: unknown;
+      provider: {} | null;
     },
     DefaultBrand
   > => true,

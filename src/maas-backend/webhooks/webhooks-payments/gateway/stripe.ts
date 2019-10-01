@@ -35,18 +35,18 @@ export type Request = t.Branded<
         };
       };
     } & {
-      type: unknown;
-      id: unknown;
-      data: unknown;
+      type: {} | null;
+      id: {} | null;
+      data: {} | null;
     };
     params?: {
       gatewayName?: string & 'stripe';
     } & {
-      gatewayName: unknown;
+      gatewayName: {} | null;
     };
   } & {
-    params: unknown;
-    payload: unknown;
+    params: {} | null;
+    payload: {} | null;
   },
   RequestBrand
 >;
@@ -77,9 +77,9 @@ export const Request = t.brand(
           }),
         }),
         t.type({
-          type: t.unknown,
-          id: t.unknown,
-          data: t.unknown,
+          type: t.union([t.type({}), t.null]),
+          id: t.union([t.type({}), t.null]),
+          data: t.union([t.type({}), t.null]),
         }),
       ]),
       params: t.intersection([
@@ -87,13 +87,13 @@ export const Request = t.brand(
           gatewayName: t.intersection([t.string, t.literal('stripe')]),
         }),
         t.type({
-          gatewayName: t.unknown,
+          gatewayName: t.union([t.type({}), t.null]),
         }),
       ]),
     }),
     t.type({
-      params: t.unknown,
-      payload: t.unknown,
+      params: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -120,18 +120,18 @@ export const Request = t.brand(
           };
         };
       } & {
-        type: unknown;
-        id: unknown;
-        data: unknown;
+        type: {} | null;
+        id: {} | null;
+        data: {} | null;
       };
       params?: {
         gatewayName?: string & 'stripe';
       } & {
-        gatewayName: unknown;
+        gatewayName: {} | null;
       };
     } & {
-      params: unknown;
-      payload: unknown;
+      params: {} | null;
+      payload: {} | null;
     },
     RequestBrand
   > => true,

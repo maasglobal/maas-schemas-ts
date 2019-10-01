@@ -33,10 +33,10 @@ export type Plan1 = t.Branded<
     outwards?: Itineraries;
     returns?: Itineraries;
   } & {
-    from: unknown;
-    planId: unknown;
-    outwards: unknown;
-    returns: unknown;
+    from: {} | null;
+    planId: {} | null;
+    outwards: {} | null;
+    returns: {} | null;
   },
   Plan1Brand
 >;
@@ -49,10 +49,10 @@ export const Plan1 = t.brand(
       returns: Itineraries,
     }),
     t.type({
-      from: t.unknown,
-      planId: t.unknown,
-      outwards: t.unknown,
-      returns: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      planId: t.union([t.type({}), t.null]),
+      outwards: t.union([t.type({}), t.null]),
+      returns: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -64,10 +64,10 @@ export const Plan1 = t.brand(
       outwards?: Itineraries;
       returns?: Itineraries;
     } & {
-      from: unknown;
-      planId: unknown;
-      outwards: unknown;
-      returns: unknown;
+      from: {} | null;
+      planId: {} | null;
+      outwards: {} | null;
+      returns: {} | null;
     },
     Plan1Brand
   > => true,
@@ -84,9 +84,9 @@ export type Plan2 = t.Branded<
     planId?: Units_.Uuid;
     itineraries?: Itineraries;
   } & {
-    from: unknown;
-    planId: unknown;
-    itineraries: unknown;
+    from: {} | null;
+    planId: {} | null;
+    itineraries: {} | null;
   },
   Plan2Brand
 >;
@@ -98,9 +98,9 @@ export const Plan2 = t.brand(
       itineraries: Itineraries,
     }),
     t.type({
-      from: t.unknown,
-      planId: t.unknown,
-      itineraries: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      planId: t.union([t.type({}), t.null]),
+      itineraries: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -111,9 +111,9 @@ export const Plan2 = t.brand(
       planId?: Units_.Uuid;
       itineraries?: Itineraries;
     } & {
-      from: unknown;
-      planId: unknown;
-      itineraries: unknown;
+      from: {} | null;
+      planId: {} | null;
+      itineraries: {} | null;
     },
     Plan2Brand
   > => true,

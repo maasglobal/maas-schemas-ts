@@ -20,7 +20,7 @@ export type Default = t.Branded<
     immediateUpdate?: boolean;
     debug?: {};
   } & {
-    estimate: unknown;
+    estimate: {} | null;
   },
   DefaultBrand
 >;
@@ -32,7 +32,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      estimate: t.unknown,
+      estimate: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -43,7 +43,7 @@ export const Default = t.brand(
       immediateUpdate?: boolean;
       debug?: {};
     } & {
-      estimate: unknown;
+      estimate: {} | null;
     },
     DefaultBrand
   > => true,

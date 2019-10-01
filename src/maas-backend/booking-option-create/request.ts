@@ -62,9 +62,9 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    payload: unknown;
-    headers: unknown;
+    identityId: {} | null;
+    payload: {} | null;
+    headers: {} | null;
   },
   DefaultBrand
 >;
@@ -76,9 +76,9 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      payload: t.unknown,
-      headers: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
+      headers: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -89,9 +89,9 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      payload: unknown;
-      headers: unknown;
+      identityId: {} | null;
+      payload: {} | null;
+      headers: {} | null;
     },
     DefaultBrand
   > => true,

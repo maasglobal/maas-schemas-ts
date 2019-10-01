@@ -26,8 +26,8 @@ export type Default = t.Branded<
     terms?: Booking_.Terms;
     token?: Booking_.Token;
   } & {
-    tspId: unknown;
-    state: unknown;
+    tspId: {} | null;
+    state: {} | null;
   },
   DefaultBrand
 >;
@@ -50,8 +50,8 @@ export const Default = t.brand(
       token: Booking_.Token,
     }),
     t.type({
-      tspId: t.unknown,
-      state: t.unknown,
+      tspId: t.union([t.type({}), t.null]),
+      state: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -72,8 +72,8 @@ export const Default = t.brand(
       terms?: Booking_.Terms;
       token?: Booking_.Token;
     } & {
-      tspId: unknown;
-      state: unknown;
+      tspId: {} | null;
+      state: {} | null;
     },
     DefaultBrand
   > => true,

@@ -194,20 +194,20 @@ export type Default = t.Branded<
     meta?: BookingMeta_.Default;
     terms?: Terms;
     customer?: Customer_.Default & {
-      identityId: unknown;
+      identityId: {} | null;
     };
     product?: Product_.Default;
     signature?: Common_.Signature;
     configurator?: Configurator;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    id: unknown;
-    state: unknown;
-    leg: unknown;
-    meta: unknown;
-    terms: unknown;
-    token: unknown;
-    customer: unknown;
+    id: {} | null;
+    state: {} | null;
+    leg: {} | null;
+    meta: {} | null;
+    terms: {} | null;
+    token: {} | null;
+    customer: {} | null;
   },
   DefaultBrand
 >;
@@ -227,7 +227,7 @@ export const Default = t.brand(
       customer: t.intersection([
         Customer_.Default,
         t.type({
-          identityId: t.unknown,
+          identityId: t.union([t.type({}), t.null]),
         }),
       ]),
       product: Product_.Default,
@@ -236,13 +236,13 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      id: t.unknown,
-      state: t.unknown,
-      leg: t.unknown,
-      meta: t.unknown,
-      terms: t.unknown,
-      token: t.unknown,
-      customer: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      state: t.union([t.type({}), t.null]),
+      leg: t.union([t.type({}), t.null]),
+      meta: t.union([t.type({}), t.null]),
+      terms: t.union([t.type({}), t.null]),
+      token: t.union([t.type({}), t.null]),
+      customer: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -260,20 +260,20 @@ export const Default = t.brand(
       meta?: BookingMeta_.Default;
       terms?: Terms;
       customer?: Customer_.Default & {
-        identityId: unknown;
+        identityId: {} | null;
       };
       product?: Product_.Default;
       signature?: Common_.Signature;
       configurator?: Configurator;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      id: unknown;
-      state: unknown;
-      leg: unknown;
-      meta: unknown;
-      terms: unknown;
-      token: unknown;
-      customer: unknown;
+      id: {} | null;
+      state: {} | null;
+      leg: {} | null;
+      meta: {} | null;
+      terms: {} | null;
+      token: {} | null;
+      customer: {} | null;
     },
     DefaultBrand
   > => true,

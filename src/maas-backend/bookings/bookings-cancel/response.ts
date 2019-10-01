@@ -15,19 +15,19 @@ export const schemaId =
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    booking: unknown;
+    booking: {} | null;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    booking: t.unknown,
+    booking: t.union([t.type({}), t.null]),
   }),
   (
     x,
   ): x is t.Branded<
     {
-      booking: unknown;
+      booking: {} | null;
     },
     DefaultBrand
   > => true,

@@ -22,10 +22,10 @@ export type Default = t.Branded<
     created?: Units_.Time;
     modified?: Units_.Time;
   } & {
-    agencyId: unknown;
-    state: unknown;
-    validTo: unknown;
-    created: unknown;
+    agencyId: {} | null;
+    state: {} | null;
+    validTo: {} | null;
+    created: {} | null;
   },
   DefaultBrand
 >;
@@ -42,10 +42,10 @@ export const Default = t.brand(
       modified: Units_.Time,
     }),
     t.type({
-      agencyId: t.unknown,
-      state: t.unknown,
-      validTo: t.unknown,
-      created: t.unknown,
+      agencyId: t.union([t.type({}), t.null]),
+      state: t.union([t.type({}), t.null]),
+      validTo: t.union([t.type({}), t.null]),
+      created: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -58,10 +58,10 @@ export const Default = t.brand(
       created?: Units_.Time;
       modified?: Units_.Time;
     } & {
-      agencyId: unknown;
-      state: unknown;
-      validTo: unknown;
-      created: unknown;
+      agencyId: {} | null;
+      state: {} | null;
+      validTo: {} | null;
+      created: {} | null;
     },
     DefaultBrand
   > => true,

@@ -109,11 +109,11 @@ export type PaymentSource = t.Branded<
     status?: Status;
     setupIntentId?: SetupIntentId;
   } & {
-    paymentSourceId: unknown;
-    gatewayName: unknown;
-    type: unknown;
-    isDefault: unknown;
-    status: unknown;
+    paymentSourceId: {} | null;
+    gatewayName: {} | null;
+    type: {} | null;
+    isDefault: {} | null;
+    status: {} | null;
   },
   PaymentSourceBrand
 >;
@@ -136,11 +136,11 @@ export const PaymentSource = t.brand(
       setupIntentId: SetupIntentId,
     }),
     t.type({
-      paymentSourceId: t.unknown,
-      gatewayName: t.unknown,
-      type: t.unknown,
-      isDefault: t.unknown,
-      status: t.unknown,
+      paymentSourceId: t.union([t.type({}), t.null]),
+      gatewayName: t.union([t.type({}), t.null]),
+      type: t.union([t.type({}), t.null]),
+      isDefault: t.union([t.type({}), t.null]),
+      status: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -162,11 +162,11 @@ export const PaymentSource = t.brand(
       status?: Status;
       setupIntentId?: SetupIntentId;
     } & {
-      paymentSourceId: unknown;
-      gatewayName: unknown;
-      type: unknown;
-      isDefault: unknown;
-      status: unknown;
+      paymentSourceId: {} | null;
+      gatewayName: {} | null;
+      type: {} | null;
+      isDefault: {} | null;
+      status: {} | null;
     },
     PaymentSourceBrand
   > => true,

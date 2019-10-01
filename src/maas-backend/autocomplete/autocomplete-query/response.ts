@@ -18,7 +18,7 @@ export type Default = t.Branded<
     suggestions?: Array<string>;
     debug?: {};
   } & {
-    suggestions: unknown;
+    suggestions: {} | null;
   },
   DefaultBrand
 >;
@@ -29,7 +29,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      suggestions: t.unknown,
+      suggestions: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -39,7 +39,7 @@ export const Default = t.brand(
       suggestions?: Array<string>;
       debug?: {};
     } & {
-      suggestions: unknown;
+      suggestions: {} | null;
     },
     DefaultBrand
   > => true,

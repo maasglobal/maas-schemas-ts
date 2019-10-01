@@ -29,10 +29,10 @@ export type Default = t.Branded<
         zone?: Station_.Zone;
         platformCode?: Station_.PlatformCode;
       } & {
-        id: unknown;
-        location: unknown;
-        agencyId: unknown;
-        services: unknown;
+        id: {} | null;
+        location: {} | null;
+        agencyId: {} | null;
+        services: {} | null;
       }
     >;
   },
@@ -56,10 +56,10 @@ export const Default = t.brand(
           platformCode: Station_.PlatformCode,
         }),
         t.type({
-          id: t.unknown,
-          location: t.unknown,
-          agencyId: t.unknown,
-          services: t.unknown,
+          id: t.union([t.type({}), t.null]),
+          location: t.union([t.type({}), t.null]),
+          agencyId: t.union([t.type({}), t.null]),
+          services: t.union([t.type({}), t.null]),
         }),
       ]),
     ),
@@ -82,10 +82,10 @@ export const Default = t.brand(
           zone?: Station_.Zone;
           platformCode?: Station_.PlatformCode;
         } & {
-          id: unknown;
-          location: unknown;
-          agencyId: unknown;
-          services: unknown;
+          id: {} | null;
+          location: {} | null;
+          agencyId: {} | null;
+          services: {} | null;
         }
       >;
     },

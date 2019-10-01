@@ -26,9 +26,9 @@ export type Choice = t.Branded<
     terms?: Terms_.Default;
     meta?: {};
   } & {
-    id: unknown;
-    name: unknown;
-    default: unknown;
+    id: {} | null;
+    name: {} | null;
+    default: {} | null;
   },
   ChoiceBrand
 >;
@@ -45,9 +45,9 @@ export const Choice = t.brand(
       meta: t.type({}),
     }),
     t.type({
-      id: t.unknown,
-      name: t.unknown,
-      default: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      name: t.union([t.type({}), t.null]),
+      default: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -63,9 +63,9 @@ export const Choice = t.brand(
       terms?: Terms_.Default;
       meta?: {};
     } & {
-      id: unknown;
-      name: unknown;
-      default: unknown;
+      id: {} | null;
+      name: {} | null;
+      default: {} | null;
     },
     ChoiceBrand
   > => true,
@@ -83,9 +83,9 @@ export type Config = t.Branded<
     description?: string;
     choices?: Array<Choice>;
   } & {
-    type: unknown;
-    name: unknown;
-    choices: unknown;
+    type: {} | null;
+    name: {} | null;
+    choices: {} | null;
   },
   ConfigBrand
 >;
@@ -104,9 +104,9 @@ export const Config = t.brand(
       choices: t.array(Choice),
     }),
     t.type({
-      type: t.unknown,
-      name: t.unknown,
-      choices: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      name: t.union([t.type({}), t.null]),
+      choices: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -118,9 +118,9 @@ export const Config = t.brand(
       description?: string;
       choices?: Array<Choice>;
     } & {
-      type: unknown;
-      name: unknown;
-      choices: unknown;
+      type: {} | null;
+      name: {} | null;
+      choices: {} | null;
     },
     ConfigBrand
   > => true,
@@ -138,8 +138,8 @@ export type Text = t.Branded<
     description?: string;
     input?: string;
   } & {
-    type: unknown;
-    name: unknown;
+    type: {} | null;
+    name: {} | null;
   },
   TextBrand
 >;
@@ -152,8 +152,8 @@ export const Text = t.brand(
       input: t.string,
     }),
     t.type({
-      type: t.unknown,
-      name: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      name: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -165,8 +165,8 @@ export const Text = t.brand(
       description?: string;
       input?: string;
     } & {
-      type: unknown;
-      name: unknown;
+      type: {} | null;
+      name: {} | null;
     },
     TextBrand
   > => true,

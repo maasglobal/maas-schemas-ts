@@ -28,22 +28,22 @@ export type Default = t.Branded<
           objectType?: 'Itinerary' | 'Booking';
           ids?: Array<Units_.Uuid>;
         } & {
-          objectType: unknown;
-          ids: unknown;
+          objectType: {} | null;
+          ids: {} | null;
         })
       | null
       | ({
           objectType?: 'Profile' | 'Subscription';
           ids?: Array<Units_.IdentityId>;
         } & {
-          objectType: unknown;
-          ids: unknown;
+          objectType: {} | null;
+          ids: {} | null;
         });
   } & {
-    identityId: unknown;
-    severity: unknown;
-    badge: unknown;
-    type: unknown;
+    identityId: {} | null;
+    severity: {} | null;
+    badge: {} | null;
+    type: {} | null;
   },
   DefaultBrand
 >;
@@ -72,8 +72,8 @@ export const Default = t.brand(
             ids: t.array(Units_.Uuid),
           }),
           t.type({
-            objectType: t.unknown,
-            ids: t.unknown,
+            objectType: t.union([t.type({}), t.null]),
+            ids: t.union([t.type({}), t.null]),
           }),
         ]),
         t.null,
@@ -83,17 +83,17 @@ export const Default = t.brand(
             ids: t.array(Units_.IdentityId),
           }),
           t.type({
-            objectType: t.unknown,
-            ids: t.unknown,
+            objectType: t.union([t.type({}), t.null]),
+            ids: t.union([t.type({}), t.null]),
           }),
         ]),
       ]),
     }),
     t.type({
-      identityId: t.unknown,
-      severity: t.unknown,
-      badge: t.unknown,
-      type: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      severity: t.union([t.type({}), t.null]),
+      badge: t.union([t.type({}), t.null]),
+      type: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -112,22 +112,22 @@ export const Default = t.brand(
             objectType?: 'Itinerary' | 'Booking';
             ids?: Array<Units_.Uuid>;
           } & {
-            objectType: unknown;
-            ids: unknown;
+            objectType: {} | null;
+            ids: {} | null;
           })
         | null
         | ({
             objectType?: 'Profile' | 'Subscription';
             ids?: Array<Units_.IdentityId>;
           } & {
-            objectType: unknown;
-            ids: unknown;
+            objectType: {} | null;
+            ids: {} | null;
           });
     } & {
-      identityId: unknown;
-      severity: unknown;
-      badge: unknown;
-      type: unknown;
+      identityId: {} | null;
+      severity: {} | null;
+      badge: {} | null;
+      type: {} | null;
     },
     DefaultBrand
   > => true,

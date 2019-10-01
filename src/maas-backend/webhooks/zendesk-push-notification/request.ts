@@ -16,8 +16,8 @@ export const schemaId =
 export type Default = t.Branded<
   {
     devices?: Array<{
-      identifier: unknown;
-      type: unknown;
+      identifier: {} | null;
+      type: {} | null;
     }>;
     notification?: {
       body?: string;
@@ -25,8 +25,8 @@ export type Default = t.Branded<
       ticket_id?: string;
     };
   } & {
-    devices: unknown;
-    notification: unknown;
+    devices: {} | null;
+    notification: {} | null;
   },
   DefaultBrand
 >;
@@ -35,8 +35,8 @@ export const Default = t.brand(
     t.partial({
       devices: t.array(
         t.type({
-          identifier: t.unknown,
-          type: t.unknown,
+          identifier: t.union([t.type({}), t.null]),
+          type: t.union([t.type({}), t.null]),
         }),
       ),
       notification: t.partial({
@@ -46,8 +46,8 @@ export const Default = t.brand(
       }),
     }),
     t.type({
-      devices: t.unknown,
-      notification: t.unknown,
+      devices: t.union([t.type({}), t.null]),
+      notification: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -55,8 +55,8 @@ export const Default = t.brand(
   ): x is t.Branded<
     {
       devices?: Array<{
-        identifier: unknown;
-        type: unknown;
+        identifier: {} | null;
+        type: {} | null;
       }>;
       notification?: {
         body?: string;
@@ -64,8 +64,8 @@ export const Default = t.brand(
         ticket_id?: string;
       };
     } & {
-      devices: unknown;
-      notification: unknown;
+      devices: {} | null;
+      notification: {} | null;
     },
     DefaultBrand
   > => true,

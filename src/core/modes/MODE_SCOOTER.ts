@@ -17,7 +17,7 @@ export type Default = t.Branded<
     scooter?: {
       id?: string;
     } & {
-      id: unknown;
+      id: {} | null;
     };
   },
   DefaultBrand
@@ -29,7 +29,7 @@ export const Default = t.brand(
         id: t.string,
       }),
       t.type({
-        id: t.unknown,
+        id: t.union([t.type({}), t.null]),
       }),
     ]),
   }),
@@ -40,7 +40,7 @@ export const Default = t.brand(
       scooter?: {
         id?: string;
       } & {
-        id: unknown;
+        id: {} | null;
       };
     },
     DefaultBrand

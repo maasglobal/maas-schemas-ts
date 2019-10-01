@@ -28,7 +28,7 @@ export type Default = t.Branded<
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
+    identityId: {} | null;
   },
   DefaultBrand
 >;
@@ -46,7 +46,7 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -63,7 +63,7 @@ export const Default = t.brand(
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
+      identityId: {} | null;
     },
     DefaultBrand
   > => true,

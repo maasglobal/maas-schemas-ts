@@ -19,7 +19,7 @@ export type Default = t.Branded<
     subscription?: Subscription_.Subscription;
     debug?: {};
   } & {
-    subscription: unknown;
+    subscription: {} | null;
   },
   DefaultBrand
 >;
@@ -30,7 +30,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      subscription: t.unknown,
+      subscription: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -40,7 +40,7 @@ export const Default = t.brand(
       subscription?: Subscription_.Subscription;
       debug?: {};
     } & {
-      subscription: unknown;
+      subscription: {} | null;
     },
     DefaultBrand
   > => true,

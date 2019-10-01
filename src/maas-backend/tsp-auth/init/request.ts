@@ -21,8 +21,8 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    agencyId: unknown;
+    identityId: {} | null;
+    agencyId: {} | null;
   },
   DefaultBrand
 >;
@@ -34,8 +34,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      agencyId: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      agencyId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -46,8 +46,8 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      agencyId: unknown;
+      identityId: {} | null;
+      agencyId: {} | null;
     },
     DefaultBrand
   > => true,

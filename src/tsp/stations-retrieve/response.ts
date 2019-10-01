@@ -31,9 +31,9 @@ export type Default = t.Branded<
       services?: Station_.Services;
       platformCode?: Station_.PlatformCode;
     } & {
-      id: unknown;
-      location: unknown;
-      agencyId: unknown;
+      id: {} | null;
+      location: {} | null;
+      agencyId: {} | null;
     };
   },
   DefaultBrand
@@ -58,9 +58,9 @@ export const Default = t.brand(
         platformCode: Station_.PlatformCode,
       }),
       t.type({
-        id: t.unknown,
-        location: t.unknown,
-        agencyId: t.unknown,
+        id: t.union([t.type({}), t.null]),
+        location: t.union([t.type({}), t.null]),
+        agencyId: t.union([t.type({}), t.null]),
       }),
     ]),
   }),
@@ -84,9 +84,9 @@ export const Default = t.brand(
         services?: Station_.Services;
         platformCode?: Station_.PlatformCode;
       } & {
-        id: unknown;
-        location: unknown;
-        agencyId: unknown;
+        id: {} | null;
+        location: {} | null;
+        agencyId: {} | null;
       };
     },
     DefaultBrand

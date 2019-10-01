@@ -28,13 +28,13 @@ export type Default = t.Branded<
       distance?: UnitsGeo_.Distance;
       locale?: I18n_.Locale;
     } & {
-      name: unknown;
-      lat: unknown;
-      lon: unknown;
+      name: {} | null;
+      lat: {} | null;
+      lon: {} | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: unknown;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -52,15 +52,15 @@ export const Default = t.brand(
           locale: I18n_.Locale,
         }),
         t.type({
-          name: t.unknown,
-          lat: t.unknown,
-          lon: t.unknown,
+          name: t.union([t.type({}), t.null]),
+          lat: t.union([t.type({}), t.null]),
+          lon: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.unknown,
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -76,13 +76,13 @@ export const Default = t.brand(
         distance?: UnitsGeo_.Distance;
         locale?: I18n_.Locale;
       } & {
-        name: unknown;
-        lat: unknown;
-        lon: unknown;
+        name: {} | null;
+        lat: {} | null;
+        lon: {} | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload: unknown;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

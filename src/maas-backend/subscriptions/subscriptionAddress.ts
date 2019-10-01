@@ -24,8 +24,8 @@ export type SubscriptionAddress = t.Branded<
     phone?: Address_.Phone;
     email?: Address_.Email;
   } & {
-    zipCode: unknown;
-    country: unknown;
+    zipCode: {} | null;
+    country: {} | null;
   },
   SubscriptionAddressBrand
 >;
@@ -41,8 +41,8 @@ export const SubscriptionAddress = t.brand(
       email: Address_.Email,
     }),
     t.type({
-      zipCode: t.unknown,
-      country: t.unknown,
+      zipCode: t.union([t.type({}), t.null]),
+      country: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -57,8 +57,8 @@ export const SubscriptionAddress = t.brand(
       phone?: Address_.Phone;
       email?: Address_.Email;
     } & {
-      zipCode: unknown;
-      country: unknown;
+      zipCode: {} | null;
+      country: {} | null;
     },
     SubscriptionAddressBrand
   > => true,

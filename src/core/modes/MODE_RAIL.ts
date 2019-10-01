@@ -21,16 +21,16 @@ export type Default = t.Branded<
       from?: Place_.Default;
       to?: Place_.Default;
     } & {
-      from: unknown;
-      to: unknown;
+      from: {} | null;
+      to: {} | null;
     };
     return?: {
       id?: string;
       from?: Place_.Default;
       to?: Place_.Default;
     } & {
-      from: unknown;
-      to: unknown;
+      from: {} | null;
+      to: {} | null;
     };
     deliveryMethod?: {
       name?: string;
@@ -49,8 +49,8 @@ export const Default = t.brand(
         to: Place_.Default,
       }),
       t.type({
-        from: t.unknown,
-        to: t.unknown,
+        from: t.union([t.type({}), t.null]),
+        to: t.union([t.type({}), t.null]),
       }),
     ]),
     return: t.intersection([
@@ -60,8 +60,8 @@ export const Default = t.brand(
         to: Place_.Default,
       }),
       t.type({
-        from: t.unknown,
-        to: t.unknown,
+        from: t.union([t.type({}), t.null]),
+        to: t.union([t.type({}), t.null]),
       }),
     ]),
     deliveryMethod: t.partial({
@@ -79,16 +79,16 @@ export const Default = t.brand(
         from?: Place_.Default;
         to?: Place_.Default;
       } & {
-        from: unknown;
-        to: unknown;
+        from: {} | null;
+        to: {} | null;
       };
       return?: {
         id?: string;
         from?: Place_.Default;
         to?: Place_.Default;
       } & {
-        from: unknown;
-        to: unknown;
+        from: {} | null;
+        to: {} | null;
       };
       deliveryMethod?: {
         name?: string;

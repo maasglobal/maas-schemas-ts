@@ -47,8 +47,8 @@ export type Default = t.Branded<
     | TravelMode_.Default
     | (string | number | boolean)
   >) & {
-    from: unknown;
-    to: unknown;
+    from: {} | null;
+    to: {} | null;
   },
   DefaultBrand
 >;
@@ -89,8 +89,8 @@ export const Default = t.brand(
       ),
     ]),
     t.type({
-      from: t.unknown,
-      to: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      to: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -125,8 +125,8 @@ export const Default = t.brand(
       | TravelMode_.Default
       | (string | number | boolean)
     >) & {
-      from: unknown;
-      to: unknown;
+      from: {} | null;
+      to: {} | null;
     },
     DefaultBrand
   > => true,

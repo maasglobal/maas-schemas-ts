@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     changeState?: SubscriptionChangeState_.Default;
   } & {
-    changeState: unknown;
+    changeState: {} | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,7 @@ export const Default = t.brand(
       changeState: SubscriptionChangeState_.Default,
     }),
     t.type({
-      changeState: t.unknown,
+      changeState: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -37,7 +37,7 @@ export const Default = t.brand(
     {
       changeState?: SubscriptionChangeState_.Default;
     } & {
-      changeState: unknown;
+      changeState: {} | null;
     },
     DefaultBrand
   > => true,

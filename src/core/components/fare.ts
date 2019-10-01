@@ -34,8 +34,8 @@ export type Default = t.Branded<
     productionAmount?: number | null;
     type?: string & ('charge' | 'refund');
   } & {
-    amount: unknown;
-    currency: unknown;
+    amount: {} | null;
+    currency: {} | null;
   },
   DefaultBrand
 >;
@@ -56,8 +56,8 @@ export const Default = t.brand(
       ]),
     }),
     t.type({
-      amount: t.unknown,
-      currency: t.unknown,
+      amount: t.union([t.type({}), t.null]),
+      currency: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -71,8 +71,8 @@ export const Default = t.brand(
       productionAmount?: number | null;
       type?: string & ('charge' | 'refund');
     } & {
-      amount: unknown;
-      currency: unknown;
+      amount: {} | null;
+      currency: {} | null;
     },
     DefaultBrand
   > => true,

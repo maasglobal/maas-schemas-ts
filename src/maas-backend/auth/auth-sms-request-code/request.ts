@@ -20,11 +20,11 @@ export type Default = t.Branded<
     payload?: {
       phone?: Common_.RawPhone;
     } & {
-      phone: unknown;
+      phone: {} | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: unknown;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -36,13 +36,13 @@ export const Default = t.brand(
           phone: Common_.RawPhone,
         }),
         t.type({
-          phone: t.unknown,
+          phone: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.unknown,
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -52,11 +52,11 @@ export const Default = t.brand(
       payload?: {
         phone?: Common_.RawPhone;
       } & {
-        phone: unknown;
+        phone: {} | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload: unknown;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

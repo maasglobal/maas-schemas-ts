@@ -19,7 +19,7 @@ export type Default = t.Branded<
     itinerary?: Itinerary_.Default;
     maas?: {};
   } & {
-    itinerary: unknown;
+    itinerary: {} | null;
   },
   DefaultBrand
 >;
@@ -30,7 +30,7 @@ export const Default = t.brand(
       maas: t.type({}),
     }),
     t.type({
-      itinerary: t.unknown,
+      itinerary: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -40,7 +40,7 @@ export const Default = t.brand(
       itinerary?: Itinerary_.Default;
       maas?: {};
     } & {
-      itinerary: unknown;
+      itinerary: {} | null;
     },
     DefaultBrand
   > => true,

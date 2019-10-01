@@ -18,8 +18,8 @@ export type Geometry = t.Branded<
     type?: 'Point';
     coordinates?: UnitsGeo_.ShortLocation;
   } & {
-    type: unknown;
-    coordinates: unknown;
+    type: {} | null;
+    coordinates: {} | null;
   },
   GeometryBrand
 >;
@@ -30,8 +30,8 @@ export const Geometry = t.brand(
       coordinates: UnitsGeo_.ShortLocation,
     }),
     t.type({
-      type: t.unknown,
-      coordinates: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      coordinates: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -41,8 +41,8 @@ export const Geometry = t.brand(
       type?: 'Point';
       coordinates?: UnitsGeo_.ShortLocation;
     } & {
-      type: unknown;
-      coordinates: unknown;
+      type: {} | null;
+      coordinates: {} | null;
     },
     GeometryBrand
   > => true,
@@ -64,7 +64,7 @@ export type Properties = t.Branded<
     houseNumber?: number;
     zipcode?: number;
   } & {
-    name: unknown;
+    name: {} | null;
   },
   PropertiesBrand
 >;
@@ -81,7 +81,7 @@ export const Properties = t.brand(
       zipcode: t.number,
     }),
     t.type({
-      name: t.unknown,
+      name: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -97,7 +97,7 @@ export const Properties = t.brand(
       houseNumber?: number;
       zipcode?: number;
     } & {
-      name: unknown;
+      name: {} | null;
     },
     PropertiesBrand
   > => true,
@@ -114,9 +114,9 @@ export type Feature = t.Branded<
     geometry?: Geometry;
     properties?: Properties;
   } & {
-    type: unknown;
-    geometry: unknown;
-    properties: unknown;
+    type: {} | null;
+    geometry: {} | null;
+    properties: {} | null;
   },
   FeatureBrand
 >;
@@ -128,9 +128,9 @@ export const Feature = t.brand(
       properties: Properties,
     }),
     t.type({
-      type: t.unknown,
-      geometry: t.unknown,
-      properties: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      geometry: t.union([t.type({}), t.null]),
+      properties: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -141,9 +141,9 @@ export const Feature = t.brand(
       geometry?: Geometry;
       properties?: Properties;
     } & {
-      type: unknown;
-      geometry: unknown;
-      properties: unknown;
+      type: {} | null;
+      geometry: {} | null;
+      properties: {} | null;
     },
     FeatureBrand
   > => true,
@@ -159,8 +159,8 @@ export type FeatureCollection = t.Branded<
     type?: 'FeatureCollection';
     features?: Array<Feature>;
   } & {
-    type: unknown;
-    features: unknown;
+    type: {} | null;
+    features: {} | null;
   },
   FeatureCollectionBrand
 >;
@@ -171,8 +171,8 @@ export const FeatureCollection = t.brand(
       features: t.array(Feature),
     }),
     t.type({
-      type: t.unknown,
-      features: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      features: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -182,8 +182,8 @@ export const FeatureCollection = t.brand(
       type?: 'FeatureCollection';
       features?: Array<Feature>;
     } & {
-      type: unknown;
-      features: unknown;
+      type: {} | null;
+      features: {} | null;
     },
     FeatureCollectionBrand
   > => true,

@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     customer?: Customer_.Default;
   } & {
-    customer: unknown;
+    customer: {} | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,7 @@ export const Default = t.brand(
       customer: Customer_.Default,
     }),
     t.type({
-      customer: t.unknown,
+      customer: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -37,7 +37,7 @@ export const Default = t.brand(
     {
       customer?: Customer_.Default;
     } & {
-      customer: unknown;
+      customer: {} | null;
     },
     DefaultBrand
   > => true,

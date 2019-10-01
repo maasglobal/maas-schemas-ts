@@ -18,15 +18,15 @@ export type Default = t.Branded<
       location?: UnitsGeo_.ShortLocationString;
       radius?: UnitsGeo_.Distance;
     } & {
-      location: unknown;
+      location: {} | null;
     })
   | ({
       name?: string;
       count?: number;
       type?: 'origin' | 'destination' | 'viaAvoid';
     } & {
-      name: unknown;
-      type: unknown;
+      name: {} | null;
+      type: {} | null;
     }),
   DefaultBrand
 >;
@@ -38,7 +38,7 @@ export const Default = t.brand(
         radius: UnitsGeo_.Distance,
       }),
       t.type({
-        location: t.unknown,
+        location: t.union([t.type({}), t.null]),
       }),
     ]),
     t.intersection([
@@ -52,8 +52,8 @@ export const Default = t.brand(
         ]),
       }),
       t.type({
-        name: t.unknown,
-        type: t.unknown,
+        name: t.union([t.type({}), t.null]),
+        type: t.union([t.type({}), t.null]),
       }),
     ]),
   ]),
@@ -64,15 +64,15 @@ export const Default = t.brand(
         location?: UnitsGeo_.ShortLocationString;
         radius?: UnitsGeo_.Distance;
       } & {
-        location: unknown;
+        location: {} | null;
       })
     | ({
         name?: string;
         count?: number;
         type?: 'origin' | 'destination' | 'viaAvoid';
       } & {
-        name: unknown;
-        type: unknown;
+        name: {} | null;
+        type: {} | null;
       }),
     DefaultBrand
   > => true,

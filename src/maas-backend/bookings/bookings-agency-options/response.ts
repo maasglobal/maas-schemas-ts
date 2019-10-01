@@ -29,16 +29,16 @@ export type Option = t.Branded<
     configurator?: Booking_.Configurator;
   } & (
     | {
-        leg: unknown;
-        terms: unknown;
-        product: unknown;
-        fares: unknown;
+        leg: {} | null;
+        terms: {} | null;
+        product: {} | null;
+        fares: {} | null;
       }
     | {
-        leg: unknown;
-        terms: unknown;
-        product: unknown;
-        configurator: unknown;
+        leg: {} | null;
+        terms: {} | null;
+        product: {} | null;
+        configurator: {} | null;
       }),
   OptionBrand
 >;
@@ -57,16 +57,16 @@ export const Option = t.brand(
     }),
     t.union([
       t.type({
-        leg: t.unknown,
-        terms: t.unknown,
-        product: t.unknown,
-        fares: t.unknown,
+        leg: t.union([t.type({}), t.null]),
+        terms: t.union([t.type({}), t.null]),
+        product: t.union([t.type({}), t.null]),
+        fares: t.union([t.type({}), t.null]),
       }),
       t.type({
-        leg: t.unknown,
-        terms: t.unknown,
-        product: t.unknown,
-        configurator: t.unknown,
+        leg: t.union([t.type({}), t.null]),
+        terms: t.union([t.type({}), t.null]),
+        product: t.union([t.type({}), t.null]),
+        configurator: t.union([t.type({}), t.null]),
       }),
     ]),
   ]),
@@ -85,16 +85,16 @@ export const Option = t.brand(
       configurator?: Booking_.Configurator;
     } & (
       | {
-          leg: unknown;
-          terms: unknown;
-          product: unknown;
-          fares: unknown;
+          leg: {} | null;
+          terms: {} | null;
+          product: {} | null;
+          fares: {} | null;
         }
       | {
-          leg: unknown;
-          terms: unknown;
-          product: unknown;
-          configurator: unknown;
+          leg: {} | null;
+          terms: {} | null;
+          product: {} | null;
+          configurator: {} | null;
         }),
     OptionBrand
   > => true,
@@ -113,7 +113,7 @@ export type Default = t.Branded<
     };
     debug?: {};
   } & {
-    options: unknown;
+    options: {} | null;
   },
   DefaultBrand
 >;
@@ -127,7 +127,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      options: t.unknown,
+      options: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -140,7 +140,7 @@ export const Default = t.brand(
       };
       debug?: {};
     } & {
-      options: unknown;
+      options: {} | null;
     },
     DefaultBrand
   > => true,

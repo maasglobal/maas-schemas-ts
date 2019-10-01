@@ -220,12 +220,12 @@ export type LegCore = t.Branded<
     tspProduct?: TspProduct;
     productOption?: ProductOption;
   } & {
-    from: unknown;
-    to: unknown;
-    mode: unknown;
-    startTime: unknown;
-    endTime: unknown;
-    legGeometry: unknown;
+    from: {} | null;
+    to: {} | null;
+    mode: {} | null;
+    startTime: {} | null;
+    endTime: {} | null;
+    legGeometry: {} | null;
   },
   LegCoreBrand
 >;
@@ -251,12 +251,12 @@ export const LegCore = t.brand(
       productOption: ProductOption,
     }),
     t.type({
-      from: t.unknown,
-      to: t.unknown,
-      mode: t.unknown,
-      startTime: t.unknown,
-      endTime: t.unknown,
-      legGeometry: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      to: t.union([t.type({}), t.null]),
+      mode: t.union([t.type({}), t.null]),
+      startTime: t.union([t.type({}), t.null]),
+      endTime: t.union([t.type({}), t.null]),
+      legGeometry: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -281,12 +281,12 @@ export const LegCore = t.brand(
       tspProduct?: TspProduct;
       productOption?: ProductOption;
     } & {
-      from: unknown;
-      to: unknown;
-      mode: unknown;
-      startTime: unknown;
-      endTime: unknown;
-      legGeometry: unknown;
+      from: {} | null;
+      to: {} | null;
+      mode: {} | null;
+      startTime: {} | null;
+      endTime: {} | null;
+      legGeometry: {} | null;
     },
     LegCoreBrand
   > => true,
@@ -303,9 +303,9 @@ export type WaitingLeg = t.Branded<
     endTime?: Units_.Time;
     mode?: TravelMode_.WaitingMode;
   } & {
-    mode: unknown;
-    startTime: unknown;
-    endTime: unknown;
+    mode: {} | null;
+    startTime: {} | null;
+    endTime: {} | null;
   },
   WaitingLegBrand
 >;
@@ -317,9 +317,9 @@ export const WaitingLeg = t.brand(
       mode: TravelMode_.WaitingMode,
     }),
     t.type({
-      mode: t.unknown,
-      startTime: t.unknown,
-      endTime: t.unknown,
+      mode: t.union([t.type({}), t.null]),
+      startTime: t.union([t.type({}), t.null]),
+      endTime: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -330,9 +330,9 @@ export const WaitingLeg = t.brand(
       endTime?: Units_.Time;
       mode?: TravelMode_.WaitingMode;
     } & {
-      mode: unknown;
-      startTime: unknown;
-      endTime: unknown;
+      mode: {} | null;
+      startTime: {} | null;
+      endTime: {} | null;
     },
     WaitingLegBrand
   > => true,
@@ -349,9 +349,9 @@ export type TransferLeg = t.Branded<
     endTime?: Units_.Time;
     mode?: TravelMode_.TransferMode;
   } & {
-    mode: unknown;
-    startTime: unknown;
-    endTime: unknown;
+    mode: {} | null;
+    startTime: {} | null;
+    endTime: {} | null;
   },
   TransferLegBrand
 >;
@@ -363,9 +363,9 @@ export const TransferLeg = t.brand(
       mode: TravelMode_.TransferMode,
     }),
     t.type({
-      mode: t.unknown,
-      startTime: t.unknown,
-      endTime: t.unknown,
+      mode: t.union([t.type({}), t.null]),
+      startTime: t.union([t.type({}), t.null]),
+      endTime: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -376,9 +376,9 @@ export const TransferLeg = t.brand(
       endTime?: Units_.Time;
       mode?: TravelMode_.TransferMode;
     } & {
-      mode: unknown;
-      startTime: unknown;
-      endTime: unknown;
+      mode: {} | null;
+      startTime: {} | null;
+      endTime: {} | null;
     },
     TransferLegBrand
   > => true,

@@ -19,7 +19,7 @@ export type Default = t.Branded<
     options?: Array<Region_.Default>;
     debug?: {};
   } & {
-    options: unknown;
+    options: {} | null;
   },
   DefaultBrand
 >;
@@ -30,7 +30,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      options: t.unknown,
+      options: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -40,7 +40,7 @@ export const Default = t.brand(
       options?: Array<Region_.Default>;
       debug?: {};
     } & {
-      options: unknown;
+      options: {} | null;
     },
     DefaultBrand
   > => true,

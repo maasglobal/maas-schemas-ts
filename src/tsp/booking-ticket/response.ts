@@ -20,9 +20,9 @@ export type Default = t.Branded<
     contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
     refreshAt?: Units_.Time;
   } & {
-    ticket: unknown;
-    type: unknown;
-    contentType: unknown;
+    ticket: {} | null;
+    type: {} | null;
+    contentType: {} | null;
   },
   DefaultBrand
 >;
@@ -45,9 +45,9 @@ export const Default = t.brand(
       refreshAt: Units_.Time,
     }),
     t.type({
-      ticket: t.unknown,
-      type: t.unknown,
-      contentType: t.unknown,
+      ticket: t.union([t.type({}), t.null]),
+      type: t.union([t.type({}), t.null]),
+      contentType: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -59,9 +59,9 @@ export const Default = t.brand(
       contentType?: string & ('application/pdf' | 'image/svg+xml' | 'text/html');
       refreshAt?: Units_.Time;
     } & {
-      ticket: unknown;
-      type: unknown;
-      contentType: unknown;
+      ticket: {} | null;
+      type: {} | null;
+      contentType: {} | null;
     },
     DefaultBrand
   > => true,

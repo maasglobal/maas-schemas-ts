@@ -28,20 +28,20 @@ export type Default = t.Branded<
         isDefault?: boolean;
         alias?: PaymentSource_.Alias;
       } & {
-        type: unknown;
-        gatewayName: unknown;
-        temporaryToken: unknown;
-        isDefault: unknown;
+        type: {} | null;
+        gatewayName: {} | null;
+        temporaryToken: {} | null;
+        isDefault: {} | null;
       };
     } & {
-      paymentSource: unknown;
+      paymentSource: {} | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    customerId: unknown;
-    payload: unknown;
-    headers: unknown;
+    identityId: {} | null;
+    customerId: {} | null;
+    payload: {} | null;
+    headers: {} | null;
   },
   DefaultBrand
 >;
@@ -61,24 +61,24 @@ export const Default = t.brand(
               alias: PaymentSource_.Alias,
             }),
             t.type({
-              type: t.unknown,
-              gatewayName: t.unknown,
-              temporaryToken: t.unknown,
-              isDefault: t.unknown,
+              type: t.union([t.type({}), t.null]),
+              gatewayName: t.union([t.type({}), t.null]),
+              temporaryToken: t.union([t.type({}), t.null]),
+              isDefault: t.union([t.type({}), t.null]),
             }),
           ]),
         }),
         t.type({
-          paymentSource: t.unknown,
+          paymentSource: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      customerId: t.unknown,
-      payload: t.unknown,
-      headers: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
+      headers: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -95,20 +95,20 @@ export const Default = t.brand(
           isDefault?: boolean;
           alias?: PaymentSource_.Alias;
         } & {
-          type: unknown;
-          gatewayName: unknown;
-          temporaryToken: unknown;
-          isDefault: unknown;
+          type: {} | null;
+          gatewayName: {} | null;
+          temporaryToken: {} | null;
+          isDefault: {} | null;
         };
       } & {
-        paymentSource: unknown;
+        paymentSource: {} | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      customerId: unknown;
-      payload: unknown;
-      headers: unknown;
+      identityId: {} | null;
+      customerId: {} | null;
+      payload: {} | null;
+      headers: {} | null;
     },
     DefaultBrand
   > => true,

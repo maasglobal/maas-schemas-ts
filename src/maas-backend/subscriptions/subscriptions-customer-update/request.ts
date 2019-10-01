@@ -23,9 +23,9 @@ export type Default = t.Branded<
     payload?: Contact_.ContactUpdate;
     headers?: ApiCommon_.Headers;
   } & {
-    customerId: unknown;
-    userId: unknown;
-    payload: unknown;
+    customerId: {} | null;
+    userId: {} | null;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -38,9 +38,9 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      customerId: t.unknown,
-      userId: t.unknown,
-      payload: t.unknown,
+      customerId: t.union([t.type({}), t.null]),
+      userId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -52,9 +52,9 @@ export const Default = t.brand(
       payload?: Contact_.ContactUpdate;
       headers?: ApiCommon_.Headers;
     } & {
-      customerId: unknown;
-      userId: unknown;
-      payload: unknown;
+      customerId: {} | null;
+      userId: {} | null;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

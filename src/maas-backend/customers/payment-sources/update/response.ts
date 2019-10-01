@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     paymentSource?: PaymentSource_.PaymentSource;
   } & {
-    paymentSource: unknown;
+    paymentSource: {} | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,7 @@ export const Default = t.brand(
       paymentSource: PaymentSource_.PaymentSource,
     }),
     t.type({
-      paymentSource: t.unknown,
+      paymentSource: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -37,7 +37,7 @@ export const Default = t.brand(
     {
       paymentSource?: PaymentSource_.PaymentSource;
     } & {
-      paymentSource: unknown;
+      paymentSource: {} | null;
     },
     DefaultBrand
   > => true,

@@ -23,8 +23,8 @@ export type Default = t.Branded<
     payload?: Booking_.Default;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    payload: unknown;
+    identityId: {} | null;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -37,8 +37,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      payload: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -50,8 +50,8 @@ export const Default = t.brand(
       payload?: Booking_.Default;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      payload: unknown;
+      identityId: {} | null;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,
