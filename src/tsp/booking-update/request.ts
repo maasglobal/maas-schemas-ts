@@ -25,7 +25,7 @@ export type Default = t.Branded<
     terms?: Booking_.Terms;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    tspId: unknown;
+    tspId: {} | null;
   },
   DefaultBrand
 >;
@@ -45,7 +45,7 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      tspId: t.unknown,
+      tspId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -59,7 +59,7 @@ export const Default = t.brand(
       terms?: Booking_.Terms;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      tspId: unknown;
+      tspId: {} | null;
     },
     DefaultBrand
   > => true,

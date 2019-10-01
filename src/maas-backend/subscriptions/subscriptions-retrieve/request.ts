@@ -22,8 +22,8 @@ export type Default = t.Branded<
     nextPeriod?: boolean;
     headers?: ApiCommon_.Headers;
   } & {
-    customerId: unknown;
-    userId: unknown;
+    customerId: {} | null;
+    userId: {} | null;
   },
   DefaultBrand
 >;
@@ -36,8 +36,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      customerId: t.unknown,
-      userId: t.unknown,
+      customerId: t.union([t.type({}), t.null]),
+      userId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -49,8 +49,8 @@ export const Default = t.brand(
       nextPeriod?: boolean;
       headers?: ApiCommon_.Headers;
     } & {
-      customerId: unknown;
-      userId: unknown;
+      customerId: {} | null;
+      userId: {} | null;
     },
     DefaultBrand
   > => true,

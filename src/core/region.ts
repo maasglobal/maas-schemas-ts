@@ -21,9 +21,9 @@ export type Default = t.Branded<
     zipCode?: Address_.ZipCode;
     availability?: {};
   } & {
-    id: unknown;
-    countryCode: unknown;
-    zipCode: unknown;
+    id: {} | null;
+    countryCode: {} | null;
+    zipCode: {} | null;
   },
   DefaultBrand
 >;
@@ -37,9 +37,9 @@ export const Default = t.brand(
       availability: t.type({}),
     }),
     t.type({
-      id: t.unknown,
-      countryCode: t.unknown,
-      zipCode: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      countryCode: t.union([t.type({}), t.null]),
+      zipCode: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -52,9 +52,9 @@ export const Default = t.brand(
       zipCode?: Address_.ZipCode;
       availability?: {};
     } & {
-      id: unknown;
-      countryCode: unknown;
-      zipCode: unknown;
+      id: {} | null;
+      countryCode: {} | null;
+      zipCode: {} | null;
     },
     DefaultBrand
   > => true,

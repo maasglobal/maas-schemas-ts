@@ -21,10 +21,10 @@ export type Default = t.Branded<
     lifetimeItinerariesCount?: number;
     profileCreationTimestamp?: Units_.Time;
   } & {
-    identityId: unknown;
-    lifetimeBookingsCount: unknown;
-    lifetimeItinerariesCount: unknown;
-    profileCreationTimestamp: unknown;
+    identityId: {} | null;
+    lifetimeBookingsCount: {} | null;
+    lifetimeItinerariesCount: {} | null;
+    profileCreationTimestamp: {} | null;
   },
   DefaultBrand
 >;
@@ -37,10 +37,10 @@ export const Default = t.brand(
       profileCreationTimestamp: Units_.Time,
     }),
     t.type({
-      identityId: t.unknown,
-      lifetimeBookingsCount: t.unknown,
-      lifetimeItinerariesCount: t.unknown,
-      profileCreationTimestamp: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      lifetimeBookingsCount: t.union([t.type({}), t.null]),
+      lifetimeItinerariesCount: t.union([t.type({}), t.null]),
+      profileCreationTimestamp: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -52,10 +52,10 @@ export const Default = t.brand(
       lifetimeItinerariesCount?: number;
       profileCreationTimestamp?: Units_.Time;
     } & {
-      identityId: unknown;
-      lifetimeBookingsCount: unknown;
-      lifetimeItinerariesCount: unknown;
-      profileCreationTimestamp: unknown;
+      identityId: {} | null;
+      lifetimeBookingsCount: {} | null;
+      lifetimeItinerariesCount: {} | null;
+      profileCreationTimestamp: {} | null;
     },
     DefaultBrand
   > => true,

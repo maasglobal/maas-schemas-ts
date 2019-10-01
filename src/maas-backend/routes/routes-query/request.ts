@@ -57,8 +57,8 @@ export type Payload = t.Branded<
     | Units_.Uuid
     | (string | number | boolean)
   >) & {
-    from: unknown;
-    to: unknown;
+    from: {} | null;
+    to: {} | null;
   },
   PayloadBrand
 >;
@@ -145,8 +145,8 @@ export const Payload = t.brand(
       ),
     ]),
     t.type({
-      from: t.unknown,
-      to: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      to: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -191,8 +191,8 @@ export const Payload = t.brand(
       | Units_.Uuid
       | (string | number | boolean)
     >) & {
-      from: unknown;
-      to: unknown;
+      from: {} | null;
+      to: {} | null;
     },
     PayloadBrand
   > => true,
@@ -209,8 +209,8 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    payload: unknown;
+    identityId: {} | null;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -222,8 +222,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      payload: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -234,8 +234,8 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      payload: unknown;
+      identityId: {} | null;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

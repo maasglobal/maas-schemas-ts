@@ -19,7 +19,7 @@ export type Default = t.Branded<
     customer?: Contact_.ContactResponse;
     debug?: {};
   } & {
-    customer: unknown;
+    customer: {} | null;
   },
   DefaultBrand
 >;
@@ -30,7 +30,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      customer: t.unknown,
+      customer: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -40,7 +40,7 @@ export const Default = t.brand(
       customer?: Contact_.ContactResponse;
       debug?: {};
     } & {
-      customer: unknown;
+      customer: {} | null;
     },
     DefaultBrand
   > => true,

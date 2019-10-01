@@ -14,22 +14,22 @@ export const schemaId = 'http://maasglobal.com/tsp/bookings-read-by-id/response.
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    tspId: unknown;
-    state: unknown;
+    tspId: {} | null;
+    state: {} | null;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    tspId: t.unknown,
-    state: t.unknown,
+    tspId: t.union([t.type({}), t.null]),
+    state: t.union([t.type({}), t.null]),
   }),
   (
     x,
   ): x is t.Branded<
     {
-      tspId: unknown;
-      state: unknown;
+      tspId: {} | null;
+      state: {} | null;
     },
     DefaultBrand
   > => true,

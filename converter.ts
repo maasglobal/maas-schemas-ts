@@ -5,6 +5,11 @@ import * as path from 'path';
 import * as gen from 'io-ts-codegen';
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema';
 
+const notUndefined = gen.unionCombinator([
+  gen.typeCombinator([]), // any object
+  gen.nullType, // or null
+]);
+
 const supportedEverywhere = [
   '$ref',
   '$id',
@@ -370,7 +375,7 @@ function fromType(schema: JSONSchema7): [gen.TypeReference] | [] {
 function fromRequired(schema: JSONSchema7): [gen.TypeReference] | [] {
   if ('required' in schema && typeof schema.required !== 'undefined') {
     const combinator = gen.interfaceCombinator(
-      schema.required.map((key) => gen.property(key, gen.unknownType)),
+      schema.required.map((key) => gen.property(key, notUndefined)),
     );
     return [combinator];
   }

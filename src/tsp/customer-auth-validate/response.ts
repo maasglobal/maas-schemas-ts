@@ -23,13 +23,13 @@ export type Default = t.Branded<
     error?: Error_.Default;
   } & (
     | {
-        authToken: unknown;
-        nonce: unknown;
-        validTo: unknown;
+        authToken: {} | null;
+        nonce: {} | null;
+        validTo: {} | null;
       }
     | {
-        error: unknown;
-        nonce: unknown;
+        error: {} | null;
+        nonce: {} | null;
       }),
   DefaultBrand
 >;
@@ -43,13 +43,13 @@ export const Default = t.brand(
     }),
     t.union([
       t.type({
-        authToken: t.unknown,
-        nonce: t.unknown,
-        validTo: t.unknown,
+        authToken: t.union([t.type({}), t.null]),
+        nonce: t.union([t.type({}), t.null]),
+        validTo: t.union([t.type({}), t.null]),
       }),
       t.type({
-        error: t.unknown,
-        nonce: t.unknown,
+        error: t.union([t.type({}), t.null]),
+        nonce: t.union([t.type({}), t.null]),
       }),
     ]),
   ]),
@@ -63,13 +63,13 @@ export const Default = t.brand(
       error?: Error_.Default;
     } & (
       | {
-          authToken: unknown;
-          nonce: unknown;
-          validTo: unknown;
+          authToken: {} | null;
+          nonce: {} | null;
+          validTo: {} | null;
         }
       | {
-          error: unknown;
-          nonce: unknown;
+          error: {} | null;
+          nonce: {} | null;
         }),
     DefaultBrand
   > => true,

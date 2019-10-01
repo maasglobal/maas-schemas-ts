@@ -18,7 +18,7 @@ export type Default = t.Branded<
     encodedData?: Common_.EncodedQueryParam;
     error?: Common_.ErrorKey;
   } & {
-    encodedData: unknown;
+    encodedData: {} | null;
   },
   DefaultBrand
 >;
@@ -29,7 +29,7 @@ export const Default = t.brand(
       error: Common_.ErrorKey,
     }),
     t.type({
-      encodedData: t.unknown,
+      encodedData: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -39,7 +39,7 @@ export const Default = t.brand(
       encodedData?: Common_.EncodedQueryParam;
       error?: Common_.ErrorKey;
     } & {
-      encodedData: unknown;
+      encodedData: {} | null;
     },
     DefaultBrand
   > => true,

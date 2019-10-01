@@ -17,7 +17,7 @@ export type Default = t.Branded<
   {
     tspId?: Booking_.TspId;
   } & {
-    tspId: unknown;
+    tspId: {} | null;
   },
   DefaultBrand
 >;
@@ -27,7 +27,7 @@ export const Default = t.brand(
       tspId: Booking_.TspId,
     }),
     t.type({
-      tspId: t.unknown,
+      tspId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -36,7 +36,7 @@ export const Default = t.brand(
     {
       tspId?: Booking_.TspId;
     } & {
-      tspId: unknown;
+      tspId: {} | null;
     },
     DefaultBrand
   > => true,

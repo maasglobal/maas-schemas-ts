@@ -35,8 +35,8 @@ export type Default = t.Branded<
     valid?: boolean;
     card?: Card_.Default;
   } & {
-    customerId: unknown;
-    type: unknown;
+    customerId: {} | null;
+    type: {} | null;
   },
   DefaultBrand
 >;
@@ -66,8 +66,8 @@ export const Default = t.brand(
       card: Card_.Default,
     }),
     t.type({
-      customerId: t.unknown,
-      type: t.unknown,
+      customerId: t.union([t.type({}), t.null]),
+      type: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -93,8 +93,8 @@ export const Default = t.brand(
       valid?: boolean;
       card?: Card_.Default;
     } & {
-      customerId: unknown;
-      type: unknown;
+      customerId: {} | null;
+      type: {} | null;
     },
     DefaultBrand
   > => true,

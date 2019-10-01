@@ -18,12 +18,12 @@ export type Default = t.Branded<
   {
     identityId?: Units_.IdentityId;
     results?: {
-      successCount: unknown;
-      failureCount: unknown;
+      successCount: {} | null;
+      failureCount: {} | null;
     };
   } & {
-    identityId: unknown;
-    results: unknown;
+    identityId: {} | null;
+    results: {} | null;
   },
   DefaultBrand
 >;
@@ -32,13 +32,13 @@ export const Default = t.brand(
     t.partial({
       identityId: Units_.IdentityId,
       results: t.type({
-        successCount: t.unknown,
-        failureCount: t.unknown,
+        successCount: t.union([t.type({}), t.null]),
+        failureCount: t.union([t.type({}), t.null]),
       }),
     }),
     t.type({
-      identityId: t.unknown,
-      results: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      results: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -47,12 +47,12 @@ export const Default = t.brand(
     {
       identityId?: Units_.IdentityId;
       results?: {
-        successCount: unknown;
-        failureCount: unknown;
+        successCount: {} | null;
+        failureCount: {} | null;
       };
     } & {
-      identityId: unknown;
-      results: unknown;
+      identityId: {} | null;
+      results: {} | null;
     },
     DefaultBrand
   > => true,

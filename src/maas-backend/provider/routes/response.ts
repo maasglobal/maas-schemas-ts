@@ -32,9 +32,9 @@ export type Plan1 = t.Branded<
     outwards?: Itineraries;
     returns?: Itineraries;
   } & {
-    from: unknown;
-    outwards: unknown;
-    returns: unknown;
+    from: {} | null;
+    outwards: {} | null;
+    returns: {} | null;
   },
   Plan1Brand
 >;
@@ -46,9 +46,9 @@ export const Plan1 = t.brand(
       returns: Itineraries,
     }),
     t.type({
-      from: t.unknown,
-      outwards: t.unknown,
-      returns: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      outwards: t.union([t.type({}), t.null]),
+      returns: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -59,9 +59,9 @@ export const Plan1 = t.brand(
       outwards?: Itineraries;
       returns?: Itineraries;
     } & {
-      from: unknown;
-      outwards: unknown;
-      returns: unknown;
+      from: {} | null;
+      outwards: {} | null;
+      returns: {} | null;
     },
     Plan1Brand
   > => true,
@@ -77,8 +77,8 @@ export type Plan2 = t.Branded<
     from?: Place_.Default;
     itineraries?: Itineraries;
   } & {
-    from: unknown;
-    itineraries: unknown;
+    from: {} | null;
+    itineraries: {} | null;
   },
   Plan2Brand
 >;
@@ -89,8 +89,8 @@ export const Plan2 = t.brand(
       itineraries: Itineraries,
     }),
     t.type({
-      from: t.unknown,
-      itineraries: t.unknown,
+      from: t.union([t.type({}), t.null]),
+      itineraries: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -100,8 +100,8 @@ export const Plan2 = t.brand(
       from?: Place_.Default;
       itineraries?: Itineraries;
     } & {
-      from: unknown;
-      itineraries: unknown;
+      from: {} | null;
+      itineraries: {} | null;
     },
     Plan2Brand
   > => true,

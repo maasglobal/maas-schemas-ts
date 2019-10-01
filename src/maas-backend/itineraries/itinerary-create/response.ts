@@ -65,14 +65,14 @@ export type Default = t.Branded<
       itinerary?: Itinerary_.Default;
       paymentParameters?: PaymentParameters;
     } & {
-      itinerary: unknown;
+      itinerary: {} | null;
     })
   | ({
       outward?: Itinerary_.Default;
       return?: Itinerary_.Default;
       paymentParameters?: PaymentParameters;
     } & {
-      outward: unknown;
+      outward: {} | null;
     }),
   DefaultBrand
 >;
@@ -84,7 +84,7 @@ export const Default = t.brand(
         paymentParameters: PaymentParameters,
       }),
       t.type({
-        itinerary: t.unknown,
+        itinerary: t.union([t.type({}), t.null]),
       }),
     ]),
     t.intersection([
@@ -94,7 +94,7 @@ export const Default = t.brand(
         paymentParameters: PaymentParameters,
       }),
       t.type({
-        outward: t.unknown,
+        outward: t.union([t.type({}), t.null]),
       }),
     ]),
   ]),
@@ -105,14 +105,14 @@ export const Default = t.brand(
         itinerary?: Itinerary_.Default;
         paymentParameters?: PaymentParameters;
       } & {
-        itinerary: unknown;
+        itinerary: {} | null;
       })
     | ({
         outward?: Itinerary_.Default;
         return?: Itinerary_.Default;
         paymentParameters?: PaymentParameters;
       } & {
-        outward: unknown;
+        outward: {} | null;
       }),
     DefaultBrand
   > => true,

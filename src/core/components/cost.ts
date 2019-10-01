@@ -21,8 +21,8 @@ export type Default = t.Branded<
     taxes?: number;
     currency?: Units_.Currency | null;
   } & {
-    amount: unknown;
-    currency: unknown;
+    amount: {} | null;
+    currency: {} | null;
   },
   DefaultBrand
 >;
@@ -36,8 +36,8 @@ export const Default = t.brand(
       currency: t.union([Units_.Currency, t.null]),
     }),
     t.type({
-      amount: t.unknown,
-      currency: t.unknown,
+      amount: t.union([t.type({}), t.null]),
+      currency: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -50,8 +50,8 @@ export const Default = t.brand(
       taxes?: number;
       currency?: Units_.Currency | null;
     } & {
-      amount: unknown;
-      currency: unknown;
+      amount: {} | null;
+      currency: {} | null;
     },
     DefaultBrand
   > => true,

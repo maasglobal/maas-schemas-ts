@@ -21,8 +21,8 @@ export type Default = t.Branded<
     returnUrl?: Units_.Url;
     locale?: I18n_.Locale;
   } & {
-    nonce: unknown;
-    returnUrl: unknown;
+    nonce: {} | null;
+    returnUrl: {} | null;
   },
   DefaultBrand
 >;
@@ -34,8 +34,8 @@ export const Default = t.brand(
       locale: I18n_.Locale,
     }),
     t.type({
-      nonce: t.unknown,
-      returnUrl: t.unknown,
+      nonce: t.union([t.type({}), t.null]),
+      returnUrl: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -46,8 +46,8 @@ export const Default = t.brand(
       returnUrl?: Units_.Url;
       locale?: I18n_.Locale;
     } & {
-      nonce: unknown;
-      returnUrl: unknown;
+      nonce: {} | null;
+      returnUrl: {} | null;
     },
     DefaultBrand
   > => true,

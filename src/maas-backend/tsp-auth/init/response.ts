@@ -17,7 +17,7 @@ export type Default = t.Branded<
   {
     authUrl?: Units_.Url;
   } & {
-    authUrl: unknown;
+    authUrl: {} | null;
   },
   DefaultBrand
 >;
@@ -27,7 +27,7 @@ export const Default = t.brand(
       authUrl: Units_.Url,
     }),
     t.type({
-      authUrl: t.unknown,
+      authUrl: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -36,7 +36,7 @@ export const Default = t.brand(
     {
       authUrl?: Units_.Url;
     } & {
-      authUrl: unknown;
+      authUrl: {} | null;
     },
     DefaultBrand
   > => true,

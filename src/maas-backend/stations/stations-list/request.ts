@@ -28,10 +28,10 @@ export type Default = t.Branded<
           radius?: number;
           type?: 'origin' | 'destination' | 'viaAvoid';
         } & {
-          agencyId: unknown;
-          lat: unknown;
-          lon: unknown;
-          type: unknown;
+          agencyId: {} | null;
+          lat: {} | null;
+          lon: {} | null;
+          type: {} | null;
         })
       | ({
           agencyId?: Common_.AgencyId;
@@ -39,15 +39,15 @@ export type Default = t.Branded<
           count?: number;
           type?: 'origin' | 'destination' | 'viaAvoid';
         } & {
-          agencyId: unknown;
-          name: unknown;
-          count: unknown;
-          type: unknown;
+          agencyId: {} | null;
+          name: {} | null;
+          count: {} | null;
+          type: {} | null;
         });
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    payload: unknown;
+    identityId: {} | null;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -69,10 +69,10 @@ export const Default = t.brand(
             ]),
           }),
           t.type({
-            agencyId: t.unknown,
-            lat: t.unknown,
-            lon: t.unknown,
-            type: t.unknown,
+            agencyId: t.union([t.type({}), t.null]),
+            lat: t.union([t.type({}), t.null]),
+            lon: t.union([t.type({}), t.null]),
+            type: t.union([t.type({}), t.null]),
           }),
         ]),
         t.intersection([
@@ -87,18 +87,18 @@ export const Default = t.brand(
             ]),
           }),
           t.type({
-            agencyId: t.unknown,
-            name: t.unknown,
-            count: t.unknown,
-            type: t.unknown,
+            agencyId: t.union([t.type({}), t.null]),
+            name: t.union([t.type({}), t.null]),
+            count: t.union([t.type({}), t.null]),
+            type: t.union([t.type({}), t.null]),
           }),
         ]),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      payload: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -114,10 +114,10 @@ export const Default = t.brand(
             radius?: number;
             type?: 'origin' | 'destination' | 'viaAvoid';
           } & {
-            agencyId: unknown;
-            lat: unknown;
-            lon: unknown;
-            type: unknown;
+            agencyId: {} | null;
+            lat: {} | null;
+            lon: {} | null;
+            type: {} | null;
           })
         | ({
             agencyId?: Common_.AgencyId;
@@ -125,15 +125,15 @@ export const Default = t.brand(
             count?: number;
             type?: 'origin' | 'destination' | 'viaAvoid';
           } & {
-            agencyId: unknown;
-            name: unknown;
-            count: unknown;
-            type: unknown;
+            agencyId: {} | null;
+            name: {} | null;
+            count: {} | null;
+            type: {} | null;
           });
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      payload: unknown;
+      identityId: {} | null;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

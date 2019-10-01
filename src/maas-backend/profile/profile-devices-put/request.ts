@@ -23,9 +23,9 @@ export type Default = t.Branded<
       deviceIdentifier?: Units_.Uuid;
       deviceType?: string & ('iOS' | 'Android');
     } & {
-      devicePushToken: unknown;
-      deviceIdentifier: unknown;
-      deviceType: unknown;
+      devicePushToken: {} | null;
+      deviceIdentifier: {} | null;
+      deviceType: {} | null;
     };
     headers?: ApiCommon_.Headers;
   },
@@ -44,9 +44,9 @@ export const Default = t.brand(
         ]),
       }),
       t.type({
-        devicePushToken: t.unknown,
-        deviceIdentifier: t.unknown,
-        deviceType: t.unknown,
+        devicePushToken: t.union([t.type({}), t.null]),
+        deviceIdentifier: t.union([t.type({}), t.null]),
+        deviceType: t.union([t.type({}), t.null]),
       }),
     ]),
     headers: ApiCommon_.Headers,
@@ -61,9 +61,9 @@ export const Default = t.brand(
         deviceIdentifier?: Units_.Uuid;
         deviceType?: string & ('iOS' | 'Android');
       } & {
-        devicePushToken: unknown;
-        deviceIdentifier: unknown;
-        deviceType: unknown;
+        devicePushToken: {} | null;
+        deviceIdentifier: {} | null;
+        deviceType: {} | null;
       };
       headers?: ApiCommon_.Headers;
     },

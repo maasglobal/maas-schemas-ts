@@ -37,9 +37,9 @@ export type BookingStateTransition = t.Branded<
       errorCode?: number;
     };
   } & {
-    newState: unknown;
-    oldState: unknown;
-    timestamp: unknown;
+    newState: {} | null;
+    oldState: {} | null;
+    timestamp: {} | null;
   },
   BookingStateTransitionBrand
 >;
@@ -56,9 +56,9 @@ export const BookingStateTransition = t.brand(
       }),
     }),
     t.type({
-      newState: t.unknown,
-      oldState: t.unknown,
-      timestamp: t.unknown,
+      newState: t.union([t.type({}), t.null]),
+      oldState: t.union([t.type({}), t.null]),
+      timestamp: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -74,9 +74,9 @@ export const BookingStateTransition = t.brand(
         errorCode?: number;
       };
     } & {
-      newState: unknown;
-      oldState: unknown;
-      timestamp: unknown;
+      newState: {} | null;
+      oldState: {} | null;
+      timestamp: {} | null;
     },
     BookingStateTransitionBrand
   > => true,

@@ -32,12 +32,12 @@ export type Default = t.Branded<
     customerSelection?: CustomerSelection_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    tspId: unknown;
-    state: unknown;
-    meta: unknown;
-    terms: unknown;
-    token: unknown;
-    tspProduct: unknown;
+    tspId: {} | null;
+    state: {} | null;
+    meta: {} | null;
+    terms: {} | null;
+    token: {} | null;
+    tspProduct: {} | null;
   },
   DefaultBrand
 >;
@@ -57,12 +57,12 @@ export const Default = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      tspId: t.unknown,
-      state: t.unknown,
-      meta: t.unknown,
-      terms: t.unknown,
-      token: t.unknown,
-      tspProduct: t.unknown,
+      tspId: t.union([t.type({}), t.null]),
+      state: t.union([t.type({}), t.null]),
+      meta: t.union([t.type({}), t.null]),
+      terms: t.union([t.type({}), t.null]),
+      token: t.union([t.type({}), t.null]),
+      tspProduct: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -81,12 +81,12 @@ export const Default = t.brand(
       customerSelection?: CustomerSelection_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      tspId: unknown;
-      state: unknown;
-      meta: unknown;
-      terms: unknown;
-      token: unknown;
-      tspProduct: unknown;
+      tspId: {} | null;
+      state: {} | null;
+      meta: {} | null;
+      terms: {} | null;
+      token: {} | null;
+      tspProduct: {} | null;
     },
     DefaultBrand
   > => true,

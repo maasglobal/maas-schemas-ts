@@ -27,13 +27,13 @@ export type Product = t.Branded<
     fares?: Array<Fare_.Default>;
     description?: string;
   } & {
-    id: unknown;
-    agencyId: unknown;
-    tspProductId: unknown;
-    name: unknown;
-    description: unknown;
-    icon: unknown;
-    fares: unknown;
+    id: {} | null;
+    agencyId: {} | null;
+    tspProductId: {} | null;
+    name: {} | null;
+    description: {} | null;
+    icon: {} | null;
+    fares: {} | null;
   },
   ProductBrand
 >;
@@ -50,13 +50,13 @@ export const Product = t.brand(
       description: t.string,
     }),
     t.type({
-      id: t.unknown,
-      agencyId: t.unknown,
-      tspProductId: t.unknown,
-      name: t.unknown,
-      description: t.unknown,
-      icon: t.unknown,
-      fares: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      agencyId: t.union([t.type({}), t.null]),
+      tspProductId: t.union([t.type({}), t.null]),
+      name: t.union([t.type({}), t.null]),
+      description: t.union([t.type({}), t.null]),
+      icon: t.union([t.type({}), t.null]),
+      fares: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -72,13 +72,13 @@ export const Product = t.brand(
       fares?: Array<Fare_.Default>;
       description?: string;
     } & {
-      id: unknown;
-      agencyId: unknown;
-      tspProductId: unknown;
-      name: unknown;
-      description: unknown;
-      icon: unknown;
-      fares: unknown;
+      id: {} | null;
+      agencyId: {} | null;
+      tspProductId: {} | null;
+      name: {} | null;
+      description: {} | null;
+      icon: {} | null;
+      fares: {} | null;
     },
     ProductBrand
   > => true,
@@ -94,8 +94,8 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     products?: Array<Product>;
   } & {
-    agencyId: unknown;
-    products: unknown;
+    agencyId: {} | null;
+    products: {} | null;
   },
   DefaultBrand
 >;
@@ -106,8 +106,8 @@ export const Default = t.brand(
       products: t.array(Product),
     }),
     t.type({
-      agencyId: t.unknown,
-      products: t.unknown,
+      agencyId: t.union([t.type({}), t.null]),
+      products: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -117,8 +117,8 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       products?: Array<Product>;
     } & {
-      agencyId: unknown;
-      products: unknown;
+      agencyId: {} | null;
+      products: {} | null;
     },
     DefaultBrand
   > => true,

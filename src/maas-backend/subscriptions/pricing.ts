@@ -23,11 +23,11 @@ export type LineItem = t.Branded<
     quantity?: number;
     unitPrice?: Cost_.Default;
   } & {
-    id: unknown;
-    type: unknown;
-    description: unknown;
-    quantity: unknown;
-    unitPrice: unknown;
+    id: {} | null;
+    type: {} | null;
+    description: {} | null;
+    quantity: {} | null;
+    unitPrice: {} | null;
   },
   LineItemBrand
 >;
@@ -41,11 +41,11 @@ export const LineItem = t.brand(
       unitPrice: Cost_.Default,
     }),
     t.type({
-      id: t.unknown,
-      type: t.unknown,
-      description: t.unknown,
-      quantity: t.unknown,
-      unitPrice: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      type: t.union([t.type({}), t.null]),
+      description: t.union([t.type({}), t.null]),
+      quantity: t.union([t.type({}), t.null]),
+      unitPrice: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -58,11 +58,11 @@ export const LineItem = t.brand(
       quantity?: number;
       unitPrice?: Cost_.Default;
     } & {
-      id: unknown;
-      type: unknown;
-      description: unknown;
-      quantity: unknown;
-      unitPrice: unknown;
+      id: {} | null;
+      type: {} | null;
+      description: {} | null;
+      quantity: {} | null;
+      unitPrice: {} | null;
     },
     LineItemBrand
   > => true,
@@ -78,8 +78,8 @@ export type Discount = t.Branded<
     description?: string;
     discount?: Cost_.Default;
   } & {
-    description: unknown;
-    discount: unknown;
+    description: {} | null;
+    discount: {} | null;
   },
   DiscountBrand
 >;
@@ -90,8 +90,8 @@ export const Discount = t.brand(
       discount: Cost_.Default,
     }),
     t.type({
-      description: t.unknown,
-      discount: t.unknown,
+      description: t.union([t.type({}), t.null]),
+      discount: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -101,8 +101,8 @@ export const Discount = t.brand(
       description?: string;
       discount?: Cost_.Default;
     } & {
-      description: unknown;
-      discount: unknown;
+      description: {} | null;
+      discount: {} | null;
     },
     DiscountBrand
   > => true,
@@ -119,11 +119,11 @@ export type Terms = t.Branded<
       startTime?: Units_.Time;
       endTime?: Units_.Time;
     } & {
-      startTime: unknown;
-      endTime: unknown;
+      startTime: {} | null;
+      endTime: {} | null;
     };
   } & {
-    validity: unknown;
+    validity: {} | null;
   },
   TermsBrand
 >;
@@ -136,13 +136,13 @@ export const Terms = t.brand(
           endTime: Units_.Time,
         }),
         t.type({
-          startTime: t.unknown,
-          endTime: t.unknown,
+          startTime: t.union([t.type({}), t.null]),
+          endTime: t.union([t.type({}), t.null]),
         }),
       ]),
     }),
     t.type({
-      validity: t.unknown,
+      validity: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -153,11 +153,11 @@ export const Terms = t.brand(
         startTime?: Units_.Time;
         endTime?: Units_.Time;
       } & {
-        startTime: unknown;
-        endTime: unknown;
+        startTime: {} | null;
+        endTime: {} | null;
       };
     } & {
-      validity: unknown;
+      validity: {} | null;
     },
     TermsBrand
   > => true,
@@ -175,8 +175,8 @@ export type Default = t.Branded<
     total?: Cost_.Default;
     terms?: Terms;
   } & {
-    lineItems: unknown;
-    total: unknown;
+    lineItems: {} | null;
+    total: {} | null;
   },
   DefaultBrand
 >;
@@ -189,8 +189,8 @@ export const Default = t.brand(
       terms: Terms,
     }),
     t.type({
-      lineItems: t.unknown,
-      total: t.unknown,
+      lineItems: t.union([t.type({}), t.null]),
+      total: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -202,8 +202,8 @@ export const Default = t.brand(
       total?: Cost_.Default;
       terms?: Terms;
     } & {
-      lineItems: unknown;
-      total: unknown;
+      lineItems: {} | null;
+      total: {} | null;
     },
     DefaultBrand
   > => true,

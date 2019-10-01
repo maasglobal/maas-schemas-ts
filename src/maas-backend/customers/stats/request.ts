@@ -20,9 +20,9 @@ export type Default = t.Branded<
     customerId?: Units_.IdentityId;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    customerId: unknown;
-    headers: unknown;
+    identityId: {} | null;
+    customerId: {} | null;
+    headers: {} | null;
   },
   DefaultBrand
 >;
@@ -34,9 +34,9 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      customerId: t.unknown,
-      headers: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      headers: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -47,9 +47,9 @@ export const Default = t.brand(
       customerId?: Units_.IdentityId;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      customerId: unknown;
-      headers: unknown;
+      identityId: {} | null;
+      customerId: {} | null;
+      headers: {} | null;
     },
     DefaultBrand
   > => true,

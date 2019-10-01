@@ -26,14 +26,14 @@ export type Default = t.Branded<
       alias?: PaymentSource_.Alias;
       status?: PaymentSource_.Status;
     } & {
-      setupIntentId: unknown;
-      type: unknown;
-      gatewayName: unknown;
-      isDefault: unknown;
-      status: unknown;
+      setupIntentId: {} | null;
+      type: {} | null;
+      gatewayName: {} | null;
+      isDefault: {} | null;
+      status: {} | null;
     };
   } & {
-    setupIntent: unknown;
+    setupIntent: {} | null;
   },
   DefaultBrand
 >;
@@ -51,16 +51,16 @@ export const Default = t.brand(
           status: PaymentSource_.Status,
         }),
         t.type({
-          setupIntentId: t.unknown,
-          type: t.unknown,
-          gatewayName: t.unknown,
-          isDefault: t.unknown,
-          status: t.unknown,
+          setupIntentId: t.union([t.type({}), t.null]),
+          type: t.union([t.type({}), t.null]),
+          gatewayName: t.union([t.type({}), t.null]),
+          isDefault: t.union([t.type({}), t.null]),
+          status: t.union([t.type({}), t.null]),
         }),
       ]),
     }),
     t.type({
-      setupIntent: t.unknown,
+      setupIntent: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -76,14 +76,14 @@ export const Default = t.brand(
         alias?: PaymentSource_.Alias;
         status?: PaymentSource_.Status;
       } & {
-        setupIntentId: unknown;
-        type: unknown;
-        gatewayName: unknown;
-        isDefault: unknown;
-        status: unknown;
+        setupIntentId: {} | null;
+        type: {} | null;
+        gatewayName: {} | null;
+        isDefault: {} | null;
+        status: {} | null;
       };
     } & {
-      setupIntent: unknown;
+      setupIntent: {} | null;
     },
     DefaultBrand
   > => true,

@@ -31,12 +31,12 @@ export type InvoiceLineItem = t.Branded<
     tokenId?: Fare_.TokenId;
     token?: {};
   } & {
-    id: unknown;
-    gatewayId: unknown;
-    description: unknown;
-    amount: unknown;
-    currency: unknown;
-    type: unknown;
+    id: {} | null;
+    gatewayId: {} | null;
+    description: {} | null;
+    amount: {} | null;
+    currency: {} | null;
+    type: {} | null;
   },
   InvoiceLineItemBrand
 >;
@@ -65,12 +65,12 @@ export const InvoiceLineItem = t.brand(
       token: t.type({}),
     }),
     t.type({
-      id: t.unknown,
-      gatewayId: t.unknown,
-      description: t.unknown,
-      amount: t.unknown,
-      currency: t.unknown,
-      type: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      gatewayId: t.union([t.type({}), t.null]),
+      description: t.union([t.type({}), t.null]),
+      amount: t.union([t.type({}), t.null]),
+      currency: t.union([t.type({}), t.null]),
+      type: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -90,12 +90,12 @@ export const InvoiceLineItem = t.brand(
       tokenId?: Fare_.TokenId;
       token?: {};
     } & {
-      id: unknown;
-      gatewayId: unknown;
-      description: unknown;
-      amount: unknown;
-      currency: unknown;
-      type: unknown;
+      id: {} | null;
+      gatewayId: {} | null;
+      description: {} | null;
+      amount: {} | null;
+      currency: {} | null;
+      type: {} | null;
     },
     InvoiceLineItemBrand
   > => true,

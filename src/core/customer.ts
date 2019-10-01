@@ -39,8 +39,8 @@ export type Default = t.Branded<
         currency?: 'WMP';
         amount?: number;
       } & {
-        currency: unknown;
-        amount: unknown;
+        currency: {} | null;
+        amount: {} | null;
       };
     } & Record<
       string,
@@ -48,20 +48,20 @@ export type Default = t.Branded<
           currency?: 'WMP';
           amount?: number;
         } & {
-          currency: unknown;
-          amount: unknown;
+          currency: {} | null;
+          amount: {} | null;
         })
       | ({
           currency?: 'TOKEN';
           tokenId?: Fare_.TokenId;
           amount?: number | null;
         } & {
-          currency: unknown;
-          tokenId: unknown;
-          amount: unknown;
+          currency: {} | null;
+          tokenId: {} | null;
+          amount: {} | null;
         })
     >) & {
-      WMP: unknown;
+      WMP: {} | null;
     };
     subscriberType?: string;
     authToken?: Common_.EncodedQueryParam;
@@ -94,8 +94,8 @@ export const Default = t.brand(
               amount: t.number,
             }),
             t.type({
-              currency: t.unknown,
-              amount: t.unknown,
+              currency: t.union([t.type({}), t.null]),
+              amount: t.union([t.type({}), t.null]),
             }),
           ]),
         }),
@@ -108,8 +108,8 @@ export const Default = t.brand(
                 amount: t.number,
               }),
               t.type({
-                currency: t.unknown,
-                amount: t.unknown,
+                currency: t.union([t.type({}), t.null]),
+                amount: t.union([t.type({}), t.null]),
               }),
             ]),
             t.intersection([
@@ -119,16 +119,16 @@ export const Default = t.brand(
                 amount: t.union([t.number, t.null]),
               }),
               t.type({
-                currency: t.unknown,
-                tokenId: t.unknown,
-                amount: t.unknown,
+                currency: t.union([t.type({}), t.null]),
+                tokenId: t.union([t.type({}), t.null]),
+                amount: t.union([t.type({}), t.null]),
               }),
             ]),
           ]),
         ),
       ]),
       t.type({
-        WMP: t.unknown,
+        WMP: t.union([t.type({}), t.null]),
       }),
     ]),
     subscriberType: t.string,
@@ -158,8 +158,8 @@ export const Default = t.brand(
           currency?: 'WMP';
           amount?: number;
         } & {
-          currency: unknown;
-          amount: unknown;
+          currency: {} | null;
+          amount: {} | null;
         };
       } & Record<
         string,
@@ -167,20 +167,20 @@ export const Default = t.brand(
             currency?: 'WMP';
             amount?: number;
           } & {
-            currency: unknown;
-            amount: unknown;
+            currency: {} | null;
+            amount: {} | null;
           })
         | ({
             currency?: 'TOKEN';
             tokenId?: Fare_.TokenId;
             amount?: number | null;
           } & {
-            currency: unknown;
-            tokenId: unknown;
-            amount: unknown;
+            currency: {} | null;
+            tokenId: {} | null;
+            amount: {} | null;
           })
       >) & {
-        WMP: unknown;
+        WMP: {} | null;
       };
       subscriberType?: string;
       authToken?: Common_.EncodedQueryParam;

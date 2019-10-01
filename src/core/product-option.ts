@@ -42,10 +42,10 @@ export type WithConfigurator = t.Branded<
     configurator?: Configurator_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    ref: unknown;
-    terms: unknown;
-    meta: unknown;
-    configurator: unknown;
+    ref: {} | null;
+    terms: {} | null;
+    meta: {} | null;
+    configurator: {} | null;
   },
   WithConfiguratorBrand
 >;
@@ -62,10 +62,10 @@ export const WithConfigurator = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      ref: t.unknown,
-      terms: t.unknown,
-      meta: t.unknown,
-      configurator: t.unknown,
+      ref: t.union([t.type({}), t.null]),
+      terms: t.union([t.type({}), t.null]),
+      meta: t.union([t.type({}), t.null]),
+      configurator: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -81,10 +81,10 @@ export const WithConfigurator = t.brand(
       configurator?: Configurator_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      ref: unknown;
-      terms: unknown;
-      meta: unknown;
-      configurator: unknown;
+      ref: {} | null;
+      terms: {} | null;
+      meta: {} | null;
+      configurator: {} | null;
     },
     WithConfiguratorBrand
   > => true,
@@ -106,10 +106,10 @@ export type WithFares = t.Branded<
     meta?: BookingMeta_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    ref: unknown;
-    terms: unknown;
-    meta: unknown;
-    fares: unknown;
+    ref: {} | null;
+    terms: {} | null;
+    meta: {} | null;
+    fares: {} | null;
   },
   WithFaresBrand
 >;
@@ -126,10 +126,10 @@ export const WithFares = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      ref: t.unknown,
-      terms: t.unknown,
-      meta: t.unknown,
-      fares: t.unknown,
+      ref: t.union([t.type({}), t.null]),
+      terms: t.union([t.type({}), t.null]),
+      meta: t.union([t.type({}), t.null]),
+      fares: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -145,10 +145,10 @@ export const WithFares = t.brand(
       meta?: BookingMeta_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      ref: unknown;
-      terms: unknown;
-      meta: unknown;
-      fares: unknown;
+      ref: {} | null;
+      terms: {} | null;
+      meta: {} | null;
+      fares: {} | null;
     },
     WithFaresBrand
   > => true,
@@ -170,10 +170,10 @@ export type WithCost = t.Branded<
     meta?: BookingMeta_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    ref: unknown;
-    terms: unknown;
-    meta: unknown;
-    cost: unknown;
+    ref: {} | null;
+    terms: {} | null;
+    meta: {} | null;
+    cost: {} | null;
   },
   WithCostBrand
 >;
@@ -190,10 +190,10 @@ export const WithCost = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      ref: t.unknown,
-      terms: t.unknown,
-      meta: t.unknown,
-      cost: t.unknown,
+      ref: t.union([t.type({}), t.null]),
+      terms: t.union([t.type({}), t.null]),
+      meta: t.union([t.type({}), t.null]),
+      cost: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -209,10 +209,10 @@ export const WithCost = t.brand(
       meta?: BookingMeta_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      ref: unknown;
-      terms: unknown;
-      meta: unknown;
-      cost: unknown;
+      ref: {} | null;
+      terms: {} | null;
+      meta: {} | null;
+      cost: {} | null;
     },
     WithCostBrand
   > => true,

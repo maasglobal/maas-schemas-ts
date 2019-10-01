@@ -20,8 +20,8 @@ export type Default = t.Branded<
     features?: Array<Geolocation_.Feature>;
     debug?: {};
   } & {
-    type: unknown;
-    features: unknown;
+    type: {} | null;
+    features: {} | null;
   },
   DefaultBrand
 >;
@@ -33,8 +33,8 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      type: t.unknown,
-      features: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      features: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -45,8 +45,8 @@ export const Default = t.brand(
       features?: Array<Geolocation_.Feature>;
       debug?: {};
     } & {
-      type: unknown;
-      features: unknown;
+      type: {} | null;
+      features: {} | null;
     },
     DefaultBrand
   > => true,

@@ -20,16 +20,16 @@ export type Default = t.Branded<
     features?: Array<
       Geolocation_.Feature & {
         properties?: {} & {
-          city: unknown;
-          country: unknown;
-          countryCode: unknown;
+          city: {} | null;
+          country: {} | null;
+          countryCode: {} | null;
         };
       }
     >;
     debug?: {};
   } & {
-    type: unknown;
-    features: unknown;
+    type: {} | null;
+    features: {} | null;
   },
   DefaultBrand
 >;
@@ -44,9 +44,9 @@ export const Default = t.brand(
             properties: t.intersection([
               t.type({}),
               t.type({
-                city: t.unknown,
-                country: t.unknown,
-                countryCode: t.unknown,
+                city: t.union([t.type({}), t.null]),
+                country: t.union([t.type({}), t.null]),
+                countryCode: t.union([t.type({}), t.null]),
               }),
             ]),
           }),
@@ -55,8 +55,8 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      type: t.unknown,
-      features: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      features: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -67,16 +67,16 @@ export const Default = t.brand(
       features?: Array<
         Geolocation_.Feature & {
           properties?: {} & {
-            city: unknown;
-            country: unknown;
-            countryCode: unknown;
+            city: {} | null;
+            country: {} | null;
+            countryCode: {} | null;
           };
         }
       >;
       debug?: {};
     } & {
-      type: unknown;
-      features: unknown;
+      type: {} | null;
+      features: {} | null;
     },
     DefaultBrand
   > => true,

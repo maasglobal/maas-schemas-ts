@@ -21,7 +21,7 @@ export type Default = t.Branded<
     originalFare?: string;
     headers?: ApiCommon_.Headers;
   } & {
-    itineraryId: unknown;
+    itineraryId: {} | null;
   },
   DefaultBrand
 >;
@@ -33,7 +33,7 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      itineraryId: t.unknown,
+      itineraryId: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -44,7 +44,7 @@ export const Default = t.brand(
       originalFare?: string;
       headers?: ApiCommon_.Headers;
     } & {
-      itineraryId: unknown;
+      itineraryId: {} | null;
     },
     DefaultBrand
   > => true,

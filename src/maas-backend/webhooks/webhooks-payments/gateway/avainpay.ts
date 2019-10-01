@@ -26,8 +26,8 @@ export type Request = t.Branded<
       };
       request_map?: {};
     } & {
-      action_str: unknown;
-      data_type: unknown;
+      action_str: {} | null;
+      data_type: {} | null;
     };
     headers?: {
       'Set-Cookie'?: string;
@@ -35,11 +35,11 @@ export type Request = t.Branded<
     params?: {
       gatewayName?: string & 'avainpay';
     } & {
-      gatewayName: unknown;
+      gatewayName: {} | null;
     };
   } & {
-    params: unknown;
-    payload: unknown;
+    params: {} | null;
+    payload: {} | null;
   },
   RequestBrand
 >;
@@ -59,8 +59,8 @@ export const Request = t.brand(
           request_map: t.type({}),
         }),
         t.type({
-          action_str: t.unknown,
-          data_type: t.unknown,
+          action_str: t.union([t.type({}), t.null]),
+          data_type: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: t.partial({
@@ -71,13 +71,13 @@ export const Request = t.brand(
           gatewayName: t.intersection([t.string, t.literal('avainpay')]),
         }),
         t.type({
-          gatewayName: t.unknown,
+          gatewayName: t.union([t.type({}), t.null]),
         }),
       ]),
     }),
     t.type({
-      params: t.unknown,
-      payload: t.unknown,
+      params: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -95,8 +95,8 @@ export const Request = t.brand(
         };
         request_map?: {};
       } & {
-        action_str: unknown;
-        data_type: unknown;
+        action_str: {} | null;
+        data_type: {} | null;
       };
       headers?: {
         'Set-Cookie'?: string;
@@ -104,11 +104,11 @@ export const Request = t.brand(
       params?: {
         gatewayName?: string & 'avainpay';
       } & {
-        gatewayName: unknown;
+        gatewayName: {} | null;
       };
     } & {
-      params: unknown;
-      payload: unknown;
+      params: {} | null;
+      payload: {} | null;
     },
     RequestBrand
   > => true,

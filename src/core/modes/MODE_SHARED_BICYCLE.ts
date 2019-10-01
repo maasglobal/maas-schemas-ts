@@ -18,7 +18,7 @@ export type Default = t.Branded<
       id?: string;
       type?: string;
     } & {
-      id: unknown;
+      id: {} | null;
     };
   },
   DefaultBrand
@@ -31,7 +31,7 @@ export const Default = t.brand(
         type: t.string,
       }),
       t.type({
-        id: t.unknown,
+        id: t.union([t.type({}), t.null]),
       }),
     ]),
   }),
@@ -43,7 +43,7 @@ export const Default = t.brand(
         id?: string;
         type?: string;
       } & {
-        id: unknown;
+        id: {} | null;
       };
     },
     DefaultBrand

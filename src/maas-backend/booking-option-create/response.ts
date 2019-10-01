@@ -18,14 +18,14 @@ export type Default = t.Branded<
   | ({
       booking?: Booking_.Default;
     } & {
-      booking: unknown;
+      booking: {} | null;
     })
   | ({
       error?: {
         message?: string;
       };
     } & {
-      error: unknown;
+      error: {} | null;
     }),
   DefaultBrand
 >;
@@ -36,7 +36,7 @@ export const Default = t.brand(
         booking: Booking_.Default,
       }),
       t.type({
-        booking: t.unknown,
+        booking: t.union([t.type({}), t.null]),
       }),
     ]),
     t.intersection([
@@ -46,7 +46,7 @@ export const Default = t.brand(
         }),
       }),
       t.type({
-        error: t.unknown,
+        error: t.union([t.type({}), t.null]),
       }),
     ]),
   ]),
@@ -56,14 +56,14 @@ export const Default = t.brand(
     | ({
         booking?: Booking_.Default;
       } & {
-        booking: unknown;
+        booking: {} | null;
       })
     | ({
         error?: {
           message?: string;
         };
       } & {
-        error: unknown;
+        error: {} | null;
       }),
     DefaultBrand
   > => true,

@@ -92,8 +92,8 @@ export type Location = t.Branded<
     lat?: Latitude;
     lon?: Longitude;
   } & {
-    lat: unknown;
-    lon: unknown;
+    lat: {} | null;
+    lon: {} | null;
   },
   LocationBrand
 >;
@@ -104,8 +104,8 @@ export const Location = t.brand(
       lon: Longitude,
     }),
     t.type({
-      lat: t.unknown,
-      lon: t.unknown,
+      lat: t.union([t.type({}), t.null]),
+      lon: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -115,8 +115,8 @@ export const Location = t.brand(
       lat?: Latitude;
       lon?: Longitude;
     } & {
-      lat: unknown;
-      lon: unknown;
+      lat: {} | null;
+      lon: {} | null;
     },
     LocationBrand
   > => true,
@@ -132,8 +132,8 @@ export type RelaxedLocation = t.Branded<
     lat?: RelaxedLatitude;
     lon?: RelaxedLongitude;
   } & {
-    lat: unknown;
-    lon: unknown;
+    lat: {} | null;
+    lon: {} | null;
   },
   RelaxedLocationBrand
 >;
@@ -144,8 +144,8 @@ export const RelaxedLocation = t.brand(
       lon: RelaxedLongitude,
     }),
     t.type({
-      lat: t.unknown,
-      lon: t.unknown,
+      lat: t.union([t.type({}), t.null]),
+      lon: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -155,8 +155,8 @@ export const RelaxedLocation = t.brand(
       lat?: RelaxedLatitude;
       lon?: RelaxedLongitude;
     } & {
-      lat: unknown;
-      lon: unknown;
+      lat: {} | null;
+      lon: {} | null;
     },
     RelaxedLocationBrand
   > => true,

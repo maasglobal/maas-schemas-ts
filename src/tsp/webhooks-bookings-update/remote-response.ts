@@ -29,8 +29,8 @@ export type BookingDelta = t.Branded<
     token?: Booking_.Token;
     customer?: BookingOption_.Customer;
   } & {
-    tspId: unknown;
-    state: unknown;
+    tspId: {} | null;
+    state: {} | null;
   },
   BookingDeltaBrand
 >;
@@ -55,8 +55,8 @@ export const BookingDelta = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      tspId: t.unknown,
-      state: t.unknown,
+      tspId: t.union([t.type({}), t.null]),
+      state: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -79,8 +79,8 @@ export const BookingDelta = t.brand(
       token?: Booking_.Token;
       customer?: BookingOption_.Customer;
     } & {
-      tspId: unknown;
-      state: unknown;
+      tspId: {} | null;
+      state: {} | null;
     },
     BookingDeltaBrand
   > => true,

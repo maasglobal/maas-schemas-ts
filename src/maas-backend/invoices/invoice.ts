@@ -22,10 +22,10 @@ export type Invoice = t.Branded<
     bookingId?: Units_.Uuid;
     lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
   } & {
-    id: unknown;
-    customerId: unknown;
-    bookingId: unknown;
-    lineItems: unknown;
+    id: {} | null;
+    customerId: {} | null;
+    bookingId: {} | null;
+    lineItems: {} | null;
   },
   InvoiceBrand
 >;
@@ -38,10 +38,10 @@ export const Invoice = t.brand(
       lineItems: t.array(InvoiceLineItem_.InvoiceLineItem),
     }),
     t.type({
-      id: t.unknown,
-      customerId: t.unknown,
-      bookingId: t.unknown,
-      lineItems: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      bookingId: t.union([t.type({}), t.null]),
+      lineItems: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -53,10 +53,10 @@ export const Invoice = t.brand(
       bookingId?: Units_.Uuid;
       lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
     } & {
-      id: unknown;
-      customerId: unknown;
-      bookingId: unknown;
-      lineItems: unknown;
+      id: {} | null;
+      customerId: {} | null;
+      bookingId: {} | null;
+      lineItems: {} | null;
     },
     InvoiceBrand
   > => true,

@@ -27,21 +27,21 @@ export type Default = t.Branded<
         alias?: PaymentSource_.Alias;
       } & (
         | {
-            isDefault: unknown;
+            isDefault: {} | null;
           }
         | {
-            alias: unknown;
+            alias: {} | null;
           });
     } & {
-      paymentSource: unknown;
+      paymentSource: {} | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    customerId: unknown;
-    paymentSourceId: unknown;
-    payload: unknown;
-    headers: unknown;
+    identityId: {} | null;
+    customerId: {} | null;
+    paymentSourceId: {} | null;
+    payload: {} | null;
+    headers: {} | null;
   },
   DefaultBrand
 >;
@@ -60,26 +60,26 @@ export const Default = t.brand(
             }),
             t.union([
               t.type({
-                isDefault: t.unknown,
+                isDefault: t.union([t.type({}), t.null]),
               }),
               t.type({
-                alias: t.unknown,
+                alias: t.union([t.type({}), t.null]),
               }),
             ]),
           ]),
         }),
         t.type({
-          paymentSource: t.unknown,
+          paymentSource: t.union([t.type({}), t.null]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      customerId: t.unknown,
-      paymentSourceId: t.unknown,
-      payload: t.unknown,
-      headers: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      paymentSourceId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
+      headers: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -95,21 +95,21 @@ export const Default = t.brand(
           alias?: PaymentSource_.Alias;
         } & (
           | {
-              isDefault: unknown;
+              isDefault: {} | null;
             }
           | {
-              alias: unknown;
+              alias: {} | null;
             });
       } & {
-        paymentSource: unknown;
+        paymentSource: {} | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      customerId: unknown;
-      paymentSourceId: unknown;
-      payload: unknown;
-      headers: unknown;
+      identityId: {} | null;
+      customerId: {} | null;
+      paymentSourceId: {} | null;
+      payload: {} | null;
+      headers: {} | null;
     },
     DefaultBrand
   > => true,

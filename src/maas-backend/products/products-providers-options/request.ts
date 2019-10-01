@@ -21,8 +21,8 @@ export type Payload = t.Branded<
     lat?: UnitsGeo_.RelaxedLatitude;
     lon?: UnitsGeo_.RelaxedLongitude;
   } & {
-    lat: unknown;
-    lon: unknown;
+    lat: {} | null;
+    lon: {} | null;
   },
   PayloadBrand
 >;
@@ -33,8 +33,8 @@ export const Payload = t.brand(
       lon: UnitsGeo_.RelaxedLongitude,
     }),
     t.type({
-      lat: t.unknown,
-      lon: t.unknown,
+      lat: t.union([t.type({}), t.null]),
+      lon: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -44,8 +44,8 @@ export const Payload = t.brand(
       lat?: UnitsGeo_.RelaxedLatitude;
       lon?: UnitsGeo_.RelaxedLongitude;
     } & {
-      lat: unknown;
-      lon: unknown;
+      lat: {} | null;
+      lon: {} | null;
     },
     PayloadBrand
   > => true,
@@ -62,8 +62,8 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: unknown;
-    payload: unknown;
+    identityId: {} | null;
+    payload: {} | null;
   },
   DefaultBrand
 >;
@@ -75,8 +75,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.unknown,
-      payload: t.unknown,
+      identityId: t.union([t.type({}), t.null]),
+      payload: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -87,8 +87,8 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: unknown;
-      payload: unknown;
+      identityId: {} | null;
+      payload: {} | null;
     },
     DefaultBrand
   > => true,

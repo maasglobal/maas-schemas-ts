@@ -36,9 +36,9 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     tspProductId?: string;
   } & {
-    id: unknown;
-    tspProductId: unknown;
-    name: unknown;
+    id: {} | null;
+    tspProductId: {} | null;
+    name: {} | null;
   },
   DefaultBrand
 >;
@@ -54,9 +54,9 @@ export const Default = t.brand(
       tspProductId: t.string,
     }),
     t.type({
-      id: t.unknown,
-      tspProductId: t.unknown,
-      name: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      tspProductId: t.union([t.type({}), t.null]),
+      name: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -71,9 +71,9 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       tspProductId?: string;
     } & {
-      id: unknown;
-      tspProductId: unknown;
-      name: unknown;
+      id: {} | null;
+      tspProductId: {} | null;
+      name: {} | null;
     },
     DefaultBrand
   > => true,

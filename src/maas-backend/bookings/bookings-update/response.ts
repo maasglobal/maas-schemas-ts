@@ -19,7 +19,7 @@ export type Default = t.Branded<
     booking?: Booking_.Default;
     debug?: {};
   } & {
-    booking: unknown;
+    booking: {} | null;
   },
   DefaultBrand
 >;
@@ -30,7 +30,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      booking: t.unknown,
+      booking: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -40,7 +40,7 @@ export const Default = t.brand(
       booking?: Booking_.Default;
       debug?: {};
     } & {
-      booking: unknown;
+      booking: {} | null;
     },
     DefaultBrand
   > => true,

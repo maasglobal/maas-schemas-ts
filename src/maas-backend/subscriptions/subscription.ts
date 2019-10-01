@@ -43,7 +43,7 @@ export type Plan = t.Branded<
     description?: string;
     price?: Price;
   } & {
-    id: unknown;
+    id: {} | null;
   },
   PlanBrand
 >;
@@ -56,7 +56,7 @@ export const Plan = t.brand(
       price: Price,
     }),
     t.type({
-      id: t.unknown,
+      id: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -68,7 +68,7 @@ export const Plan = t.brand(
       description?: string;
       price?: Price;
     } & {
-      id: unknown;
+      id: {} | null;
     },
     PlanBrand
   > => true,
@@ -87,8 +87,8 @@ export type Addon = t.Branded<
     quantity?: number;
     unitPrice?: Price;
   } & {
-    id: unknown;
-    quantity: unknown;
+    id: {} | null;
+    quantity: {} | null;
   },
   AddonBrand
 >;
@@ -102,8 +102,8 @@ export const Addon = t.brand(
       unitPrice: Price,
     }),
     t.type({
-      id: t.unknown,
-      quantity: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      quantity: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -116,8 +116,8 @@ export const Addon = t.brand(
       quantity?: number;
       unitPrice?: Price;
     } & {
-      id: unknown;
-      quantity: unknown;
+      id: {} | null;
+      quantity: {} | null;
     },
     AddonBrand
   > => true,
@@ -134,7 +134,7 @@ export type Coupon = t.Branded<
     name?: string;
     description?: string;
   } & {
-    id: unknown;
+    id: {} | null;
   },
   CouponBrand
 >;
@@ -146,7 +146,7 @@ export const Coupon = t.brand(
       description: t.string,
     }),
     t.type({
-      id: t.unknown,
+      id: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -157,7 +157,7 @@ export const Coupon = t.brand(
       name?: string;
       description?: string;
     } & {
-      id: unknown;
+      id: {} | null;
     },
     CouponBrand
   > => true,
@@ -176,12 +176,12 @@ export type Terms = t.Branded<
       startTime?: Units_.Time;
       endTime?: Units_.Time;
     } & {
-      startTime: unknown;
-      endTime: unknown;
+      startTime: {} | null;
+      endTime: {} | null;
     };
     scheduledChanges?: boolean;
   } & {
-    validity: unknown;
+    validity: {} | null;
   },
   TermsBrand
 >;
@@ -196,14 +196,14 @@ export const Terms = t.brand(
           endTime: Units_.Time,
         }),
         t.type({
-          startTime: t.unknown,
-          endTime: t.unknown,
+          startTime: t.union([t.type({}), t.null]),
+          endTime: t.union([t.type({}), t.null]),
         }),
       ]),
       scheduledChanges: t.boolean,
     }),
     t.type({
-      validity: t.unknown,
+      validity: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -216,12 +216,12 @@ export const Terms = t.brand(
         startTime?: Units_.Time;
         endTime?: Units_.Time;
       } & {
-        startTime: unknown;
-        endTime: unknown;
+        startTime: {} | null;
+        endTime: {} | null;
       };
       scheduledChanges?: boolean;
     } & {
-      validity: unknown;
+      validity: {} | null;
     },
     TermsBrand
   > => true,

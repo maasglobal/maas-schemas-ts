@@ -21,7 +21,7 @@ export type Default = t.Branded<
     payload?: {
       name?: string;
     } & {
-      name: unknown;
+      name: {} | null;
     };
     headers?: {
       Accept?: ApiCommon_.AcceptHeader;
@@ -38,7 +38,7 @@ export const Default = t.brand(
         name: t.string,
       }),
       t.type({
-        name: t.unknown,
+        name: t.union([t.type({}), t.null]),
       }),
     ]),
     headers: t.partial({
@@ -54,7 +54,7 @@ export const Default = t.brand(
       payload?: {
         name?: string;
       } & {
-        name: unknown;
+        name: {} | null;
       };
       headers?: {
         Accept?: ApiCommon_.AcceptHeader;

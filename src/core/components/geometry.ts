@@ -70,8 +70,8 @@ export interface PolygonBrand {
 // The default export. More information at the top.
 export type Default = t.Branded<
   {} & {
-    type: unknown;
-    coordinates: unknown;
+    type: {} | null;
+    coordinates: {} | null;
   } & (unknown | unknown | unknown | unknown | unknown | unknown),
   DefaultBrand
 >;
@@ -79,8 +79,8 @@ export const Default = t.brand(
   t.intersection([
     t.type({}),
     t.type({
-      type: t.unknown,
-      coordinates: t.unknown,
+      type: t.union([t.type({}), t.null]),
+      coordinates: t.union([t.type({}), t.null]),
     }),
     t.union([t.unknown, t.unknown, t.unknown, t.unknown, t.unknown, t.unknown]),
   ]),
@@ -88,8 +88,8 @@ export const Default = t.brand(
     x,
   ): x is t.Branded<
     {} & {
-      type: unknown;
-      coordinates: unknown;
+      type: {} | null;
+      coordinates: {} | null;
     } & (unknown | unknown | unknown | unknown | unknown | unknown),
     DefaultBrand
   > => true,

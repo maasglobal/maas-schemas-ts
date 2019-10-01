@@ -25,10 +25,10 @@ export type Default = t.Branded<
     billingCountry?: Address_.Country;
     billingZip?: Address_.ZipCode;
   } & {
-    id: unknown;
-    customerId: unknown;
-    status: unknown;
-    valid: unknown;
+    id: {} | null;
+    customerId: {} | null;
+    status: {} | null;
+    valid: {} | null;
   },
   DefaultBrand
 >;
@@ -54,10 +54,10 @@ export const Default = t.brand(
       billingZip: Address_.ZipCode,
     }),
     t.type({
-      id: t.unknown,
-      customerId: t.unknown,
-      status: t.unknown,
-      valid: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      customerId: t.union([t.type({}), t.null]),
+      status: t.union([t.type({}), t.null]),
+      valid: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -74,10 +74,10 @@ export const Default = t.brand(
       billingCountry?: Address_.Country;
       billingZip?: Address_.ZipCode;
     } & {
-      id: unknown;
-      customerId: unknown;
-      status: unknown;
-      valid: unknown;
+      id: {} | null;
+      customerId: {} | null;
+      status: {} | null;
+      valid: {} | null;
     },
     DefaultBrand
   > => true,

@@ -32,8 +32,8 @@ export type Default = t.Branded<
         customerSelection?: CustomerSelection_.Default;
       }>;
     } & {
-      itinerary: unknown;
-      customerSelections: unknown;
+      itinerary: {} | null;
+      customerSelections: {} | null;
     };
   },
   DefaultBrand
@@ -55,8 +55,8 @@ export const Default = t.brand(
         ),
       }),
       t.type({
-        itinerary: t.unknown,
-        customerSelections: t.unknown,
+        itinerary: t.union([t.type({}), t.null]),
+        customerSelections: t.union([t.type({}), t.null]),
       }),
     ]),
   }),
@@ -75,8 +75,8 @@ export const Default = t.brand(
           customerSelection?: CustomerSelection_.Default;
         }>;
       } & {
-        itinerary: unknown;
-        customerSelections: unknown;
+        itinerary: {} | null;
+        customerSelections: {} | null;
       };
     },
     DefaultBrand

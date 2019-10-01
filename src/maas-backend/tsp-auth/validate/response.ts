@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     location?: Common_.WhimDeepLink;
   } & {
-    location: unknown;
+    location: {} | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,7 @@ export const Default = t.brand(
       location: Common_.WhimDeepLink,
     }),
     t.type({
-      location: t.unknown,
+      location: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -37,7 +37,7 @@ export const Default = t.brand(
     {
       location?: Common_.WhimDeepLink;
     } & {
-      location: unknown;
+      location: {} | null;
     },
     DefaultBrand
   > => true,

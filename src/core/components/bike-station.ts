@@ -23,14 +23,14 @@ export type Default = t.Branded<
       empty?: number;
       bikes?: number;
     } & {
-      total: unknown;
-      empty: unknown;
-      bikes: unknown;
+      total: {} | null;
+      empty: {} | null;
+      bikes: {} | null;
     };
   } & {
-    id: unknown;
-    name: unknown;
-    location: unknown;
+    id: {} | null;
+    name: {} | null;
+    location: {} | null;
   },
   DefaultBrand
 >;
@@ -47,16 +47,16 @@ export const Default = t.brand(
           bikes: t.number,
         }),
         t.type({
-          total: t.unknown,
-          empty: t.unknown,
-          bikes: t.unknown,
+          total: t.union([t.type({}), t.null]),
+          empty: t.union([t.type({}), t.null]),
+          bikes: t.union([t.type({}), t.null]),
         }),
       ]),
     }),
     t.type({
-      id: t.unknown,
-      name: t.unknown,
-      location: t.unknown,
+      id: t.union([t.type({}), t.null]),
+      name: t.union([t.type({}), t.null]),
+      location: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -71,14 +71,14 @@ export const Default = t.brand(
         empty?: number;
         bikes?: number;
       } & {
-        total: unknown;
-        empty: unknown;
-        bikes: unknown;
+        total: {} | null;
+        empty: {} | null;
+        bikes: {} | null;
       };
     } & {
-      id: unknown;
-      name: unknown;
-      location: unknown;
+      id: {} | null;
+      name: {} | null;
+      location: {} | null;
     },
     DefaultBrand
   > => true,

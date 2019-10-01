@@ -53,8 +53,8 @@ export type Cancellation = t.Branded<
     fare?: Fare_.Default;
     refunded?: boolean;
   } & {
-    cancellable: unknown;
-    refunded: unknown;
+    cancellable: {} | null;
+    refunded: {} | null;
   },
   CancellationBrand
 >;
@@ -67,8 +67,8 @@ export const Cancellation = t.brand(
       refunded: t.boolean,
     }),
     t.type({
-      cancellable: t.unknown,
-      refunded: t.unknown,
+      cancellable: t.union([t.type({}), t.null]),
+      refunded: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -80,8 +80,8 @@ export const Cancellation = t.brand(
       fare?: Fare_.Default;
       refunded?: boolean;
     } & {
-      cancellable: unknown;
-      refunded: unknown;
+      cancellable: {} | null;
+      refunded: {} | null;
     },
     CancellationBrand
   > => true,
@@ -98,7 +98,7 @@ export type Amendment = t.Branded<
     cost?: Cost_.Default;
     fare?: Fare_.Default;
   } & {
-    amendable: unknown;
+    amendable: {} | null;
   },
   AmendmentBrand
 >;
@@ -110,7 +110,7 @@ export const Amendment = t.brand(
       fare: Fare_.Default,
     }),
     t.type({
-      amendable: t.unknown,
+      amendable: t.union([t.type({}), t.null]),
     }),
   ]),
   (
@@ -121,7 +121,7 @@ export const Amendment = t.brand(
       cost?: Cost_.Default;
       fare?: Fare_.Default;
     } & {
-      amendable: unknown;
+      amendable: {} | null;
     },
     AmendmentBrand
   > => true,
@@ -142,8 +142,8 @@ export type Default = t.Branded<
       startTimeReturn?: Units_.Time;
       endTimeReturn?: Units_.Time;
     } & {
-      startTime: unknown;
-      endTime: unknown;
+      startTime: {} | null;
+      endTime: {} | null;
     };
     reusable?: boolean;
     reconcilable?: boolean;
@@ -169,8 +169,8 @@ export type Default = t.Branded<
         startAt?: number;
         type?: 'maxRate' | 'missedReturnPenalty' | 'extra';
       } & {
-        amount: unknown;
-        currency: unknown;
+        amount: {} | null;
+        currency: {} | null;
       }
     >;
   },
@@ -188,8 +188,8 @@ export const Default = t.brand(
         endTimeReturn: Units_.Time,
       }),
       t.type({
-        startTime: t.unknown,
-        endTime: t.unknown,
+        startTime: t.union([t.type({}), t.null]),
+        endTime: t.union([t.type({}), t.null]),
       }),
     ]),
     reusable: t.boolean,
@@ -222,8 +222,8 @@ export const Default = t.brand(
           ]),
         }),
         t.type({
-          amount: t.unknown,
-          currency: t.unknown,
+          amount: t.union([t.type({}), t.null]),
+          currency: t.union([t.type({}), t.null]),
         }),
       ]),
     ),
@@ -240,8 +240,8 @@ export const Default = t.brand(
         startTimeReturn?: Units_.Time;
         endTimeReturn?: Units_.Time;
       } & {
-        startTime: unknown;
-        endTime: unknown;
+        startTime: {} | null;
+        endTime: {} | null;
       };
       reusable?: boolean;
       reconcilable?: boolean;
@@ -267,8 +267,8 @@ export const Default = t.brand(
           startAt?: number;
           type?: 'maxRate' | 'missedReturnPenalty' | 'extra';
         } & {
-          amount: unknown;
-          currency: unknown;
+          amount: {} | null;
+          currency: {} | null;
         }
       >;
     },
