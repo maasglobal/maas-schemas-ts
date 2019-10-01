@@ -1,15 +1,15 @@
 {
   "name": "maas-schemas-ts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "TypeScript types and io-ts validators for maas-schemas",
   "main": "index.js",
   "files": [
     "lib/**/*"
   ],
+  "//": [
+    "Run eslint without --fix to check for cyclic dependencies"
+  ],
   "scripts": {
-    "//": [
-      "Run eslint without --fix to check for cyclic dependencies"
-    ],
     "eslint": "eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore",
     "lint": "yarn eslint",
     "clean-src": "rm -rf src",
