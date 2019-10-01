@@ -27,13 +27,25 @@ export type Product = t.Branded<
     fares?: Array<Fare_.Default>;
     description?: string;
   } & {
-    id: {} | null;
-    agencyId: {} | null;
-    tspProductId: {} | null;
-    name: {} | null;
-    description: {} | null;
-    icon: {} | null;
-    fares: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspProductId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    description:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    icon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    fares: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   ProductBrand
 >;
@@ -50,13 +62,62 @@ export const Product = t.brand(
       description: t.string,
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      agencyId: t.union([t.type({}), t.null]),
-      tspProductId: t.union([t.type({}), t.null]),
-      name: t.union([t.type({}), t.null]),
-      description: t.union([t.type({}), t.null]),
-      icon: t.union([t.type({}), t.null]),
-      fares: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      agencyId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      tspProductId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      description: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      icon: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      fares: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -72,13 +133,31 @@ export const Product = t.brand(
       fares?: Array<Fare_.Default>;
       description?: string;
     } & {
-      id: {} | null;
-      agencyId: {} | null;
-      tspProductId: {} | null;
-      name: {} | null;
-      description: {} | null;
-      icon: {} | null;
-      fares: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      agencyId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      tspProductId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      description:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      icon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      fares: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     ProductBrand
   > => true,
@@ -94,8 +173,8 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     products?: Array<Product>;
   } & {
-    agencyId: {} | null;
-    products: {} | null;
+    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    products: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -106,8 +185,22 @@ export const Default = t.brand(
       products: t.array(Product),
     }),
     t.type({
-      agencyId: t.union([t.type({}), t.null]),
-      products: t.union([t.type({}), t.null]),
+      agencyId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      products: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -117,8 +210,20 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       products?: Array<Product>;
     } & {
-      agencyId: {} | null;
-      products: {} | null;
+      agencyId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      products:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

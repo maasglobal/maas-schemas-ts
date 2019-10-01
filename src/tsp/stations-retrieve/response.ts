@@ -31,9 +31,21 @@ export type Default = t.Branded<
       services?: Station_.Services;
       platformCode?: Station_.PlatformCode;
     } & {
-      id: {} | null;
-      location: {} | null;
-      agencyId: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      location:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      agencyId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   },
   DefaultBrand
@@ -58,9 +70,30 @@ export const Default = t.brand(
         platformCode: Station_.PlatformCode,
       }),
       t.type({
-        id: t.union([t.type({}), t.null]),
-        location: t.union([t.type({}), t.null]),
-        agencyId: t.union([t.type({}), t.null]),
+        id: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        location: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        agencyId: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   }),
@@ -84,9 +117,21 @@ export const Default = t.brand(
         services?: Station_.Services;
         platformCode?: Station_.PlatformCode;
       } & {
-        id: {} | null;
-        location: {} | null;
-        agencyId: {} | null;
+        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        location:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        agencyId:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     },
     DefaultBrand

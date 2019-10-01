@@ -22,10 +22,10 @@ export type Default = t.Branded<
     created?: Units_.Time;
     modified?: Units_.Time;
   } & {
-    agencyId: {} | null;
-    state: {} | null;
-    validTo: {} | null;
-    created: {} | null;
+    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    validTo: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    created: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -42,10 +42,38 @@ export const Default = t.brand(
       modified: Units_.Time,
     }),
     t.type({
-      agencyId: t.union([t.type({}), t.null]),
-      state: t.union([t.type({}), t.null]),
-      validTo: t.union([t.type({}), t.null]),
-      created: t.union([t.type({}), t.null]),
+      agencyId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      state: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      validTo: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      created: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -58,10 +86,28 @@ export const Default = t.brand(
       created?: Units_.Time;
       modified?: Units_.Time;
     } & {
-      agencyId: {} | null;
-      state: {} | null;
-      validTo: {} | null;
-      created: {} | null;
+      agencyId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      validTo:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      created:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

@@ -31,12 +31,24 @@ export type InvoiceLineItem = t.Branded<
     tokenId?: Fare_.TokenId;
     token?: {};
   } & {
-    id: {} | null;
-    gatewayId: {} | null;
-    description: {} | null;
-    amount: {} | null;
-    currency: {} | null;
-    type: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    gatewayId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    description:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    currency: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   InvoiceLineItemBrand
 >;
@@ -65,12 +77,54 @@ export const InvoiceLineItem = t.brand(
       token: t.type({}),
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      gatewayId: t.union([t.type({}), t.null]),
-      description: t.union([t.type({}), t.null]),
-      amount: t.union([t.type({}), t.null]),
-      currency: t.union([t.type({}), t.null]),
-      type: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      gatewayId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      description: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      amount: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      currency: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -90,12 +144,30 @@ export const InvoiceLineItem = t.brand(
       tokenId?: Fare_.TokenId;
       token?: {};
     } & {
-      id: {} | null;
-      gatewayId: {} | null;
-      description: {} | null;
-      amount: {} | null;
-      currency: {} | null;
-      type: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      gatewayId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      description:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      amount: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      currency:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     InvoiceLineItemBrand
   > => true,

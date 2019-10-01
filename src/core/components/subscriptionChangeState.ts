@@ -21,8 +21,8 @@ export type Default = t.Branded<
     created?: Units_.Time;
     failureKey?: string & ('UNKNOWN_ERROR' | 'NOT_ELIGIBLE' | 'EXISTING_TICKET');
   } & {
-    id: {} | null;
-    state: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -45,8 +45,22 @@ export const Default = t.brand(
       ]),
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      state: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      state: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -58,8 +72,8 @@ export const Default = t.brand(
       created?: Units_.Time;
       failureKey?: string & ('UNKNOWN_ERROR' | 'NOT_ELIGIBLE' | 'EXISTING_TICKET');
     } & {
-      id: {} | null;
-      state: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

@@ -18,7 +18,13 @@ export type Default = t.Branded<
     suggestions?: Array<string>;
     debug?: {};
   } & {
-    suggestions: {} | null;
+    suggestions:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -29,7 +35,14 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      suggestions: t.union([t.type({}), t.null]),
+      suggestions: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -39,7 +52,13 @@ export const Default = t.brand(
       suggestions?: Array<string>;
       debug?: {};
     } & {
-      suggestions: {} | null;
+      suggestions:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

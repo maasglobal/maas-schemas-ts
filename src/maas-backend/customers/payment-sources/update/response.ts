@@ -18,7 +18,13 @@ export type Default = t.Branded<
   {
     paymentSource?: PaymentSource_.PaymentSource;
   } & {
-    paymentSource: {} | null;
+    paymentSource:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -28,7 +34,14 @@ export const Default = t.brand(
       paymentSource: PaymentSource_.PaymentSource,
     }),
     t.type({
-      paymentSource: t.union([t.type({}), t.null]),
+      paymentSource: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -37,7 +50,13 @@ export const Default = t.brand(
     {
       paymentSource?: PaymentSource_.PaymentSource;
     } & {
-      paymentSource: {} | null;
+      paymentSource:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

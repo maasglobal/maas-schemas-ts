@@ -31,11 +31,17 @@ export type Leg = t.Branded<
     departureDelay?: Units_.Duration;
     agencyId?: Common_.AgencyId;
   } & {
-    mode: {} | null;
-    startTime: {} | null;
-    endTime: {} | null;
-    from: {} | null;
-    to: {} | null;
+    mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    startTime:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    endTime: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   LegBrand
 >;
@@ -51,11 +57,46 @@ export const Leg = t.brand(
       agencyId: Common_.AgencyId,
     }),
     t.type({
-      mode: t.union([t.type({}), t.null]),
-      startTime: t.union([t.type({}), t.null]),
-      endTime: t.union([t.type({}), t.null]),
-      from: t.union([t.type({}), t.null]),
-      to: t.union([t.type({}), t.null]),
+      mode: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      startTime: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      endTime: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      from: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      to: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -70,11 +111,23 @@ export const Leg = t.brand(
       departureDelay?: Units_.Duration;
       agencyId?: Common_.AgencyId;
     } & {
-      mode: {} | null;
-      startTime: {} | null;
-      endTime: {} | null;
-      from: {} | null;
-      to: {} | null;
+      mode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      startTime:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      endTime:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     LegBrand
   > => true,
@@ -89,7 +142,7 @@ export type TspProduct = t.Branded<
   {
     id?: string;
   } & {
-    id: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   TspProductBrand
 >;
@@ -99,7 +152,14 @@ export const TspProduct = t.brand(
       id: t.string,
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -108,7 +168,7 @@ export const TspProduct = t.brand(
     {
       id?: string;
     } & {
-      id: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     TspProductBrand
   > => true,
@@ -132,11 +192,17 @@ export type ContentWithCost = t.Branded<
     cost?: Cost_.Default;
     customer?: Customer;
   } & {
-    leg: {} | null;
-    meta: {} | null;
-    terms: {} | null;
-    tspProduct: {} | null;
-    cost: {} | null;
+    leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspProduct:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   ContentWithCostBrand
 >;
@@ -151,11 +217,46 @@ export const ContentWithCost = t.brand(
       customer: Customer,
     }),
     t.type({
-      leg: t.union([t.type({}), t.null]),
-      meta: t.union([t.type({}), t.null]),
-      terms: t.union([t.type({}), t.null]),
-      tspProduct: t.union([t.type({}), t.null]),
-      cost: t.union([t.type({}), t.null]),
+      leg: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      meta: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      terms: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      tspProduct: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      cost: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -169,11 +270,17 @@ export const ContentWithCost = t.brand(
       cost?: Cost_.Default;
       customer?: Customer;
     } & {
-      leg: {} | null;
-      meta: {} | null;
-      terms: {} | null;
-      tspProduct: {} | null;
-      cost: {} | null;
+      leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspProduct:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     ContentWithCostBrand
   > => true,
@@ -193,11 +300,23 @@ export type ContentWithConfigurator = t.Branded<
     configurator?: Configurator_.Default;
     customer?: Customer;
   } & {
-    leg: {} | null;
-    meta: {} | null;
-    terms: {} | null;
-    tspProduct: {} | null;
-    configurator: {} | null;
+    leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspProduct:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    configurator:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   ContentWithConfiguratorBrand
 >;
@@ -212,11 +331,46 @@ export const ContentWithConfigurator = t.brand(
       customer: Customer,
     }),
     t.type({
-      leg: t.union([t.type({}), t.null]),
-      meta: t.union([t.type({}), t.null]),
-      terms: t.union([t.type({}), t.null]),
-      tspProduct: t.union([t.type({}), t.null]),
-      configurator: t.union([t.type({}), t.null]),
+      leg: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      meta: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      terms: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      tspProduct: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      configurator: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -230,11 +384,23 @@ export const ContentWithConfigurator = t.brand(
       configurator?: Configurator_.Default;
       customer?: Customer;
     } & {
-      leg: {} | null;
-      meta: {} | null;
-      terms: {} | null;
-      tspProduct: {} | null;
-      configurator: {} | null;
+      leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspProduct:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      configurator:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     ContentWithConfiguratorBrand
   > => true,

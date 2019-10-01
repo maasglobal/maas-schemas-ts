@@ -40,9 +40,15 @@ export type Default = t.Branded<
     type?: 'outward' | 'return';
     bookings?: Array<Booking_.Default>;
   } & {
-    startTime: {} | null;
-    endTime: {} | null;
-    legs: {} | null;
+    startTime:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    endTime: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    legs: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -65,9 +71,30 @@ export const Default = t.brand(
       bookings: t.array(Booking_.Default),
     }),
     t.type({
-      startTime: t.union([t.type({}), t.null]),
-      endTime: t.union([t.type({}), t.null]),
-      legs: t.union([t.type({}), t.null]),
+      startTime: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      endTime: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      legs: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -89,9 +116,21 @@ export const Default = t.brand(
       type?: 'outward' | 'return';
       bookings?: Array<Booking_.Default>;
     } & {
-      startTime: {} | null;
-      endTime: {} | null;
-      legs: {} | null;
+      startTime:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      endTime:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      legs: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

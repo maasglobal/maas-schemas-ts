@@ -70,8 +70,14 @@ export interface PolygonBrand {
 // The default export. More information at the top.
 export type Default = t.Branded<
   {} & {
-    type: {} | null;
-    coordinates: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    coordinates:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   } & (unknown | unknown | unknown | unknown | unknown | unknown),
   DefaultBrand
 >;
@@ -79,8 +85,22 @@ export const Default = t.brand(
   t.intersection([
     t.type({}),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      coordinates: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      coordinates: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
     t.union([t.unknown, t.unknown, t.unknown, t.unknown, t.unknown, t.unknown]),
   ]),
@@ -88,8 +108,14 @@ export const Default = t.brand(
     x,
   ): x is t.Branded<
     {} & {
-      type: {} | null;
-      coordinates: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      coordinates:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     } & (unknown | unknown | unknown | unknown | unknown | unknown),
     DefaultBrand
   > => true,

@@ -37,9 +37,15 @@ export type BookingStateTransition = t.Branded<
       errorCode?: number;
     };
   } & {
-    newState: {} | null;
-    oldState: {} | null;
-    timestamp: {} | null;
+    newState: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    oldState: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    timestamp:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   BookingStateTransitionBrand
 >;
@@ -56,9 +62,30 @@ export const BookingStateTransition = t.brand(
       }),
     }),
     t.type({
-      newState: t.union([t.type({}), t.null]),
-      oldState: t.union([t.type({}), t.null]),
-      timestamp: t.union([t.type({}), t.null]),
+      newState: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      oldState: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      timestamp: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -74,9 +101,27 @@ export const BookingStateTransition = t.brand(
         errorCode?: number;
       };
     } & {
-      newState: {} | null;
-      oldState: {} | null;
-      timestamp: {} | null;
+      newState:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      oldState:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      timestamp:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     BookingStateTransitionBrand
   > => true,

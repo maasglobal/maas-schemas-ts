@@ -22,10 +22,28 @@ export type Invoice = t.Branded<
     bookingId?: Units_.Uuid;
     lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
   } & {
-    id: {} | null;
-    customerId: {} | null;
-    bookingId: {} | null;
-    lineItems: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    bookingId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    lineItems:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   InvoiceBrand
 >;
@@ -38,10 +56,38 @@ export const Invoice = t.brand(
       lineItems: t.array(InvoiceLineItem_.InvoiceLineItem),
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      customerId: t.union([t.type({}), t.null]),
-      bookingId: t.union([t.type({}), t.null]),
-      lineItems: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      bookingId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      lineItems: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -53,10 +99,28 @@ export const Invoice = t.brand(
       bookingId?: Units_.Uuid;
       lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
     } & {
-      id: {} | null;
-      customerId: {} | null;
-      bookingId: {} | null;
-      lineItems: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      bookingId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      lineItems:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     InvoiceBrand
   > => true,

@@ -20,16 +20,34 @@ export type Default = t.Branded<
     features?: Array<
       Geolocation_.Feature & {
         properties?: {} & {
-          city: {} | null;
-          country: {} | null;
-          countryCode: {} | null;
+          city:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          country:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          countryCode:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         };
       }
     >;
     debug?: {};
   } & {
-    type: {} | null;
-    features: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    features: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -44,9 +62,30 @@ export const Default = t.brand(
             properties: t.intersection([
               t.type({}),
               t.type({
-                city: t.union([t.type({}), t.null]),
-                country: t.union([t.type({}), t.null]),
-                countryCode: t.union([t.type({}), t.null]),
+                city: t.union([
+                  t.UnknownRecord,
+                  t.UnknownArray,
+                  t.string,
+                  t.boolean,
+                  t.number,
+                  t.null,
+                ]),
+                country: t.union([
+                  t.UnknownRecord,
+                  t.UnknownArray,
+                  t.string,
+                  t.boolean,
+                  t.number,
+                  t.null,
+                ]),
+                countryCode: t.union([
+                  t.UnknownRecord,
+                  t.UnknownArray,
+                  t.string,
+                  t.boolean,
+                  t.number,
+                  t.null,
+                ]),
               }),
             ]),
           }),
@@ -55,8 +94,22 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      features: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      features: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -67,16 +120,40 @@ export const Default = t.brand(
       features?: Array<
         Geolocation_.Feature & {
           properties?: {} & {
-            city: {} | null;
-            country: {} | null;
-            countryCode: {} | null;
+            city:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
+            country:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
+            countryCode:
+              | Record<string, unknown>
+              | Array<unknown>
+              | string
+              | boolean
+              | number
+              | null;
           };
         }
       >;
       debug?: {};
     } & {
-      type: {} | null;
-      features: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      features:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

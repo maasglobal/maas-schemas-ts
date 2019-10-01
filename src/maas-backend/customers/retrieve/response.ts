@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     customer?: Customer_.Default;
   } & {
-    customer: {} | null;
+    customer: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,14 @@ export const Default = t.brand(
       customer: Customer_.Default,
     }),
     t.type({
-      customer: t.union([t.type({}), t.null]),
+      customer: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -37,7 +44,13 @@ export const Default = t.brand(
     {
       customer?: Customer_.Default;
     } & {
-      customer: {} | null;
+      customer:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

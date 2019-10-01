@@ -20,9 +20,27 @@ export type Device = t.Branded<
     deviceIdentifier?: Units_.Uuid;
     deviceType?: string & ('iOS' | 'Android');
   } & {
-    devicePushToken: {} | null;
-    deviceIdentifier: {} | null;
-    deviceType: {} | null;
+    devicePushToken:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    deviceIdentifier:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    deviceType:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DeviceBrand
 >;
@@ -37,9 +55,30 @@ export const Device = t.brand(
       ]),
     }),
     t.type({
-      devicePushToken: t.union([t.type({}), t.null]),
-      deviceIdentifier: t.union([t.type({}), t.null]),
-      deviceType: t.union([t.type({}), t.null]),
+      devicePushToken: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      deviceIdentifier: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      deviceType: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -50,9 +89,27 @@ export const Device = t.brand(
       deviceIdentifier?: Units_.Uuid;
       deviceType?: string & ('iOS' | 'Android');
     } & {
-      devicePushToken: {} | null;
-      deviceIdentifier: {} | null;
-      deviceType: {} | null;
+      devicePushToken:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      deviceIdentifier:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      deviceType:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DeviceBrand
   > => true,
@@ -68,7 +125,7 @@ export type Default = t.Branded<
     device?: Device;
     debug?: {};
   } & {
-    device: {} | null;
+    device: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -79,7 +136,14 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      device: t.union([t.type({}), t.null]),
+      device: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -89,7 +153,7 @@ export const Default = t.brand(
       device?: Device;
       debug?: {};
     } & {
-      device: {} | null;
+      device: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

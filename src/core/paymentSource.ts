@@ -35,8 +35,14 @@ export type Default = t.Branded<
     valid?: boolean;
     card?: Card_.Default;
   } & {
-    customerId: {} | null;
-    type: {} | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -66,8 +72,22 @@ export const Default = t.brand(
       card: Card_.Default,
     }),
     t.type({
-      customerId: t.union([t.type({}), t.null]),
-      type: t.union([t.type({}), t.null]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -93,8 +113,14 @@ export const Default = t.brand(
       valid?: boolean;
       card?: Card_.Default;
     } & {
-      customerId: {} | null;
-      type: {} | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     DefaultBrand
   > => true,

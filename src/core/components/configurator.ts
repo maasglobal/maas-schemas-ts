@@ -26,9 +26,9 @@ export type Choice = t.Branded<
     terms?: Terms_.Default;
     meta?: {};
   } & {
-    id: {} | null;
-    name: {} | null;
-    default: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    default: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   ChoiceBrand
 >;
@@ -45,9 +45,30 @@ export const Choice = t.brand(
       meta: t.type({}),
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      name: t.union([t.type({}), t.null]),
-      default: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      default: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -63,9 +84,15 @@ export const Choice = t.brand(
       terms?: Terms_.Default;
       meta?: {};
     } & {
-      id: {} | null;
-      name: {} | null;
-      default: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      default:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     ChoiceBrand
   > => true,
@@ -83,9 +110,9 @@ export type Config = t.Branded<
     description?: string;
     choices?: Array<Choice>;
   } & {
-    type: {} | null;
-    name: {} | null;
-    choices: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    choices: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   ConfigBrand
 >;
@@ -104,9 +131,30 @@ export const Config = t.brand(
       choices: t.array(Choice),
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      name: t.union([t.type({}), t.null]),
-      choices: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      choices: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -118,9 +166,15 @@ export const Config = t.brand(
       description?: string;
       choices?: Array<Choice>;
     } & {
-      type: {} | null;
-      name: {} | null;
-      choices: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      choices:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     ConfigBrand
   > => true,
@@ -138,8 +192,8 @@ export type Text = t.Branded<
     description?: string;
     input?: string;
   } & {
-    type: {} | null;
-    name: {} | null;
+    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   TextBrand
 >;
@@ -152,8 +206,22 @@ export const Text = t.brand(
       input: t.string,
     }),
     t.type({
-      type: t.union([t.type({}), t.null]),
-      name: t.union([t.type({}), t.null]),
+      type: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -165,8 +233,8 @@ export const Text = t.brand(
       description?: string;
       input?: string;
     } & {
-      type: {} | null;
-      name: {} | null;
+      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     },
     TextBrand
   > => true,

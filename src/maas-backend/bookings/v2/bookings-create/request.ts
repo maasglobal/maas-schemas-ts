@@ -26,12 +26,24 @@ export type Default = t.Branded<
       booking?: Response_.Option;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      paymentSourceId: {} | null;
+      paymentSourceId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId: {} | null;
-    payload: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -46,14 +58,35 @@ export const Default = t.brand(
           customerSelection: CustomerSelection_.Default,
         }),
         t.type({
-          paymentSourceId: t.union([t.type({}), t.null]),
+          paymentSourceId: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -66,12 +99,30 @@ export const Default = t.brand(
         booking?: Response_.Option;
         customerSelection?: CustomerSelection_.Default;
       } & {
-        paymentSourceId: {} | null;
+        paymentSourceId:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId: {} | null;
-      payload: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

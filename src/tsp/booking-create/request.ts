@@ -28,11 +28,17 @@ export type Default = t.Branded<
     configurator?: Configurator_.Default;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    leg: {} | null;
-    meta: {} | null;
-    terms: {} | null;
-    customer: {} | null;
-    tspProduct: {} | null;
+    leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customer: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspProduct:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -48,11 +54,46 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      leg: t.union([t.type({}), t.null]),
-      meta: t.union([t.type({}), t.null]),
-      terms: t.union([t.type({}), t.null]),
-      customer: t.union([t.type({}), t.null]),
-      tspProduct: t.union([t.type({}), t.null]),
+      leg: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      meta: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      terms: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      customer: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      tspProduct: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -67,11 +108,23 @@ export const Default = t.brand(
       configurator?: Configurator_.Default;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      leg: {} | null;
-      meta: {} | null;
-      terms: {} | null;
-      customer: {} | null;
-      tspProduct: {} | null;
+      leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      customer:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      tspProduct:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

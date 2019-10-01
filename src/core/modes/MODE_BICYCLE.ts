@@ -23,7 +23,7 @@ export type Default = t.Branded<
       id?: string;
       type?: string;
     } & {
-      id: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
   },
   DefaultBrand
@@ -40,7 +40,14 @@ export const Default = t.brand(
         type: t.string,
       }),
       t.type({
-        id: t.union([t.type({}), t.null]),
+        id: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   }),
@@ -56,7 +63,7 @@ export const Default = t.brand(
         id?: string;
         type?: string;
       } & {
-        id: {} | null;
+        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
       };
     },
     DefaultBrand

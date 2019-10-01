@@ -19,7 +19,13 @@ export type Default = t.Branded<
     itineraries?: Array<Itinerary_.Default>;
     maas?: {};
   } & {
-    itineraries: {} | null;
+    itineraries:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -30,7 +36,14 @@ export const Default = t.brand(
       maas: t.type({}),
     }),
     t.type({
-      itineraries: t.union([t.type({}), t.null]),
+      itineraries: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -40,7 +53,13 @@ export const Default = t.brand(
       itineraries?: Array<Itinerary_.Default>;
       maas?: {};
     } & {
-      itineraries: {} | null;
+      itineraries:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

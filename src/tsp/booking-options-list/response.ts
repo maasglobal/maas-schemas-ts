@@ -21,7 +21,7 @@ export type Default = t.Branded<
       bikeStations?: Array<BikeStation_.Default>;
     };
   } & {
-    options: {} | null;
+    options: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -34,7 +34,14 @@ export const Default = t.brand(
       }),
     }),
     t.type({
-      options: t.union([t.type({}), t.null]),
+      options: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -46,7 +53,13 @@ export const Default = t.brand(
         bikeStations?: Array<BikeStation_.Default>;
       };
     } & {
-      options: {} | null;
+      options:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

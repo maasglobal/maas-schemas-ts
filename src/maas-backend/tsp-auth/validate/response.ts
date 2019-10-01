@@ -18,7 +18,7 @@ export type Default = t.Branded<
   {
     location?: Common_.WhimDeepLink;
   } & {
-    location: {} | null;
+    location: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -28,7 +28,14 @@ export const Default = t.brand(
       location: Common_.WhimDeepLink,
     }),
     t.type({
-      location: t.union([t.type({}), t.null]),
+      location: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -37,7 +44,13 @@ export const Default = t.brand(
     {
       location?: Common_.WhimDeepLink;
     } & {
-      location: {} | null;
+      location:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

@@ -32,8 +32,20 @@ export type Default = t.Branded<
         customerSelection?: CustomerSelection_.Default;
       }>;
     } & {
-      itinerary: {} | null;
-      customerSelections: {} | null;
+      itinerary:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      customerSelections:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   },
   DefaultBrand
@@ -55,8 +67,22 @@ export const Default = t.brand(
         ),
       }),
       t.type({
-        itinerary: t.union([t.type({}), t.null]),
-        customerSelections: t.union([t.type({}), t.null]),
+        itinerary: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        customerSelections: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   }),
@@ -75,8 +101,20 @@ export const Default = t.brand(
           customerSelection?: CustomerSelection_.Default;
         }>;
       } & {
-        itinerary: {} | null;
-        customerSelections: {} | null;
+        itinerary:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        customerSelections:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     },
     DefaultBrand

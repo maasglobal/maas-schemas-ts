@@ -20,7 +20,13 @@ export type Default = t.Branded<
     immediateUpdate?: boolean;
     debug?: {};
   } & {
-    subscription: {} | null;
+    subscription:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -32,7 +38,14 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      subscription: t.union([t.type({}), t.null]),
+      subscription: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -43,7 +56,13 @@ export const Default = t.brand(
       immediateUpdate?: boolean;
       debug?: {};
     } & {
-      subscription: {} | null;
+      subscription:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

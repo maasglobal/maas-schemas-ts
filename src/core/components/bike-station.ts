@@ -23,14 +23,14 @@ export type Default = t.Branded<
       empty?: number;
       bikes?: number;
     } & {
-      total: {} | null;
-      empty: {} | null;
-      bikes: {} | null;
+      total: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      empty: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      bikes: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
     };
   } & {
-    id: {} | null;
-    name: {} | null;
-    location: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    location: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -47,16 +47,58 @@ export const Default = t.brand(
           bikes: t.number,
         }),
         t.type({
-          total: t.union([t.type({}), t.null]),
-          empty: t.union([t.type({}), t.null]),
-          bikes: t.union([t.type({}), t.null]),
+          total: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          empty: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          bikes: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      name: t.union([t.type({}), t.null]),
-      location: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      name: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      location: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -71,14 +113,38 @@ export const Default = t.brand(
         empty?: number;
         bikes?: number;
       } & {
-        total: {} | null;
-        empty: {} | null;
-        bikes: {} | null;
+        total:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        empty:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        bikes:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     } & {
-      id: {} | null;
-      name: {} | null;
-      location: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      location:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

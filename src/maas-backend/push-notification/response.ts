@@ -18,12 +18,30 @@ export type Default = t.Branded<
   {
     identityId?: Units_.IdentityId;
     results?: {
-      successCount: {} | null;
-      failureCount: {} | null;
+      successCount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      failureCount:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   } & {
-    identityId: {} | null;
-    results: {} | null;
+    identityId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    results: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -32,13 +50,41 @@ export const Default = t.brand(
     t.partial({
       identityId: Units_.IdentityId,
       results: t.type({
-        successCount: t.union([t.type({}), t.null]),
-        failureCount: t.union([t.type({}), t.null]),
+        successCount: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        failureCount: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     }),
     t.type({
-      identityId: t.union([t.type({}), t.null]),
-      results: t.union([t.type({}), t.null]),
+      identityId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      results: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -47,12 +93,36 @@ export const Default = t.brand(
     {
       identityId?: Units_.IdentityId;
       results?: {
-        successCount: {} | null;
-        failureCount: {} | null;
+        successCount:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        failureCount:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     } & {
-      identityId: {} | null;
-      results: {} | null;
+      identityId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      results:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

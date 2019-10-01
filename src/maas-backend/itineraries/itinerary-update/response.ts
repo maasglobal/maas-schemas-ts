@@ -18,7 +18,13 @@ export type Default = t.Branded<
   {
     itinerary?: Itinerary_.Default;
   } & {
-    itinerary: {} | null;
+    itinerary:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   DefaultBrand
 >;
@@ -28,7 +34,14 @@ export const Default = t.brand(
       itinerary: Itinerary_.Default,
     }),
     t.type({
-      itinerary: t.union([t.type({}), t.null]),
+      itinerary: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -37,7 +50,13 @@ export const Default = t.brand(
     {
       itinerary?: Itinerary_.Default;
     } & {
-      itinerary: {} | null;
+      itinerary:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

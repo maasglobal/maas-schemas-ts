@@ -26,8 +26,20 @@ export type Request = t.Branded<
       };
       request_map?: {};
     } & {
-      action_str: {} | null;
-      data_type: {} | null;
+      action_str:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      data_type:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
     headers?: {
       'Set-Cookie'?: string;
@@ -35,11 +47,17 @@ export type Request = t.Branded<
     params?: {
       gatewayName?: string & 'avainpay';
     } & {
-      gatewayName: {} | null;
+      gatewayName:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     };
   } & {
-    params: {} | null;
-    payload: {} | null;
+    params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   RequestBrand
 >;
@@ -59,8 +77,22 @@ export const Request = t.brand(
           request_map: t.type({}),
         }),
         t.type({
-          action_str: t.union([t.type({}), t.null]),
-          data_type: t.union([t.type({}), t.null]),
+          action_str: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
+          data_type: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
       headers: t.partial({
@@ -71,13 +103,34 @@ export const Request = t.brand(
           gatewayName: t.intersection([t.string, t.literal('avainpay')]),
         }),
         t.type({
-          gatewayName: t.union([t.type({}), t.null]),
+          gatewayName: t.union([
+            t.UnknownRecord,
+            t.UnknownArray,
+            t.string,
+            t.boolean,
+            t.number,
+            t.null,
+          ]),
         }),
       ]),
     }),
     t.type({
-      params: t.union([t.type({}), t.null]),
-      payload: t.union([t.type({}), t.null]),
+      params: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      payload: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -95,8 +148,20 @@ export const Request = t.brand(
         };
         request_map?: {};
       } & {
-        action_str: {} | null;
-        data_type: {} | null;
+        action_str:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        data_type:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
       headers?: {
         'Set-Cookie'?: string;
@@ -104,11 +169,23 @@ export const Request = t.brand(
       params?: {
         gatewayName?: string & 'avainpay';
       } & {
-        gatewayName: {} | null;
+        gatewayName:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       };
     } & {
-      params: {} | null;
-      payload: {} | null;
+      params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      payload:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     RequestBrand
   > => true,

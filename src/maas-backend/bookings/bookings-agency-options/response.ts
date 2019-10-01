@@ -29,16 +29,52 @@ export type Option = t.Branded<
     configurator?: Booking_.Configurator;
   } & (
     | {
-        leg: {} | null;
-        terms: {} | null;
-        product: {} | null;
-        fares: {} | null;
+        leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        terms:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        product:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        fares:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }
     | {
-        leg: {} | null;
-        terms: {} | null;
-        product: {} | null;
-        configurator: {} | null;
+        leg: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        terms:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        product:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
+        configurator:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }),
   OptionBrand
 >;
@@ -57,16 +93,72 @@ export const Option = t.brand(
     }),
     t.union([
       t.type({
-        leg: t.union([t.type({}), t.null]),
-        terms: t.union([t.type({}), t.null]),
-        product: t.union([t.type({}), t.null]),
-        fares: t.union([t.type({}), t.null]),
+        leg: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        terms: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        product: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        fares: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
       t.type({
-        leg: t.union([t.type({}), t.null]),
-        terms: t.union([t.type({}), t.null]),
-        product: t.union([t.type({}), t.null]),
-        configurator: t.union([t.type({}), t.null]),
+        leg: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        terms: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        product: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
+        configurator: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   ]),
@@ -85,16 +177,64 @@ export const Option = t.brand(
       configurator?: Booking_.Configurator;
     } & (
       | {
-          leg: {} | null;
-          terms: {} | null;
-          product: {} | null;
-          fares: {} | null;
+          leg:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          terms:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          product:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          fares:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         }
       | {
-          leg: {} | null;
-          terms: {} | null;
-          product: {} | null;
-          configurator: {} | null;
+          leg:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          terms:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          product:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
+          configurator:
+            | Record<string, unknown>
+            | Array<unknown>
+            | string
+            | boolean
+            | number
+            | null;
         }),
     OptionBrand
   > => true,
@@ -113,7 +253,7 @@ export type Default = t.Branded<
     };
     debug?: {};
   } & {
-    options: {} | null;
+    options: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -127,7 +267,14 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      options: t.union([t.type({}), t.null]),
+      options: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -140,7 +287,13 @@ export const Default = t.brand(
       };
       debug?: {};
     } & {
-      options: {} | null;
+      options:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

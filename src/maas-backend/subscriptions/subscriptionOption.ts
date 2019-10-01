@@ -20,12 +20,24 @@ export type SubscriptionAdditions = t.Branded<
     discounts?: Array<unknown>;
     requiredAuthorizations?: Array<Common_.AgencyId>;
   } & {
-    plan: {} | null;
-    wmpGrant: {} | null;
-    pointCost: {} | null;
-    addons: {} | null;
-    coupons: {} | null;
-    requiredAuthorizations: {} | null;
+    plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    wmpGrant: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    pointCost:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    addons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    coupons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    requiredAuthorizations:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
   },
   SubscriptionAdditionsBrand
 >;
@@ -36,12 +48,54 @@ export const SubscriptionAdditions = t.brand(
       requiredAuthorizations: t.array(Common_.AgencyId),
     }),
     t.type({
-      plan: t.union([t.type({}), t.null]),
-      wmpGrant: t.union([t.type({}), t.null]),
-      pointCost: t.union([t.type({}), t.null]),
-      addons: t.union([t.type({}), t.null]),
-      coupons: t.union([t.type({}), t.null]),
-      requiredAuthorizations: t.union([t.type({}), t.null]),
+      plan: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      wmpGrant: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      pointCost: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      addons: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      coupons: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      requiredAuthorizations: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -51,12 +105,36 @@ export const SubscriptionAdditions = t.brand(
       discounts?: Array<unknown>;
       requiredAuthorizations?: Array<Common_.AgencyId>;
     } & {
-      plan: {} | null;
-      wmpGrant: {} | null;
-      pointCost: {} | null;
-      addons: {} | null;
-      coupons: {} | null;
-      requiredAuthorizations: {} | null;
+      plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      wmpGrant:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      pointCost:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      addons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      coupons:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      requiredAuthorizations:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     SubscriptionAdditionsBrand
   > => true,

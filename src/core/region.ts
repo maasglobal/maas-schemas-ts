@@ -21,9 +21,15 @@ export type Default = t.Branded<
     zipCode?: Address_.ZipCode;
     availability?: {};
   } & {
-    id: {} | null;
-    countryCode: {} | null;
-    zipCode: {} | null;
+    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    countryCode:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    zipCode: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -37,9 +43,30 @@ export const Default = t.brand(
       availability: t.type({}),
     }),
     t.type({
-      id: t.union([t.type({}), t.null]),
-      countryCode: t.union([t.type({}), t.null]),
-      zipCode: t.union([t.type({}), t.null]),
+      id: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      countryCode: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      zipCode: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -52,9 +79,21 @@ export const Default = t.brand(
       zipCode?: Address_.ZipCode;
       availability?: {};
     } & {
-      id: {} | null;
-      countryCode: {} | null;
-      zipCode: {} | null;
+      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      countryCode:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      zipCode:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

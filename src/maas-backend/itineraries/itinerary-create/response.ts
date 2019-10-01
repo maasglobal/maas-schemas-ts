@@ -65,14 +65,26 @@ export type Default = t.Branded<
       itinerary?: Itinerary_.Default;
       paymentParameters?: PaymentParameters;
     } & {
-      itinerary: {} | null;
+      itinerary:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     })
   | ({
       outward?: Itinerary_.Default;
       return?: Itinerary_.Default;
       paymentParameters?: PaymentParameters;
     } & {
-      outward: {} | null;
+      outward:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     }),
   DefaultBrand
 >;
@@ -84,7 +96,14 @@ export const Default = t.brand(
         paymentParameters: PaymentParameters,
       }),
       t.type({
-        itinerary: t.union([t.type({}), t.null]),
+        itinerary: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
     t.intersection([
@@ -94,7 +113,14 @@ export const Default = t.brand(
         paymentParameters: PaymentParameters,
       }),
       t.type({
-        outward: t.union([t.type({}), t.null]),
+        outward: t.union([
+          t.UnknownRecord,
+          t.UnknownArray,
+          t.string,
+          t.boolean,
+          t.number,
+          t.null,
+        ]),
       }),
     ]),
   ]),
@@ -105,14 +131,26 @@ export const Default = t.brand(
         itinerary?: Itinerary_.Default;
         paymentParameters?: PaymentParameters;
       } & {
-        itinerary: {} | null;
+        itinerary:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       })
     | ({
         outward?: Itinerary_.Default;
         return?: Itinerary_.Default;
         paymentParameters?: PaymentParameters;
       } & {
-        outward: {} | null;
+        outward:
+          | Record<string, unknown>
+          | Array<unknown>
+          | string
+          | boolean
+          | number
+          | null;
       }),
     DefaultBrand
   > => true,

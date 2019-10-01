@@ -22,10 +22,22 @@ export type Default = t.Branded<
     changeStateId?: Units_.Uuid;
     headers?: ApiCommon_.Headers;
   } & {
-    customerId: {} | null;
-    userId: {} | null;
-    changeStateId: {} | null;
-    headers: {} | null;
+    customerId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    userId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    changeStateId:
+      | Record<string, unknown>
+      | Array<unknown>
+      | string
+      | boolean
+      | number
+      | null;
+    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -38,10 +50,38 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      customerId: t.union([t.type({}), t.null]),
-      userId: t.union([t.type({}), t.null]),
-      changeStateId: t.union([t.type({}), t.null]),
-      headers: t.union([t.type({}), t.null]),
+      customerId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      userId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      changeStateId: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
+      headers: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -53,10 +93,28 @@ export const Default = t.brand(
       changeStateId?: Units_.Uuid;
       headers?: ApiCommon_.Headers;
     } & {
-      customerId: {} | null;
-      userId: {} | null;
-      changeStateId: {} | null;
-      headers: {} | null;
+      customerId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      userId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      changeStateId:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
+      headers:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,

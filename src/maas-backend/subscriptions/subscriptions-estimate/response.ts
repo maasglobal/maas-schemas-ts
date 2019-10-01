@@ -20,7 +20,7 @@ export type Default = t.Branded<
     immediateUpdate?: boolean;
     debug?: {};
   } & {
-    estimate: {} | null;
+    estimate: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
   },
   DefaultBrand
 >;
@@ -32,7 +32,14 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      estimate: t.union([t.type({}), t.null]),
+      estimate: t.union([
+        t.UnknownRecord,
+        t.UnknownArray,
+        t.string,
+        t.boolean,
+        t.number,
+        t.null,
+      ]),
     }),
   ]),
   (
@@ -43,7 +50,13 @@ export const Default = t.brand(
       immediateUpdate?: boolean;
       debug?: {};
     } & {
-      estimate: {} | null;
+      estimate:
+        | Record<string, unknown>
+        | Array<unknown>
+        | string
+        | boolean
+        | number
+        | null;
     },
     DefaultBrand
   > => true,
