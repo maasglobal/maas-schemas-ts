@@ -9,6 +9,22 @@ undefined
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_SCOOTER.json';
 // Default
 // The default export. More information at the top.
@@ -17,7 +33,7 @@ export type Default = t.Branded<
     scooter?: {
       id?: string;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
     };
   },
   DefaultBrand
@@ -29,14 +45,7 @@ export const Default = t.brand(
         id: t.string,
       }),
       t.type({
-        id: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        id: Defined,
       }),
     ]),
   }),
@@ -47,7 +56,7 @@ export const Default = t.brand(
       scooter?: {
         id?: string;
       } & {
-        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        id: Defined;
       };
     },
     DefaultBrand

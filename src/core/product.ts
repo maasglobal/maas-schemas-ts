@@ -10,6 +10,22 @@ Product in core which encapsulates at least an id, name and a tspProductId
 import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/product.json';
 // Id
 // The purpose of this remains a mystery
@@ -36,15 +52,9 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     tspProductId?: string;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    tspProductId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    tspProductId: Defined;
+    name: Defined;
   },
   DefaultBrand
 >;
@@ -60,30 +70,9 @@ export const Default = t.brand(
       tspProductId: t.string,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      tspProductId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      name: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      tspProductId: Defined,
+      name: Defined,
     }),
   ]),
   (
@@ -98,15 +87,9 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       tspProductId?: string;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      tspProductId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
+      tspProductId: Defined;
+      name: Defined;
     },
     DefaultBrand
   > => true,

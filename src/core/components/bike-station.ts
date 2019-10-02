@@ -10,6 +10,22 @@ MaaS bike station schema
 import * as t from 'io-ts';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/bike-station.json';
 // Default
 // The default export. More information at the top.
@@ -23,14 +39,14 @@ export type Default = t.Branded<
       empty?: number;
       bikes?: number;
     } & {
-      total: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      empty: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      bikes: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      total: Defined;
+      empty: Defined;
+      bikes: Defined;
     };
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    location: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    name: Defined;
+    location: Defined;
   },
   DefaultBrand
 >;
@@ -47,58 +63,16 @@ export const Default = t.brand(
           bikes: t.number,
         }),
         t.type({
-          total: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          empty: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          bikes: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          total: Defined,
+          empty: Defined,
+          bikes: Defined,
         }),
       ]),
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      name: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      location: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      name: Defined,
+      location: Defined,
     }),
   ]),
   (
@@ -113,38 +87,14 @@ export const Default = t.brand(
         empty?: number;
         bikes?: number;
       } & {
-        total:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        empty:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        bikes:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        total: Defined;
+        empty: Defined;
+        bikes: Defined;
       };
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      location:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      id: Defined;
+      name: Defined;
+      location: Defined;
     },
     DefaultBrand
   > => true,

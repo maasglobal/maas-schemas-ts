@@ -17,6 +17,22 @@ import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 import * as Cost_ from 'maas-schemas-ts/core/components/cost';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/product-option.json';
 // Ref
 // numeric key for connecting productOption with leg.productOption
@@ -42,16 +58,10 @@ export type WithConfigurator = t.Branded<
     configurator?: Configurator_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    ref: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    configurator:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    ref: Defined;
+    terms: Defined;
+    meta: Defined;
+    configurator: Defined;
   },
   WithConfiguratorBrand
 >;
@@ -68,38 +78,10 @@ export const WithConfigurator = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      ref: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      terms: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      meta: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      configurator: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      ref: Defined,
+      terms: Defined,
+      meta: Defined,
+      configurator: Defined,
     }),
   ]),
   (
@@ -115,16 +97,10 @@ export const WithConfigurator = t.brand(
       configurator?: Configurator_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      ref: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      configurator:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      ref: Defined;
+      terms: Defined;
+      meta: Defined;
+      configurator: Defined;
     },
     WithConfiguratorBrand
   > => true,
@@ -146,10 +122,10 @@ export type WithFares = t.Branded<
     meta?: BookingMeta_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    ref: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    fares: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    ref: Defined;
+    terms: Defined;
+    meta: Defined;
+    fares: Defined;
   },
   WithFaresBrand
 >;
@@ -166,38 +142,10 @@ export const WithFares = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      ref: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      terms: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      meta: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      fares: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      ref: Defined,
+      terms: Defined,
+      meta: Defined,
+      fares: Defined,
     }),
   ]),
   (
@@ -213,10 +161,10 @@ export const WithFares = t.brand(
       meta?: BookingMeta_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      ref: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      fares: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      ref: Defined;
+      terms: Defined;
+      meta: Defined;
+      fares: Defined;
     },
     WithFaresBrand
   > => true,
@@ -238,10 +186,10 @@ export type WithCost = t.Branded<
     meta?: BookingMeta_.Default;
     customer?: BookingOption_.Customer;
   } & {
-    ref: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    ref: Defined;
+    terms: Defined;
+    meta: Defined;
+    cost: Defined;
   },
   WithCostBrand
 >;
@@ -258,38 +206,10 @@ export const WithCost = t.brand(
       customer: BookingOption_.Customer,
     }),
     t.type({
-      ref: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      terms: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      meta: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      cost: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      ref: Defined,
+      terms: Defined,
+      meta: Defined,
+      cost: Defined,
     }),
   ]),
   (
@@ -305,10 +225,10 @@ export const WithCost = t.brand(
       meta?: BookingMeta_.Default;
       customer?: BookingOption_.Customer;
     } & {
-      ref: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      terms: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      meta: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      cost: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      ref: Defined;
+      terms: Defined;
+      meta: Defined;
+      cost: Defined;
     },
     WithCostBrand
   > => true,

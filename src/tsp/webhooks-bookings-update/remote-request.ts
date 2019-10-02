@@ -12,6 +12,22 @@ import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/tsp/webhooks-bookings-update/remote-request.json';
 // Default
@@ -26,8 +42,8 @@ export type Default = t.Branded<
     terms?: Booking_.Terms;
     token?: Booking_.Token;
   } & {
-    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspId: Defined;
+    state: Defined;
   },
   DefaultBrand
 >;
@@ -50,22 +66,8 @@ export const Default = t.brand(
       token: Booking_.Token,
     }),
     t.type({
-      tspId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      state: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      tspId: Defined,
+      state: Defined,
     }),
   ]),
   (
@@ -86,8 +88,8 @@ export const Default = t.brand(
       terms?: Booking_.Terms;
       token?: Booking_.Token;
     } & {
-      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspId: Defined;
+      state: Defined;
     },
     DefaultBrand
   > => true,

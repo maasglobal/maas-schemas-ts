@@ -10,6 +10,22 @@ MaaS customer retrieve
 import * as t from 'io-ts';
 import * as Customer_ from 'maas-schemas-ts/maas-backend/customers/customer';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/retrieve/response.json';
 // Default
@@ -18,7 +34,7 @@ export type Default = t.Branded<
   {
     customer?: Customer_.Default;
   } & {
-    customer: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customer: Defined;
   },
   DefaultBrand
 >;
@@ -28,14 +44,7 @@ export const Default = t.brand(
       customer: Customer_.Default,
     }),
     t.type({
-      customer: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      customer: Defined,
     }),
   ]),
   (
@@ -44,13 +53,7 @@ export const Default = t.brand(
     {
       customer?: Customer_.Default;
     } & {
-      customer:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      customer: Defined;
     },
     DefaultBrand
   > => true,

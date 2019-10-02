@@ -12,6 +12,22 @@ import * as InvoiceUnits_ from 'maas-schemas-ts/maas-backend/invoices/invoiceUni
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as InvoiceLineItem_ from 'maas-schemas-ts/maas-backend/invoices/invoiceLineItem';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/maas-backend/invoices/invoice.json';
 // Invoice
 // The purpose of this remains a mystery
@@ -22,28 +38,10 @@ export type Invoice = t.Branded<
     bookingId?: Units_.Uuid;
     lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    customerId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    bookingId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    lineItems:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    id: Defined;
+    customerId: Defined;
+    bookingId: Defined;
+    lineItems: Defined;
   },
   InvoiceBrand
 >;
@@ -56,38 +54,10 @@ export const Invoice = t.brand(
       lineItems: t.array(InvoiceLineItem_.InvoiceLineItem),
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      customerId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      bookingId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      lineItems: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      customerId: Defined,
+      bookingId: Defined,
+      lineItems: Defined,
     }),
   ]),
   (
@@ -99,28 +69,10 @@ export const Invoice = t.brand(
       bookingId?: Units_.Uuid;
       lineItems?: Array<InvoiceLineItem_.InvoiceLineItem>;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      customerId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      bookingId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      lineItems:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      id: Defined;
+      customerId: Defined;
+      bookingId: Defined;
+      lineItems: Defined;
     },
     InvoiceBrand
   > => true,

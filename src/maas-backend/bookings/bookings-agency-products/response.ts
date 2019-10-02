@@ -12,6 +12,22 @@ import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-agency-products/response.json';
 // Product
@@ -27,25 +43,13 @@ export type Product = t.Branded<
     fares?: Array<Fare_.Default>;
     description?: string;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    tspProductId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    description:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    icon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    fares: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    agencyId: Defined;
+    tspProductId: Defined;
+    name: Defined;
+    description: Defined;
+    icon: Defined;
+    fares: Defined;
   },
   ProductBrand
 >;
@@ -62,62 +66,13 @@ export const Product = t.brand(
       description: t.string,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      agencyId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      tspProductId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      name: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      description: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      icon: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      fares: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      agencyId: Defined,
+      tspProductId: Defined,
+      name: Defined,
+      description: Defined,
+      icon: Defined,
+      fares: Defined,
     }),
   ]),
   (
@@ -133,31 +88,13 @@ export const Product = t.brand(
       fares?: Array<Fare_.Default>;
       description?: string;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      agencyId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      tspProductId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      description:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      icon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      fares: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
+      agencyId: Defined;
+      tspProductId: Defined;
+      name: Defined;
+      description: Defined;
+      icon: Defined;
+      fares: Defined;
     },
     ProductBrand
   > => true,
@@ -173,8 +110,8 @@ export type Default = t.Branded<
     agencyId?: Common_.AgencyId;
     products?: Array<Product>;
   } & {
-    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    products: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    agencyId: Defined;
+    products: Defined;
   },
   DefaultBrand
 >;
@@ -185,22 +122,8 @@ export const Default = t.brand(
       products: t.array(Product),
     }),
     t.type({
-      agencyId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      products: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      agencyId: Defined,
+      products: Defined,
     }),
   ]),
   (
@@ -210,20 +133,8 @@ export const Default = t.brand(
       agencyId?: Common_.AgencyId;
       products?: Array<Product>;
     } & {
-      agencyId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      products:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      agencyId: Defined;
+      products: Defined;
     },
     DefaultBrand
   > => true,

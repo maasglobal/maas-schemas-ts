@@ -12,6 +12,22 @@ import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/products/products-providers-options/request.json';
 // Payload
@@ -21,8 +37,8 @@ export type Payload = t.Branded<
     lat?: UnitsGeo_.RelaxedLatitude;
     lon?: UnitsGeo_.RelaxedLongitude;
   } & {
-    lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    lat: Defined;
+    lon: Defined;
   },
   PayloadBrand
 >;
@@ -33,22 +49,8 @@ export const Payload = t.brand(
       lon: UnitsGeo_.RelaxedLongitude,
     }),
     t.type({
-      lat: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      lon: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      lat: Defined,
+      lon: Defined,
     }),
   ]),
   (
@@ -58,8 +60,8 @@ export const Payload = t.brand(
       lat?: UnitsGeo_.RelaxedLatitude;
       lon?: UnitsGeo_.RelaxedLongitude;
     } & {
-      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      lat: Defined;
+      lon: Defined;
     },
     PayloadBrand
   > => true,
@@ -76,14 +78,8 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -95,22 +91,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -121,20 +103,8 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      payload: Defined;
     },
     DefaultBrand
   > => true,

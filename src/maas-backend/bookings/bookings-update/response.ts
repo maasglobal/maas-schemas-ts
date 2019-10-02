@@ -10,6 +10,22 @@ Response schema for bookings-update
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-update/response.json';
 // Default
@@ -19,7 +35,7 @@ export type Default = t.Branded<
     booking?: Booking_.Default;
     debug?: {};
   } & {
-    booking: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    booking: Defined;
   },
   DefaultBrand
 >;
@@ -30,14 +46,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      booking: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      booking: Defined,
     }),
   ]),
   (
@@ -47,13 +56,7 @@ export const Default = t.brand(
       booking?: Booking_.Default;
       debug?: {};
     } & {
-      booking:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      booking: Defined;
     },
     DefaultBrand
   > => true,

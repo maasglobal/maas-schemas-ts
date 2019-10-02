@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as State_ from 'maas-schemas-ts/core/components/state';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/state-log.json';
 // ObsoleteTime
 // The purpose of this remains a mystery
@@ -37,15 +53,9 @@ export type BookingStateTransition = t.Branded<
       errorCode?: number;
     };
   } & {
-    newState: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    oldState: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    timestamp:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    newState: Defined;
+    oldState: Defined;
+    timestamp: Defined;
   },
   BookingStateTransitionBrand
 >;
@@ -62,30 +72,9 @@ export const BookingStateTransition = t.brand(
       }),
     }),
     t.type({
-      newState: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      oldState: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      timestamp: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      newState: Defined,
+      oldState: Defined,
+      timestamp: Defined,
     }),
   ]),
   (
@@ -101,27 +90,9 @@ export const BookingStateTransition = t.brand(
         errorCode?: number;
       };
     } & {
-      newState:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      oldState:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      timestamp:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      newState: Defined;
+      oldState: Defined;
+      timestamp: Defined;
     },
     BookingStateTransitionBrand
   > => true,

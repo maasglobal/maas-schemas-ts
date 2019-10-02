@@ -12,6 +12,22 @@ import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/products/products-providers-retrieve/request.json';
 // Payload
@@ -20,7 +36,7 @@ export type Payload = t.Branded<
   {
     agencyId?: Common_.AgencyId;
   } & {
-    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    agencyId: Defined;
   },
   PayloadBrand
 >;
@@ -30,14 +46,7 @@ export const Payload = t.brand(
       agencyId: Common_.AgencyId,
     }),
     t.type({
-      agencyId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      agencyId: Defined,
     }),
   ]),
   (
@@ -46,13 +55,7 @@ export const Payload = t.brand(
     {
       agencyId?: Common_.AgencyId;
     } & {
-      agencyId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      agencyId: Defined;
     },
     PayloadBrand
   > => true,
@@ -69,14 +72,8 @@ export type Default = t.Branded<
     payload?: Payload;
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -88,22 +85,8 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -114,20 +97,8 @@ export const Default = t.brand(
       payload?: Payload;
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      payload: Defined;
     },
     DefaultBrand
   > => true,

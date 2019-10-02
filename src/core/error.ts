@@ -9,6 +9,22 @@ An error that the service may send
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/error.json';
 // Default
 // The default export. More information at the top.
@@ -17,8 +33,8 @@ export type Default = t.Branded<
     message?: string;
     code?: string;
   } & {
-    message: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    code: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    message: Defined;
+    code: Defined;
   },
   DefaultBrand
 >;
@@ -29,22 +45,8 @@ export const Default = t.brand(
       code: t.string,
     }),
     t.type({
-      message: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      code: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      message: Defined,
+      code: Defined,
     }),
   ]),
   (
@@ -54,14 +56,8 @@ export const Default = t.brand(
       message?: string;
       code?: string;
     } & {
-      message:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      code: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      message: Defined;
+      code: Defined;
     },
     DefaultBrand
   > => true,

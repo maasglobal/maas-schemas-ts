@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/itineraries/itinerary-retrieve/request.json';
 // Default
@@ -21,13 +37,7 @@ export type Default = t.Branded<
     originalFare?: string;
     headers?: ApiCommon_.Headers;
   } & {
-    itineraryId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    itineraryId: Defined;
   },
   DefaultBrand
 >;
@@ -39,14 +49,7 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      itineraryId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      itineraryId: Defined,
     }),
   ]),
   (
@@ -57,13 +60,7 @@ export const Default = t.brand(
       originalFare?: string;
       headers?: ApiCommon_.Headers;
     } & {
-      itineraryId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      itineraryId: Defined;
     },
     DefaultBrand
   > => true,

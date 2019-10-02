@@ -12,6 +12,22 @@ import * as Cost_ from 'maas-schemas-ts/core/components/cost';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/components/terms.json';
 // Seat
 // Ticket's seat information for long distance trains, coaches or flights
@@ -53,14 +69,8 @@ export type Cancellation = t.Branded<
     fare?: Fare_.Default;
     refunded?: boolean;
   } & {
-    cancellable:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    refunded: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    cancellable: Defined;
+    refunded: Defined;
   },
   CancellationBrand
 >;
@@ -73,22 +83,8 @@ export const Cancellation = t.brand(
       refunded: t.boolean,
     }),
     t.type({
-      cancellable: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      refunded: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      cancellable: Defined,
+      refunded: Defined,
     }),
   ]),
   (
@@ -100,20 +96,8 @@ export const Cancellation = t.brand(
       fare?: Fare_.Default;
       refunded?: boolean;
     } & {
-      cancellable:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      refunded:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      cancellable: Defined;
+      refunded: Defined;
     },
     CancellationBrand
   > => true,
@@ -130,13 +114,7 @@ export type Amendment = t.Branded<
     cost?: Cost_.Default;
     fare?: Fare_.Default;
   } & {
-    amendable:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    amendable: Defined;
   },
   AmendmentBrand
 >;
@@ -148,14 +126,7 @@ export const Amendment = t.brand(
       fare: Fare_.Default,
     }),
     t.type({
-      amendable: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      amendable: Defined,
     }),
   ]),
   (
@@ -166,13 +137,7 @@ export const Amendment = t.brand(
       cost?: Cost_.Default;
       fare?: Fare_.Default;
     } & {
-      amendable:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      amendable: Defined;
     },
     AmendmentBrand
   > => true,
@@ -193,20 +158,8 @@ export type Default = t.Branded<
       startTimeReturn?: Units_.Time;
       endTimeReturn?: Units_.Time;
     } & {
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      endTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      startTime: Defined;
+      endTime: Defined;
     };
     reusable?: boolean;
     reconcilable?: boolean;
@@ -232,20 +185,8 @@ export type Default = t.Branded<
         startAt?: number;
         type?: 'maxRate' | 'missedReturnPenalty' | 'extra';
       } & {
-        amount:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        currency:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        amount: Defined;
+        currency: Defined;
       }
     >;
   },
@@ -263,22 +204,8 @@ export const Default = t.brand(
         endTimeReturn: Units_.Time,
       }),
       t.type({
-        startTime: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        endTime: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        startTime: Defined,
+        endTime: Defined,
       }),
     ]),
     reusable: t.boolean,
@@ -311,22 +238,8 @@ export const Default = t.brand(
           ]),
         }),
         t.type({
-          amount: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          currency: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          amount: Defined,
+          currency: Defined,
         }),
       ]),
     ),
@@ -343,20 +256,8 @@ export const Default = t.brand(
         startTimeReturn?: Units_.Time;
         endTimeReturn?: Units_.Time;
       } & {
-        startTime:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        endTime:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        startTime: Defined;
+        endTime: Defined;
       };
       reusable?: boolean;
       reconcilable?: boolean;
@@ -382,20 +283,8 @@ export const Default = t.brand(
           startAt?: number;
           type?: 'maxRate' | 'missedReturnPenalty' | 'extra';
         } & {
-          amount:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          currency:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          amount: Defined;
+          currency: Defined;
         }
       >;
     },

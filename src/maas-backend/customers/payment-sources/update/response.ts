@@ -10,6 +10,22 @@ MaaS customer payment sources update response
 import * as t from 'io-ts';
 import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/payment-sources/update/response.json';
 // Default
@@ -18,13 +34,7 @@ export type Default = t.Branded<
   {
     paymentSource?: PaymentSource_.PaymentSource;
   } & {
-    paymentSource:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    paymentSource: Defined;
   },
   DefaultBrand
 >;
@@ -34,14 +44,7 @@ export const Default = t.brand(
       paymentSource: PaymentSource_.PaymentSource,
     }),
     t.type({
-      paymentSource: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      paymentSource: Defined,
     }),
   ]),
   (
@@ -50,13 +53,7 @@ export const Default = t.brand(
     {
       paymentSource?: PaymentSource_.PaymentSource;
     } & {
-      paymentSource:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      paymentSource: Defined;
     },
     DefaultBrand
   > => true,

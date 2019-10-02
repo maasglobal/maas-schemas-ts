@@ -10,6 +10,22 @@ Response schema for subscriptions-change-state
 import * as t from 'io-ts';
 import * as SubscriptionChangeState_ from 'maas-schemas-ts/core/components/subscriptionChangeState';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-change-state/response.json';
 // Default
@@ -18,13 +34,7 @@ export type Default = t.Branded<
   {
     changeState?: SubscriptionChangeState_.Default;
   } & {
-    changeState:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    changeState: Defined;
   },
   DefaultBrand
 >;
@@ -34,14 +44,7 @@ export const Default = t.brand(
       changeState: SubscriptionChangeState_.Default,
     }),
     t.type({
-      changeState: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      changeState: Defined,
     }),
   ]),
   (
@@ -50,13 +53,7 @@ export const Default = t.brand(
     {
       changeState?: SubscriptionChangeState_.Default;
     } & {
-      changeState:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      changeState: Defined;
     },
     DefaultBrand
   > => true,

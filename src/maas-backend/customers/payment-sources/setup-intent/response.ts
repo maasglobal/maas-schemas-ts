@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/payment-sources/setup-intent/response.json';
 // Default
@@ -26,38 +42,14 @@ export type Default = t.Branded<
       alias?: PaymentSource_.Alias;
       status?: PaymentSource_.Status;
     } & {
-      setupIntentId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      gatewayName:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      isDefault:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      status: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      setupIntentId: Defined;
+      type: Defined;
+      gatewayName: Defined;
+      isDefault: Defined;
+      status: Defined;
     };
   } & {
-    setupIntent:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    setupIntent: Defined;
   },
   DefaultBrand
 >;
@@ -75,58 +67,16 @@ export const Default = t.brand(
           status: PaymentSource_.Status,
         }),
         t.type({
-          setupIntentId: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          type: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          gatewayName: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          isDefault: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          status: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          setupIntentId: Defined,
+          type: Defined,
+          gatewayName: Defined,
+          isDefault: Defined,
+          status: Defined,
         }),
       ]),
     }),
     t.type({
-      setupIntent: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      setupIntent: Defined,
     }),
   ]),
   (
@@ -142,44 +92,14 @@ export const Default = t.brand(
         alias?: PaymentSource_.Alias;
         status?: PaymentSource_.Status;
       } & {
-        setupIntentId:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        gatewayName:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        isDefault:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        status:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        setupIntentId: Defined;
+        type: Defined;
+        gatewayName: Defined;
+        isDefault: Defined;
+        status: Defined;
       };
     } & {
-      setupIntent:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      setupIntent: Defined;
     },
     DefaultBrand
   > => true,

@@ -9,6 +9,22 @@ Avainpay payment webhook schema
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/webhooks-payments/gateway/avainpay.json';
 // Request
@@ -26,20 +42,8 @@ export type Request = t.Branded<
       };
       request_map?: {};
     } & {
-      action_str:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      data_type:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      action_str: Defined;
+      data_type: Defined;
     };
     headers?: {
       'Set-Cookie'?: string;
@@ -47,17 +51,11 @@ export type Request = t.Branded<
     params?: {
       gatewayName?: string & 'avainpay';
     } & {
-      gatewayName:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      gatewayName: Defined;
     };
   } & {
-    params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    params: Defined;
+    payload: Defined;
   },
   RequestBrand
 >;
@@ -77,22 +75,8 @@ export const Request = t.brand(
           request_map: t.type({}),
         }),
         t.type({
-          action_str: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          data_type: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          action_str: Defined,
+          data_type: Defined,
         }),
       ]),
       headers: t.partial({
@@ -103,34 +87,13 @@ export const Request = t.brand(
           gatewayName: t.intersection([t.string, t.literal('avainpay')]),
         }),
         t.type({
-          gatewayName: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          gatewayName: Defined,
         }),
       ]),
     }),
     t.type({
-      params: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      params: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -148,20 +111,8 @@ export const Request = t.brand(
         };
         request_map?: {};
       } & {
-        action_str:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        data_type:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        action_str: Defined;
+        data_type: Defined;
       };
       headers?: {
         'Set-Cookie'?: string;
@@ -169,23 +120,11 @@ export const Request = t.brand(
       params?: {
         gatewayName?: string & 'avainpay';
       } & {
-        gatewayName:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        gatewayName: Defined;
       };
     } & {
-      params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      params: Defined;
+      payload: Defined;
     },
     RequestBrand
   > => true,

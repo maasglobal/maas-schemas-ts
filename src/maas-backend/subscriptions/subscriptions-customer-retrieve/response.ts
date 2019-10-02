@@ -10,6 +10,22 @@ Response schema for subscriptions-customer-retrieve
 import * as t from 'io-ts';
 import * as Contact_ from 'maas-schemas-ts/maas-backend/subscriptions/contact';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-customer-retrieve/response.json';
 // Default
@@ -19,7 +35,7 @@ export type Default = t.Branded<
     customer?: Contact_.ContactResponse;
     debug?: {};
   } & {
-    customer: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customer: Defined;
   },
   DefaultBrand
 >;
@@ -30,14 +46,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      customer: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      customer: Defined,
     }),
   ]),
   (
@@ -47,13 +56,7 @@ export const Default = t.brand(
       customer?: Contact_.ContactResponse;
       debug?: {};
     } & {
-      customer:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      customer: Defined;
     },
     DefaultBrand
   > => true,

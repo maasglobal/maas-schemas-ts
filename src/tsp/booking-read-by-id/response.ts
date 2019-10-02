@@ -9,41 +9,43 @@ Response schema for getting a specific booking with a TSP ID from a TSP adapter
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-read-by-id/response.json';
 // Default
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspId: Defined;
+    state: Defined;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    tspId: t.union([
-      t.UnknownRecord,
-      t.UnknownArray,
-      t.string,
-      t.boolean,
-      t.number,
-      t.null,
-    ]),
-    state: t.union([
-      t.UnknownRecord,
-      t.UnknownArray,
-      t.string,
-      t.boolean,
-      t.number,
-      t.null,
-    ]),
+    tspId: Defined,
+    state: Defined,
   }),
   (
     x,
   ): x is t.Branded<
     {
-      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      state: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspId: Defined;
+      state: Defined;
     },
     DefaultBrand
   > => true,

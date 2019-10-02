@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/profile/profile-favoriteLocations-delete/request.json';
 // Default
@@ -21,7 +37,7 @@ export type Default = t.Branded<
     payload?: {
       name?: string;
     } & {
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Defined;
     };
     headers?: {
       Accept?: ApiCommon_.AcceptHeader;
@@ -38,14 +54,7 @@ export const Default = t.brand(
         name: t.string,
       }),
       t.type({
-        name: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        name: Defined,
       }),
     ]),
     headers: t.partial({
@@ -61,7 +70,7 @@ export const Default = t.brand(
       payload?: {
         name?: string;
       } & {
-        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        name: Defined;
       };
       headers?: {
         Accept?: ApiCommon_.AcceptHeader;

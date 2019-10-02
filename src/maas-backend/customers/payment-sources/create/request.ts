@@ -12,6 +12,22 @@ import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/payment-sources/create/request.json';
 // Default
@@ -28,56 +44,20 @@ export type Default = t.Branded<
         isDefault?: boolean;
         alias?: PaymentSource_.Alias;
       } & {
-        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        gatewayName:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        temporaryToken:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        isDefault:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        type: Defined;
+        gatewayName: Defined;
+        temporaryToken: Defined;
+        isDefault: Defined;
       };
     } & {
-      paymentSource:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      paymentSource: Defined;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    customerId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    customerId: Defined;
+    payload: Defined;
+    headers: Defined;
   },
   DefaultBrand
 >;
@@ -97,87 +77,24 @@ export const Default = t.brand(
               alias: PaymentSource_.Alias,
             }),
             t.type({
-              type: t.union([
-                t.UnknownRecord,
-                t.UnknownArray,
-                t.string,
-                t.boolean,
-                t.number,
-                t.null,
-              ]),
-              gatewayName: t.union([
-                t.UnknownRecord,
-                t.UnknownArray,
-                t.string,
-                t.boolean,
-                t.number,
-                t.null,
-              ]),
-              temporaryToken: t.union([
-                t.UnknownRecord,
-                t.UnknownArray,
-                t.string,
-                t.boolean,
-                t.number,
-                t.null,
-              ]),
-              isDefault: t.union([
-                t.UnknownRecord,
-                t.UnknownArray,
-                t.string,
-                t.boolean,
-                t.number,
-                t.null,
-              ]),
+              type: Defined,
+              gatewayName: Defined,
+              temporaryToken: Defined,
+              isDefault: Defined,
             }),
           ]),
         }),
         t.type({
-          paymentSource: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          paymentSource: Defined,
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      customerId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      headers: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      customerId: Defined,
+      payload: Defined,
+      headers: Defined,
     }),
   ]),
   (
@@ -194,74 +111,20 @@ export const Default = t.brand(
           isDefault?: boolean;
           alias?: PaymentSource_.Alias;
         } & {
-          type:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          gatewayName:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          temporaryToken:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          isDefault:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          type: Defined;
+          gatewayName: Defined;
+          temporaryToken: Defined;
+          isDefault: Defined;
         };
       } & {
-        paymentSource:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        paymentSource: Defined;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      customerId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      headers:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      customerId: Defined;
+      payload: Defined;
+      headers: Defined;
     },
     DefaultBrand
   > => true,

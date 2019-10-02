@@ -13,6 +13,22 @@ import * as Address_ from 'maas-schemas-ts/core/components/address';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/autocomplete/autocomplete-query/request.json';
 // Default
@@ -27,7 +43,7 @@ export type Default = t.Branded<
       count?: number;
       radius?: UnitsGeo_.Distance;
     } & {
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Defined;
     };
     headers?: ApiCommon_.Headers;
   },
@@ -45,14 +61,7 @@ export const Default = t.brand(
         radius: UnitsGeo_.Distance,
       }),
       t.type({
-        name: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        name: Defined,
       }),
     ]),
     headers: ApiCommon_.Headers,
@@ -69,7 +78,7 @@ export const Default = t.brand(
         count?: number;
         radius?: UnitsGeo_.Distance;
       } & {
-        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        name: Defined;
       };
       headers?: ApiCommon_.Headers;
     },

@@ -13,6 +13,22 @@ import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 import * as I18n_ from 'maas-schemas-ts/core/components/i18n';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/geocoding/geocoding-query/request.json';
 // Default
@@ -28,13 +44,13 @@ export type Default = t.Branded<
       distance?: UnitsGeo_.Distance;
       locale?: I18n_.Locale;
     } & {
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Defined;
+      lat: Defined;
+      lon: Defined;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -52,43 +68,15 @@ export const Default = t.brand(
           locale: I18n_.Locale,
         }),
         t.type({
-          name: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          lat: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          lon: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          name: Defined,
+          lat: Defined,
+          lon: Defined,
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      payload: Defined,
     }),
   ]),
   (
@@ -104,19 +92,13 @@ export const Default = t.brand(
         distance?: UnitsGeo_.Distance;
         locale?: I18n_.Locale;
       } & {
-        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        lat: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        lon: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        name: Defined;
+        lat: Defined;
+        lon: Defined;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      payload: Defined;
     },
     DefaultBrand
   > => true,

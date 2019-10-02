@@ -13,6 +13,22 @@ import * as Configurator_ from 'maas-schemas-ts/core/components/configurator';
 import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/bookings-update/request.json';
 // Default
 // The default export. More information at the top.
@@ -25,7 +41,7 @@ export type Default = t.Branded<
     terms?: Booking_.Terms;
     customerSelection?: CustomerSelection_.Default;
   } & {
-    tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    tspId: Defined;
   },
   DefaultBrand
 >;
@@ -45,14 +61,7 @@ export const Default = t.brand(
       customerSelection: CustomerSelection_.Default,
     }),
     t.type({
-      tspId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      tspId: Defined,
     }),
   ]),
   (
@@ -66,7 +75,7 @@ export const Default = t.brand(
       terms?: Booking_.Terms;
       customerSelection?: CustomerSelection_.Default;
     } & {
-      tspId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      tspId: Defined;
     },
     DefaultBrand
   > => true,

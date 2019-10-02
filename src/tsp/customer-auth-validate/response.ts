@@ -12,6 +12,22 @@ import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Error_ from 'maas-schemas-ts/core/error';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/customer-auth-validate/response.json';
 // Default
 // The default export. More information at the top.
@@ -23,43 +39,13 @@ export type Default = t.Branded<
     error?: Error_.Default;
   } & (
     | {
-        authToken:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        nonce:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        validTo:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        authToken: Defined;
+        nonce: Defined;
+        validTo: Defined;
       }
     | {
-        error:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        nonce:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        error: Defined;
+        nonce: Defined;
       }),
   DefaultBrand
 >;
@@ -73,48 +59,13 @@ export const Default = t.brand(
     }),
     t.union([
       t.type({
-        authToken: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        nonce: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        validTo: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        authToken: Defined,
+        nonce: Defined,
+        validTo: Defined,
       }),
       t.type({
-        error: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        nonce: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        error: Defined,
+        nonce: Defined,
       }),
     ]),
   ]),
@@ -128,43 +79,13 @@ export const Default = t.brand(
       error?: Error_.Default;
     } & (
       | {
-          authToken:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          nonce:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          validTo:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          authToken: Defined;
+          nonce: Defined;
+          validTo: Defined;
         }
       | {
-          error:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          nonce:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          error: Defined;
+          nonce: Defined;
         }),
     DefaultBrand
   > => true,

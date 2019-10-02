@@ -10,6 +10,22 @@ MaaS webhook to update bookings for tsp adapter callback request schema.
 import * as t from 'io-ts';
 import * as RemoteRequest_ from 'maas-schemas-ts/tsp/webhooks-bookings-update/remote-request';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/webhooks-bookings-update/request.json';
 // Default
@@ -19,8 +35,8 @@ export type Default = t.Branded<
     agencyId?: string;
     payload?: RemoteRequest_.Default;
   } & {
-    agencyId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    agencyId: Defined;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -31,22 +47,8 @@ export const Default = t.brand(
       payload: RemoteRequest_.Default,
     }),
     t.type({
-      agencyId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      agencyId: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -56,20 +58,8 @@ export const Default = t.brand(
       agencyId?: string;
       payload?: RemoteRequest_.Default;
     } & {
-      agencyId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      agencyId: Defined;
+      payload: Defined;
     },
     DefaultBrand
   > => true,

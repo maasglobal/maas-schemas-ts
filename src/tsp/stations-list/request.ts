@@ -10,6 +10,22 @@ MaaS stations query request schema
 import * as t from 'io-ts';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/stations-list/request.json';
 // Default
 // The default export. More information at the top.
@@ -18,21 +34,15 @@ export type Default = t.Branded<
       location?: UnitsGeo_.ShortLocationString;
       radius?: UnitsGeo_.Distance;
     } & {
-      location:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      location: Defined;
     })
   | ({
       name?: string;
       count?: number;
       type?: 'origin' | 'destination' | 'viaAvoid';
     } & {
-      name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      name: Defined;
+      type: Defined;
     }),
   DefaultBrand
 >;
@@ -44,14 +54,7 @@ export const Default = t.brand(
         radius: UnitsGeo_.Distance,
       }),
       t.type({
-        location: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        location: Defined,
       }),
     ]),
     t.intersection([
@@ -65,22 +68,8 @@ export const Default = t.brand(
         ]),
       }),
       t.type({
-        name: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        type: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        name: Defined,
+        type: Defined,
       }),
     ]),
   ]),
@@ -91,21 +80,15 @@ export const Default = t.brand(
         location?: UnitsGeo_.ShortLocationString;
         radius?: UnitsGeo_.Distance;
       } & {
-        location:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        location: Defined;
       })
     | ({
         name?: string;
         count?: number;
         type?: 'origin' | 'destination' | 'viaAvoid';
       } & {
-        name: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        name: Defined;
+        type: Defined;
       }),
     DefaultBrand
   > => true,

@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/profile/profile-devices-put/request.json';
 // Default
@@ -23,27 +39,9 @@ export type Default = t.Branded<
       deviceIdentifier?: Units_.Uuid;
       deviceType?: string & ('iOS' | 'Android');
     } & {
-      devicePushToken:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      deviceIdentifier:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      deviceType:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      devicePushToken: Defined;
+      deviceIdentifier: Defined;
+      deviceType: Defined;
     };
     headers?: ApiCommon_.Headers;
   },
@@ -62,30 +60,9 @@ export const Default = t.brand(
         ]),
       }),
       t.type({
-        devicePushToken: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        deviceIdentifier: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        deviceType: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        devicePushToken: Defined,
+        deviceIdentifier: Defined,
+        deviceType: Defined,
       }),
     ]),
     headers: ApiCommon_.Headers,
@@ -100,27 +77,9 @@ export const Default = t.brand(
         deviceIdentifier?: Units_.Uuid;
         deviceType?: string & ('iOS' | 'Android');
       } & {
-        devicePushToken:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        deviceIdentifier:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        deviceType:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        devicePushToken: Defined;
+        deviceIdentifier: Defined;
+        deviceType: Defined;
       };
       headers?: ApiCommon_.Headers;
     },

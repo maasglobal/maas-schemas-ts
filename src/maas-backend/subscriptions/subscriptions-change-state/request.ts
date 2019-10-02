@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptions-change-state/request.json';
 // Default
@@ -22,22 +38,10 @@ export type Default = t.Branded<
     changeStateId?: Units_.Uuid;
     headers?: ApiCommon_.Headers;
   } & {
-    customerId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    userId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    changeStateId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customerId: Defined;
+    userId: Defined;
+    changeStateId: Defined;
+    headers: Defined;
   },
   DefaultBrand
 >;
@@ -50,38 +54,10 @@ export const Default = t.brand(
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      customerId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      userId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      changeStateId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      headers: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      customerId: Defined,
+      userId: Defined,
+      changeStateId: Defined,
+      headers: Defined,
     }),
   ]),
   (
@@ -93,28 +69,10 @@ export const Default = t.brand(
       changeStateId?: Units_.Uuid;
       headers?: ApiCommon_.Headers;
     } & {
-      customerId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      userId: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      changeStateId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      headers:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      customerId: Defined;
+      userId: Defined;
+      changeStateId: Defined;
+      headers: Defined;
     },
     DefaultBrand
   > => true,

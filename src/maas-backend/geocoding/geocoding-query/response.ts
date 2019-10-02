@@ -10,6 +10,22 @@ MaaS.fi geocoding (GeoJSON) response schema
 import * as t from 'io-ts';
 import * as Geolocation_ from 'maas-schemas-ts/core/components/geolocation';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/geocoding/geocoding-query/response.json';
 // Default
@@ -20,8 +36,8 @@ export type Default = t.Branded<
     features?: Array<Geolocation_.Feature>;
     debug?: {};
   } & {
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    features: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    type: Defined;
+    features: Defined;
   },
   DefaultBrand
 >;
@@ -33,22 +49,8 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      features: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      type: Defined,
+      features: Defined,
     }),
   ]),
   (
@@ -59,14 +61,8 @@ export const Default = t.brand(
       features?: Array<Geolocation_.Feature>;
       debug?: {};
     } & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      features:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      type: Defined;
+      features: Defined;
     },
     DefaultBrand
   > => true,

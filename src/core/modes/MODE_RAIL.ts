@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Station_ from 'maas-schemas-ts/core/components/station';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/modes/MODE_RAIL.json';
 // Default
 // The default export. More information at the top.
@@ -21,16 +37,16 @@ export type Default = t.Branded<
       from?: Place_.Default;
       to?: Place_.Default;
     } & {
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      from: Defined;
+      to: Defined;
     };
     return?: {
       id?: string;
       from?: Place_.Default;
       to?: Place_.Default;
     } & {
-      from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      from: Defined;
+      to: Defined;
     };
     deliveryMethod?: {
       name?: string;
@@ -49,22 +65,8 @@ export const Default = t.brand(
         to: Place_.Default,
       }),
       t.type({
-        from: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        to: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        from: Defined,
+        to: Defined,
       }),
     ]),
     return: t.intersection([
@@ -74,22 +76,8 @@ export const Default = t.brand(
         to: Place_.Default,
       }),
       t.type({
-        from: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
-        to: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        from: Defined,
+        to: Defined,
       }),
     ]),
     deliveryMethod: t.partial({
@@ -107,16 +95,16 @@ export const Default = t.brand(
         from?: Place_.Default;
         to?: Place_.Default;
       } & {
-        from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        from: Defined;
+        to: Defined;
       };
       return?: {
         id?: string;
         from?: Place_.Default;
         to?: Place_.Default;
       } & {
-        from: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        to: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        from: Defined;
+        to: Defined;
       };
       deliveryMethod?: {
         name?: string;

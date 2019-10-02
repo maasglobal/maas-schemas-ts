@@ -16,6 +16,22 @@ import * as Region_ from 'maas-schemas-ts/core/region';
 import * as Place_ from 'maas-schemas-ts/core/components/place';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/profile.json';
 // SubscriptionInstance
 // The purpose of this remains a mystery
@@ -26,7 +42,7 @@ export type SubscriptionInstance = t.Branded<
     plan?: {
       id?: string;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
     };
     addons?: Array<string>;
     coupons?: Array<string>;
@@ -37,16 +53,10 @@ export type SubscriptionInstance = t.Branded<
     description?: string;
     availability?: number;
   } & {
-    plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    addons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    coupons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    pointCost:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    plan: Defined;
+    addons: Defined;
+    coupons: Defined;
+    pointCost: Defined;
   },
   SubscriptionInstanceBrand
 >;
@@ -60,14 +70,7 @@ export const SubscriptionInstance = t.brand(
           id: t.string,
         }),
         t.type({
-          id: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          id: Defined,
         }),
       ]),
       addons: t.array(t.string),
@@ -80,38 +83,10 @@ export const SubscriptionInstance = t.brand(
       availability: t.number,
     }),
     t.type({
-      plan: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      addons: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      coupons: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      pointCost: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      plan: Defined,
+      addons: Defined,
+      coupons: Defined,
+      pointCost: Defined,
     }),
   ]),
   (
@@ -123,7 +98,7 @@ export const SubscriptionInstance = t.brand(
       plan?: {
         id?: string;
       } & {
-        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        id: Defined;
       };
       addons?: Array<string>;
       coupons?: Array<string>;
@@ -134,22 +109,10 @@ export const SubscriptionInstance = t.brand(
       description?: string;
       availability?: number;
     } & {
-      plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      addons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      coupons:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      pointCost:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      plan: Defined;
+      addons: Defined;
+      coupons: Defined;
+      pointCost: Defined;
     },
     SubscriptionInstanceBrand
   > => true,
@@ -182,8 +145,8 @@ export type Default = t.Branded<
       issuer?: string;
       expiry?: Units_.Time;
     } & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      valid: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      type: Defined;
+      valid: Defined;
     };
     subscription?: {};
     subscriptionInstance?: SubscriptionInstance;
@@ -192,37 +155,13 @@ export type Default = t.Branded<
     created?: Units_.Time;
     modified?: Units_.Time;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    favoriteLocations:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    balance: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    paymentMethod:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    subscriptionInstance:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    balances: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    phone: Defined;
+    favoriteLocations: Defined;
+    balance: Defined;
+    paymentMethod: Defined;
+    subscriptionInstance: Defined;
+    balances: Defined;
   },
   DefaultBrand
 >;
@@ -254,22 +193,8 @@ export const Default = t.brand(
           expiry: Units_.Time,
         }),
         t.type({
-          type: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          valid: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          type: Defined,
+          valid: Defined,
         }),
       ]),
       subscription: t.type({}),
@@ -280,62 +205,13 @@ export const Default = t.brand(
       modified: Units_.Time,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      phone: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      favoriteLocations: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      balance: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      paymentMethod: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      subscriptionInstance: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      balances: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      phone: Defined,
+      favoriteLocations: Defined,
+      balance: Defined,
+      paymentMethod: Defined,
+      subscriptionInstance: Defined,
+      balances: Defined,
     }),
   ]),
   (
@@ -362,14 +238,8 @@ export const Default = t.brand(
         issuer?: string;
         expiry?: Units_.Time;
       } & {
-        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        valid:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        type: Defined;
+        valid: Defined;
       };
       subscription?: {};
       subscriptionInstance?: SubscriptionInstance;
@@ -378,49 +248,13 @@ export const Default = t.brand(
       created?: Units_.Time;
       modified?: Units_.Time;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      favoriteLocations:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      balance:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      paymentMethod:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      subscriptionInstance:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      balances:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      phone: Defined;
+      favoriteLocations: Defined;
+      balance: Defined;
+      paymentMethod: Defined;
+      subscriptionInstance: Defined;
+      balances: Defined;
     },
     DefaultBrand
   > => true,

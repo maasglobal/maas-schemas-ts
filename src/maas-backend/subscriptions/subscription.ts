@@ -16,6 +16,22 @@ import * as SubscriptionChangeState_ from 'maas-schemas-ts/core/components/subsc
 import * as Cost_ from 'maas-schemas-ts/core/components/cost';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscription.json';
 // SubscriptionItemId
@@ -43,7 +59,7 @@ export type Plan = t.Branded<
     description?: string;
     price?: Price;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
   },
   PlanBrand
 >;
@@ -56,14 +72,7 @@ export const Plan = t.brand(
       price: Price,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
     }),
   ]),
   (
@@ -75,7 +84,7 @@ export const Plan = t.brand(
       description?: string;
       price?: Price;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
     },
     PlanBrand
   > => true,
@@ -94,8 +103,8 @@ export type Addon = t.Branded<
     quantity?: number;
     unitPrice?: Price;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    quantity: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
+    quantity: Defined;
   },
   AddonBrand
 >;
@@ -109,22 +118,8 @@ export const Addon = t.brand(
       unitPrice: Price,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      quantity: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
+      quantity: Defined,
     }),
   ]),
   (
@@ -137,14 +132,8 @@ export const Addon = t.brand(
       quantity?: number;
       unitPrice?: Price;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      quantity:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      id: Defined;
+      quantity: Defined;
     },
     AddonBrand
   > => true,
@@ -161,7 +150,7 @@ export type Coupon = t.Branded<
     name?: string;
     description?: string;
   } & {
-    id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    id: Defined;
   },
   CouponBrand
 >;
@@ -173,14 +162,7 @@ export const Coupon = t.brand(
       description: t.string,
     }),
     t.type({
-      id: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      id: Defined,
     }),
   ]),
   (
@@ -191,7 +173,7 @@ export const Coupon = t.brand(
       name?: string;
       description?: string;
     } & {
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      id: Defined;
     },
     CouponBrand
   > => true,
@@ -210,24 +192,12 @@ export type Terms = t.Branded<
       startTime?: Units_.Time;
       endTime?: Units_.Time;
     } & {
-      startTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      endTime:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      startTime: Defined;
+      endTime: Defined;
     };
     scheduledChanges?: boolean;
   } & {
-    validity: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    validity: Defined;
   },
   TermsBrand
 >;
@@ -242,35 +212,14 @@ export const Terms = t.brand(
           endTime: Units_.Time,
         }),
         t.type({
-          startTime: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          endTime: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          startTime: Defined,
+          endTime: Defined,
         }),
       ]),
       scheduledChanges: t.boolean,
     }),
     t.type({
-      validity: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      validity: Defined,
     }),
   ]),
   (
@@ -283,30 +232,12 @@ export const Terms = t.brand(
         startTime?: Units_.Time;
         endTime?: Units_.Time;
       } & {
-        startTime:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
-        endTime:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        startTime: Defined;
+        endTime: Defined;
       };
       scheduledChanges?: boolean;
     } & {
-      validity:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      validity: Defined;
     },
     TermsBrand
   > => true,

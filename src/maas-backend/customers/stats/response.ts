@@ -10,6 +10,22 @@ MaaS customer stats. Give lifetime stats of customer e.g total number of booking
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/stats/response.json';
 // Default
@@ -21,34 +37,10 @@ export type Default = t.Branded<
     lifetimeItinerariesCount?: number;
     profileCreationTimestamp?: Units_.Time;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    lifetimeBookingsCount:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    lifetimeItinerariesCount:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    profileCreationTimestamp:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    identityId: Defined;
+    lifetimeBookingsCount: Defined;
+    lifetimeItinerariesCount: Defined;
+    profileCreationTimestamp: Defined;
   },
   DefaultBrand
 >;
@@ -61,38 +53,10 @@ export const Default = t.brand(
       profileCreationTimestamp: Units_.Time,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      lifetimeBookingsCount: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      lifetimeItinerariesCount: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      profileCreationTimestamp: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      lifetimeBookingsCount: Defined,
+      lifetimeItinerariesCount: Defined,
+      profileCreationTimestamp: Defined,
     }),
   ]),
   (
@@ -104,34 +68,10 @@ export const Default = t.brand(
       lifetimeItinerariesCount?: number;
       profileCreationTimestamp?: Units_.Time;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      lifetimeBookingsCount:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      lifetimeItinerariesCount:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      profileCreationTimestamp:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      lifetimeBookingsCount: Defined;
+      lifetimeItinerariesCount: Defined;
+      profileCreationTimestamp: Defined;
     },
     DefaultBrand
   > => true,

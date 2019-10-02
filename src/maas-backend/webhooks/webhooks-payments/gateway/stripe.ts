@@ -9,6 +9,22 @@ Stripe payment webhook schema
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/webhooks/webhooks-payments/gateway/stripe.json';
 // Request
@@ -35,24 +51,18 @@ export type Request = t.Branded<
         };
       };
     } & {
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      data: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      type: Defined;
+      id: Defined;
+      data: Defined;
     };
     params?: {
       gatewayName?: string & 'stripe';
     } & {
-      gatewayName:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      gatewayName: Defined;
     };
   } & {
-    params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    params: Defined;
+    payload: Defined;
   },
   RequestBrand
 >;
@@ -83,30 +93,9 @@ export const Request = t.brand(
           }),
         }),
         t.type({
-          type: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          id: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
-          data: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          type: Defined,
+          id: Defined,
+          data: Defined,
         }),
       ]),
       params: t.intersection([
@@ -114,34 +103,13 @@ export const Request = t.brand(
           gatewayName: t.intersection([t.string, t.literal('stripe')]),
         }),
         t.type({
-          gatewayName: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          gatewayName: Defined,
         }),
       ]),
     }),
     t.type({
-      params: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      params: Defined,
+      payload: Defined,
     }),
   ]),
   (
@@ -168,30 +136,18 @@ export const Request = t.brand(
           };
         };
       } & {
-        type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        id: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-        data: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+        type: Defined;
+        id: Defined;
+        data: Defined;
       };
       params?: {
         gatewayName?: string & 'stripe';
       } & {
-        gatewayName:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        gatewayName: Defined;
       };
     } & {
-      params: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      params: Defined;
+      payload: Defined;
     },
     RequestBrand
   > => true,

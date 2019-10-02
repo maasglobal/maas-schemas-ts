@@ -10,6 +10,22 @@ MaaS push notification request schema.
 import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/push-notification/request.json';
 // Default
@@ -28,52 +44,22 @@ export type Default = t.Branded<
           objectType?: 'Itinerary' | 'Booking';
           ids?: Array<Units_.Uuid>;
         } & {
-          objectType:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          ids:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          objectType: Defined;
+          ids: Defined;
         })
       | null
       | ({
           objectType?: 'Profile' | 'Subscription';
           ids?: Array<Units_.IdentityId>;
         } & {
-          objectType:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
-          ids:
-            | Record<string, unknown>
-            | Array<unknown>
-            | string
-            | boolean
-            | number
-            | null;
+          objectType: Defined;
+          ids: Defined;
         });
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    severity: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    badge: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    severity: Defined;
+    badge: Defined;
+    type: Defined;
   },
   DefaultBrand
 >;
@@ -102,22 +88,8 @@ export const Default = t.brand(
             ids: t.array(Units_.Uuid),
           }),
           t.type({
-            objectType: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            ids: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
+            objectType: Defined,
+            ids: Defined,
           }),
         ]),
         t.null,
@@ -127,59 +99,17 @@ export const Default = t.brand(
             ids: t.array(Units_.IdentityId),
           }),
           t.type({
-            objectType: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
-            ids: t.union([
-              t.UnknownRecord,
-              t.UnknownArray,
-              t.string,
-              t.boolean,
-              t.number,
-              t.null,
-            ]),
+            objectType: Defined,
+            ids: Defined,
           }),
         ]),
       ]),
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      severity: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      badge: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      severity: Defined,
+      badge: Defined,
+      type: Defined,
     }),
   ]),
   (
@@ -198,58 +128,22 @@ export const Default = t.brand(
             objectType?: 'Itinerary' | 'Booking';
             ids?: Array<Units_.Uuid>;
           } & {
-            objectType:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            ids:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            objectType: Defined;
+            ids: Defined;
           })
         | null
         | ({
             objectType?: 'Profile' | 'Subscription';
             ids?: Array<Units_.IdentityId>;
           } & {
-            objectType:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
-            ids:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            objectType: Defined;
+            ids: Defined;
           });
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      severity:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      badge: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      identityId: Defined;
+      severity: Defined;
+      badge: Defined;
+      type: Defined;
     },
     DefaultBrand
   > => true,

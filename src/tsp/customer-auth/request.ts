@@ -12,6 +12,22 @@ import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as I18n_ from 'maas-schemas-ts/core/components/i18n';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/tsp/customer-auth/request.json';
 // Default
 // The default export. More information at the top.
@@ -21,14 +37,8 @@ export type Default = t.Branded<
     returnUrl?: Units_.Url;
     locale?: I18n_.Locale;
   } & {
-    nonce: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    returnUrl:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    nonce: Defined;
+    returnUrl: Defined;
   },
   DefaultBrand
 >;
@@ -40,22 +50,8 @@ export const Default = t.brand(
       locale: I18n_.Locale,
     }),
     t.type({
-      nonce: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      returnUrl: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      nonce: Defined,
+      returnUrl: Defined,
     }),
   ]),
   (
@@ -66,14 +62,8 @@ export const Default = t.brand(
       returnUrl?: Units_.Url;
       locale?: I18n_.Locale;
     } & {
-      nonce: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      returnUrl:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      nonce: Defined;
+      returnUrl: Defined;
     },
     DefaultBrand
   > => true,

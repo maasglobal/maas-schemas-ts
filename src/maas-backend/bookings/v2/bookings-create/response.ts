@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 import * as PaymentParameters_ from 'maas-schemas-ts/core/components/payment-parameters';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/v2/bookings-create/response.json';
 // Default
@@ -24,7 +40,7 @@ export type Default = t.Branded<
     };
     debug?: {};
   } & {
-    booking: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    booking: Defined;
   },
   DefaultBrand
 >;
@@ -39,14 +55,7 @@ export const Default = t.brand(
       debug: t.type({}),
     }),
     t.type({
-      booking: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      booking: Defined,
     }),
   ]),
   (
@@ -60,13 +69,7 @@ export const Default = t.brand(
       };
       debug?: {};
     } & {
-      booking:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      booking: Defined;
     },
     DefaultBrand
   > => true,

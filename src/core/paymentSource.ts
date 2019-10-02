@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as Card_ from 'maas-schemas-ts/core/card';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId = 'http://maasglobal.com/core/paymentSource.json';
 // Default
 // The default export. More information at the top.
@@ -35,14 +51,8 @@ export type Default = t.Branded<
     valid?: boolean;
     card?: Card_.Default;
   } & {
-    customerId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    customerId: Defined;
+    type: Defined;
   },
   DefaultBrand
 >;
@@ -72,22 +82,8 @@ export const Default = t.brand(
       card: Card_.Default,
     }),
     t.type({
-      customerId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      type: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      customerId: Defined,
+      type: Defined,
     }),
   ]),
   (
@@ -113,14 +109,8 @@ export const Default = t.brand(
       valid?: boolean;
       card?: Card_.Default;
     } & {
-      customerId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      type: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      customerId: Defined;
+      type: Defined;
     },
     DefaultBrand
   > => true,

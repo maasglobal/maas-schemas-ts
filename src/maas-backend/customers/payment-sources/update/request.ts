@@ -12,6 +12,22 @@ import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/customers/payment-sources/update/request.json';
 // Default
@@ -27,57 +43,21 @@ export type Default = t.Branded<
         alias?: PaymentSource_.Alias;
       } & (
         | {
-            isDefault:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            isDefault: Defined;
           }
         | {
-            alias:
-              | Record<string, unknown>
-              | Array<unknown>
-              | string
-              | boolean
-              | number
-              | null;
+            alias: Defined;
           });
     } & {
-      paymentSource:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      paymentSource: Defined;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    identityId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    customerId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    paymentSourceId:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    headers: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    identityId: Defined;
+    customerId: Defined;
+    paymentSourceId: Defined;
+    payload: Defined;
+    headers: Defined;
   },
   DefaultBrand
 >;
@@ -96,82 +76,26 @@ export const Default = t.brand(
             }),
             t.union([
               t.type({
-                isDefault: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
+                isDefault: Defined,
               }),
               t.type({
-                alias: t.union([
-                  t.UnknownRecord,
-                  t.UnknownArray,
-                  t.string,
-                  t.boolean,
-                  t.number,
-                  t.null,
-                ]),
+                alias: Defined,
               }),
             ]),
           ]),
         }),
         t.type({
-          paymentSource: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          paymentSource: Defined,
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      identityId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      customerId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      paymentSourceId: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      headers: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      identityId: Defined,
+      customerId: Defined,
+      paymentSourceId: Defined,
+      payload: Defined,
+      headers: Defined,
     }),
   ]),
   (
@@ -187,69 +111,21 @@ export const Default = t.brand(
           alias?: PaymentSource_.Alias;
         } & (
           | {
-              isDefault:
-                | Record<string, unknown>
-                | Array<unknown>
-                | string
-                | boolean
-                | number
-                | null;
+              isDefault: Defined;
             }
           | {
-              alias:
-                | Record<string, unknown>
-                | Array<unknown>
-                | string
-                | boolean
-                | number
-                | null;
+              alias: Defined;
             });
       } & {
-        paymentSource:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        paymentSource: Defined;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      identityId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      customerId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      paymentSourceId:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      headers:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      identityId: Defined;
+      customerId: Defined;
+      paymentSourceId: Defined;
+      payload: Defined;
+      headers: Defined;
     },
     DefaultBrand
   > => true,

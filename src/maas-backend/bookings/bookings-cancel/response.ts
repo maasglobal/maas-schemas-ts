@@ -9,38 +9,41 @@ Response schema for bookings-retrieve
 
 import * as t from 'io-ts';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/bookings/bookings-cancel/response.json';
 // Default
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
-    booking: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    booking: Defined;
   },
   DefaultBrand
 >;
 export const Default = t.brand(
   t.type({
-    booking: t.union([
-      t.UnknownRecord,
-      t.UnknownArray,
-      t.string,
-      t.boolean,
-      t.number,
-      t.null,
-    ]),
+    booking: Defined,
   }),
   (
     x,
   ): x is t.Branded<
     {
-      booking:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      booking: Defined;
     },
     DefaultBrand
   > => true,

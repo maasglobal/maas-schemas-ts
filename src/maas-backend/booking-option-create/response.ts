@@ -10,6 +10,22 @@ Response schema for booking-option-create
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/booking-option-create/response.json';
 // Default
@@ -18,20 +34,14 @@ export type Default = t.Branded<
   | ({
       booking?: Booking_.Default;
     } & {
-      booking:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      booking: Defined;
     })
   | ({
       error?: {
         message?: string;
       };
     } & {
-      error: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      error: Defined;
     }),
   DefaultBrand
 >;
@@ -42,14 +52,7 @@ export const Default = t.brand(
         booking: Booking_.Default,
       }),
       t.type({
-        booking: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        booking: Defined,
       }),
     ]),
     t.intersection([
@@ -59,14 +62,7 @@ export const Default = t.brand(
         }),
       }),
       t.type({
-        error: t.union([
-          t.UnknownRecord,
-          t.UnknownArray,
-          t.string,
-          t.boolean,
-          t.number,
-          t.null,
-        ]),
+        error: Defined,
       }),
     ]),
   ]),
@@ -76,26 +72,14 @@ export const Default = t.brand(
     | ({
         booking?: Booking_.Default;
       } & {
-        booking:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        booking: Defined;
       })
     | ({
         error?: {
           message?: string;
         };
       } & {
-        error:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        error: Defined;
       }),
     DefaultBrand
   > => true,

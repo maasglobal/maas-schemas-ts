@@ -10,6 +10,22 @@ Response schema for products-providers-options
 import * as t from 'io-ts';
 import * as Provider_ from 'maas-schemas-ts/maas-backend/products/provider';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/products/products-providers-options/response.json';
 // Default
@@ -18,13 +34,7 @@ export type Default = t.Branded<
   {
     providers?: Array<Provider_.Default>;
   } & {
-    providers:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    providers: Defined;
   },
   DefaultBrand
 >;
@@ -34,14 +44,7 @@ export const Default = t.brand(
       providers: t.array(Provider_.Default),
     }),
     t.type({
-      providers: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      providers: Defined,
     }),
   ]),
   (
@@ -50,13 +53,7 @@ export const Default = t.brand(
     {
       providers?: Array<Provider_.Default>;
     } & {
-      providers:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      providers: Defined;
     },
     DefaultBrand
   > => true,

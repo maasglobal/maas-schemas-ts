@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as Subscription_ from 'maas-schemas-ts/maas-backend/subscriptions/subscription';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/subscriptions/subscriptionOption.json';
 // SubscriptionAdditions
@@ -20,24 +36,12 @@ export type SubscriptionAdditions = t.Branded<
     discounts?: Array<unknown>;
     requiredAuthorizations?: Array<Common_.AgencyId>;
   } & {
-    plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    wmpGrant: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    pointCost:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
-    addons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    coupons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-    requiredAuthorizations:
-      | Record<string, unknown>
-      | Array<unknown>
-      | string
-      | boolean
-      | number
-      | null;
+    plan: Defined;
+    wmpGrant: Defined;
+    pointCost: Defined;
+    addons: Defined;
+    coupons: Defined;
+    requiredAuthorizations: Defined;
   },
   SubscriptionAdditionsBrand
 >;
@@ -48,54 +52,12 @@ export const SubscriptionAdditions = t.brand(
       requiredAuthorizations: t.array(Common_.AgencyId),
     }),
     t.type({
-      plan: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      wmpGrant: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      pointCost: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      addons: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      coupons: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
-      requiredAuthorizations: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      plan: Defined,
+      wmpGrant: Defined,
+      pointCost: Defined,
+      addons: Defined,
+      coupons: Defined,
+      requiredAuthorizations: Defined,
     }),
   ]),
   (
@@ -105,36 +67,12 @@ export const SubscriptionAdditions = t.brand(
       discounts?: Array<unknown>;
       requiredAuthorizations?: Array<Common_.AgencyId>;
     } & {
-      plan: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      wmpGrant:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      pointCost:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      addons: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
-      coupons:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
-      requiredAuthorizations:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      plan: Defined;
+      wmpGrant: Defined;
+      pointCost: Defined;
+      addons: Defined;
+      coupons: Defined;
+      requiredAuthorizations: Defined;
     },
     SubscriptionAdditionsBrand
   > => true,

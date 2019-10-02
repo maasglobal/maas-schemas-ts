@@ -11,6 +11,22 @@ import * as t from 'io-ts';
 import * as Common_ from 'maas-schemas-ts/core/components/common';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
 
+type Defined =
+  | Record<string, unknown>
+  | Array<unknown>
+  | string
+  | boolean
+  | number
+  | null;
+const Defined = t.union([
+  t.UnknownRecord,
+  t.UnknownArray,
+  t.string,
+  t.boolean,
+  t.number,
+  t.null,
+]);
+
 export const schemaId =
   'http://maasglobal.com/maas-backend/auth/auth-sms-request.code/request.json';
 // Default
@@ -20,11 +36,11 @@ export type Default = t.Branded<
     payload?: {
       phone?: Common_.RawPhone;
     } & {
-      phone: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+      phone: Defined;
     };
     headers?: ApiCommon_.Headers;
   } & {
-    payload: Record<string, unknown> | Array<unknown> | string | boolean | number | null;
+    payload: Defined;
   },
   DefaultBrand
 >;
@@ -36,27 +52,13 @@ export const Default = t.brand(
           phone: Common_.RawPhone,
         }),
         t.type({
-          phone: t.union([
-            t.UnknownRecord,
-            t.UnknownArray,
-            t.string,
-            t.boolean,
-            t.number,
-            t.null,
-          ]),
+          phone: Defined,
         }),
       ]),
       headers: ApiCommon_.Headers,
     }),
     t.type({
-      payload: t.union([
-        t.UnknownRecord,
-        t.UnknownArray,
-        t.string,
-        t.boolean,
-        t.number,
-        t.null,
-      ]),
+      payload: Defined,
     }),
   ]),
   (
@@ -66,23 +68,11 @@ export const Default = t.brand(
       payload?: {
         phone?: Common_.RawPhone;
       } & {
-        phone:
-          | Record<string, unknown>
-          | Array<unknown>
-          | string
-          | boolean
-          | number
-          | null;
+        phone: Defined;
       };
       headers?: ApiCommon_.Headers;
     } & {
-      payload:
-        | Record<string, unknown>
-        | Array<unknown>
-        | string
-        | boolean
-        | number
-        | null;
+      payload: Defined;
     },
     DefaultBrand
   > => true,
