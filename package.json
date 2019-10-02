@@ -17,8 +17,9 @@
     "build-converter": "tsc converter.ts -outdir tmp",
     "run-converter": "(cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;)",
     "build": "yarn clean && ttsc",
+    "typecheck": "tsc --noEmit",
     "ci": "yarn lint && yarn build",
-    "convert-all": "(yarn clean-src && yarn lint && yarn build-converter && yarn run-converter && yarn eslint --fix && yarn eslint && yarn build) 2>&1|tee translation.log",
+    "convert-all": "(yarn clean-src && yarn lint && yarn build-converter && yarn run-converter && yarn typecheck && yarn eslint --fix && yarn eslint && yarn build) 2>&1|tee translation.log",
     "deploy-npm": "yarn ci && yarn publish"
   },
   "repository": {

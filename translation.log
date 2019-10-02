@@ -884,6 +884,7 @@ DONE
 DONE
 DONE
 DONE
+$ tsc --noEmit
 $ eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore --fix
 $ eslint --max-warnings=0 '**/*.{ts,json}' --ignore-path .gitignore
 $ yarn clean && ttsc
