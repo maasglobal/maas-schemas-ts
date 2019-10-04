@@ -15,7 +15,7 @@
     "clean-src": "rm -rf src",
     "clean": "rm -rf lib",
     "build-converter": "tsc converter.ts -outdir tmp",
-    "run-converter": "(cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src \\;)",
+    "run-converter": "(cd ../maas-schemas/schemas/; find . -name '*.json' -print0|sort -z|xargs -0 -I {} node ../../maas-schemas-ts/tmp/converter.js {} ../../maas-schemas-ts/src http://maasglobal.com/ \\;)",
     "build-package": "ttsc",
     "build": "yarn clean && yarn build-package",
     "typecheck": "tsc --noEmit",

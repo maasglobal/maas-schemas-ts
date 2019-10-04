@@ -57,7 +57,13 @@ const supportedAtRoot = [
   'uniqueItems',
 ];
 
-const [, , inputFile, outputDir, strict] = process.argv;
+const [, , inputFile, outputDir, domain, strict] = process.argv;
+
+if (domain.endsWith('/') === false) {
+  // eslint-disable-next-line
+  throw new Error('invalid domain argument');
+}
+
 const outputFile = path.join(outputDir, inputFile.split('.json').join('.ts'));
 
 const schema: JSONSchema7 = JSON.parse(fs.readFileSync(inputFile, 'utf-8'));
@@ -317,7 +323,6 @@ function fromRef(refString: string): gen.TypeReference {
   const [withoutPath] = ref.filePath.split('/').reverse();
   const [basefile] = withoutPath.split('.json');
   const importName = `${camelFromKebab(basefile)}_`;
-  const domain = 'http://maasglobal.com/';
   if (ref.filePath.startsWith(domain)) {
     const URI = ref.filePath;
     const [, withoutDomain] = URI.split(domain);
