@@ -101,9 +101,9 @@ function warning(message: string) {
 
 function notImplemented(pre: string, item: string, post: string, fatal = false) {
   const isOutsideRoot = supportedAtRoot.includes(item);
-  const where = isOutsideRoot ? 'outside DIRECT exports' : '';
+  const where = isOutsideRoot ? 'outside top-level definitions' : '';
   const message =
-    [pre, item, post, 'NOT supported', where, 'by convert.ts']
+    [pre, item, post, 'not supported', where, 'by convert.ts']
       .filter((s) => s.length > 0)
       .join(' ') + `\n  in ${path.resolve(inputFile)}`;
 
@@ -239,7 +239,7 @@ function toArrayCombinator(schema: JSONSchema7): gen.TypeReference {
         return gen.tupleCombinator(combinators);
       }
       // eslint-disable-next-line
-      throw new Error('tuples with ...REST are not supported, set additionalItems false');
+      throw new Error('tuples with ...rest are not supported, set additionalItems false');
     }
     return gen.arrayCombinator(fromSchema(schema.items));
   }
@@ -378,7 +378,7 @@ function fromType(schema: JSONSchema7): [gen.TypeReference] | [] {
       return [toArrayCombinator(schema)];
   }
   if (typeof schema.type !== 'undefined') {
-    const escalate = notImplemented('', JSON.stringify(schema.type), 'TYPE', true);
+    const escalate = notImplemented('', JSON.stringify(schema.type), 'type', true);
     if (escalate !== null) {
       return [escalate];
     }
@@ -401,7 +401,7 @@ function fromRequired(schema: JSONSchema7): [gen.TypeReference] | [] {
 
 function fromContains(schema: JSONSchema7): [gen.TypeReference] | [] {
   if ('contains' in schema && typeof schema.contains !== 'undefined') {
-    warning('contains FIELD NOT supported');
+    warning('contains field not supported');
   }
   return [];
 }
@@ -494,7 +494,7 @@ function fromSchema(schema: JSONSchema7Definition, isRoot = false): gen.TypeRefe
   // eslint-disable-next-line
   for (const key in schema) {
     if (isSupported(key, isRoot) !== true) {
-      const escalate = notImplemented('', key, 'FIELD');
+      const escalate = notImplemented('', key, 'field');
       if (escalate !== null) {
         return escalate;
       }
@@ -688,4 +688,4 @@ log('');
 log('// Success');
 fs.closeSync(fd);
 
-console.log('DONE');
+process.stdout.write('.');
