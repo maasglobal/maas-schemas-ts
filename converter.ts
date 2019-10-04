@@ -92,26 +92,32 @@ function updateFailure(level: ErrorCode) {
   returnCode = level;
 }
 
+function reportError(level: 'INFO' | 'WARNING' | 'ERROR', message: string) {
+  const lines = [`${level}: ${message}`, `  in ${path.resolve(inputFile)}`];
+  // eslint-disable-next-line
+  console.error(lines.join('\n'));
+}
+
 function error(message: string) {
   updateFailure(ErrorCode.ERROR);
-  // eslint-disable-next-line
-  console.error(`ERROR: ${message}`);
+  reportError('ERROR', message);
   const escalate = "throw new Error('schema conversion failed')";
   return gen.customCombinator(escalate, escalate);
 }
 function warning(message: string) {
   updateFailure(ErrorCode.WARNING);
-  // eslint-disable-next-line
-  console.error(`WARNING ${message}`);
+  reportError('WARNING', message);
+}
+function info(message: string) {
+  reportError('INFO', message);
 }
 
 function notImplemented(pre: string, item: string, post: string, fatal = false) {
   const isOutsideRoot = supportedAtRoot.includes(item);
   const where = isOutsideRoot ? 'outside top-level definitions' : '';
-  const message =
-    [pre, item, post, 'not supported', where, 'by convert.ts']
-      .filter((s) => s.length > 0)
-      .join(' ') + `\n  in ${path.resolve(inputFile)}`;
+  const message = [pre, item, post, 'not supported', where]
+    .filter((s) => s.length > 0)
+    .join(' ');
 
   if (fatal !== true && isOutsideRoot) {
     warning(message);
@@ -495,6 +501,13 @@ function fromSchema(schema: JSONSchema7Definition, isRoot = false): gen.TypeRefe
       // accept nothing
       return error('Not sure how to deal with a schema that matches nothing');
     }
+  }
+  if (
+    isRoot === false &&
+    typeof schema.type === 'string' &&
+    ['string', 'number', 'integer'].includes(schema.type)
+  ) {
+    info(`primitive type "${schema.type}" used outside top-level definitions`);
   }
   // eslint-disable-next-line
   for (const key in schema) {
