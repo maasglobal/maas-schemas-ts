@@ -28,6 +28,7 @@ export type Default = t.Branded<
     dob?: boolean | Units_.IsoDate;
     ssid?: boolean | Common_.Ssid;
     subscriberType?: string;
+    profileImageUrl?: string;
   } & {},
   DefaultBrand
 >;
@@ -45,6 +46,7 @@ export const Default = t.brand(
       dob: t.union([t.boolean, Units_.IsoDate]),
       ssid: t.union([t.boolean, Common_.Ssid]),
       subscriberType: t.string,
+      profileImageUrl: t.string,
     }),
     t.type({}),
   ]),
@@ -63,6 +65,7 @@ export const Default = t.brand(
       dob?: boolean | Units_.IsoDate;
       ssid?: boolean | Common_.Ssid;
       subscriberType?: string;
+      profileImageUrl?: string;
     } & {},
     DefaultBrand
   > => true,

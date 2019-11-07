@@ -9,6 +9,7 @@ Partial (Points only) GeoJSON Schema
 
 import * as t from 'io-ts';
 import * as UnitsGeo_ from 'maas-schemas-ts/core/components/units-geo';
+import * as Address_ from 'maas-schemas-ts/core/components/address';
 
 type Defined =
   | Record<string, unknown>
@@ -78,7 +79,7 @@ export type Properties = t.Branded<
     country?: string;
     countryCode?: string;
     houseNumber?: number;
-    zipcode?: number;
+    zipcode?: Address_.ZipCode;
   } & {
     name: Defined;
   },
@@ -94,7 +95,7 @@ export const Properties = t.brand(
       country: t.string,
       countryCode: t.string,
       houseNumber: t.number,
-      zipcode: t.number,
+      zipcode: Address_.ZipCode,
     }),
     t.type({
       name: Defined,
@@ -111,7 +112,7 @@ export const Properties = t.brand(
       country?: string;
       countryCode?: string;
       houseNumber?: number;
-      zipcode?: number;
+      zipcode?: Address_.ZipCode;
     } & {
       name: Defined;
     },
