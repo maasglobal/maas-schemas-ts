@@ -36,7 +36,7 @@ export type Choice = t.Branded<
     id?: string;
     name?: string;
     description?: string;
-    default?: true;
+    default?: boolean;
     cost?: Cost_.Default;
     fares?: Array<Fare_.Default>;
     terms?: Terms_.Default;
@@ -54,7 +54,7 @@ export const Choice = t.brand(
       id: t.string,
       name: t.string,
       description: t.string,
-      default: t.literal(true),
+      default: t.boolean,
       cost: Cost_.Default,
       fares: t.array(Fare_.Default),
       terms: Terms_.Default,
@@ -73,7 +73,7 @@ export const Choice = t.brand(
       id?: string;
       name?: string;
       description?: string;
-      default?: true;
+      default?: boolean;
       cost?: Cost_.Default;
       fares?: Array<Fare_.Default>;
       terms?: Terms_.Default;

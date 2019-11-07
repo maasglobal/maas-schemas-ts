@@ -20,6 +20,7 @@ export type BookingState = t.Branded<
       | 'PAID'
       | 'RESERVED'
       | 'CONFIRMED'
+      | 'ARRIVED'
       | 'ACTIVATED'
       | 'ON_HOLD'
       | 'CANCELLED'
@@ -38,6 +39,7 @@ export const BookingState = t.brand(
       t.literal('PAID'),
       t.literal('RESERVED'),
       t.literal('CONFIRMED'),
+      t.literal('ARRIVED'),
       t.literal('ACTIVATED'),
       t.literal('ON_HOLD'),
       t.literal('CANCELLED'),
@@ -57,6 +59,7 @@ export const BookingState = t.brand(
         | 'PAID'
         | 'RESERVED'
         | 'CONFIRMED'
+        | 'ARRIVED'
         | 'ACTIVATED'
         | 'ON_HOLD'
         | 'CANCELLED'

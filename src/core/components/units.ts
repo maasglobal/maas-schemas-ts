@@ -55,14 +55,10 @@ export interface ArnBrand {
 }
 // IdentityId
 // The purpose of this remains a mystery
-export type IdentityId = t.Branded<string, IdentityIdBrand>;
+export type IdentityId = t.Branded<string | Uuid, IdentityIdBrand>;
 export const IdentityId = t.brand(
-  t.string,
-  (x): x is t.Branded<string, IdentityIdBrand> =>
-    typeof x !== 'string' ||
-    x.match(
-      RegExp('^[aepus]{2}-[\\w]{4}-\\d:[a-f\\d]{8}(-[a-f\\d]{4}){3}-[a-f\\d]{12}$', 'u'),
-    ) !== null,
+  t.union([t.string, Uuid]),
+  (x): x is t.Branded<string | Uuid, IdentityIdBrand> => true,
   'IdentityId',
 );
 export interface IdentityIdBrand {
@@ -70,13 +66,23 @@ export interface IdentityIdBrand {
 }
 // Currency
 // Accepted monetary unit in ISO 4127 format, see https://en.wikipedia.org/wiki/ISO_4217#cite_note-1
-export type Currency = t.Branded<string & ('EUR' | 'GBP' | 'SGD' | 'USD'), CurrencyBrand>;
+export type Currency = t.Branded<
+  string & ('EUR' | 'GBP' | 'SGD' | 'USD' | 'JPY'),
+  CurrencyBrand
+>;
 export const Currency = t.brand(
   t.intersection([
     t.string,
-    t.union([t.literal('EUR'), t.literal('GBP'), t.literal('SGD'), t.literal('USD')]),
+    t.union([
+      t.literal('EUR'),
+      t.literal('GBP'),
+      t.literal('SGD'),
+      t.literal('USD'),
+      t.literal('JPY'),
+    ]),
   ]),
-  (x): x is t.Branded<string & ('EUR' | 'GBP' | 'SGD' | 'USD'), CurrencyBrand> => true,
+  (x): x is t.Branded<string & ('EUR' | 'GBP' | 'SGD' | 'USD' | 'JPY'), CurrencyBrand> =>
+    true,
   'Currency',
 );
 export interface CurrencyBrand {

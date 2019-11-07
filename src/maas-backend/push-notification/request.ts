@@ -38,7 +38,12 @@ export type Default = t.Branded<
     badge?: number;
     sound?: string;
     severity?: 'Alert' | 'Warning' | 'Information';
-    type?: 'ObjectChange' | 'TripActivate' | 'InfoMessage';
+    type?:
+      | 'ObjectChange'
+      | 'TripActivate'
+      | 'InfoMessage'
+      | 'ZendeskReply'
+      | 'VerificationUpdate';
     data?:
       | ({
           objectType?: 'Itinerary' | 'Booking';
@@ -80,6 +85,8 @@ export const Default = t.brand(
         t.literal('ObjectChange'),
         t.literal('TripActivate'),
         t.literal('InfoMessage'),
+        t.literal('ZendeskReply'),
+        t.literal('VerificationUpdate'),
       ]),
       data: t.union([
         t.intersection([
@@ -122,7 +129,12 @@ export const Default = t.brand(
       badge?: number;
       sound?: string;
       severity?: 'Alert' | 'Warning' | 'Information';
-      type?: 'ObjectChange' | 'TripActivate' | 'InfoMessage';
+      type?:
+        | 'ObjectChange'
+        | 'TripActivate'
+        | 'InfoMessage'
+        | 'ZendeskReply'
+        | 'VerificationUpdate';
       data?:
         | ({
             objectType?: 'Itinerary' | 'Booking';

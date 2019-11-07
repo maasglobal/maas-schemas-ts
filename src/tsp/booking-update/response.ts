@@ -9,6 +9,7 @@ Response schema for updating state of a specific booking with a TSP ID from a TS
 
 import * as t from 'io-ts';
 import * as Booking_ from 'maas-schemas-ts/core/booking';
+import * as State_ from 'maas-schemas-ts/core/components/state';
 import * as BookingOption_ from 'maas-schemas-ts/core/booking-option';
 import * as BookingMeta_ from 'maas-schemas-ts/core/booking-meta';
 
@@ -35,7 +36,7 @@ export type Default = t.Branded<
   {
     tspId?: Booking_.TspId;
     cost?: Booking_.Cost;
-    state?: 'RESERVED' | 'CONFIRMED' | 'ACTIVATED' | 'ON_HOLD' | 'EXPIRED' | 'CANCELLED';
+    state?: State_.BookingState;
     leg?: BookingOption_.LegDelta;
     meta?: BookingMeta_.Default;
     terms?: Booking_.Terms;
@@ -52,14 +53,7 @@ export const Default = t.brand(
     t.partial({
       tspId: Booking_.TspId,
       cost: Booking_.Cost,
-      state: t.union([
-        t.literal('RESERVED'),
-        t.literal('CONFIRMED'),
-        t.literal('ACTIVATED'),
-        t.literal('ON_HOLD'),
-        t.literal('EXPIRED'),
-        t.literal('CANCELLED'),
-      ]),
+      state: State_.BookingState,
       leg: BookingOption_.LegDelta,
       meta: BookingMeta_.Default,
       terms: Booking_.Terms,
@@ -77,13 +71,7 @@ export const Default = t.brand(
     {
       tspId?: Booking_.TspId;
       cost?: Booking_.Cost;
-      state?:
-        | 'RESERVED'
-        | 'CONFIRMED'
-        | 'ACTIVATED'
-        | 'ON_HOLD'
-        | 'EXPIRED'
-        | 'CANCELLED';
+      state?: State_.BookingState;
       leg?: BookingOption_.LegDelta;
       meta?: BookingMeta_.Default;
       terms?: Booking_.Terms;

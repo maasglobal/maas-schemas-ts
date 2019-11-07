@@ -51,6 +51,7 @@ export type Default = t.Branded<
     priority?: number;
     agencyId?: Common_.AgencyId;
     tspProductId?: string;
+    allowFinishTrip?: boolean;
   } & {
     id: Defined;
     tspProductId: Defined;
@@ -68,6 +69,7 @@ export const Default = t.brand(
       priority: t.number,
       agencyId: Common_.AgencyId,
       tspProductId: t.string,
+      allowFinishTrip: t.boolean,
     }),
     t.type({
       id: Defined,
@@ -86,6 +88,7 @@ export const Default = t.brand(
       priority?: number;
       agencyId?: Common_.AgencyId;
       tspProductId?: string;
+      allowFinishTrip?: boolean;
     } & {
       id: Defined;
       tspProductId: Defined;
