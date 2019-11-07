@@ -8,6 +8,7 @@ MaaS customer schema
 */
 
 import * as t from 'io-ts';
+import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as PersonalData_ from 'maas-schemas-ts/maas-backend/customers/personalData';
 import * as PaymentSource_ from 'maas-schemas-ts/maas-backend/customers/payment-sources/paymentSource';
 import * as Fare_ from 'maas-schemas-ts/core/components/fare';
@@ -35,12 +36,14 @@ export const schemaId = 'http://maasglobal.com/maas-backend/customers/customer.j
 // The default export. More information at the top.
 export type Default = t.Branded<
   {
+    identityId?: Units_.IdentityId;
     profileImageUrl?: string;
     personalData?: PersonalData_.Default;
     paymentSources?: Array<PaymentSource_.PaymentSource>;
     balances?: Array<Fare_.Default>;
     region?: Region_.Default;
     authorizations?: Array<Authorization_.Default>;
+    favoriteLocations?: Array<{}>;
   } & {
     personalData: Defined;
     paymentSources: Defined;
@@ -53,12 +56,14 @@ export type Default = t.Branded<
 export const Default = t.brand(
   t.intersection([
     t.partial({
+      identityId: Units_.IdentityId,
       profileImageUrl: t.string,
       personalData: PersonalData_.Default,
       paymentSources: t.array(PaymentSource_.PaymentSource),
       balances: t.array(Fare_.Default),
       region: Region_.Default,
       authorizations: t.array(Authorization_.Default),
+      favoriteLocations: t.array(t.type({})),
     }),
     t.type({
       personalData: Defined,
@@ -72,12 +77,14 @@ export const Default = t.brand(
     x,
   ): x is t.Branded<
     {
+      identityId?: Units_.IdentityId;
       profileImageUrl?: string;
       personalData?: PersonalData_.Default;
       paymentSources?: Array<PaymentSource_.PaymentSource>;
       balances?: Array<Fare_.Default>;
       region?: Region_.Default;
       authorizations?: Array<Authorization_.Default>;
+      favoriteLocations?: Array<{}>;
     } & {
       personalData: Defined;
       paymentSources: Defined;

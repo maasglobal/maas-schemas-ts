@@ -9,6 +9,7 @@ Request schema for itineraries-create
 
 import * as t from 'io-ts';
 import * as Itinerary_ from 'maas-schemas-ts/core/itinerary';
+import * as ProductOption_ from 'maas-schemas-ts/core/product-option';
 import * as CustomerSelection_ from 'maas-schemas-ts/core/components/customerSelection';
 import * as Units_ from 'maas-schemas-ts/core/components/units';
 import * as ApiCommon_ from 'maas-schemas-ts/core/components/api-common';
@@ -21,21 +22,32 @@ export const schemaId =
 export type OutwardReturnWrapper = t.Branded<
   {
     itinerary?: Itinerary_.Default;
-    customerSelections?: Array<CustomerSelection_.Default>;
+    customerSelections?: Array<{
+      ref?: ProductOption_.Ref;
+      customerSelection?: CustomerSelection_.Default;
+    }>;
   },
   OutwardReturnWrapperBrand
 >;
 export const OutwardReturnWrapper = t.brand(
   t.partial({
     itinerary: Itinerary_.Default,
-    customerSelections: t.array(CustomerSelection_.Default),
+    customerSelections: t.array(
+      t.partial({
+        ref: ProductOption_.Ref,
+        customerSelection: CustomerSelection_.Default,
+      }),
+    ),
   }),
   (
     x,
   ): x is t.Branded<
     {
       itinerary?: Itinerary_.Default;
-      customerSelections?: Array<CustomerSelection_.Default>;
+      customerSelections?: Array<{
+        ref?: ProductOption_.Ref;
+        customerSelection?: CustomerSelection_.Default;
+      }>;
     },
     OutwardReturnWrapperBrand
   > => true,
