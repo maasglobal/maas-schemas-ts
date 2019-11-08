@@ -53,12 +53,27 @@ export const Arn = t.brand(
 export interface ArnBrand {
   readonly Arn: unique symbol;
 }
+// OldIdentityId
+// The purpose of this remains a mystery
+export type OldIdentityId = t.Branded<string, OldIdentityIdBrand>;
+export const OldIdentityId = t.brand(
+  t.string,
+  (x): x is t.Branded<string, OldIdentityIdBrand> =>
+    typeof x !== 'string' ||
+    x.match(
+      RegExp('^[aepus]{2}-[\\w]{4}-\\d:[a-f\\d]{8}(-[a-f\\d]{4}){3}-[a-f\\d]{12}$', 'u'),
+    ) !== null,
+  'OldIdentityId',
+);
+export interface OldIdentityIdBrand {
+  readonly OldIdentityId: unique symbol;
+}
 // IdentityId
 // The purpose of this remains a mystery
-export type IdentityId = t.Branded<string | Uuid, IdentityIdBrand>;
+export type IdentityId = t.Branded<OldIdentityId | Uuid, IdentityIdBrand>;
 export const IdentityId = t.brand(
-  t.union([t.string, Uuid]),
-  (x): x is t.Branded<string | Uuid, IdentityIdBrand> => true,
+  t.union([OldIdentityId, Uuid]),
+  (x): x is t.Branded<OldIdentityId | Uuid, IdentityIdBrand> => true,
   'IdentityId',
 );
 export interface IdentityIdBrand {
